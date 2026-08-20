@@ -56,13 +56,13 @@ createServer(async (req, res) => {
         if (url.pathname === "/api/estado") {
             const cuerpo = req.method === "POST" ? await cuerpoDe(req) : {};
             const min = url.searchParams.get("minutos");
-            return json(res, manejarEstado({ ...cuerpo, minutos: cuerpo.minutos ?? (min ? Number(min) : null) }, { persistir: true }));
+            return json(res, await manejarEstado({ ...cuerpo, minutos: cuerpo.minutos ?? (min ? Number(min) : null) }, { persistir: true }));
         }
 
         if (url.pathname === "/api/sync" && req.method === "POST") {
             const r = await correrSync();
             const min = url.searchParams.get("minutos");
-            return json(res, { ...manejarEstado({ minutos: min ? Number(min) : null }, { persistir: true }), resultadoSync: r });
+            return json(res, { ...await manejarEstado({ minutos: min ? Number(min) : null }, { persistir: true }), resultadoSync: r });
         }
 
         if (url.pathname === "/api/persona") {

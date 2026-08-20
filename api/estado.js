@@ -7,7 +7,7 @@ export default async function handler(req, res) {
 
     try {
         res.setHeader("cache-control", "no-store");
-        res.status(200).json(manejarEstado({ ...cuerpo, minutos: cuerpo.minutos ? Number(cuerpo.minutos) : null }));
+        res.status(200).json(await manejarEstado({ ...cuerpo, minutos: cuerpo.minutos ? Number(cuerpo.minutos) : null }));
     } catch (e) {
         res.status(500).json({ error: e.message });
     }

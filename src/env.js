@@ -8,3 +8,8 @@ export const cargarEnv = (ruta = enRaiz(".env")) => {
         if (m && !process.env[m[1]]) process.env[m[1]] = (m[2] ?? "").replace(/^["']|["']$/g, "").trim();
     }
 };
+
+export const cargarTodos = () => {
+    cargarEnv(enRaiz(".env"));
+    cargarEnv(enRaiz(".env.local"));
+};
