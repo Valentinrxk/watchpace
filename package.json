@@ -10,7 +10,8 @@
     "retos": "node src/cli-retos.js",
     "web": "node src/server.js",
     "sync": "node scripts/sync.mjs",
-    "bajar": "node scripts/bajar.mjs"
+    "bajar": "node scripts/bajar.mjs",
+    "gif": "python scripts/monito-gif.py"
   },
   "devDependencies": {
     "playwright": "^1.47.0"

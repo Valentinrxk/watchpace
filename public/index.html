@@ -241,7 +241,14 @@ section + section { margin-top:4.5rem; }
 }
 .hito__t { font-weight:700; letter-spacing:-.02em; }
 .hito__d { font-size:.8rem; color:var(--color-text-dim); }
-.hito--reto { border-width:2px; align-items:flex-start; }
+.hito--reto { border-width:2px; align-items:center; }
+.festejo-gif { width:118px; height:auto; flex:none; image-rendering:pixelated; mix-blend-mode:multiply; }
+[data-theme='dark'] .festejo-gif { mix-blend-mode:screen; }
+.festejo-gif--noche { display:none; }
+[data-theme='dark'] .festejo-gif--dia { display:none; }
+[data-theme='dark'] .festejo-gif--noche { display:block; }
+@media (max-width:640px) { .festejo-gif { width:88px; } }
+@media (prefers-reduced-motion:reduce) { .festejo-gif { display:none !important; } }
 .hito--reto .hito__t { font-size:1.35rem; line-height:1.1; }
 .hito__sello {
   font-size:.6875rem; letter-spacing:var(--track-caps); color:var(--red);
@@ -719,7 +726,9 @@ const pintar = () => {
   const logro = data.retos.find((t) => t.completado && !yaFestejado(t.id));
   $("retoLogro").innerHTML = logro
     ? `<div class="hito hito--reto enter">
-         <div style="flex:1;min-width:220px">
+         <img class="festejo-gif festejo-gif--dia" src="/monito-festeja.gif" alt="" aria-hidden="true">
+         <img class="festejo-gif festejo-gif--noche" src="/monito-festeja-noche.gif" alt="" aria-hidden="true">
+         <div style="flex:1;min-width:200px">
            <div class="hito__sello">reto cumplido</div>
            <div class="hito__t">${esc(logro.titulo)}</div>
            <div class="hito__lista">${(logro.hechas ?? []).map((f) => esc(f.nombre)).join(" · ")}</div>
