@@ -201,6 +201,19 @@ section + section { margin-top:4.5rem; }
 .reto__c { font-size:.75rem; color:var(--color-text-dim); display:flex; justify-content:space-between; gap:.6rem; cursor:pointer; transition:color .16s, transform .2s var(--expo); }
 .reto__c:hover { color:var(--red); transform:translateX(3px); }
 .reto.on { outline:1px solid var(--red); outline-offset:-1px; }
+.reto.hecho { outline:1px solid var(--red); outline-offset:-1px; }
+.reto.hecho .reto__fill { background:var(--red); }
+.reto__sello {
+  font-size:.6875rem; letter-spacing:var(--track-caps); color:var(--red);
+  font-weight:700; display:flex; align-items:center; gap:.4rem;
+}
+.reto__hechas { font-size:.7rem; color:var(--color-text-dim); margin-top:.2rem; line-height:1.6; }
+.hito {
+  border:1px solid var(--red); background:var(--surface); padding:1.2rem 1.4rem;
+  display:flex; align-items:center; gap:1rem; flex-wrap:wrap; margin-bottom:1.6rem;
+}
+.hito__t { font-weight:700; letter-spacing:-.02em; }
+.hito__d { font-size:.8rem; color:var(--color-text-dim); }
 
 .chips { display:flex; gap:.5rem; flex-wrap:wrap; margin-bottom:1.3rem; }
 .chip { font:inherit; font-size:.6875rem; letter-spacing:var(--track-caps); padding:.35rem .8rem; border:1px solid var(--color-border-strong); background:none; color:var(--color-text-dim); cursor:pointer; text-transform:lowercase; transition:border-color .16s, color .16s; }
@@ -559,7 +572,18 @@ const pintarHoy = () => {
 
   const f = data.sugerencia, d = donde(f);
   $("secAlt").hidden = false;
-  z.innerHTML = `<div class="hero enter">
+
+  /* si el sync detecto que viste la que planificaste, decilo antes de
+     pasar a la siguiente: si no, parece que nunca paso nada */
+  const c = data.cumplidoReciente;
+  const yaAvisado = (() => { try { return localStorage.getItem("wp.visto." + (c?.pelicula ?? "")) === c?.visto; } catch (e) { return true; } })();
+  const hito = c && !yaAvisado
+    ? `<div class="hito enter">
+         <div><div class="hito__t">viste ${esc(c.pelicula)}</div>
+         <div class="hito__d">era tu plan${c.rating ? ` · le pusiste ${"★".repeat(Math.round(c.rating))}` : ""} · ${c.visto}</div></div>
+         <button class="btn" data-ok="${esc(c.pelicula)}|${esc(c.visto)}" style="margin-left:auto">dale</button>
+       </div>` : "";
+  z.innerHTML = hito + `<div class="hero enter">
     ${f.backdrop ? `<div class="hero__bg" style="background-image:url('https://image.tmdb.org/t/p/w780${f.backdrop}')"></div>` : ""}
     ${f.poster
       ? `<img class="hero__poster" src="${IMG}${f.poster}" alt="" decoding="async" fetchpriority="high" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'hero__poster'}))">`
@@ -629,18 +653,25 @@ const pintar = () => {
   $("retosCuenta").textContent = `${Math.min(3, data.retos.length)} de ${data.retos.length}`;
   $("retosRefresh").hidden = data.retos.length <= 3;
   $("retos").innerHTML = ventanaRetos().map((t, i) => `
-    <div class="reto enter ${data.retoActivo === t.id ? "on" : ""}" style="--i:${i}">
+    <div class="reto enter ${t.completado ? "hecho" : t.activo ? "on" : ""}" style="--i:${i}">
       <div class="reto__t">${esc(t.titulo)}</div>
       <div class="reto__d">${esc(t.detalle)}</div>
       <div class="reto__b"><div class="reto__track"><div class="reto__fill" style="width:${Math.min(100, (t.progreso / t.objetivo) * 100)}%"></div></div>
         <span class="caps">${t.progreso}/${t.objetivo}</span></div>
-      ${t.candidatas.length ? `<div class="reto__cands">${t.candidatas.map((c) => {
-        const w = donde(c);
-        return `<span class="reto__c" data-peli="${esc(c.nombre)}" data-anio="${c.anio}"><span>${esc(c.nombre)}</span><span style="${w.si ? "color:var(--red)" : ""}">${esc(w.txt)}</span></span>`;
-      }).join("")}</div>` : ""}
+      ${t.completado
+        ? `<div class="reto__sello">✓ cumplido</div>
+           <div class="reto__hechas">${(t.hechas ?? []).slice(0, 4).map((f) => esc(f.nombre)).join(" · ")}</div>`
+        : t.activo
+          ? `<div class="reto__hechas">${t.hechas?.length ? `vas por: ${t.hechas.map((f) => esc(f.nombre)).join(" · ")}` : `aceptado el ${t.desde}. todavía ninguna.`}</div>`
+          : t.candidatas.length ? `<div class="reto__cands">${t.candidatas.map((c) => {
+              const w = donde(c);
+              return `<span class="reto__c" data-peli="${esc(c.nombre)}" data-anio="${c.anio}"><span>${esc(c.nombre)}</span><span style="${w.si ? "color:var(--red)" : ""}">${esc(w.txt)}</span></span>`;
+            }).join("")}</div>` : ""}
       <div class="acciones" style="margin-top:1rem">
-        <button class="btn" data-a="reto-acepto" data-r="${esc(t.id)}">${data.retoActivo === t.id ? "activo" : "va"}</button>
-        <button class="btn" data-a="reto-paso" data-r="${esc(t.id)}">paso</button>
+        ${t.completado
+          ? `<button class="btn" data-a="reto-paso" data-r="${esc(t.id)}">listo, archivar</button>`
+          : `<button class="btn ${t.activo ? "btn--p" : ""}" data-a="reto-acepto" data-r="${esc(t.id)}">${t.activo ? "abandonar" : "va"}</button>
+             <button class="btn" data-a="reto-paso" data-r="${esc(t.id)}">paso</button>`}
       </div>
     </div>`).join("");
 
@@ -765,6 +796,14 @@ $("retosRefresh").addEventListener("click", async () => {
 
 document.addEventListener("click", (e) => {
   if (e.target.closest("#retosRefresh") || e.target.closest("#dirCerrar") || e.target.closest("#dirVolver")) return;
+
+  const ok = e.target.closest("[data-ok]");
+  if (ok) {
+    const [peli, visto] = ok.dataset.ok.split("|");
+    try { localStorage.setItem("wp.visto." + peli, visto); } catch (err) {}
+    ok.closest(".hito")?.remove();
+    return;
+  }
 
   const el = e.target.closest("[data-a]");
   if (el && el.tagName !== "A") {

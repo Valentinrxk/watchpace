@@ -10,7 +10,7 @@ import { cargarUsuario, configDe, leerPerfil } from "./usuarios.js";
 import { enRaiz } from "./rutas.js";
 
 const RUTA = enRaiz("cache/estado.json");
-const VACIO = { rechazadas: {}, plan: null, retosPasados: [], retoActivo: null, snoozeHasta: null, mirando: null };
+const VACIO = { rechazadas: {}, plan: null, retosPasados: [], retosActivos: {}, retoActivo: null, snoozeHasta: null, mirando: null, historial: [] };
 
 export const leerEstado = () => (existsSync(RUTA) ? { ...VACIO, ...JSON.parse(readFileSync(RUTA, "utf8")) } : { ...VACIO });
 
@@ -84,7 +84,7 @@ export const construirPayload = ({ minutos = null, estado: estadoDado = null, us
     const pool = minutos && pre.filter(cabe).length >= 8 ? pre.filter(cabe) : pre;
     const orden = rankearFinal({ candidatas: pool.slice(0, 40), minutosDisponibles: minutos });
 
-    const retos = generarRetos({ diario, watchlist, vistasFilas, cache, personas: PERSONAS, ritmo, hoy })
+    const retos = generarRetos({ diario, watchlist, vistasFilas, cache, personas: PERSONAS, activos: estado.retosActivos ?? {}, ritmo, hoy })
         .filter((r) => !estado.retosPasados.includes(r.id))
         .map((r) => ({ ...r, candidatas: r.candidatas.map((c) => aFilm({ ...c, tmdb: c.m })) }));
 
@@ -112,6 +112,7 @@ export const construirPayload = ({ minutos = null, estado: estadoDado = null, us
         alternativas: resto.slice(0, 6).map(aFilm),
         retos,
         retoActivo: estado.retoActivo,
+        cumplidoReciente: (estado.historial ?? []).filter((h) => h.tipo === "cumplido").at(-1) ?? null,
         sync: {
             ultima: enDisco.ultimaSync ?? estado.ultimaSync ?? null,
             ultimoIntento: enDisco.ultimoIntento ?? null,
@@ -217,8 +218,16 @@ export const reducir = (previo, { accion, nombre, retoId }) => {
     if (accion === "cancelar-plan") estado.plan = null;
     if (accion === "hoy-no") { estado.snoozeHasta = hoyISO(); estado.mirando = null; }
     if (accion === "despertar") estado.snoozeHasta = null;
-    if (accion === "reto-paso" && retoId) estado.retosPasados = [...new Set([...estado.retosPasados, retoId])];
-    if (accion === "reto-acepto") estado.retoActivo = retoId ?? null;
+    if (accion === "reto-paso" && retoId) {
+        estado.retosPasados = [...new Set([...estado.retosPasados, retoId])];
+        estado.retosActivos = Object.fromEntries(Object.entries(estado.retosActivos ?? {}).filter(([k]) => k !== retoId));
+    }
+    if (accion === "reto-acepto" && retoId) {
+        const ya = estado.retosActivos ?? {};
+        estado.retosActivos = ya[retoId]
+            ? Object.fromEntries(Object.entries(ya).filter(([k]) => k !== retoId))
+            : { ...ya, [retoId]: hoyISO() };
+    }
     if (accion === "limpiar") return { ...VACIO, ultimaSync: previo?.ultimaSync ?? null, ultimaSyncWatchlist: previo?.ultimaSyncWatchlist ?? null };
 
     return estado;

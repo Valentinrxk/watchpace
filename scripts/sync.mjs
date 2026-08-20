@@ -3,6 +3,31 @@ import { promisify } from "node:util";
 import { bajarPerfil, leerPerfil, usuariosConfigurados } from "../src/usuarios.js";
 import { clave } from "../src/letterboxd.js";
 import { enRaiz } from "../src/rutas.js";
+import { hayKV, leerRemoto, guardarRemoto } from "../src/estado-remoto.js";
+import { leerEstado, guardarEstado } from "../src/api.js";
+
+/* si planificaste una peli y despues aparece en tu diario, el plan se
+   cierra solo y queda anotado. si no, se vencia a medianoche en silencio */
+const cerrarPlanCumplido = async (usuario, perfil) => {
+    const estado = hayKV() ? await leerRemoto(usuario) : leerEstado();
+    if (!estado?.plan) return null;
+
+    const visto = perfil.diario.find((f) => f.nombre === estado.plan.nombre);
+    if (!visto) return null;
+
+    const nuevo = {
+        ...estado,
+        plan: null,
+        historial: [
+            ...(estado.historial ?? []).slice(-49),
+            { tipo: "cumplido", pelicula: visto.nombre, anio: visto.anio, visto: visto.visto, rating: visto.rating ?? null },
+        ],
+    };
+    if (hayKV()) await guardarRemoto(usuario, nuevo);
+    else guardarEstado(nuevo);
+
+    return visto;
+};
 
 const correr = promisify(execFile);
 const log = (t) => console.log(`[${new Date().toLocaleString("es-AR")}] ${t}`);
@@ -19,6 +44,9 @@ for (const { usuario } of usuariosConfigurados()) {
         const ahora = await bajarPerfil(usuario);
         const nuevas = antes ? ahora.watchlist.filter((f) => !previos.has(clave(f.nombre, f.anio))) : [];
         const vistasNuevas = ahora.diario.length - (antes?.diario.length ?? 0);
+
+        const cumplido = await cerrarPlanCumplido(usuario, ahora);
+        if (cumplido) log(`${usuario}: cerro el plan — vio ${cumplido.nombre} el ${cumplido.visto}`);
 
         if (huella(antes) !== huella(ahora)) {
             cambios++;
