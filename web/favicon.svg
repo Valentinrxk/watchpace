@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 92 92">
+  <style>@media (prefers-color-scheme: dark) { g { fill: #e2e3e7; } }</style>
+  <!-- el monito en ASCII real: V nariz y oreja derecha de R, en rojo -->
+  <g font-family="Consolas, 'Courier New', monospace" font-size="10" font-weight="700" fill="#232327" xml:space="preserve">
+    <text x="1" y="18" xml:space="preserve">   .==#%#==.</text>
+    <text x="1" y="28" xml:space="preserve"> =%+.:#%#:.+%=</text>
+    <text x="1" y="38" xml:space="preserve">(@:   ...   :<tspan fill="#e10600">R</tspan>)</text>
+    <text x="1" y="48" xml:space="preserve">(@.  o   o  .<tspan fill="#e10600">R</tspan>)</text>
+    <text x="1" y="58" xml:space="preserve">(@:    <tspan fill="#e10600">V</tspan>    :<tspan fill="#e10600">R</tspan>)</text>
+    <text x="1" y="68" xml:space="preserve"> =%= .===. =%=</text>
+    <text x="1" y="78" xml:space="preserve">  .=#%%%#=.</text>
+  </g>
+</svg>

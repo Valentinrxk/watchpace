@@ -1,0 +1,16 @@
+{
+  "name": "watchpace",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "hoy": "node src/hoy.js",
+    "enrich": "node src/enrich.js",
+    "estado": "node src/hoy.js --solo-estado",
+    "retos": "node src/cli-retos.js",
+    "web": "node src/server.js"
+  },
+  "devDependencies": {
+    "playwright": "^1.47.0"
+  }
+}
