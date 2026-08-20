@@ -103,8 +103,12 @@ body {
   display:flex; align-items:center; justify-content:space-between; padding:0 var(--frame-x);
   background:var(--hud-bg); backdrop-filter:blur(8px); border-bottom:1px solid var(--color-border);
 }
-.hud__brand { display:flex; align-items:center; gap:.55rem; font-weight:700; letter-spacing:-.03em; }
-.hud__brand svg { width:30px; height:30px; display:block; overflow:visible; }
+.hud__brand { display:flex; align-items:center; gap:.6rem; font-weight:700; }
+.hud__brand svg { width:44px; height:38px; display:block; overflow:visible; flex:none; }
+.marca {
+  font-size:1.05rem; letter-spacing:-.035em; line-height:1;
+  border-bottom:3px solid var(--red); padding-bottom:2px;
+}
 .hud__right { display:flex; align-items:center; gap:1rem; }
 .tema { background:none; border:1px solid var(--color-border-strong); color:var(--color-text-dim); cursor:pointer; padding:.25rem .6rem; font:inherit; font-size:.6875rem; letter-spacing:var(--track-caps); text-transform:lowercase; transition:border-color .18s, color .18s; }
 .tema:hover { border-color:var(--red); color:var(--red); }
@@ -290,6 +294,7 @@ section + section { margin-top:4.5rem; }
   /* el boton de cuenta tiene que sobrevivir en mobile: es la unica
      forma de cambiar de usuario. lo que se va es el nombre de la app */
   .marca { display:none; }
+  .hud__brand svg { width:34px; height:29px; }
   .hud { padding:0 .9rem; }
   .hud__right { gap:.5rem; }
   .tema { padding:.25rem .45rem; }
@@ -355,15 +360,15 @@ section + section { margin-top:4.5rem; }
 
 <header class="hud">
   <div class="hud__brand">
-    <svg viewBox="0 0 92 92" aria-hidden="true" xml:space="preserve">
+    <svg viewBox="0 0 96 84" aria-hidden="true" xml:space="preserve">
       <g font-family="Consolas,'Courier New',monospace" font-size="10" font-weight="700" fill="currentColor" xml:space="preserve">
-        <text x="1" y="18" xml:space="preserve">   .==#%#==.</text>
-        <text x="1" y="28" xml:space="preserve"> =%+.:#%#:.+%=</text>
-        <text x="1" y="38" xml:space="preserve">(@:   ...   :<tspan fill="#e10600">R</tspan>)</text>
-        <text x="1" y="48" xml:space="preserve">(@.  o   o  .<tspan fill="#e10600">R</tspan>)</text>
-        <text x="1" y="58" xml:space="preserve">(@:    <tspan fill="#e10600">V</tspan>    :<tspan fill="#e10600">R</tspan>)</text>
-        <text x="1" y="68" xml:space="preserve"> =%= .===. =%=</text>
-        <text x="1" y="78" xml:space="preserve">  .=#%%%#=.</text>
+        <text x="1" y="11" xml:space="preserve">   .==#%#==.</text>
+        <text x="1" y="22" xml:space="preserve"> =%+.:#%#:.+%=</text>
+        <text x="1" y="33" xml:space="preserve">(@:   ...   :<tspan fill="#e10600">R</tspan>)</text>
+        <text x="1" y="44" xml:space="preserve">(@.  o   -  .<tspan fill="#e10600">R</tspan>)</text>
+        <text x="1" y="55" xml:space="preserve">(@:    <tspan fill="#e10600">V</tspan>    :<tspan fill="#e10600">R</tspan>)</text>
+        <text x="1" y="66" xml:space="preserve"> =%= \===/ =%=</text>
+        <text x="1" y="77" xml:space="preserve">  .=#%%%#=.</text>
       </g>
     </svg>
     <span class="marca">watchpace</span>
