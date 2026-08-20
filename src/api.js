@@ -53,7 +53,10 @@ export const construirPayload = ({ minutos = null, estado: estadoDado = null } =
     const hoy = new Date();
     const { diario, watchlist, vistasFilas, sincronizadas, watchlistEnVivo, watchlistActualizada } = cargarExport(CONFIG.dirDatos);
     const cache = leerCache();
-    const estado = estadoDado ? { ...VACIO, ...estadoDado } : leerEstado();
+    /* cuando se sincronizo el dato es un hecho del deploy, no del usuario:
+       en serverless el estado viene del navegador y no lo sabria */
+    const enDisco = leerEstado();
+    const estado = estadoDado ? { ...VACIO, ...estadoDado } : enDisco;
     PERSONAS = leerPersonas();
 
     const ritmo = calcularRitmo({ diario, meta: CONFIG.meta, contarRewatches: CONFIG.contarRewatches, hoy });
@@ -94,9 +97,9 @@ export const construirPayload = ({ minutos = null, estado: estadoDado = null } =
         retos,
         retoActivo: estado.retoActivo,
         sync: {
-            ultima: estado.ultimaSync ?? null,
-            ultimoIntento: estado.ultimoIntento ?? null,
-            error: estado.ultimoError ?? null,
+            ultima: enDisco.ultimaSync ?? estado.ultimaSync ?? null,
+            ultimoIntento: enDisco.ultimoIntento ?? null,
+            error: enDisco.ultimoError ?? null,
             nuevasDesdeExport: sincronizadas,
             watchlist: watchlistActualizada,
             watchlistEnVivo,
