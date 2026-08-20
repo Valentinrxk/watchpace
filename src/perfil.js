@@ -2,7 +2,8 @@
    notas, historial completo de vistas, y watchlist. */
 
 const UA = { headers: { "user-agent": "watchpace/0.1 (personal use)" } };
-const PAUSA = 600;
+const PAUSA = 1200;
+const REINTENTOS = 3;
 
 const dormir = (ms) => new Promise((s) => setTimeout(s, ms));
 
@@ -24,11 +25,19 @@ const partirTitulo = (display) => {
     return m ? { nombre: m[1].trim(), anio: Number(m[2]) } : null;
 };
 
+/* cloudflare desafia al azar cuando ve volumen. casi siempre el
+   reintento pasa, asi que conviene esperar antes de rendirse */
 const traer = async (url) => {
-    const r = await fetch(url, UA);
-    if (r.status === 404) return null;
-    if (!r.ok) throw new Error(`${url} -> http ${r.status}`);
-    return r.text();
+    let ultimo = 0;
+    for (let i = 0; i < REINTENTOS; i++) {
+        const r = await fetch(url, UA);
+        if (r.status === 404) return null;
+        if (r.ok) return r.text();
+        ultimo = r.status;
+        if (r.status !== 403 && r.status !== 429) break;
+        await dormir(2500 * (i + 1));
+    }
+    throw new Error(`${url} -> http ${ultimo}`);
 };
 
 /* recorre paginas hasta que una no aporte nada nuevo */
@@ -105,3 +114,20 @@ export const traerWatchlist = (usuario) =>
     );
 
 export const existePerfil = async (usuario) => Boolean(await traer(`https://letterboxd.com/${usuario}/`));
+
+/* dos pedidos para saber si vale la pena bajar las 30 paginas:
+   el rss dice si viste algo nuevo, y la primera pagina de watchlist
+   dice si agregaste algo (viene ordenada por fecha de agregado) */
+export const huellaBarata = async (usuario) => {
+    const rss = await traer(`https://letterboxd.com/${usuario}/rss/`);
+    const ultimaVista = rss?.match(/<letterboxd:watchedDate>([^<]+)/)?.[1] ?? null;
+    /* la fecha sola no alcanza: dos pelis el mismo dia comparten fecha.
+       el titulo del item mas nuevo si cambia con cada registro */
+    const ultimaPeli = desescapar(rss?.match(/<letterboxd:filmTitle>([^<]+)/)?.[1] ?? "") || null;
+
+    await dormir(PAUSA);
+    const wl = await traer(`https://letterboxd.com/${usuario}/watchlist/`);
+    const primera = wl?.match(/data-item-slug="([^"]+)"/)?.[1] ?? null;
+
+    return { ultimaVista, ultimaPeli, primeraWatchlist: primera };
+};

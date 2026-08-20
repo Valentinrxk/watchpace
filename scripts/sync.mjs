@@ -1,6 +1,7 @@
 import { execFile } from "node:child_process";
 import { promisify } from "node:util";
-import { bajarPerfil, leerPerfil, usuariosConfigurados } from "../src/usuarios.js";
+import { bajarPerfil, leerPerfil, guardarPerfil, usuariosConfigurados } from "../src/usuarios.js";
+import { huellaBarata } from "../src/perfil.js";
 import { clave } from "../src/letterboxd.js";
 import { enRaiz } from "../src/rutas.js";
 import { hayKV, leerRemoto, guardarRemoto } from "../src/estado-remoto.js";
@@ -30,7 +31,12 @@ const cerrarPlanCumplido = async (usuario, perfil) => {
 };
 
 const correr = promisify(execFile);
-const log = (t) => console.log(`[${new Date().toLocaleString("es-AR")}] ${t}`);
+const sello = () => {
+    const d = new Date();
+    const p = (n) => String(n).padStart(2, "0");
+    return `${p(d.getDate())}/${p(d.getMonth() + 1)} ${p(d.getHours())}:${p(d.getMinutes())}`;
+};
+const log = (t) => console.log(`[${sello()}] ${t}`);
 
 const huella = (p) => (p ? `${p.diario.length}/${p.vistas.length}/${p.watchlist.length}` : "vacio");
 
@@ -41,6 +47,20 @@ for (const { usuario } of usuariosConfigurados()) {
     const previos = new Set((antes?.watchlist ?? []).map((f) => clave(f.nombre, f.anio)));
 
     try {
+        /* cloudflare desafia por volumen: bajar 30 paginas cada 6h fue lo
+           que nos hizo comer 403. primero preguntamos con dos pedidos */
+        if (antes) {
+            const h = await huellaBarata(usuario);
+            const igualVistas = h.ultimaVista === antes.diario[0]?.visto && h.ultimaPeli === antes.diario[0]?.nombre;
+            const igualLista = h.primeraWatchlist && h.primeraWatchlist === antes.watchlist[0]?.slug;
+            if (igualVistas && igualLista) {
+                guardarPerfil(usuario, { ...antes, revisado: new Date().toISOString() });
+                log(`${usuario}: sin novedades (${huella(antes)}) — no baje el perfil`);
+                continue;
+            }
+            log(`${usuario}: hay movimiento, bajando perfil…`);
+        }
+
         const ahora = await bajarPerfil(usuario);
         const nuevas = antes ? ahora.watchlist.filter((f) => !previos.has(clave(f.nombre, f.anio))) : [];
         const vistasNuevas = ahora.diario.length - (antes?.diario.length ?? 0);
