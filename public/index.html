@@ -71,6 +71,23 @@ body {
 @keyframes rec-blink { 0%,55%{opacity:1} 56%,100%{opacity:.15} }
 @keyframes skel-pass { from{background-position:-200% 0} to{background-position:200% 0} }
 
+/* el sello cae de golpe y rebota una sola vez, en pasos */
+@keyframes sello-golpe {
+  0%   { opacity:0; transform:rotate(-14deg) scale(2.6) }
+  40%  { opacity:1; transform:rotate(-14deg) scale(2.6) }
+  55%  { opacity:1; transform:rotate(-9deg)  scale(.88) }
+  70%  { opacity:1; transform:rotate(-9deg)  scale(1.06) }
+  100% { opacity:1; transform:rotate(-9deg)  scale(1) }
+}
+/* un solo espasmo con split de canales, como el titulo de tu portfolio */
+@keyframes espasmo {
+  0%,100% { transform:none; clip-path:inset(0); filter:none }
+  12% { transform:translateX(6px); clip-path:inset(6% 0 58% 0); filter:drop-shadow(-7px 0 rgba(225,6,0,.85)) }
+  24% { transform:translateX(-8px); clip-path:inset(52% 0 10% 0); filter:drop-shadow(7px 0 rgba(109,15,22,.9)) }
+  36% { transform:translateX(4px); clip-path:inset(24% 0 30% 0); filter:drop-shadow(-4px 0 rgba(225,6,0,.7)) }
+  48% { transform:none; clip-path:inset(0); filter:none }
+}
+
 .mask { display:block; overflow:hidden; }
 .mask > * { display:block; animation:rise-in .7s var(--expo) both; animation-delay:calc(var(--i,0) * 55ms); }
 .enter { animation:glitch-in .42s steps(5,end) both; animation-delay:calc(var(--i,0) * 45ms); }
@@ -201,7 +218,17 @@ section + section { margin-top:4.5rem; }
 .reto__c { font-size:.75rem; color:var(--color-text-dim); display:flex; justify-content:space-between; gap:.6rem; cursor:pointer; transition:color .16s, transform .2s var(--expo); }
 .reto__c:hover { color:var(--red); transform:translateX(3px); }
 .reto.on { outline:1px solid var(--red); outline-offset:-1px; }
-.reto.hecho { outline:1px solid var(--red); outline-offset:-1px; }
+.reto.hecho { outline:1px solid var(--red); outline-offset:-1px; position:relative; overflow:hidden; }
+.reto.festejo { animation:espasmo .5s steps(4,end) 1; }
+.reto__stamp {
+  position:absolute; top:50%; left:50%; margin:-1.1rem 0 0 -4.6rem;
+  width:9.2rem; text-align:center; pointer-events:none;
+  border:3px solid var(--red); color:var(--red);
+  font-weight:700; font-size:1.05rem; letter-spacing:.18em;
+  padding:.35rem 0; opacity:.92;
+  animation:sello-golpe .6s steps(6,end) both;
+}
+.reto.hecho.viejo .reto__stamp { display:none; }
 .reto.hecho .reto__fill { background:var(--red); }
 .reto__sello {
   font-size:.6875rem; letter-spacing:var(--track-caps); color:var(--red);
@@ -214,6 +241,13 @@ section + section { margin-top:4.5rem; }
 }
 .hito__t { font-weight:700; letter-spacing:-.02em; }
 .hito__d { font-size:.8rem; color:var(--color-text-dim); }
+.hito--reto { border-width:2px; align-items:flex-start; }
+.hito--reto .hito__t { font-size:1.35rem; line-height:1.1; }
+.hito__sello {
+  font-size:.6875rem; letter-spacing:var(--track-caps); color:var(--red);
+  font-weight:700; margin-bottom:.35rem;
+}
+.hito__lista { font-size:.78rem; color:var(--color-text-dim); margin-top:.5rem; line-height:1.7; }
 
 .chips { display:flex; gap:.5rem; flex-wrap:wrap; margin-bottom:1.3rem; }
 .chip { font:inherit; font-size:.6875rem; letter-spacing:var(--track-caps); padding:.35rem .8rem; border:1px solid var(--color-border-strong); background:none; color:var(--color-text-dim); cursor:pointer; text-transform:lowercase; transition:border-color .16s, color .16s; }
@@ -435,6 +469,7 @@ section + section { margin-top:4.5rem; }
         <span class="caps" id="retosCuenta"></span>
         <button class="chip" id="retosRefresh">otros tres ↻</button>
       </div>
+      <div id="retoLogro"></div>
       <div class="retos" id="retos"></div>
     </section>
 
@@ -460,6 +495,10 @@ let usuario = new URLSearchParams(location.search).get("u") || null;
 const LS = () => `wp.estado.${usuario ?? "default"}`;
 const leerEstadoLocal = () => { try { return JSON.parse(localStorage.getItem(LS())) ?? {}; } catch (e) { return {}; } };
 const guardarEstadoLocal = (e) => { try { localStorage.setItem(LS(), JSON.stringify(e ?? {})); } catch (err) {} };
+
+/* un reto se festeja una sola vez: despues queda como logro, sin sello */
+const yaFestejado = (id) => { try { return localStorage.getItem(`wp.festejo.${usuario}.${id}`) === "1"; } catch (e) { return true; } };
+const marcarFestejado = (id) => { try { localStorage.setItem(`wp.festejo.${usuario}.${id}`, "1"); } catch (e) {} };
 
 const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 const fecha = (iso) => iso ? new Date(iso + "T12:00:00").toLocaleDateString("es-AR", { day: "numeric", month: "long" }) : "—";
@@ -653,11 +692,12 @@ const pintar = () => {
   $("retosCuenta").textContent = `${Math.min(3, data.retos.length)} de ${data.retos.length}`;
   $("retosRefresh").hidden = data.retos.length <= 3;
   $("retos").innerHTML = ventanaRetos().map((t, i) => `
-    <div class="reto enter ${t.completado ? "hecho" : t.activo ? "on" : ""}" style="--i:${i}">
+    <div class="reto enter ${t.completado ? "hecho" : t.activo ? "on" : ""}${t.completado && yaFestejado(t.id) ? " viejo" : ""}" data-reto="${esc(t.id)}" style="--i:${i}">
       <div class="reto__t">${esc(t.titulo)}</div>
       <div class="reto__d">${esc(t.detalle)}</div>
       <div class="reto__b"><div class="reto__track"><div class="reto__fill" style="width:${Math.min(100, (t.progreso / t.objetivo) * 100)}%"></div></div>
         <span class="caps">${t.progreso}/${t.objetivo}</span></div>
+      ${t.completado && !yaFestejado(t.id) ? `<div class="reto__stamp">cumplido</div>` : ""}
       ${t.completado
         ? `<div class="reto__sello">✓ cumplido</div>
            <div class="reto__hechas">${(t.hechas ?? []).slice(0, 4).map((f) => esc(f.nombre)).join(" · ")}</div>`
@@ -674,6 +714,23 @@ const pintar = () => {
              <button class="btn" data-a="reto-paso" data-r="${esc(t.id)}">paso</button>`}
       </div>
     </div>`).join("");
+
+  /* el reto recien cumplido merece un momento, no una tarjeta mas */
+  const logro = data.retos.find((t) => t.completado && !yaFestejado(t.id));
+  $("retoLogro").innerHTML = logro
+    ? `<div class="hito hito--reto enter">
+         <div style="flex:1;min-width:220px">
+           <div class="hito__sello">reto cumplido</div>
+           <div class="hito__t">${esc(logro.titulo)}</div>
+           <div class="hito__lista">${(logro.hechas ?? []).map((f) => esc(f.nombre)).join(" · ")}</div>
+         </div>
+         <button class="btn btn--p" data-festejo="${esc(logro.id)}">buenísimo</button>
+       </div>`
+    : "";
+  if (logro) {
+    const tarjeta = document.querySelector(`.reto[data-reto="${CSS.escape(logro.id)}"]`);
+    if (tarjeta && !suave) { tarjeta.classList.add("festejo"); setTimeout(() => tarjeta.classList.remove("festejo"), 600); }
+  }
 
   $("ultimas").innerHTML = data.ultimas
     .map((f, i) => filaPeli({ ...f, puntaje: null }, `${estrellas(f.rating)}${fechaCorta(f.visto)}`, i))
@@ -796,6 +853,13 @@ $("retosRefresh").addEventListener("click", async () => {
 
 document.addEventListener("click", (e) => {
   if (e.target.closest("#retosRefresh") || e.target.closest("#dirCerrar") || e.target.closest("#dirVolver")) return;
+
+  const fest = e.target.closest("[data-festejo]");
+  if (fest) {
+    marcarFestejado(fest.dataset.festejo);
+    pintar();
+    return;
+  }
 
   const ok = e.target.closest("[data-ok]");
   if (ok) {
