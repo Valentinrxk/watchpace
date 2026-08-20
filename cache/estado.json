@@ -5,6 +5,11 @@
  "retoActivo": null,
  "snoozeHasta": null,
  "mirando": null,
- "ultimaSync": "2026-08-20T18:29:35.302Z",
- "ultimaSyncWatchlist": "2026-08-20T18:29:45.765Z"
+ "ultimaSync": "2026-08-20T18:31:00.747Z",
+ "ultimaSyncWatchlist": "2026-08-20T18:31:11.221Z",
+ "ultimoIntento": "2026-08-20T18:31:00.748Z",
+ "ultimoError": null,
+ "historial": [],
+ "ultimoIntentoWatchlist": "2026-08-20T18:31:11.221Z",
+ "ultimoErrorWatchlist": null
 }

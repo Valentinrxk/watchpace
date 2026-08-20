@@ -9,7 +9,7 @@ import { CONFIG } from "./config.js";
 import { enRaiz } from "./rutas.js";
 
 const PUERTO = Number(process.env.PORT) || 4321;
-const WEB = enRaiz("web");
+const WEB = enRaiz("public");
 
 const MIME = { ".html": "text/html", ".css": "text/css", ".js": "text/javascript", ".svg": "image/svg+xml", ".json": "application/json" };
 
