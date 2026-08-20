@@ -4,7 +4,16 @@ import { armarMensaje, botones, enviar, leerChats } from "../src/telegram.js";
 /* lo dispara el cron de vercel. si estas al dia y no hay nada urgente,
    no manda nada: un bot que insiste se silencia en una semana */
 export default async function handler(req, res) {
-    const forzar = new URL(req.url, "http://x").searchParams.get("forzar") === "1";
+    /* vercel manda este header en cada corrida del cron. sin esto el
+       endpoint es publico y cualquiera te puede hacer spam */
+    const secreto = process.env.CRON_SECRET;
+    const q = new URL(req.url, "http://x").searchParams;
+    const autorizado = !secreto
+        || req.headers.authorization === `Bearer ${secreto}`
+        || q.get("k") === secreto;
+    if (!autorizado) return res.status(401).json({ error: "no autorizado" });
+
+    const forzar = q.get("forzar") === "1";
     const chats = await leerChats();
     const salida = [];
 
