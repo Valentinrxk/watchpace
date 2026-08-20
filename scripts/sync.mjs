@@ -55,13 +55,19 @@ if (process.env.WATCHPACE_DEPLOY === "0") {
 
 /* el repo esta conectado a vercel: pushear ya deploya */
 const git = (...args) => correr("git", args, { cwd: enRaiz(), timeout: 120000 });
+
+/* solo los archivos de datos que este script genera. con `git add -A` un
+   job automatico se lleva puesto el codigo que tengas a medio escribir */
+const MIOS = ["usuarios", "cache/films.json", "cache/personas.json"];
+
 try {
-    await git("add", "-A");
-    const { stdout: pendiente } = await git("status", "--porcelain");
+    await git("add", "--", ...MIOS);
+    const { stdout: pendiente } = await git("diff", "--cached", "--name-only");
     if (!pendiente.trim()) {
-        log("git limpio, no hay que publicar");
+        log("los datos no cambiaron, no hay que publicar");
         process.exit(0);
     }
+    log(`publicando: ${pendiente.trim().split(/\r?\n/).join(", ")}`);
     await git("commit", "-m", `sync ${new Date().toISOString().slice(0, 16).replace("T", " ")}`);
     await git("push");
     log("pusheado — vercel deploya solo");
