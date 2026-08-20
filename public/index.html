@@ -109,6 +109,8 @@ body {
 .tema { background:none; border:1px solid var(--color-border-strong); color:var(--color-text-dim); cursor:pointer; padding:.25rem .6rem; font:inherit; font-size:.6875rem; letter-spacing:var(--track-caps); text-transform:lowercase; transition:border-color .18s, color .18s; }
 .tema:hover { border-color:var(--red); color:var(--red); }
 #sync.err { border-color:var(--bordo); color:var(--bordo); }
+#user { font-weight:700; color:var(--color-text); }
+#user.solo { pointer-events:none; border-color:transparent; font-weight:500; color:var(--color-text-dim); }
 #sync.girando { opacity:.5; }
 .toast {
   position:fixed; left:50%; bottom:2rem; transform:translateX(-50%); z-index:125;
@@ -362,7 +364,7 @@ section + section { margin-top:4.5rem; }
   <div class="hud__right">
     <span class="rec" id="rec"></span>
     <button class="tema" id="sync" title="traer lo que registraste en letterboxd">↻</button>
-    <span class="caps" id="user"></span>
+    <button class="tema" id="user" title="cambiar de cuenta"></button>
     <button class="tema" id="tema">noche</button>
   </div>
 </header>
@@ -429,9 +431,10 @@ let minutos = null, data = null, primera = true, numeroActual = 0, retoOffset = 
 
 /* el servidor local persiste en disco; el deploy serverless no tiene disco,
    asi que el estado viaja con cada request y vuelve para guardarse aca */
-const LS = "wp.estado";
-const leerEstadoLocal = () => { try { return JSON.parse(localStorage.getItem(LS)) ?? {}; } catch (e) { return {}; } };
-const guardarEstadoLocal = (e) => { try { localStorage.setItem(LS, JSON.stringify(e ?? {})); } catch (err) {} };
+let usuario = new URLSearchParams(location.search).get("u") || null;
+const LS = () => `wp.estado.${usuario ?? "default"}`;
+const leerEstadoLocal = () => { try { return JSON.parse(localStorage.getItem(LS())) ?? {}; } catch (e) { return {}; } };
+const guardarEstadoLocal = (e) => { try { localStorage.setItem(LS(), JSON.stringify(e ?? {})); } catch (err) {} };
 
 const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 const fecha = (iso) => iso ? new Date(iso + "T12:00:00").toLocaleDateString("es-AR", { day: "numeric", month: "long" }) : "—";
@@ -485,10 +488,15 @@ const contarHasta = (el, destino) => {
   numeroActual = destino;
   if (suave || desde === destino) return (el.textContent = destino);
   const pasos = 14, t0 = performance.now(), dur = 620;
+  /* red de seguridad: si rAF no corre (pestaña oculta, sin compositing)
+     el numero igual termina en su valor y no queda a mitad de camino */
+  const red = setTimeout(() => { el.textContent = destino; }, dur + 120);
+
   const tic = (t) => {
     const p = Math.min(1, (t - t0) / dur);
     el.textContent = Math.round(desde + (destino - desde) * (Math.floor(p * pasos) / pasos));
-    if (p < 1) requestAnimationFrame(tic); else el.textContent = destino;
+    if (p < 1) requestAnimationFrame(tic);
+    else { clearTimeout(red); el.textContent = destino; }
   };
   requestAnimationFrame(tic);
 };
@@ -504,7 +512,7 @@ const pedir = async (accion, extra = {}) => {
     fetch("/api/estado", {
       method: "POST",
       headers: { "content-type": "application/json" },
-      body: JSON.stringify({ minutos, accion, ...extra, estado: leerEstadoLocal() }),
+      body: JSON.stringify({ minutos, accion, ...extra, usuario, estado: leerEstadoLocal() }),
     }),
     salida,
   ]);
@@ -569,7 +577,12 @@ const pintar = () => {
   const r = data.ritmo;
   $("boot").hidden = true;
   $("app").hidden = false;
-  $("user").textContent = "@" + data.usuario;
+  usuario = data.usuario;
+  const otros = (data.usuarios ?? []).filter((u) => u.usuario !== data.usuario);
+  $("user").textContent = data.nombre ?? data.usuario;
+  $("user").classList.toggle("solo", !otros.length);
+  $("user").title = otros.length ? `ver lo de ${otros[0].nombre}` : `@${data.usuario}`;
+  $("user").dataset.otro = otros[0]?.usuario ?? "";
 
   const s = data.sync ?? {};
   $("sync").textContent = `↻ ${s.error ? "falló" : hace(s.ultima)}`;
@@ -706,9 +719,10 @@ const navegar = async (entrada, esVuelta = false) => {
   cuerpo.innerHTML = `<div class="caps">buscando…</div>`;
   dirPanel.scrollTop = 0;
 
+  const u = usuario ? `&u=${encodeURIComponent(usuario)}` : "";
   const url = entrada.tipo === "persona"
-    ? `/api/persona?id=${encodeURIComponent(entrada.id)}`
-    : `/api/pelicula?nombre=${encodeURIComponent(entrada.nombre)}&anio=${entrada.anio}`;
+    ? `/api/persona?id=${encodeURIComponent(entrada.id)}${u}`
+    : `/api/pelicula?nombre=${encodeURIComponent(entrada.nombre)}&anio=${entrada.anio}${u}`;
 
   const d = await fetch(url).then((r) => r.json()).catch(() => null);
   $("dirVolver").hidden = pila.length < 2;
@@ -757,6 +771,17 @@ document.addEventListener("click", (e) => {
   if (chip) { minutos = chip.dataset.min ? Number(chip.dataset.min) : null; return pedir(null); }
 });
 
+$("user").addEventListener("click", () => {
+  const otro = $("user").dataset.otro;
+  if (!otro) return;
+  usuario = otro;
+  retoOffset = 0;
+  primera = true;
+  numeroActual = 0;
+  history.replaceState(null, "", `?u=${encodeURIComponent(otro)}`);
+  pedir(null);
+});
+
 $("sync").addEventListener("click", async () => {
   const b = $("sync");
   b.classList.add("girando");
@@ -765,7 +790,7 @@ $("sync").addEventListener("click", async () => {
     const r = await fetch("/api/sync", {
       method: "POST",
       headers: { "content-type": "application/json" },
-      body: JSON.stringify({ minutos, estado: leerEstadoLocal() }),
+      body: JSON.stringify({ minutos, usuario, estado: leerEstadoLocal() }),
     }).then((x) => x.json());
     const res = r.resultadoSync ?? {};
     data = r;

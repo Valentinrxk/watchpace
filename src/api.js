@@ -1,11 +1,12 @@
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
-import { cargarExport, clave } from "./letterboxd.js";
+import { clave } from "./letterboxd.js";
 import { calcularRitmo, ritmoPorDia } from "./pace.js";
 import { prerankear, rankearFinal } from "./rank.js";
 import { generarRetos } from "./retos.js";
 import { leerCache, leerPersonas } from "./enrich.js";
 import { clasificar } from "./fmt.js";
 import { CONFIG } from "./config.js";
+import { cargarUsuario, configDe, leerPerfil } from "./usuarios.js";
 import { enRaiz } from "./rutas.js";
 
 const RUTA = enRaiz("cache/estado.json");
@@ -20,6 +21,17 @@ export const guardarEstado = (e) => {
 };
 
 let PERSONAS = leerPersonas();
+
+const fechasCache = {};
+const fechasDe = (usuario) => {
+    if (fechasCache[usuario]) return fechasCache[usuario];
+    try {
+        fechasCache[usuario] = JSON.parse(readFileSync(enRaiz("usuarios", usuario, "fechas-watchlist.json"), "utf8"));
+    } catch {
+        fechasCache[usuario] = {};
+    }
+    return fechasCache[usuario];
+};
 
 const hoyISO = (d = new Date()) => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
 
@@ -49,9 +61,11 @@ const aFilm = (f) => {
     };
 };
 
-export const construirPayload = ({ minutos = null, estado: estadoDado = null } = {}) => {
+export const construirPayload = ({ minutos = null, estado: estadoDado = null, usuario = null } = {}) => {
     const hoy = new Date();
-    const { diario, watchlist, vistasFilas, sincronizadas, watchlistEnVivo, watchlistActualizada } = cargarExport(CONFIG.dirDatos);
+    const quien = configDe(usuario ?? CONFIG.porDefecto);
+    const { diario, watchlist, vistasFilas, sincronizadas, watchlistEnVivo, watchlistActualizada } =
+        cargarUsuario(quien.usuario, { fechasWatchlist: fechasDe(quien.usuario) });
     const cache = leerCache();
     /* cuando se sincronizo el dato es un hecho del deploy, no del usuario:
        en serverless el estado viene del navegador y no lo sabria */
@@ -59,7 +73,7 @@ export const construirPayload = ({ minutos = null, estado: estadoDado = null } =
     const estado = estadoDado ? { ...VACIO, ...estadoDado } : enDisco;
     PERSONAS = leerPersonas();
 
-    const ritmo = calcularRitmo({ diario, meta: CONFIG.meta, contarRewatches: CONFIG.contarRewatches, hoy });
+    const ritmo = calcularRitmo({ diario, meta: quien.meta, contarRewatches: CONFIG.contarRewatches, hoy });
     const conDatos = watchlist.map((f) => ({ ...f, tmdb: cache[clave(f.nombre, f.anio)] ?? null }));
 
     const pre = prerankear({ watchlist: conDatos, hoy, rechazadas: estado.rechazadas });
@@ -82,7 +96,9 @@ export const construirPayload = ({ minutos = null, estado: estadoDado = null } =
     const resto = orden.filter((_, i) => i !== (iMirando >= 0 ? iMirando : 0));
 
     return {
-        usuario: CONFIG.usuario,
+        usuario: quien.usuario,
+        nombre: quien.nombre,
+        usuarios: CONFIG.usuarios.map((u) => ({ usuario: u.usuario, nombre: u.nombre })),
         ritmo: {
             ...ritmo,
             fechaMeta: ritmo.fechaMeta ? hoyISO(ritmo.fechaMeta) : null,
@@ -115,8 +131,9 @@ const slugLetterboxd = (nombre) => {
     return s.replace(/['.]/g, "").replace(/\s+/g, "-");
 };
 
-const fuentes = () => {
-    const { diario, watchlist, vistasFilas } = cargarExport(CONFIG.dirDatos);
+const fuentes = (usuario = null) => {
+    const quien = configDe(usuario ?? CONFIG.porDefecto);
+    const { diario, watchlist, vistasFilas } = cargarUsuario(quien.usuario, { fechasWatchlist: fechasDe(quien.usuario) });
     const cache = leerCache();
     PERSONAS = leerPersonas();
     return {
@@ -128,9 +145,9 @@ const fuentes = () => {
     };
 };
 
-export const porPersona = (id) => {
+export const porPersona = (id, usuario = null) => {
     const pid = Number(id);
-    const { watchlist, vistasFilas, meta, enDiario } = fuentes();
+    const { watchlist, vistasFilas, meta, enDiario } = fuentes(usuario);
 
     const rolDe = (m) => (m?.directorId === pid ? "dirige" : (m?.repartoIds ?? []).includes(pid) ? "actúa" : null);
     const nombreDe = () => {
@@ -169,9 +186,9 @@ export const porPersona = (id) => {
     };
 };
 
-export const porPelicula = (nombre, anio) => {
+export const porPelicula = (nombre, anio, usuario = null) => {
     const k = clave(nombre, Number(anio));
-    const { cache, enDiario, enWatchlist, yaVista } = fuentes();
+    const { cache, enDiario, enWatchlist, yaVista } = fuentes(usuario);
     const m = cache[k];
     const wl = enWatchlist.get(k);
     const d = enDiario.get(k);

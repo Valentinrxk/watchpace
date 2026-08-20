@@ -1,5 +1,6 @@
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
-import { cargarExport, clave } from "./letterboxd.js";
+import { clave } from "./letterboxd.js";
+import { leerPerfil, usuariosConfigurados } from "./usuarios.js";
 import { buscar, detalle, nombreLatino } from "./tmdb.js";
 import { CONFIG } from "./config.js";
 import { enRaiz } from "./rutas.js";
@@ -27,16 +28,23 @@ const enriquecer = async (f, cache) => {
 };
 
 const correr = async () => {
-    const { diario, watchlist, vistasFilas } = cargarExport(CONFIG.dirDatos);
-
+    /* el universo son todas las pelis de todos los usuarios: la metadata
+       de tmdb no es de nadie, se comparte */
     const universo = new Map();
-    for (const f of [...watchlist, ...diario, ...vistasFilas]) universo.set(clave(f.nombre, f.anio), f);
+    const porUsuario = [];
+    for (const { usuario } of usuariosConfigurados()) {
+        const p = leerPerfil(usuario);
+        if (!p) continue;
+        const suyas = [...p.watchlist, ...p.diario, ...p.vistas];
+        porUsuario.push(`${usuario} ${suyas.length}`);
+        for (const f of suyas) universo.set(clave(f.nombre, f.anio), f);
+    }
 
     const cache = leerCache();
     const viejo = (k) => cache[k]?.tmdb && cache[k].repartoIds === undefined;
     const faltan = [...universo.entries()].filter(([k]) => !cache[k] || viejo(k)).map(([, f]) => f);
 
-    console.log(`universo ${universo.size} (watchlist ${watchlist.length} + diario + vistas ${vistasFilas.length}) · en cache ${universo.size - faltan.length} · a resolver ${faltan.length}`);
+    console.log(`universo ${universo.size} (${porUsuario.join(" · ")}) · en cache ${universo.size - faltan.length} · a resolver ${faltan.length}`);
     if (!faltan.length) return resolverNombres(cache);
 
     for (let i = 0; i < faltan.length; i += CONCURRENCIA) {

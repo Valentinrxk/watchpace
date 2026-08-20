@@ -1,10 +1,11 @@
-import { cargarExport, clave } from "./letterboxd.js";
+import { clave } from "./letterboxd.js";
 import { calcularRitmo, ritmoPorDia } from "./pace.js";
 import { prerankear, rankearFinal } from "./rank.js";
 import { dondeVer, pad } from "./fmt.js";
 import { leerCache } from "./enrich.js";
 import { generarRetos } from "./retos.js";
 import { CONFIG } from "./config.js";
+import { cargarUsuario, configDe } from "./usuarios.js";
 
 const args = process.argv.slice(2);
 const flag = (n) => args.includes(`--${n}`);
@@ -18,11 +19,12 @@ const fecha = (d) => d?.toLocaleDateString("es-AR", { day: "numeric", month: "lo
 const cada = (r) => (r > 0 ? `1 cada ${(1 / r).toFixed(1)} dias` : "—");
 
 const hoy = new Date();
-const { diario, watchlist } = cargarExport(CONFIG.dirDatos);
-const r = calcularRitmo({ diario, meta: CONFIG.meta, contarRewatches: CONFIG.contarRewatches, hoy });
+const quien = configDe(process.argv.find((a) => a.startsWith("--u="))?.split("=")[1]);
+const { diario, watchlist } = cargarUsuario(quien.usuario);
+const r = calcularRitmo({ diario, meta: quien.meta, contarRewatches: CONFIG.contarRewatches, hoy });
 
 linea();
-console.log(`  WATCHPACE · ${r.anio} · @${CONFIG.usuario}`);
+console.log(`  WATCHPACE · ${r.anio} · @${quien.usuario}`);
 linea();
 console.log(`  ${r.vistas} / ${r.meta}${" ".repeat(12)}${r.alDia ? `${-r.deficit} adelantado` : `${r.deficit} atrasado`}`);
 console.log(`  faltan ${r.faltan} en ${r.restantes} dias   (${r.rewatches} rewatches incluidos)`);

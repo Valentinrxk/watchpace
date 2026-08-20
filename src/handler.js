@@ -31,5 +31,5 @@ export const manejarEstado = async (cuerpo = {}, { persistir = false } = {}) => 
         else if (persistir) guardarEstado(nuevo);
     }
 
-    return { ...construirPayload({ minutos, estado: nuevo }), estado: nuevo, modoEstado: modo };
+    return { ...construirPayload({ minutos, estado: nuevo, usuario }), estado: nuevo, modoEstado: modo };
 };

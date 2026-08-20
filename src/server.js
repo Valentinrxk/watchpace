@@ -3,8 +3,6 @@ import { existsSync, readFileSync } from "node:fs";
 import { extname, join, normalize } from "node:path";
 import { construirPayload, porPersona, porPelicula } from "./api.js";
 import { manejarEstado } from "./handler.js";
-import { cargarExport, claveEntrada, clave } from "./letterboxd.js";
-import { sincronizar, sincronizarWatchlist } from "./sync.js";
 import { CONFIG } from "./config.js";
 import { enRaiz } from "./rutas.js";
 
@@ -29,24 +27,19 @@ const cuerpoDe = (req) =>
 
 const HORAS_SYNC = 6;
 
-const correrSync = async ({ conWatchlist = true } = {}) => {
-    const { diario, watchlist } = cargarExport(CONFIG.dirDatos);
-    const r = await sincronizar({ yaConocidas: new Set(diario.map(claveEntrada)) });
-
-    if (conWatchlist) {
-        const w = await sincronizarWatchlist({
-            fechasConocidas: new Map(watchlist.map((f) => [clave(f.nombre, f.anio), f.agregada])),
-        });
-        r.watchlist = w;
-        console.log(w.ok
-            ? `  [watchlist] ${w.total} en total · ${w.agregadas.length} agregada${w.agregadas.length === 1 ? "" : "s"} · ${w.sacadas.length} sacada${w.sacadas.length === 1 ? "" : "s"}`
-            : `  [watchlist] fallo: ${w.error}`);
+const correrSync = async () => {
+    const { execFile } = await import("node:child_process");
+    const { promisify } = await import("node:util");
+    try {
+        const { stdout } = await promisify(execFile)(process.execPath, [enRaiz("scripts", "sync.mjs")], { cwd: enRaiz(), timeout: 1800000 });
+        const lineas = stdout.trim().split(/\r?\n/);
+        lineas.forEach((l) => console.log(`  ${l}`));
+        return { ok: true, salida: lineas };
+    } catch (e) {
+        const motivo = String(e.message).split(/\r?\n/)[0];
+        console.log(`  [sync] fallo: ${motivo}`);
+        return { ok: false, error: motivo };
     }
-    const detalle = r.ok
-        ? `${r.nuevas.length} nueva${r.nuevas.length === 1 ? "" : "s"}${r.nuevas.length ? ": " + r.nuevas.map((f) => f.nombre).join(", ") : ""}`
-        : `fallo: ${r.error}`;
-    console.log(`  [sync] ${new Date().toLocaleTimeString("es-AR")} - ${detalle}`);
-    return r;
 };
 
 createServer(async (req, res) => {
@@ -67,12 +60,12 @@ createServer(async (req, res) => {
 
         if (url.pathname === "/api/persona") {
             const id = url.searchParams.get("id");
-            return id ? json(res, porPersona(id)) : json(res, { error: "falta id" }, 400);
+            return id ? json(res, porPersona(id, url.searchParams.get("u"))) : json(res, { error: "falta id" }, 400);
         }
 
         if (url.pathname === "/api/pelicula") {
             const n = url.searchParams.get("nombre"), a = url.searchParams.get("anio");
-            return n && a ? json(res, porPelicula(n, a)) : json(res, { error: "faltan datos" }, 400);
+            return n && a ? json(res, porPelicula(n, a, url.searchParams.get("u"))) : json(res, { error: "faltan datos" }, 400);
         }
 
         const rel = url.pathname === "/" ? "index.html" : normalize(url.pathname).replace(/^[/\\]+/, "");

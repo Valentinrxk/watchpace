@@ -246,13 +246,23 @@ const actores = ({ vida, lista, personas }) => {
 /* ─── limpiar: sólo miran la watchlist ─────────────────────── */
 
 const masVieja = ({ lista, hoy }) => {
-    const orden = [...lista].sort((a, b) => new Date(a.agregada) - new Date(b.agregada));
-    if (!orden.length) return [];
+    if (!lista.length) return [];
+    const conFecha = lista.filter((f) => f.agregada);
+
+    /* con fechas podemos decir cuanto hace; sin ellas solo el orden */
+    const orden = conFecha.length
+        ? [...conFecha].sort((a, b) => a.agregada.localeCompare(b.agregada))
+        : [...lista].sort((a, b) => (b.orden ?? 0) - (a.orden ?? 0));
     const v = orden[0];
+
     return [{
         id: "watchlist-vieja", tipo: "limpiar",
-        titulo: `hace ${((hoy - new Date(v.agregada)) / MS_DIA / 365).toFixed(1)} años que pateás la misma`,
-        detalle: `${v.nombre} (${v.anio}) entró a tu watchlist el ${v.agregada}. sigue ahí.`,
+        titulo: conFecha.length
+            ? `hace ${((hoy - new Date(v.agregada)) / MS_DIA / 365).toFixed(1)} años que pateás la misma`
+            : "las que más venís pateando",
+        detalle: conFecha.length
+            ? `${v.nombre} (${v.anio}) entró a tu watchlist el ${v.agregada}. sigue ahí.`
+            : `${v.nombre} (${v.anio}) es la más vieja de tu watchlist.`,
         objetivo: 5, progreso: 0, interes: 82, candidatas: orden.slice(0, 5),
     }];
 };

@@ -22,8 +22,10 @@ const semillaDiaria = (nombre, hoy) => {
 export const prerankear = ({ watchlist, hoy = new Date(), rechazadas = {} }) =>
     watchlist
         .map((f) => {
-            const dias = Math.floor((hoy - new Date(f.agregada)) / MS_DIA);
-            const antiguedad = Math.min(30, dias / 60);
+            /* sin fecha de agregado (perfil publico) usamos la posicion:
+               orden 0 es la mas nueva, el final de la lista la mas vieja */
+            const dias = f.agregada ? Math.floor((hoy - new Date(f.agregada)) / MS_DIA) : null;
+            const antiguedad = dias !== null ? Math.min(30, dias / 60) : Math.min(30, (f.orden ?? 0) / 15);
             const castigo = rechazadas[f.nombre] && hoy - new Date(rechazadas[f.nombre]) < 7 * MS_DIA ? -100 : 0;
             return { ...f, diasEnLista: dias, score: antiguedad + castigo + semillaDiaria(f.nombre, hoy) };
         })
