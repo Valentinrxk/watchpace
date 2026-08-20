@@ -11,7 +11,8 @@
     "web": "node src/server.js",
     "sync": "node scripts/sync.mjs",
     "bajar": "node scripts/bajar.mjs",
-    "gif": "python scripts/monito-gif.py"
+    "gif": "python scripts/monito-gif.py",
+    "telegram": "node scripts/telegram-setup.mjs"
   },
   "devDependencies": {
     "playwright": "^1.47.0"
