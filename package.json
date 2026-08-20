@@ -8,7 +8,8 @@
     "enrich": "node src/enrich.js",
     "estado": "node src/hoy.js --solo-estado",
     "retos": "node src/cli-retos.js",
-    "web": "node src/server.js"
+    "web": "node src/server.js",
+    "sync": "node -e \"import(String.raw`./src/letterboxd.js`).then(async L=>{const{sincronizar}=await import(String.raw`./src/sync.js`);const{CONFIG}=await import(String.raw`./src/config.js`);const{diario}=L.cargarExport(CONFIG.dirDatos);const r=await sincronizar({yaConocidas:new Set(diario.map(L.claveEntrada))});console.log(r.ok?r.nuevas.length+' nuevas':'fallo: '+r.error)})\""
   },
   "devDependencies": {
     "playwright": "^1.47.0"

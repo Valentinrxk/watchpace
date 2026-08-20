@@ -50,7 +50,7 @@ const aFilm = (f) => {
 
 export const construirPayload = ({ minutos = null } = {}) => {
     const hoy = new Date();
-    const { diario, watchlist, vistasFilas } = cargarExport(CONFIG.dirDatos);
+    const { diario, watchlist, vistasFilas, sincronizadas } = cargarExport(CONFIG.dirDatos);
     const cache = leerCache();
     const estado = leerEstado();
     PERSONAS = leerPersonas();
@@ -92,6 +92,13 @@ export const construirPayload = ({ minutos = null } = {}) => {
         alternativas: resto.slice(0, 6).map(aFilm),
         retos,
         retoActivo: estado.retoActivo,
+        sync: {
+            ultima: estado.ultimaSync ?? null,
+            ultimoIntento: estado.ultimoIntento ?? null,
+            error: estado.ultimoError ?? null,
+            nuevasDesdeExport: sincronizadas,
+        },
+        historial: (estado.historial ?? []).slice(-5).reverse(),
         ultimas: diario.slice(0, 5).map((f) => ({ nombre: f.nombre, anio: f.anio, visto: f.visto, rating: f.rating })),
     };
 };

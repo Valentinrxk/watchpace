@@ -4,5 +4,8 @@
  "retosPasados": [],
  "retoActivo": null,
  "snoozeHasta": null,
- "mirando": null
+ "mirando": null,
+ "ultimaSync": "2026-08-20T18:19:20.185Z",
+ "ultimoIntento": "2026-08-20T18:19:20.185Z",
+ "ultimoError": null
 }

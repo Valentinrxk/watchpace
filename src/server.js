@@ -2,6 +2,9 @@ import { createServer } from "node:http";
 import { existsSync, readFileSync } from "node:fs";
 import { extname, join, normalize } from "node:path";
 import { construirPayload, aplicarAccion, porPersona, porPelicula } from "./api.js";
+import { cargarExport, claveEntrada } from "./letterboxd.js";
+import { sincronizar } from "./sync.js";
+import { CONFIG } from "./config.js";
 
 const PUERTO = Number(process.env.PORT) || 4321;
 const WEB = "web";
@@ -22,6 +25,18 @@ const cuerpo = (req) =>
         });
     });
 
+const HORAS_SYNC = 6;
+
+const correrSync = async () => {
+    const { diario } = cargarExport(CONFIG.dirDatos);
+    const r = await sincronizar({ yaConocidas: new Set(diario.map(claveEntrada)) });
+    const detalle = r.ok
+        ? `${r.nuevas.length} nueva${r.nuevas.length === 1 ? "" : "s"}${r.nuevas.length ? ": " + r.nuevas.map((f) => f.nombre).join(", ") : ""}`
+        : `fallo: ${r.error}`;
+    console.log(`  [sync] ${new Date().toLocaleTimeString("es-AR")} - ${detalle}`);
+    return r;
+};
+
 createServer(async (req, res) => {
     const url = new URL(req.url, `http://${req.headers.host}`);
 
@@ -29,6 +44,12 @@ createServer(async (req, res) => {
         if (url.pathname === "/api/estado") {
             const min = url.searchParams.get("minutos");
             return json(res, construirPayload({ minutos: min ? Number(min) : null }));
+        }
+
+        if (url.pathname === "/api/sync" && req.method === "POST") {
+            const r = await correrSync();
+            const min = url.searchParams.get("minutos");
+            return json(res, { ...construirPayload({ minutos: min ? Number(min) : null }), resultadoSync: r });
         }
 
         if (url.pathname === "/api/persona") {
@@ -58,4 +79,8 @@ createServer(async (req, res) => {
     } catch (e) {
         json(res, { error: e.message }, 500);
     }
-}).listen(PUERTO, () => console.log(`\n  watchpace  ->  http://localhost:${PUERTO}\n`));
+}).listen(PUERTO, () => {
+    console.log(`\n  watchpace  ->  http://localhost:${PUERTO}\n`);
+    correrSync().catch((e) => console.log(`  [sync] no arranco: ${e.message}`));
+    setInterval(() => correrSync().catch((e) => console.log(`  [sync] fallo: ${e.message}`)), HORAS_SYNC * 3600 * 1000);
+});

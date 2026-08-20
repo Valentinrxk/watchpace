@@ -108,6 +108,15 @@ body {
 .hud__right { display:flex; align-items:center; gap:1rem; }
 .tema { background:none; border:1px solid var(--color-border-strong); color:var(--color-text-dim); cursor:pointer; padding:.25rem .6rem; font:inherit; font-size:.6875rem; letter-spacing:var(--track-caps); text-transform:lowercase; transition:border-color .18s, color .18s; }
 .tema:hover { border-color:var(--red); color:var(--red); }
+#sync.err { border-color:var(--bordo); color:var(--bordo); }
+#sync.girando { opacity:.5; }
+.toast {
+  position:fixed; left:50%; bottom:2rem; transform:translateX(-50%); z-index:125;
+  background:var(--color-bg); border:1px solid var(--red); padding:.8rem 1.2rem;
+  font-size:.75rem; letter-spacing:var(--track-caps); max-width:min(520px,92vw);
+  box-shadow:0 10px 30px rgba(0,0,0,.2);
+}
+.toast[hidden] { display:none; }
 .rec { width:6px; height:6px; background:var(--red); border-radius:50%; opacity:0; transition:opacity .15s; }
 body.pidiendo .rec { opacity:1; animation:rec-blink .5s steps(1,end) infinite; }
 
@@ -352,10 +361,13 @@ section + section { margin-top:4.5rem; }
   </div>
   <div class="hud__right">
     <span class="rec" id="rec"></span>
+    <button class="tema" id="sync" title="traer lo que registraste en letterboxd">↻</button>
     <span class="caps" id="user"></span>
     <button class="tema" id="tema">noche</button>
   </div>
 </header>
+
+<div class="toast" id="toast" hidden></div>
 
 <main>
   <div id="boot">
@@ -421,6 +433,25 @@ const cada = (r) => r > 0 ? `1 cada ${(1 / r).toFixed(1)} días` : "—";
 const estrellas = (r) => (r ? "★".repeat(Math.round(r)) + " · " : "");
 const fechaCorta = (iso) => iso || "sin fecha";
 const nota = (n) => n ?? "—";
+
+const hace = (iso) => {
+  if (!iso) return "sin sincronizar";
+  const min = Math.floor((Date.now() - new Date(iso)) / 60000);
+  if (min < 1) return "recién";
+  if (min < 60) return `hace ${min} min`;
+  const h = Math.floor(min / 60);
+  if (h < 24) return `hace ${h} h`;
+  return `hace ${Math.floor(h / 24)} días`;
+};
+
+let tToast = null;
+const avisar = (txt) => {
+  const t = $("toast");
+  t.textContent = txt;
+  t.hidden = false;
+  clearTimeout(tToast);
+  tToast = setTimeout(() => (t.hidden = true), 6000);
+};
 
 const donde = (f) => {
   if (f.dondeTipo === "sub" || f.dondeTipo === "gratis") return { txt: f.donde.join(", "), si: true };
@@ -531,6 +562,13 @@ const pintar = () => {
   $("boot").hidden = true;
   $("app").hidden = false;
   $("user").textContent = "@" + data.usuario;
+
+  const s = data.sync ?? {};
+  $("sync").textContent = `↻ ${s.error ? "falló" : hace(s.ultima)}`;
+  $("sync").classList.toggle("err", Boolean(s.error));
+  $("sync").title = s.error
+    ? `último intento ${hace(s.ultimoIntento)}: ${s.error}`
+    : `letterboxd sincronizado ${hace(s.ultima)}. click para traer ahora.`;
 
   contarHasta($("vistas"), r.vistas);
   $("meta").textContent = r.meta;
@@ -709,6 +747,26 @@ document.addEventListener("click", (e) => {
 
   const chip = e.target.closest("[data-min]");
   if (chip) { minutos = chip.dataset.min ? Number(chip.dataset.min) : null; return pedir(null); }
+});
+
+$("sync").addEventListener("click", async () => {
+  const b = $("sync");
+  b.classList.add("girando");
+  document.body.classList.add("pidiendo");
+  try {
+    const q = minutos ? `?minutos=${minutos}` : "";
+    const r = await fetch(`/api/sync${q}`, { method: "POST" }).then((x) => x.json());
+    const res = r.resultadoSync ?? {};
+    data = r;
+    pintar();
+    if (!res.ok) avisar(`no pude hablar con letterboxd: ${res.error}`);
+    else if (res.cumplido) avisar(`viste ${res.cumplido}, la que habías planificado. anotada.`);
+    else if (res.nuevas?.length) avisar(`${res.nuevas.length} nueva${res.nuevas.length === 1 ? "" : "s"}: ${res.nuevas.map((f) => f.nombre).join(", ")}`);
+    else avisar("nada nuevo en letterboxd desde la última vez.");
+  } finally {
+    b.classList.remove("girando");
+    document.body.classList.remove("pidiendo");
+  }
 });
 
 $("tema").addEventListener("click", () => {
