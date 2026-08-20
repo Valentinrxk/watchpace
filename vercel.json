@@ -1,7 +1,7 @@
 {
   "functions": {
     "api/**/*.js": {
-      "includeFiles": "{data,cache}/**",
+      "includeFiles": "{data,cache,usuarios}/**",
       "maxDuration": 15
     }
   }
