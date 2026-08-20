@@ -8957,20 +8957,12 @@
    "orden": 275
   },
   {
-   "nombre": "Doctor Sleep",
-   "anio": 2019,
-   "slug": "doctor-sleep",
-   "clave": "doctor-sleep",
-   "uri": "https://letterboxd.com/film/doctor-sleep/",
-   "orden": 276
-  },
-  {
    "nombre": "Room",
    "anio": 2015,
    "slug": "room-2015",
    "clave": "room-2015",
    "uri": "https://letterboxd.com/film/room-2015/",
-   "orden": 277
+   "orden": 276
   },
   {
    "nombre": "The Farewell",
@@ -8978,7 +8970,7 @@
    "slug": "the-farewell-2019",
    "clave": "the-farewell-2019",
    "uri": "https://letterboxd.com/film/the-farewell-2019/",
-   "orden": 278
+   "orden": 277
   },
   {
    "nombre": "Manhunter",
@@ -8986,7 +8978,7 @@
    "slug": "manhunter",
    "clave": "manhunter",
    "uri": "https://letterboxd.com/film/manhunter/",
-   "orden": 279
+   "orden": 278
   },
   {
    "nombre": "Children of Men",
@@ -8994,7 +8986,7 @@
    "slug": "children-of-men",
    "clave": "children-of-men",
    "uri": "https://letterboxd.com/film/children-of-men/",
-   "orden": 280
+   "orden": 279
   },
   {
    "nombre": "Heaven Knows What",
@@ -9002,7 +8994,7 @@
    "slug": "heaven-knows-what",
    "clave": "heaven-knows-what",
    "uri": "https://letterboxd.com/film/heaven-knows-what/",
-   "orden": 281
+   "orden": 280
   },
   {
    "nombre": "The King of Pigs",
@@ -9010,7 +9002,7 @@
    "slug": "the-king-of-pigs",
    "clave": "the-king-of-pigs",
    "uri": "https://letterboxd.com/film/the-king-of-pigs/",
-   "orden": 282
+   "orden": 281
   },
   {
    "nombre": "Isle of Dogs",
@@ -9018,7 +9010,7 @@
    "slug": "isle-of-dogs-2018",
    "clave": "isle-of-dogs-2018",
    "uri": "https://letterboxd.com/film/isle-of-dogs-2018/",
-   "orden": 283
+   "orden": 282
   },
   {
    "nombre": "Y Tu Mamá También",
@@ -9026,7 +9018,7 @@
    "slug": "y-tu-mama-tambien",
    "clave": "y-tu-mama-tambien",
    "uri": "https://letterboxd.com/film/y-tu-mama-tambien/",
-   "orden": 284
+   "orden": 283
   },
   {
    "nombre": "Annihilation",
@@ -9034,7 +9026,7 @@
    "slug": "annihilation",
    "clave": "annihilation",
    "uri": "https://letterboxd.com/film/annihilation/",
-   "orden": 285
+   "orden": 284
   },
   {
    "nombre": "A Single Man",
@@ -9042,7 +9034,7 @@
    "slug": "a-single-man",
    "clave": "a-single-man",
    "uri": "https://letterboxd.com/film/a-single-man/",
-   "orden": 286
+   "orden": 285
   },
   {
    "nombre": "Sorry to Bother You",
@@ -9050,7 +9042,7 @@
    "slug": "sorry-to-bother-you",
    "clave": "sorry-to-bother-you",
    "uri": "https://letterboxd.com/film/sorry-to-bother-you/",
-   "orden": 287
+   "orden": 286
   },
   {
    "nombre": "Shoplifters",
@@ -9058,7 +9050,7 @@
    "slug": "shoplifters",
    "clave": "shoplifters",
    "uri": "https://letterboxd.com/film/shoplifters/",
-   "orden": 288
+   "orden": 287
   },
   {
    "nombre": "The Departed",
@@ -9066,7 +9058,7 @@
    "slug": "the-departed",
    "clave": "the-departed",
    "uri": "https://letterboxd.com/film/the-departed/",
-   "orden": 289
+   "orden": 288
   },
   {
    "nombre": "Metropolitan",
@@ -9074,7 +9066,7 @@
    "slug": "metropolitan",
    "clave": "metropolitan",
    "uri": "https://letterboxd.com/film/metropolitan/",
-   "orden": 290
+   "orden": 289
   },
   {
    "nombre": "Hunger",
@@ -9082,7 +9074,7 @@
    "slug": "hunger",
    "clave": "hunger",
    "uri": "https://letterboxd.com/film/hunger/",
-   "orden": 291
+   "orden": 290
   },
   {
    "nombre": "A Girl Walks Home Alone at Night",
@@ -9090,7 +9082,7 @@
    "slug": "a-girl-walks-home-alone-at-night",
    "clave": "a-girl-walks-home-alone-at-night",
    "uri": "https://letterboxd.com/film/a-girl-walks-home-alone-at-night/",
-   "orden": 292
+   "orden": 291
   },
   {
    "nombre": "Frances Ha",
@@ -9098,7 +9090,7 @@
    "slug": "frances-ha",
    "clave": "frances-ha",
    "uri": "https://letterboxd.com/film/frances-ha/",
-   "orden": 293
+   "orden": 292
   },
   {
    "nombre": "Raging Bull",
@@ -9106,7 +9098,7 @@
    "slug": "raging-bull",
    "clave": "raging-bull",
    "uri": "https://letterboxd.com/film/raging-bull/",
-   "orden": 294
+   "orden": 293
   },
   {
    "nombre": "Come and See",
@@ -9114,8 +9106,8 @@
    "slug": "come-and-see",
    "clave": "come-and-see",
    "uri": "https://letterboxd.com/film/come-and-see/",
-   "orden": 295
+   "orden": 294
   }
  ],
- "actualizado": "2026-08-20T19:52:43.305Z"
+ "actualizado": "2026-08-20T20:05:31.039Z"
 }

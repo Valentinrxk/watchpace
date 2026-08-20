@@ -287,7 +287,14 @@ section + section { margin-top:4.5rem; }
   :root { --hud-h:40px; }
   body { padding-bottom:4rem; }
   .hud__brand svg { width:24px; height:24px; }
-  #user { display:none; }
+  /* el boton de cuenta tiene que sobrevivir en mobile: es la unica
+     forma de cambiar de usuario. lo que se va es el nombre de la app */
+  .marca { display:none; }
+  .hud { padding:0 .9rem; }
+  .hud__right { gap:.5rem; }
+  .tema { padding:.25rem .45rem; }
+  #user.solo { display:none; }
+  #sync .largo { display:none; }
   .hero { padding:1.25rem; gap:1.1rem; }
   .hero__poster { width:96px; }
   .hero__body { min-width:0; flex-basis:100%; }
@@ -359,7 +366,7 @@ section + section { margin-top:4.5rem; }
         <text x="1" y="78" xml:space="preserve">  .=#%%%#=.</text>
       </g>
     </svg>
-    watchpace
+    <span class="marca">watchpace</span>
   </div>
   <div class="hud__right">
     <span class="rec" id="rec"></span>
@@ -585,7 +592,7 @@ const pintar = () => {
   $("user").dataset.otro = otros[0]?.usuario ?? "";
 
   const s = data.sync ?? {};
-  $("sync").textContent = `↻ ${s.error ? "falló" : hace(s.ultima)}`;
+  $("sync").innerHTML = `↻ <span class="largo">${s.error ? "falló" : esc(hace(s.ultima))}</span>`;
   $("sync").classList.toggle("err", Boolean(s.error));
   $("sync").title = s.error
     ? `último intento ${hace(s.ultimoIntento)}: ${s.error}`
