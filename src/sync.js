@@ -1,15 +1,16 @@
 import { mkdirSync, writeFileSync } from "node:fs";
-import { clave, claveEntrada, leerIncremental, guardarIncremental } from "./letterboxd.js";
+import { clave, claveEntrada, leerIncremental, guardarIncremental, leerWatchlistLive, RUTA_WATCHLIST } from "./letterboxd.js";
 import { detalle, nombreLatino } from "./tmdb.js";
 import { leerCache, leerPersonas } from "./enrich.js";
 import { leerEstado, guardarEstado } from "./api.js";
 import { CONFIG } from "./config.js";
+import { enRaiz } from "./rutas.js";
 
-const RUTA_FILMS = "cache/films.json";
-const RUTA_PERSONAS = "cache/personas.json";
+const RUTA_FILMS = enRaiz("cache/films.json");
+const RUTA_PERSONAS = enRaiz("cache/personas.json");
 
 const guardarJson = (ruta, obj) => {
-    mkdirSync("cache", { recursive: true });
+    mkdirSync(enRaiz("cache"), { recursive: true });
     writeFileSync(ruta, JSON.stringify(obj, null, 1));
 };
 
@@ -111,4 +112,79 @@ export const sincronizar = async ({ yaConocidas = new Set() } = {}) => {
     });
 
     return { ok: true, nuevas, cumplido: cumplido?.nombre ?? null, enriquecidas: aEnriquecer.length };
+};
+
+/* ─── watchlist: no esta en el rss, hay que ir a la pagina ───
+   el grid trae data-item-full-display-name="Nombre (Año)" y viene
+   ordenado por fecha de agregado, mas nuevo primero. 28 por pagina. */
+
+const parsearWatchlist = (html) =>
+    [...html.matchAll(/data-item-slug="([^"]+)"[\s\S]{0,400}?data-item-full-display-name="([^"]+)"/g)]
+        .map(([, slug, display]) => {
+            const t = desescapar(display).trim();
+            const m = t.match(/^(.*)\s+\((\d{4})\)$/);
+            return m ? { nombre: m[1].trim(), anio: Number(m[2]), slug, uri: `https://letterboxd.com/film/${slug}/` } : null;
+        })
+        .filter(Boolean);
+
+export const traerWatchlist = async ({ maxPaginas = 20 } = {}) => {
+    const items = [];
+    const vistos = new Set();
+
+    for (let p = 1; p <= maxPaginas; p++) {
+        const url = p === 1
+            ? `https://letterboxd.com/${CONFIG.usuario}/watchlist/`
+            : `https://letterboxd.com/${CONFIG.usuario}/watchlist/page/${p}/`;
+
+        const r = await fetch(url, { headers: { "user-agent": "watchpace/0.1 (personal use)" } });
+        if (!r.ok) throw new Error(`watchlist pagina ${p}: http ${r.status}`);
+
+        const pagina = parsearWatchlist(await r.text());
+        const nuevos = pagina.filter((f) => !vistos.has(f.slug));
+        if (!nuevos.length) break;
+
+        for (const f of nuevos) {
+            vistos.add(f.slug);
+            items.push(f);
+        }
+        await new Promise((s) => setTimeout(s, 700));
+    }
+    return items;
+};
+
+export const sincronizarWatchlist = async ({ fechasConocidas = new Map() } = {}) => {
+    const estado = leerEstado();
+    let items;
+    try {
+        items = await traerWatchlist();
+    } catch (e) {
+        guardarEstado({ ...estado, ultimoIntentoWatchlist: new Date().toISOString(), ultimoErrorWatchlist: e.message });
+        return { ok: false, error: e.message, agregadas: [], sacadas: [] };
+    }
+    if (!items.length) return { ok: false, error: "la watchlist vino vacia, no la piso", agregadas: [], sacadas: [] };
+
+    const previa = leerWatchlistLive();
+    const antes = new Map((previa.items ?? []).map((f) => [clave(f.nombre, f.anio), f]));
+    const hoy = new Date().toISOString().slice(0, 10);
+
+    /* la pagina no publica la fecha de agregado: la del csv manda, y a lo
+       nuevo se le pone la fecha en que lo vimos aparecer por primera vez */
+    const fusionados = items.map((f) => {
+        const k = clave(f.nombre, f.anio);
+        return { ...f, agregada: antes.get(k)?.agregada ?? fechasConocidas.get(k) ?? hoy };
+    });
+
+    const ahora = new Set(fusionados.map((f) => clave(f.nombre, f.anio)));
+    const agregadas = fusionados.filter((f) => antes.size && !antes.has(clave(f.nombre, f.anio)));
+    const sacadas = [...antes.values()].filter((f) => !ahora.has(clave(f.nombre, f.anio)));
+
+    guardarJson(RUTA_WATCHLIST, { items: fusionados, actualizada: new Date().toISOString() });
+    guardarEstado({
+        ...estado,
+        ultimaSyncWatchlist: new Date().toISOString(),
+        ultimoIntentoWatchlist: new Date().toISOString(),
+        ultimoErrorWatchlist: null,
+    });
+
+    return { ok: true, total: fusionados.length, agregadas, sacadas, primera: !antes.size };
 };

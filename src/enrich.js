@@ -2,14 +2,15 @@ import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { cargarExport, clave } from "./letterboxd.js";
 import { buscar, detalle, nombreLatino } from "./tmdb.js";
 import { CONFIG } from "./config.js";
+import { enRaiz } from "./rutas.js";
 
-const RUTA = "cache/films.json";
+const RUTA = enRaiz("cache/films.json");
 const CONCURRENCIA = 8;
 
 export const leerCache = () => (existsSync(RUTA) ? JSON.parse(readFileSync(RUTA, "utf8")) : {});
 
 const guardar = (cache) => {
-    mkdirSync("cache", { recursive: true });
+    mkdirSync(enRaiz("cache"), { recursive: true });
     writeFileSync(RUTA, JSON.stringify(cache, null, 1));
 };
 
@@ -51,7 +52,7 @@ const correr = async () => {
     console.log(`\n\nresueltas ${vals.filter((v) => v.tmdb).length} · sin match ${vals.filter((v) => v.sinMatch).length} · errores ${vals.filter((v) => v.error).length}`);
 };
 
-const RUTA_PERSONAS = "cache/personas.json";
+const RUTA_PERSONAS = enRaiz("cache/personas.json");
 
 export const leerPersonas = () => (existsSync(RUTA_PERSONAS) ? JSON.parse(readFileSync(RUTA_PERSONAS, "utf8")) : {});
 

@@ -1,6 +1,7 @@
 import { existsSync, readFileSync } from "node:fs";
+import { enRaiz } from "./rutas.js";
 
-export const cargarEnv = (ruta = ".env") => {
+export const cargarEnv = (ruta = enRaiz(".env")) => {
     if (!existsSync(ruta)) return;
     for (const l of readFileSync(ruta, "utf8").split("\n")) {
         const m = l.match(/^\s*([\w.]+)\s*=\s*(.*)?\s*$/);

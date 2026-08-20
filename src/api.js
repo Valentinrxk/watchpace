@@ -6,14 +6,15 @@ import { generarRetos } from "./retos.js";
 import { leerCache, leerPersonas } from "./enrich.js";
 import { clasificar } from "./fmt.js";
 import { CONFIG } from "./config.js";
+import { enRaiz } from "./rutas.js";
 
-const RUTA = "cache/estado.json";
+const RUTA = enRaiz("cache/estado.json");
 const VACIO = { rechazadas: {}, plan: null, retosPasados: [], retoActivo: null, snoozeHasta: null, mirando: null };
 
 export const leerEstado = () => (existsSync(RUTA) ? { ...VACIO, ...JSON.parse(readFileSync(RUTA, "utf8")) } : { ...VACIO });
 
 export const guardarEstado = (e) => {
-    mkdirSync("cache", { recursive: true });
+    mkdirSync(enRaiz("cache"), { recursive: true });
     writeFileSync(RUTA, JSON.stringify(e, null, 1));
     return e;
 };
@@ -48,11 +49,11 @@ const aFilm = (f) => {
     };
 };
 
-export const construirPayload = ({ minutos = null } = {}) => {
+export const construirPayload = ({ minutos = null, estado: estadoDado = null } = {}) => {
     const hoy = new Date();
-    const { diario, watchlist, vistasFilas, sincronizadas } = cargarExport(CONFIG.dirDatos);
+    const { diario, watchlist, vistasFilas, sincronizadas, watchlistEnVivo, watchlistActualizada } = cargarExport(CONFIG.dirDatos);
     const cache = leerCache();
-    const estado = leerEstado();
+    const estado = estadoDado ? { ...VACIO, ...estadoDado } : leerEstado();
     PERSONAS = leerPersonas();
 
     const ritmo = calcularRitmo({ diario, meta: CONFIG.meta, contarRewatches: CONFIG.contarRewatches, hoy });
@@ -97,6 +98,8 @@ export const construirPayload = ({ minutos = null } = {}) => {
             ultimoIntento: estado.ultimoIntento ?? null,
             error: estado.ultimoError ?? null,
             nuevasDesdeExport: sincronizadas,
+            watchlist: watchlistActualizada,
+            watchlistEnVivo,
         },
         historial: (estado.historial ?? []).slice(-5).reverse(),
         ultimas: diario.slice(0, 5).map((f) => ({ nombre: f.nombre, anio: f.anio, visto: f.visto, rating: f.rating })),
@@ -182,11 +185,13 @@ export const porPelicula = (nombre, anio) => {
     };
 };
 
-export const aplicarAccion = ({ accion, nombre, retoId }) => {
-    const estado = leerEstado();
+/* puro: (estado, accion) -> estado nuevo. el server local lo persiste en
+   disco; en serverless el estado viaja con el request y vuelve al cliente. */
+export const reducir = (previo, { accion, nombre, retoId }) => {
+    const estado = { ...VACIO, ...previo };
     const ahora = new Date().toISOString();
 
-    if (accion === "otra" && nombre) { estado.rechazadas[nombre] = ahora; estado.mirando = null; }
+    if (accion === "otra" && nombre) { estado.rechazadas = { ...estado.rechazadas, [nombre]: ahora }; estado.mirando = null; }
     if (accion === "elegir" && nombre) estado.mirando = nombre;
     if (accion === "acepto" && nombre) { estado.plan = { nombre, fecha: hoyISO() }; estado.mirando = null; }
     if (accion === "cancelar-plan") estado.plan = null;
@@ -194,7 +199,9 @@ export const aplicarAccion = ({ accion, nombre, retoId }) => {
     if (accion === "despertar") estado.snoozeHasta = null;
     if (accion === "reto-paso" && retoId) estado.retosPasados = [...new Set([...estado.retosPasados, retoId])];
     if (accion === "reto-acepto") estado.retoActivo = retoId ?? null;
-    if (accion === "limpiar") return guardarEstado({ ...VACIO });
+    if (accion === "limpiar") return { ...VACIO, ultimaSync: previo?.ultimaSync ?? null, ultimaSyncWatchlist: previo?.ultimaSyncWatchlist ?? null };
 
-    return guardarEstado(estado);
+    return estado;
 };
+
+export const aplicarAccion = (args) => guardarEstado(reducir(leerEstado(), args));

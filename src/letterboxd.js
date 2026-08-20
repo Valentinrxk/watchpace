@@ -1,10 +1,12 @@
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
+import { enRaiz } from "./rutas.js";
 import { parseCsv } from "./csv.js";
 
-const RUTA_INC = "cache/incremental.json";
+const RUTA_INC = enRaiz("cache/incremental.json");
+export const RUTA_WATCHLIST = enRaiz("cache/watchlist-live.json");
 
-const leer = (dir, archivo) => parseCsv(readFileSync(join(dir, archivo), "utf8"));
+const leer = (dir, archivo) => parseCsv(readFileSync(join(enRaiz(dir), archivo), "utf8"));
 
 export const clave = (nombre, anio) => `${nombre}::${anio}`;
 
@@ -14,8 +16,10 @@ export const claveEntrada = (f) => `${f.visto}|${clave(f.nombre, f.anio)}`;
 
 export const leerIncremental = () => (existsSync(RUTA_INC) ? JSON.parse(readFileSync(RUTA_INC, "utf8")) : {});
 
+export const leerWatchlistLive = () => (existsSync(RUTA_WATCHLIST) ? JSON.parse(readFileSync(RUTA_WATCHLIST, "utf8")) : {});
+
 export const guardarIncremental = (obj) => {
-    mkdirSync("cache", { recursive: true });
+    mkdirSync(enRaiz("cache"), { recursive: true });
     writeFileSync(RUTA_INC, JSON.stringify(obj, null, 1));
 };
 
@@ -46,14 +50,17 @@ export const cargarExport = (dir) => {
 
     const vistas = new Set(vistasFilas.map((r) => clave(r.nombre, r.anio)));
 
-    const watchlist = leer(dir, "watchlist.csv")
-        .map((r) => ({
-            nombre: r.Name,
-            anio: Number(r.Year),
-            agregada: r.Date,
-            uri: r["Letterboxd URI"],
-        }))
-        .filter((f) => !vistas.has(clave(f.nombre, f.anio)));
+    const live = leerWatchlistLive();
+    const cruda = live.items?.length
+        ? live.items
+        : leer(dir, "watchlist.csv").map((r) => ({ nombre: r.Name, anio: Number(r.Year), agregada: r.Date, uri: r["Letterboxd URI"] }));
 
-    return { diario, watchlist, vistas, vistasFilas, sincronizadas: extra.length };
+    const watchlist = cruda.filter((f) => !vistas.has(clave(f.nombre, f.anio)));
+
+    return {
+        diario, watchlist, vistas, vistasFilas,
+        sincronizadas: extra.length,
+        watchlistEnVivo: Boolean(live.items?.length),
+        watchlistActualizada: live.actualizada ?? null,
+    };
 };

@@ -427,6 +427,12 @@ const INTERACTIVO = "a,button,[data-a],[data-min],[data-persona],[data-peli],.fi
 
 let minutos = null, data = null, primera = true, numeroActual = 0, retoOffset = 0, peticion = 0, pila = [];
 
+/* el servidor local persiste en disco; el deploy serverless no tiene disco,
+   asi que el estado viaja con cada request y vuelve para guardarse aca */
+const LS = "wp.estado";
+const leerEstadoLocal = () => { try { return JSON.parse(localStorage.getItem(LS)) ?? {}; } catch (e) { return {}; } };
+const guardarEstadoLocal = (e) => { try { localStorage.setItem(LS, JSON.stringify(e ?? {})); } catch (err) {} };
+
 const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 const fecha = (iso) => iso ? new Date(iso + "T12:00:00").toLocaleDateString("es-AR", { day: "numeric", month: "long" }) : "—";
 const cada = (r) => r > 0 ? `1 cada ${(1 / r).toFixed(1)} días` : "—";
@@ -494,17 +500,19 @@ const pedir = async (accion, extra = {}) => {
   const hero = document.querySelector(".hero");
   const salida = hero && !suave ? (hero.classList.add("leaving"), dormir(140)) : Promise.resolve();
 
-  const q = minutos ? `?minutos=${minutos}` : "";
   const [r] = await Promise.all([
-    accion
-      ? fetch(`/api/accion${q}`, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ accion, ...extra }) })
-      : fetch(`/api/estado${q}`),
+    fetch("/api/estado", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({ minutos, accion, ...extra, estado: leerEstadoLocal() }),
+    }),
     salida,
   ]);
   const recibido = await r.json();
   if (mia !== peticion) return;
 
   data = recibido;
+  guardarEstadoLocal(recibido.estado);
   document.body.classList.remove("pidiendo");
   pintar();
 };
@@ -754,10 +762,14 @@ $("sync").addEventListener("click", async () => {
   b.classList.add("girando");
   document.body.classList.add("pidiendo");
   try {
-    const q = minutos ? `?minutos=${minutos}` : "";
-    const r = await fetch(`/api/sync${q}`, { method: "POST" }).then((x) => x.json());
+    const r = await fetch("/api/sync", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({ minutos, estado: leerEstadoLocal() }),
+    }).then((x) => x.json());
     const res = r.resultadoSync ?? {};
     data = r;
+    guardarEstadoLocal(r.estado);
     pintar();
     if (!res.ok) avisar(`no pude hablar con letterboxd: ${res.error}`);
     else if (res.cumplido) avisar(`viste ${res.cumplido}, la que habías planificado. anotada.`);

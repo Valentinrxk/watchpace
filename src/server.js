@@ -1,13 +1,15 @@
 import { createServer } from "node:http";
 import { existsSync, readFileSync } from "node:fs";
 import { extname, join, normalize } from "node:path";
-import { construirPayload, aplicarAccion, porPersona, porPelicula } from "./api.js";
-import { cargarExport, claveEntrada } from "./letterboxd.js";
-import { sincronizar } from "./sync.js";
+import { construirPayload, porPersona, porPelicula } from "./api.js";
+import { manejarEstado } from "./handler.js";
+import { cargarExport, claveEntrada, clave } from "./letterboxd.js";
+import { sincronizar, sincronizarWatchlist } from "./sync.js";
 import { CONFIG } from "./config.js";
+import { enRaiz } from "./rutas.js";
 
 const PUERTO = Number(process.env.PORT) || 4321;
-const WEB = "web";
+const WEB = enRaiz("web");
 
 const MIME = { ".html": "text/html", ".css": "text/css", ".js": "text/javascript", ".svg": "image/svg+xml", ".json": "application/json" };
 
@@ -16,7 +18,7 @@ const json = (res, data, code = 200) => {
     res.end(JSON.stringify(data));
 };
 
-const cuerpo = (req) =>
+const cuerpoDe = (req) =>
     new Promise((resolve) => {
         let d = "";
         req.on("data", (c) => (d += c));
@@ -27,9 +29,19 @@ const cuerpo = (req) =>
 
 const HORAS_SYNC = 6;
 
-const correrSync = async () => {
-    const { diario } = cargarExport(CONFIG.dirDatos);
+const correrSync = async ({ conWatchlist = true } = {}) => {
+    const { diario, watchlist } = cargarExport(CONFIG.dirDatos);
     const r = await sincronizar({ yaConocidas: new Set(diario.map(claveEntrada)) });
+
+    if (conWatchlist) {
+        const w = await sincronizarWatchlist({
+            fechasConocidas: new Map(watchlist.map((f) => [clave(f.nombre, f.anio), f.agregada])),
+        });
+        r.watchlist = w;
+        console.log(w.ok
+            ? `  [watchlist] ${w.total} en total · ${w.agregadas.length} agregada${w.agregadas.length === 1 ? "" : "s"} · ${w.sacadas.length} sacada${w.sacadas.length === 1 ? "" : "s"}`
+            : `  [watchlist] fallo: ${w.error}`);
+    }
     const detalle = r.ok
         ? `${r.nuevas.length} nueva${r.nuevas.length === 1 ? "" : "s"}${r.nuevas.length ? ": " + r.nuevas.map((f) => f.nombre).join(", ") : ""}`
         : `fallo: ${r.error}`;
@@ -42,14 +54,15 @@ createServer(async (req, res) => {
 
     try {
         if (url.pathname === "/api/estado") {
+            const cuerpo = req.method === "POST" ? await cuerpoDe(req) : {};
             const min = url.searchParams.get("minutos");
-            return json(res, construirPayload({ minutos: min ? Number(min) : null }));
+            return json(res, manejarEstado({ ...cuerpo, minutos: cuerpo.minutos ?? (min ? Number(min) : null) }, { persistir: true }));
         }
 
         if (url.pathname === "/api/sync" && req.method === "POST") {
             const r = await correrSync();
             const min = url.searchParams.get("minutos");
-            return json(res, { ...construirPayload({ minutos: min ? Number(min) : null }), resultadoSync: r });
+            return json(res, { ...manejarEstado({ minutos: min ? Number(min) : null }, { persistir: true }), resultadoSync: r });
         }
 
         if (url.pathname === "/api/persona") {
@@ -60,12 +73,6 @@ createServer(async (req, res) => {
         if (url.pathname === "/api/pelicula") {
             const n = url.searchParams.get("nombre"), a = url.searchParams.get("anio");
             return n && a ? json(res, porPelicula(n, a)) : json(res, { error: "faltan datos" }, 400);
-        }
-
-        if (url.pathname === "/api/accion" && req.method === "POST") {
-            aplicarAccion(await cuerpo(req));
-            const min = url.searchParams.get("minutos");
-            return json(res, construirPayload({ minutos: min ? Number(min) : null }));
         }
 
         const rel = url.pathname === "/" ? "index.html" : normalize(url.pathname).replace(/^[/\\]+/, "");
