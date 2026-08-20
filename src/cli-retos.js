@@ -1,7 +1,7 @@
 import { cargarExport } from "./letterboxd.js";
 import { calcularRitmo } from "./pace.js";
 import { generarRetos } from "./retos.js";
-import { leerCache } from "./enrich.js";
+import { leerCache, leerPersonas } from "./enrich.js";
 import { dondeVer, pad } from "./fmt.js";
 import { CONFIG } from "./config.js";
 
@@ -14,10 +14,10 @@ const barra = (p, o) => {
 };
 
 const hoy = new Date();
-const { diario, watchlist } = cargarExport(CONFIG.dirDatos);
+const { diario, watchlist, vistasFilas } = cargarExport(CONFIG.dirDatos);
 const cache = leerCache();
 const ritmo = calcularRitmo({ diario, meta: CONFIG.meta, contarRewatches: CONFIG.contarRewatches, hoy });
-const retos = generarRetos({ diario, watchlist, cache, ritmo, hoy });
+const retos = generarRetos({ diario, watchlist, vistasFilas, cache, personas: leerPersonas(), ritmo, hoy });
 
 console.log("");
 console.log(`  RETOS · ${retos.length} activos posibles`);

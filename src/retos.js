@@ -18,6 +18,7 @@ const IDIOMAS = {
     ru: "ruso", el: "griego", fa: "persa", tr: "turco", hi: "hindi", zh: "chino", cn: "cantonés",
     th: "tailandés", pl: "polaco", cs: "checo", hu: "húngaro", sv: "sueco", da: "danés", no: "noruego",
     fi: "finés", nl: "neerlandés", pt: "portugués", he: "hebreo", ar: "árabe", is: "islandés",
+    ko: "coreano", ja: "japonés", it: "italiano", fr: "francés", de: "alemán",
 };
 const pais = (c) => PAISES[c] ?? c;
 const idioma = (c) => IDIOMAS[c] ?? c;
@@ -27,7 +28,7 @@ const conMeta = (films, cache) =>
 
 const contar = (films, extraer) => {
     const c = {};
-    for (const f of films) for (const v of [extraer(f)].flat().filter(Boolean)) c[v] = (c[v] ?? 0) + 1;
+    for (const f of films) for (const v of [extraer(f)].flat().filter((x) => x != null && x !== "")) c[v] = (c[v] ?? 0) + 1;
     return c;
 };
 
@@ -36,69 +37,141 @@ const mejores = (cands, n = 3) =>
 
 const servicios = (f) => clasificar(f).sub;
 
-/* ─── explorar ─────────────────────────────────────────────── */
+/* ─── explorar: dos sabores, ambos verdaderos ──────────────
+   "nunca" sólo si el historial COMPLETO da cero.
+   Si lo vio alguna vez, el titulo dice "este año".            */
 
-const decadasOlvidadas = ({ vistas, lista }) => {
-    const v = contar(vistas, (f) => decada(f.anio));
+const decadas = ({ anio, vida, lista }) => {
+    const a = contar(anio, (f) => decada(f.anio));
+    const v = contar(vida, (f) => decada(f.anio));
     const l = contar(lista, (f) => decada(f.anio));
-    return Object.keys(l).map(Number)
-        .filter((d) => l[d] >= 4 && (v[d] ?? 0) <= 4)
-        .sort((a, b) => (v[a] ?? 0) / l[a] - (v[b] ?? 0) / l[b])
-        .slice(0, 4)
+    const pend = (d) => lista.filter((f) => decada(f.anio) === d);
+
+    const nunca = Object.keys(l).map(Number)
+        .filter((d) => l[d] >= 3 && !v[d])
+        .sort((x, y) => l[y] - l[x])
+        .slice(0, 3)
         .map((d) => ({
-            id: `decada-${d}`, tipo: "explorar",
-            titulo: (v[d] ?? 0) === 0 ? `${nombreDecada(d)} no existen para vos` : `apenas pisás ${nombreDecada(d)}`,
-            detalle: `${v[d] ?? 0} vistas este año, ${l[d]} esperando en la watchlist.`,
-            objetivo: 3, progreso: 0, interes: 88 - (v[d] ?? 0) * 8,
-            candidatas: mejores(lista.filter((f) => decada(f.anio) === d)),
+            id: `decada-nunca-${d}`, tipo: "explorar",
+            titulo: `nunca viste una de ${nombreDecada(d)}`,
+            detalle: `ni una en toda tu vida, y tenés ${l[d]} esperando.`,
+            objetivo: 1, progreso: 0, interes: 94, candidatas: mejores(pend(d)),
         }));
+
+    const puntoCiego = Object.keys(l).map(Number)
+        .filter((d) => l[d] >= 4 && v[d] > 0 && v[d] <= 10)
+        .sort((x, y) => v[x] / l[x] - v[y] / l[y])
+        .slice(0, 3)
+        .map((d) => ({
+            id: `decada-ciega-${d}`, tipo: "explorar",
+            titulo: `${nombreDecada(d)} son tu punto ciego`,
+            detalle: `${v[d]} vistas en toda tu vida (${a[d] ?? 0} este año) y ${l[d]} en la watchlist.`,
+            objetivo: 3, progreso: 0, interes: 86, candidatas: mejores(pend(d)),
+        }));
+
+    const esteAnio = Object.keys(l).map(Number)
+        .filter((d) => l[d] >= 6 && v[d] > 10 && (a[d] ?? 0) <= 2)
+        .sort((x, y) => l[y] - l[x])
+        .slice(0, 2)
+        .map((d) => ({
+            id: `decada-anio-${d}`, tipo: "explorar",
+            titulo: `este año casi no pisaste ${nombreDecada(d)}`,
+            detalle: `${a[d] ?? 0} este año, aunque en total llevás ${v[d]}. hay ${l[d]} pendientes.`,
+            objetivo: 3, progreso: 0, interes: 66, candidatas: mejores(pend(d)),
+        }));
+
+    return [...nunca, ...puntoCiego, ...esteAnio];
 };
 
-const paisesSinTocar = ({ vistas, lista }) => {
-    const v = contar(vistas, (f) => f.m.paises);
+const paises = ({ anio, vida, lista }) => {
+    const a = contar(anio, (f) => f.m.paises);
+    const v = contar(vida, (f) => f.m.paises);
     const l = contar(lista, (f) => f.m.paises);
-    return Object.keys(l)
+    const pend = (p) => lista.filter((f) => f.m.paises?.includes(p));
+
+    const nunca = Object.keys(l)
         .filter((p) => l[p] >= 2 && !v[p])
-        .sort((a, b) => l[b] - l[a])
+        .sort((x, y) => l[y] - l[x])
         .slice(0, 4)
         .map((p) => ({
-            id: `pais-${p}`, tipo: "explorar",
+            id: `pais-nunca-${p}`, tipo: "explorar",
             titulo: `nunca viste cine de ${pais(p)}`,
-            detalle: `tenés ${l[p]} esperando y este año no tocaste ninguna.`,
-            objetivo: 1, progreso: 0, interes: 72 + l[p] * 2,
-            candidatas: mejores(lista.filter((f) => f.m.paises?.includes(p))),
+            detalle: `tenés ${l[p]} esperando y ninguna vista, jamás.`,
+            objetivo: 1, progreso: 0, interes: 90, candidatas: mejores(pend(p)),
         }));
+
+    const esteAnio = Object.keys(l)
+        .filter((p) => l[p] >= 2 && v[p] > 0 && !a[p])
+        .sort((x, y) => l[y] - l[x])
+        .slice(0, 3)
+        .map((p) => ({
+            id: `pais-anio-${p}`, tipo: "explorar",
+            titulo: `este año no viste nada de ${pais(p)}`,
+            detalle: `llevás ${v[p]} en tu historial y ${l[p]} pendientes.`,
+            objetivo: 1, progreso: 0, interes: 68, candidatas: mejores(pend(p)),
+        }));
+
+    return [...nunca, ...esteAnio];
 };
 
-const idiomasNuevos = ({ vistas, lista }) => {
-    const v = new Set(vistas.map((f) => f.m.idioma));
+const idiomas = ({ anio, vida, lista }) => {
+    const a = new Set(anio.map((f) => f.m.idioma));
+    const v = new Set(vida.map((f) => f.m.idioma));
     const l = contar(lista, (f) => f.m.idioma);
-    return Object.keys(l)
+    const pend = (i) => lista.filter((f) => f.m.idioma === i);
+
+    const nunca = Object.keys(l)
         .filter((i) => l[i] >= 2 && !v.has(i))
         .slice(0, 2)
         .map((i) => ({
-            id: `idioma-${i}`, tipo: "explorar",
-            titulo: `este año no escuchaste una sola en ${idioma(i)}`,
-            detalle: `${l[i]} en la watchlist esperando.`,
-            objetivo: 1, progreso: 0, interes: 66,
-            candidatas: mejores(lista.filter((f) => f.m.idioma === i)),
+            id: `idioma-nunca-${i}`, tipo: "explorar",
+            titulo: `nunca viste una en ${idioma(i)}`,
+            detalle: `${l[i]} en la watchlist para estrenarte.`,
+            objetivo: 1, progreso: 0, interes: 88, candidatas: mejores(pend(i)),
         }));
+
+    const esteAnio = Object.keys(l)
+        .filter((i) => l[i] >= 2 && v.has(i) && !a.has(i))
+        .slice(0, 2)
+        .map((i) => ({
+            id: `idioma-anio-${i}`, tipo: "explorar",
+            titulo: `este año no escuchaste una sola en ${idioma(i)}`,
+            detalle: `${l[i]} esperando en la watchlist.`,
+            objetivo: 1, progreso: 0, interes: 64, candidatas: mejores(pend(i)),
+        }));
+
+    return [...nunca, ...esteAnio];
 };
 
-const generosQueEvita = ({ vistas, lista }) => {
-    const v = contar(vistas, (f) => f.m.generos);
+const generos = ({ anio, vida, lista }) => {
+    const a = contar(anio, (f) => f.m.generos);
+    const v = contar(vida, (f) => f.m.generos);
     const l = contar(lista, (f) => f.m.generos);
-    return Object.keys(l)
-        .filter((g) => l[g] >= 8 && (v[g] ?? 0) / l[g] < 0.3)
-        .sort((a, b) => (v[a] ?? 0) / l[a] - (v[b] ?? 0) / l[b])
+    const pend = (g) => lista.filter((f) => f.m.generos?.includes(g));
+
+    const evita = Object.keys(l)
+        .filter((g) => l[g] >= 8 && v[g] / l[g] < 0.6)
+        .sort((x, y) => v[x] / l[x] - v[y] / l[y])
+        .slice(0, 2)
+        .map((g) => ({
+            id: `genero-vida-${g}`, tipo: "explorar",
+            titulo: `juntás ${g.toLowerCase()} más rápido de lo que lo ves`,
+            detalle: `${l[g]} pendientes contra ${v[g] ?? 0} vistas en toda tu vida.`,
+            objetivo: 3, progreso: 0, interes: 72, candidatas: mejores(pend(g)),
+        }));
+
+    const esteAnio = Object.keys(l)
+        .filter((g) => l[g] >= 8 && (a[g] ?? 0) / l[g] < 0.3)
+        .sort((x, y) => (a[x] ?? 0) / l[x] - (a[y] ?? 0) / l[y])
         .slice(0, 3)
         .map((g) => ({
-            id: `genero-${g}`, tipo: "explorar",
-            titulo: `juntás ${g.toLowerCase()} pero no lo ves`,
-            detalle: `${l[g]} en la watchlist y sólo ${v[g] ?? 0} vistas en todo el año.`,
-            objetivo: 3, progreso: 0, interes: 62,
-            candidatas: mejores(lista.filter((f) => f.m.generos?.includes(g))),
+            id: `genero-anio-${g}`, tipo: "explorar",
+            titulo: `${g.toLowerCase()}: ${l[g]} en la watchlist, ${a[g] ?? 0} este año`,
+            detalle: `en tu vida viste ${v[g] ?? 0}, así que el género te gusta. este año lo dejaste.`,
+            objetivo: 3, progreso: 0, interes: 62, candidatas: mejores(pend(g)),
         }));
+
+    return [...evita, ...esteAnio];
 };
 
 const ladrillos = ({ lista }) => {
@@ -108,8 +181,7 @@ const ladrillos = ({ lista }) => {
         id: "largas", tipo: "explorar",
         titulo: `${largas.length} ladrillos que venís esquivando`,
         detalle: `la más brava: ${largas[0].nombre}, ${duracion(largas[0].m.minutos)}.`,
-        objetivo: 2, progreso: 0, interes: 64,
-        candidatas: largas.slice(0, 4),
+        objetivo: 2, progreso: 0, interes: 64, candidatas: largas.slice(0, 4),
     }];
 };
 
@@ -120,45 +192,58 @@ const cortitas = ({ lista }) => {
         id: "cortas", tipo: "explorar",
         titulo: `${cortas.length} que entran en hora y media`,
         detalle: "para los días en que no da para más. sin excusas.",
-        objetivo: 3, progreso: 0, interes: 58,
-        candidatas: mejores(cortas, 4),
+        objetivo: 3, progreso: 0, interes: 58, candidatas: mejores(cortas, 4),
     }];
 };
 
-/* ─── completar ────────────────────────────────────────────── */
+/* ─── completar: siempre contra el historial completo ─────── */
 
-const directoresAMedias = ({ vistas, lista }) => {
-    const v = contar(vistas, (f) => f.m.director);
-    const l = contar(lista, (f) => f.m.director);
+const directores = ({ vida, lista, personas }) => {
+    const v = contar(vida, (f) => f.m.directorId);
+    const l = contar(lista, (f) => f.m.directorId);
+
     return Object.keys(l)
-        .filter((d) => l[d] >= 2)
-        .sort((a, b) => l[b] - l[a] || (v[a] ?? 0) - (v[b] ?? 0))
-        .slice(0, 6)
-        .map((d) => ({
-            id: `director-${d}`, tipo: "completar",
-            titulo: `${l[d]} de ${d} sin ver`,
-            detalle: v[d] ? `viste ${v[d]} este año. falta el resto.` : "ninguna este año. están todas ahí, mirándote.",
-            objetivo: l[d], progreso: 0, interes: 64 + l[d] * 5,
-            candidatas: mejores(lista.filter((f) => f.m.director === d), l[d]),
-        }));
+        .filter((id) => l[id] >= 2)
+        .sort((x, y) => l[y] - l[x] || (v[x] ?? 0) - (v[y] ?? 0))
+        .slice(0, 8)
+        .map((id) => {
+            const pend = lista.filter((f) => String(f.m.directorId) === id);
+            const nombre = personas[id] ?? pend[0]?.m.director ?? "ese director";
+            const yaVio = v[id] ?? 0;
+            return {
+                id: `director-${id}`, tipo: "completar",
+                titulo: yaVio ? `te faltan ${pend.length} de ${nombre}` : `${pend.length} de ${nombre} y nunca viste una`,
+                detalle: yaVio ? `ya viste ${yaVio} suya${yaVio === 1 ? "" : "s"}.` : "ninguna en toda tu vida. están todas ahí, mirándote.",
+                objetivo: pend.length, progreso: 0,
+                interes: (yaVio ? 68 : 78) + pend.length * 4,
+                candidatas: mejores(pend, pend.length),
+            };
+        });
 };
 
-const actoresRecurrentes = ({ lista }) => {
-    const l = contar(lista, (f) => f.m.reparto);
+const actores = ({ vida, lista, personas }) => {
+    const v = contar(vida, (f) => f.m.repartoIds);
+    const l = contar(lista, (f) => f.m.repartoIds);
+
     return Object.keys(l)
-        .filter((a) => l[a] >= 3)
+        .filter((id) => l[id] >= 3)
         .sort((x, y) => l[y] - l[x])
-        .slice(0, 4)
-        .map((a) => ({
-            id: `actor-${a}`, tipo: "completar",
-            titulo: `${l[a]} con ${a} en la fila`,
-            detalle: "no lo hiciste a propósito, pero ahí están.",
-            objetivo: l[a], progreso: 0, interes: 58 + l[a] * 3,
-            candidatas: mejores(lista.filter((f) => f.m.reparto?.includes(a)), l[a]),
-        }));
+        .slice(0, 5)
+        .map((id) => {
+            const pend = lista.filter((f) => (f.m.repartoIds ?? []).map(String).includes(id));
+            const i = pend[0]?.m.repartoIds?.indexOf(Number(id));
+            const nombre = personas[id] ?? (i >= 0 ? pend[0]?.m.reparto?.[i] : null) ?? "ese actor";
+            return {
+                id: `actor-${id}`, tipo: "completar",
+                titulo: `${pend.length} con ${nombre} en la fila`,
+                detalle: v[id] ? `ya lo viste en ${v[id]}. no lo hiciste a propósito.` : "y nunca lo viste. no lo hiciste a propósito.",
+                objetivo: pend.length, progreso: 0, interes: 58 + pend.length * 3,
+                candidatas: mejores(pend, pend.length),
+            };
+        });
 };
 
-/* ─── limpiar ──────────────────────────────────────────────── */
+/* ─── limpiar: sólo miran la watchlist ─────────────────────── */
 
 const masVieja = ({ lista, hoy }) => {
     const orden = [...lista].sort((a, b) => new Date(a.agregada) - new Date(b.agregada));
@@ -168,8 +253,7 @@ const masVieja = ({ lista, hoy }) => {
         id: "watchlist-vieja", tipo: "limpiar",
         titulo: `hace ${((hoy - new Date(v.agregada)) / MS_DIA / 365).toFixed(1)} años que pateás la misma`,
         detalle: `${v.nombre} (${v.anio}) entró a tu watchlist el ${v.agregada}. sigue ahí.`,
-        objetivo: 5, progreso: 0, interes: 82,
-        candidatas: orden.slice(0, 5),
+        objetivo: 5, progreso: 0, interes: 82, candidatas: orden.slice(0, 5),
     }];
 };
 
@@ -183,34 +267,29 @@ const porServicio = ({ lista }) => {
             id: `servicio-${s}`, tipo: "limpiar",
             titulo: `${l[s]} de tu watchlist están en ${s}`,
             detalle: "ahora mismo, sin alquilar nada.",
-            objetivo: 5, progreso: 0, interes: 76,
-            candidatas: mejores(lista.filter((f) => servicios(f).includes(s)), 4),
+            objetivo: 5, progreso: 0, interes: 76, candidatas: mejores(lista.filter((f) => servicios(f).includes(s)), 4),
         }));
 };
 
 const mejorPuntuadas = ({ lista }) => {
-    const top = lista.filter((f) => (f.m.puntaje ?? 0) >= 8 && (f.m.votos ?? 0) >= 1000)
-        .sort((a, b) => b.m.puntaje - a.m.puntaje);
+    const top = lista.filter((f) => (f.m.puntaje ?? 0) >= 8 && (f.m.votos ?? 0) >= 1000).sort((a, b) => b.m.puntaje - a.m.puntaje);
     if (top.length < 4) return [];
     return [{
         id: "mejor-puntuadas", tipo: "limpiar",
         titulo: `${top.length} con 8+ que no viste`,
         detalle: `arrancando por ${top[0].nombre} (${top[0].m.puntaje}).`,
-        objetivo: 3, progreso: 0, interes: 78,
-        candidatas: top.slice(0, 4),
+        objetivo: 3, progreso: 0, interes: 78, candidatas: top.slice(0, 4),
     }];
 };
 
 const joyasOcultas = ({ lista }) => {
-    const joyas = lista.filter((f) => (f.m.puntaje ?? 0) >= 7.5 && (f.m.votos ?? 0) > 0 && f.m.votos < 500)
-        .sort((a, b) => b.m.puntaje - a.m.puntaje);
+    const joyas = lista.filter((f) => (f.m.puntaje ?? 0) >= 7.5 && (f.m.votos ?? 0) > 0 && f.m.votos < 500).sort((a, b) => b.m.puntaje - a.m.puntaje);
     if (joyas.length < 5) return [];
     return [{
         id: "joyas", tipo: "limpiar",
         titulo: `${joyas.length} que casi nadie vio`,
         detalle: "puntaje alto, poquísimos votos. terreno para plantar bandera.",
-        objetivo: 3, progreso: 0, interes: 70,
-        candidatas: mejores(joyas, 4),
+        objetivo: 3, progreso: 0, interes: 70, candidatas: mejores(joyas, 4),
     }];
 };
 
@@ -220,13 +299,12 @@ const sinPuntuar = ({ diario }) => {
     return [{
         id: "sin-puntuar", tipo: "limpiar",
         titulo: `${sin.length} vistas sin puntuar`,
-        detalle: `las viste y no dijiste nada. la más vieja: ${sin[sin.length - 1].nombre}.`,
-        objetivo: sin.length, progreso: 0, interes: 54,
-        candidatas: [],
+        detalle: `las viste este año y no dijiste nada. la más vieja: ${sin[sin.length - 1].nombre}.`,
+        objetivo: sin.length, progreso: 0, interes: 54, candidatas: [],
     }];
 };
 
-/* ─── hitos ────────────────────────────────────────────────── */
+/* ─── hitos: siempre del año en curso ──────────────────────── */
 
 const hitoRedondo = ({ ritmo }) => {
     const proximo = Math.ceil((ritmo.vistas + 1) / 50) * 50;
@@ -237,13 +315,12 @@ const hitoRedondo = ({ ritmo }) => {
         id: `hito-${proximo}`, tipo: "hito",
         titulo: `te faltan ${faltan} para la número ${proximo}`,
         detalle: dias ? `a tu ritmo caen en ${dias} días. elegí bien la ${proximo}.` : "",
-        objetivo: proximo, progreso: ritmo.vistas, interes: 56 + (faltan <= 5 ? 40 : 0),
-        candidatas: [],
+        objetivo: proximo, progreso: ritmo.vistas, interes: 56 + (faltan <= 5 ? 40 : 0), candidatas: [],
     }];
 };
 
-const horasDeCine = ({ vistas }) => {
-    const min = vistas.reduce((s, f) => s + (f.m.minutos ?? 0), 0);
+const horasDeCine = ({ anio }) => {
+    const min = anio.reduce((s, f) => s + (f.m.minutos ?? 0), 0);
     const horas = Math.floor(min / 60);
     const proximo = Math.ceil((horas + 1) / 50) * 50;
     return [{
@@ -279,8 +356,8 @@ const racha = ({ diario, hoy }) => {
 };
 
 const GENERADORES = [
-    decadasOlvidadas, paisesSinTocar, idiomasNuevos, generosQueEvita, ladrillos, cortitas,
-    directoresAMedias, actoresRecurrentes,
+    decadas, paises, idiomas, generos, ladrillos, cortitas,
+    directores, actores,
     masVieja, porServicio, mejorPuntuadas, joyasOcultas, sinPuntuar,
     hitoRedondo, horasDeCine, racha,
 ];
@@ -299,15 +376,14 @@ const intercalar = (retos) => {
     return salida;
 };
 
-export const generarRetos = ({ diario, watchlist, cache, ritmo, hoy }) => {
-    const anio = hoy.getFullYear();
-    const delAnio = diario.filter((f) => f.visto.startsWith(String(anio)));
+export const generarRetos = ({ diario, watchlist, vistasFilas = [], cache, personas = {}, ritmo, hoy }) => {
+    const delAnio = diario.filter((f) => f.visto.startsWith(String(hoy.getFullYear())));
     const ctx = {
-        vistas: conMeta(delAnio, cache),
+        anio: conMeta(delAnio, cache),
+        vida: conMeta(vistasFilas, cache),
         lista: conMeta(watchlist, cache),
         diario: delAnio,
-        ritmo,
-        hoy,
+        personas, ritmo, hoy,
     };
 
     const todos = GENERADORES.flatMap((g) => {

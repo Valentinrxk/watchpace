@@ -50,7 +50,7 @@ const aFilm = (f) => {
 
 export const construirPayload = ({ minutos = null } = {}) => {
     const hoy = new Date();
-    const { diario, watchlist } = cargarExport(CONFIG.dirDatos);
+    const { diario, watchlist, vistasFilas } = cargarExport(CONFIG.dirDatos);
     const cache = leerCache();
     const estado = leerEstado();
     PERSONAS = leerPersonas();
@@ -66,7 +66,7 @@ export const construirPayload = ({ minutos = null } = {}) => {
     const pool = minutos && pre.filter(cabe).length >= 8 ? pre.filter(cabe) : pre;
     const orden = rankearFinal({ candidatas: pool.slice(0, 40), minutosDisponibles: minutos });
 
-    const retos = generarRetos({ diario, watchlist, cache, ritmo, hoy })
+    const retos = generarRetos({ diario, watchlist, vistasFilas, cache, personas: PERSONAS, ritmo, hoy })
         .filter((r) => !estado.retosPasados.includes(r.id))
         .map((r) => ({ ...r, candidatas: r.candidatas.map((c) => aFilm({ ...c, tmdb: c.m })) }));
 
