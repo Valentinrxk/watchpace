@@ -51,9 +51,19 @@ export const armarMensaje = (p) => {
     const r = p.ritmo;
     const f = p.sugerencia;
 
-    const cabeza = r.alDia
-        ? `*${r.vistas}/${r.meta}* · ${-r.deficit} adelantado`
-        : `*${r.vistas}/${r.meta}* · ${r.deficit} atrasado`;
+    const cabecera = r.alDia
+        ? `${esc(p.nombre)} — *${r.vistas}/${r.meta}* · ${-r.deficit} adelantado`
+        : `${esc(p.nombre)} — *${r.vistas}/${r.meta}* · ${r.deficit} atrasado`;
+
+    /* la web tiene tres estados y el bot tiene que respetarlos: si ya
+       elegiste, no te ofrezco otra cosa */
+    const NL = "\n";
+    if (p.plan) {
+        return [cabecera, "", `📌 *${esc(p.plan.nombre)}*`, "", "_es tu plan de hoy_"].join(NL);
+    }
+    if (p.dormido) {
+        return [cabecera, "", `dijiste que hoy no${esc(".")} mañana vemos${esc(".")}`].join(NL);
+    }
 
     const donde = f.dondeTipo === "sub" || f.dondeTipo === "gratis"
         ? f.donde.join(", ")
@@ -61,7 +71,7 @@ export const armarMensaje = (p) => {
         : f.dondeTipo === "addon" ? "add\\-on aparte" : "no está en streaming";
 
     const partes = [
-        `${esc(p.nombre)} — ${cabeza}`,
+        cabecera,
         "",
         `*${esc(f.nombre)}* \\(${f.anio}\\)`,
         `${f.minutos ? `${f.minutos} min · ` : ""}${esc((f.generos ?? []).join("/"))}${f.director ? ` · ${esc(f.director)}` : ""}`,
@@ -77,8 +87,22 @@ export const armarMensaje = (p) => {
     return partes.join("\n");
 };
 
-export const botones = (f) => ({
-    inline_keyboard: [
+export const botones = (p) => {
+    /* acepta el payload entero o solo la pelicula, para no romper llamadas */
+    const f = p?.sugerencia ?? p ?? {};
+
+    if (p?.plan) {
+        return { inline_keyboard: [[
+            { text: "✕ cambiar de idea", callback_data: "cancelar-plan|" },
+        ]] };
+    }
+    if (p?.dormido) {
+        return { inline_keyboard: [[
+            { text: "↺ me arrepentí", callback_data: "despertar|" },
+        ]] };
+    }
+
+    return { inline_keyboard: [
         [
             { text: "▶ dale", callback_data: `acepto|${f.nombre}`.slice(0, 64) },
             { text: "🔀 otra", callback_data: `otra|${f.nombre}`.slice(0, 64) },
@@ -89,8 +113,8 @@ export const botones = (f) => ({
             { text: "2 horas", callback_data: "min|120" },
             { text: "cualquiera", callback_data: "min|" },
         ],
-    ],
-});
+    ] };
+};
 
 export const enviar = (chatId, texto, teclado) =>
     api("sendMessage", {

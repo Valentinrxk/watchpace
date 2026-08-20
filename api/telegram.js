@@ -70,7 +70,7 @@ const mensaje = async (m) => {
     }
 
     const p = await manejarEstado({ usuario: quien.usuario });
-    return enviar(chat, armarMensaje(p), botones(p.sugerencia));
+    return enviar(chat, armarMensaje(p), botones(p));
 };
 
 const boton = async (q) => {
@@ -95,5 +95,5 @@ const boton = async (q) => {
     if (accion === "hoy-no") {
         return editar(chat, q.message.message_id, "listo, no te jodo más por hoy\\.");
     }
-    return editar(chat, q.message.message_id, armarMensaje(p), botones(p.sugerencia));
+    return editar(chat, q.message.message_id, armarMensaje(p), botones(p));
 };
