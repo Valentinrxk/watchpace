@@ -96,6 +96,7 @@ export const construirJuntos = ({ estado: estadoDado = null } = {}) => {
                 ...j.juntas.vida,
                 primera: conMarca(j.juntas.vida.primera, { notas: j.juntas.vida.primera.notas, visto: j.juntas.vida.primera.visto }),
                 amadas: j.juntas.vida.amadas.map((f) => conMarca(f, { notas: f.notas, visto: f.visto })),
+                ultimas: j.juntas.vida.ultimas.map((f) => ({ nombre: f.nombre, anio: f.anio, visto: f.visto, notas: f.notas })),
             },
         },
         totales: j.totales,

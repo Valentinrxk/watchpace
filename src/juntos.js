@@ -80,18 +80,21 @@ const loNuestro = (juntas, hoy, cache) => {
 
     const conNota = juntas.filter((f) => f.notas[0] != null && f.notas[1] != null);
     const cerca = conNota.filter((f) => Math.abs(f.notas[0] - f.notas[1]) <= 0.5).length;
+    /* el paso de letterboxd ES media estrella, asi que "a media estrella"
+       incluye notas vecinas. las clavadas son otra cosa y hay que decirlo */
+    const clavadas = conNota.filter((f) => f.notas[0] === f.notas[1]).length;
     const brecha = conNota.length
         ? conNota.reduce((t, f) => t + Math.abs(f.notas[0] - f.notas[1]), 0) / conNota.length
         : null;
 
     const minutos = juntas.reduce((t, f) => t + (cache[f.k]?.minutos ?? 0), 0);
+    const sinDuracion = juntas.filter((f) => !cache[f.k]?.minutos).length;
 
     /* las que les volaron la cabeza a los dos */
-    const amadas = conNota
+    const todasAmadas = conNota
         .filter((f) => f.notas[0] >= 4.5 && f.notas[1] >= 4.5)
-        .sort((a, b) => (b.notas[0] + b.notas[1]) - (a.notas[0] + a.notas[1]) || b.visto.localeCompare(a.visto))
-        .slice(0, 8)
-        .map((f) => ({ ...f, m: cache[f.k] ?? {} }));
+        .sort((a, b) => (b.notas[0] + b.notas[1]) - (a.notas[0] + a.notas[1]) || b.visto.localeCompare(a.visto));
+    const amadas = todasAmadas.slice(0, 12).map((f) => ({ ...f, m: cache[f.k] ?? {} }));
 
     /* semanas seguidas con al menos una: la racha de a dos */
     const semanas = [...new Set(orden.map((f) => semanaDe(f.visto)))].sort();
@@ -101,9 +104,20 @@ const loNuestro = (juntas, hoy, cache) => {
         if (corrida > mejor) mejor = corrida;
     }
 
+    /* la que sigue abierta: cuenta hacia atras desde esta semana, o desde
+       la pasada si todavia no vieron nada esta */
+    const semHoy = semanaDe(hoy.toISOString().slice(0, 10));
+    const puestas = new Set(semanas);
+    let viva = 0;
+    for (let sem = puestas.has(semHoy) ? semHoy : semHoy - 1; puestas.has(sem); sem--) viva++;
+
     const pa = new Date(primera.visto + "T00:00:00");
+    /* comparar contra hoy CON hora hacia que el 22 de junio a las 14hs ya
+       contara como pasado y saltara un año entero: el aniversario se
+       salteaba a si mismo */
+    const hoySolo = new Date(hoy.getFullYear(), hoy.getMonth(), hoy.getDate());
     let prox = new Date(hoy.getFullYear(), pa.getMonth(), pa.getDate());
-    if (prox < hoy) prox = new Date(hoy.getFullYear() + 1, pa.getMonth(), pa.getDate());
+    if (prox < hoySolo) prox = new Date(hoy.getFullYear() + 1, pa.getMonth(), pa.getDate());
 
     const porAnio = {};
     for (const f of juntas) porAnio[f.visto.slice(0, 4)] = (porAnio[f.visto.slice(0, 4)] ?? 0) + 1;
@@ -115,18 +129,55 @@ const loNuestro = (juntas, hoy, cache) => {
         horas: Math.round(minutos / 60),
         diasDePantalla: +(minutos / 1440).toFixed(1),
         sintonia: conNota.length ? Math.round((cerca / conNota.length) * 100) : null,
+        clavadas: conNota.length ? Math.round((clavadas / conNota.length) * 100) : null,
         brecha: brecha != null ? +brecha.toFixed(2) : null,
         puntuadas: conNota.length,
         amadas,
+        amadasTotal: todasAmadas.length,
+        /* el panel es de toda la historia: la lista tambien. antes salia
+           de delAnio y quedaba recortada al año calendario en curso */
+        ultimas: [...juntas].sort((a, b) => b.visto.localeCompare(a.visto)).slice(0, 6),
+        sinDuracion,
         racha: mejor,
-        aniversario: { fecha: prox.toISOString().slice(0, 10), faltan: Math.round((prox - hoy) / MS_DIA), numero: prox.getFullYear() - pa.getFullYear() },
+        rachaViva: viva,
+        aniversario: {
+            fecha: prox.toISOString().slice(0, 10),
+            faltan: Math.round((prox - hoySolo) / MS_DIA),
+            numero: prox.getFullYear() - pa.getFullYear(),
+            esHoy: prox.getTime() === hoySolo.getTime(),
+        },
         porAnio,
+        anios: aniosConRitmo(porAnio, primera.visto, hoy),
     };
 };
 
-/* numero de semana absoluto, para medir rachas sin pelearme con el
-   cambio de año */
-const semanaDe = (iso) => Math.floor(new Date(iso + "T00:00:00") / (MS_DIA * 7));
+/* cada año con los dias que REALMENTE tuvo disponibles: 2023 arranco el
+   dia de la primera juntos, y el año en curso va hasta hoy. sin esto un
+   año a medio andar compite de igual a igual contra uno entero. */
+const aniosConRitmo = (porAnio, primeraISO, hoy) => {
+    const hoyISO = hoy.toISOString().slice(0, 10);
+    return Object.entries(porAnio).sort().map(([a, n]) => {
+        const desde = a === primeraISO.slice(0, 4) ? primeraISO : a + "-01-01";
+        const hasta = a === String(hoy.getFullYear()) ? hoyISO : a + "-12-31";
+        const dias = Math.round((new Date(hasta) - new Date(desde)) / MS_DIA) + 1;
+        const enCurso = a === String(hoy.getFullYear());
+        return {
+            anio: a, total: n, dias, parcial: dias < 365,
+            cada: n ? +(dias / n).toFixed(1) : null,
+            proyeccion: enCurso && n ? Math.round((n / dias) * 365) : null,
+            enCurso,
+        };
+    });
+};
+
+/* numero de semana absoluto arrancando el lunes. dividir el epoch por
+   7 dias no sirve: el 1/1/1970 fue jueves, asi que las "semanas" iban
+   de jueves a miercoles y partian rachas reales al medio. */
+const semanaDe = (iso) => {
+    const d = new Date(iso + "T00:00:00Z");
+    d.setUTCDate(d.getUTCDate() - ((d.getUTCDay() + 6) % 7));
+    return Math.round(d.getTime() / (MS_DIA * 7));
+};
 
 export const armarJuntos = ({ ronda = 0, modo = "comun", rechazadas = {}, hoy = new Date() } = {}) => {
     const cache = leerCache();

@@ -405,17 +405,27 @@ section + section { margin-top:4.5rem; }
 .nu__peli:hover img { border-color:var(--red); transform:translateY(-3px); }
 .nu__peli span { display:block; margin-top:.45rem; font-size:.6875rem; color:var(--color-text-dim); line-height:1.25; }
 
-.nu__barras { display:flex; gap:.5rem; align-items:flex-end; height:96px; margin:1.6rem 0 2.2rem; }
-.nu__b { flex:1; background:var(--color-border-strong); position:relative; min-height:2px; }
-.nu__b:last-child { background:var(--red); }
-.nu__b b { position:absolute; top:-1.25rem; left:0; right:0; text-align:center; font-size:.6875rem; font-weight:400; color:var(--color-text); font-variant-numeric:tabular-nums; }
-.nu__b i { position:absolute; bottom:-1.4rem; left:0; right:0; text-align:center; font-size:.625rem; font-style:normal; letter-spacing:var(--track-caps); color:var(--color-text-dim); }
+.nu__anios { margin:1.4rem 0 .8rem; }
+.nu__anio {
+  display:grid; grid-template-columns:2.9rem 1fr 2.2rem; gap:.7rem;
+  align-items:center; padding:.55rem 0; border-bottom:1px solid var(--color-border);
+}
+.nu__anio:last-child { border-bottom:0; }
+.nu__anio__a { font-size:.6875rem; letter-spacing:var(--track-caps); color:var(--color-text-dim); font-variant-numeric:tabular-nums; }
+.nu__anio__bar { display:flex; align-items:center; height:12px; }
+.nu__anio__bar i { display:block; height:100%; background:var(--color-border-strong); }
+.nu__anio__bar u { display:block; height:100%; border:1px dashed var(--red); border-left:0; opacity:.55; }
+.nu__anio.es-curso .nu__anio__bar i { background:var(--red); }
+.nu__anio__n { text-align:right; font-size:1rem; font-weight:700; letter-spacing:-.03em; font-variant-numeric:tabular-nums; }
+.nu__anio__d { grid-column:2 / -1; font-size:.625rem; letter-spacing:var(--track-caps); color:var(--color-text-dim); margin-top:-.15rem; }
+.nu__nota { opacity:.5; margin-bottom:.4rem; line-height:1.5; }
 
 @media (max-width:640px) {
   .nu__cifras { grid-template-columns:1fr 1fr; }
   .nu__primera { grid-template-columns:auto 1fr; gap:1rem; padding:1rem; }
   .nu__poster { width:76px; height:114px; }
   .nu__grid { grid-template-columns:repeat(auto-fill,minmax(88px,1fr)); gap:.6rem; }
+  .nu__anio { grid-template-columns:2.6rem 1fr 1.9rem; gap:.5rem; }
   /* las dos tienen que verse juntas para poder comparar: por eso no
      apilo, achico */
   .duelo { grid-template-columns:1fr 1fr; gap:.5rem; }
@@ -845,10 +855,18 @@ const pintarJuntos = () => {
     if (!v) { z.innerHTML = `<div class="dir-vacio">todavía no vieron nada juntos.</div>`; return; }
     const MES = ["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"];
     const largo = (iso) => { const [a,m,d] = iso.split("-"); return `${+d} de ${MES[+m-1]} de ${a}`; };
-    const hace = (d) => { const a = Math.floor(d/365), m = Math.floor((d%365)/30);
-      return a ? `hace ${a} año${a>1?"s":""}${m?` y ${m} mes${m>1?"es":""}`:""}` : `hace ${m} meses`; };
-    const anios = Object.entries(v.porAnio).sort();
-    const tope = Math.max(...anios.map(([,n]) => n));
+    /* años de 365 y meses de 30 se corren solos: hay que contar calendario */
+    const hace = (iso) => {
+      const d = new Date(iso + "T00:00:00"), n = new Date();
+      let a = n.getFullYear() - d.getFullYear(), m = n.getMonth() - d.getMonth();
+      if (n.getDate() < d.getDate()) m--;
+      if (m < 0) { a--; m += 12; }
+      const pa = a ? `${a} año${a > 1 ? "s" : ""}` : "";
+      const pm = m ? `${m} mes${m > 1 ? "es" : ""}` : "";
+      return `hace ${[pa, pm].filter(Boolean).join(" y ") || "menos de un mes"}`;
+    };
+    const anios = v.anios ?? [];
+    const tope = Math.max(...anios.map((a) => Math.max(a.total, a.proyeccion ?? 0)), 1);
     const est = (n) => (n ? `★${n}` : "—");
 
     z.innerHTML = `
@@ -857,34 +875,46 @@ const pintarJuntos = () => {
         <div class="nu__cuerpo">
           <div class="caps">la primera que vieron juntos</div>
           <div class="nu__t">${esc(v.primera.nombre)}</div>
-          <div class="nu__fecha">${largo(v.primera.visto)} · ${hace(v.desde)}</div>
+          <div class="nu__fecha">${largo(v.primera.visto)} · ${hace(v.primera.visto)}</div>
           <div class="nu__notas">le pusieron <b>${est(v.primera.notas[0])}</b> y <b>${est(v.primera.notas[1])}</b></div>
         </div>
       </div>
 
       <div class="nu__cifras enter" style="--i:1">
         <div class="nu__c"><span class="nu__n">${v.total}</span><span class="nu__q">películas juntos</span></div>
-        <div class="nu__c"><span class="nu__n">${v.horas}</span><span class="nu__q">horas · ${v.diasDePantalla} días enteros</span></div>
-        <div class="nu__c"><span class="nu__n">${v.sintonia}<em>%</em></span><span class="nu__q">coinciden al puntuar</span></div>
-        <div class="nu__c"><span class="nu__n">${v.racha}</span><span class="nu__q">semanas seguidas, su récord</span></div>
+        <div class="nu__c"><span class="nu__n">${v.horas}</span><span class="nu__q">horas juntos${v.sinDuracion ? ` · sin contar ${v.sinDuracion}` : ""}</span></div>
+        <div class="nu__c"><span class="nu__n">${v.sintonia ?? "—"}<em>%</em></span><span class="nu__q">quedan a media estrella · ${v.clavadas ?? 0}% la clavan</span></div>
+        <div class="nu__c"><span class="nu__n">${v.rachaViva}</span><span class="nu__q">semanas seguidas ahora · su récord es ${v.racha}</span></div>
       </div>
 
       <div class="tit" style="margin-top:2.6rem"><span class="slash">/</span><h2 class="caps">año a año</h2></div>
-      <div class="nu__barras enter">
-        ${anios.map(([a,n]) => `<div class="nu__b" style="height:${Math.round(n/tope*100)}%"><b>${n}</b><i>${a}</i></div>`).join("")}
+      <div class="nu__anios enter">
+        ${anios.map((a) => `
+          <div class="nu__anio${a.enCurso ? " es-curso" : ""}">
+            <span class="nu__anio__a">${a.anio}</span>
+            <span class="nu__anio__bar">
+              <i style="width:${Math.round((a.total / tope) * 100)}%"></i>
+              ${a.proyeccion ? `<u style="width:${Math.round(((a.proyeccion - a.total) / tope) * 100)}%"></u>` : ""}
+            </span>
+            <span class="nu__anio__n">${a.total}</span>
+            <span class="nu__anio__d">${a.cada ? `1 cada ${a.cada} días` : "—"}${
+              a.proyeccion ? ` · van para ${a.proyeccion}` : a.parcial ? ` · desde el ${a.anio === v.primera.visto.slice(0,4) ? largo(v.primera.visto).replace(/ de \d{4}$/, "") : "arranque"}` : ""
+            }</span>
+          </div>`).join("")}
       </div>
+      <p class="caps nu__nota">la barra clara de ${anios.at(-1)?.anio ?? ""} es lo que falta para la proyección · el año más intenso es el que llega más lejos, no el que ve más</p>
 
-      ${(data.juntas.ultimas ?? []).length ? `
+      ${(v.ultimas ?? []).length ? `
       <div class="tit" style="margin-top:3.4rem"><span class="slash">/</span><h2 class="caps">las últimas que vieron juntos</h2></div>
-      <div class="ultimas-juntas">${data.juntas.ultimas.map((f, i) => `
+      <div class="ultimas-juntas">${v.ultimas.map((f, i) => `
         <div class="uj enter" style="--i:${i}" data-peli="${esc(f.nombre)}" data-anio="${f.anio}">
-          <span class="uj__f">${f.visto.slice(5)}</span>
+          <span class="uj__f">${f.visto.slice(2, 4) === String(new Date().getFullYear()).slice(2) ? f.visto.slice(5) : f.visto.slice(0, 7)}</span>
           <span class="uj__n">${esc(f.nombre)}</span>
           <span class="uj__notas">${est(f.notas[0])} · ${est(f.notas[1])}</span>
         </div>`).join("")}</div>` : ""}
 
       <div class="tit" style="margin-top:3.4rem"><span class="slash">/</span><h2 class="caps">las que amaron los dos</h2></div>
-      <p class="caps" style="opacity:.6;margin:-.4rem 0 1.2rem">4½ o más de cada uno · la brecha entre ustedes promedia ${v.brecha} estrellas</p>
+      <p class="caps" style="opacity:.6;margin:-.4rem 0 1.2rem">4½ o más de cada uno${v.amadasTotal > v.amadas.length ? ` · ${v.amadas.length} de ${v.amadasTotal}` : ""}</p>
       <div class="nu__grid">
         ${v.amadas.map((f, i) => `<div class="nu__peli enter" style="--i:${i}" data-peli="${esc(f.nombre)}" data-anio="${f.anio}">
           ${f.poster ? `<img src="${IMG}${f.poster}" alt="" loading="lazy">` : ""}
@@ -893,7 +923,10 @@ const pintarJuntos = () => {
       </div>
 
       <p class="caps" style="margin-top:3rem;opacity:.7">
-        el ${largo(v.aniversario.fecha).replace(/ de \d{4}$/, "")} son ${v.aniversario.numero} años de la primera · faltan ${v.aniversario.faltan} días
+        ${v.aniversario.esHoy
+          ? `hoy cumplen ${v.aniversario.numero} años de la primera`
+          : `el ${largo(v.aniversario.fecha).replace(/ de \d{4}$/, "")} cumplen ${v.aniversario.numero} años de la primera`}${
+          v.brecha != null ? ` · cuando puntúan distinto, los separa ${v.brecha} de estrella` : ""}
       </p>`;
     return;
   }
