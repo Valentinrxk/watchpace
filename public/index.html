@@ -403,7 +403,7 @@ section + section { margin-top:4.5rem; }
 .nu__grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(108px,1fr)); gap:.8rem; }
 .nu__peli img { width:100%; aspect-ratio:2/3; object-fit:cover; border:1px solid var(--color-border); transition:border-color .18s, transform .22s var(--expo); display:block; }
 .nu__peli:hover img { border-color:var(--red); transform:translateY(-3px); }
-.nu__peli span { display:block; margin-top:.45rem; font-size:.6875rem; color:var(--color-text-dim); line-height:1.25; }
+.nu__peli span { display:block; margin-top:.45rem; font-size:.6875rem; color:var(--color-text-dim); line-height:1.25; overflow-wrap:anywhere; }
 
 .nu__anios { margin:1.4rem 0 .8rem; }
 .nu__anio {
@@ -419,6 +419,9 @@ section + section { margin-top:4.5rem; }
 .nu__anio__n { text-align:right; font-size:1rem; font-weight:700; letter-spacing:-.03em; font-variant-numeric:tabular-nums; }
 .nu__anio__d { grid-column:2 / -1; font-size:.625rem; letter-spacing:var(--track-caps); color:var(--color-text-dim); margin-top:-.15rem; }
 .nu__nota { opacity:.5; margin-bottom:.4rem; line-height:1.5; }
+.nu__solape { margin-top:1.4rem; font-size:.9rem; line-height:1.6; color:var(--color-text-dim); }
+.nu__solape b { color:var(--color-text); font-weight:400; }
+.nu__solape em { font-style:normal; color:var(--red); font-weight:700; }
 
 @media (max-width:640px) {
   .nu__cifras { grid-template-columns:1fr 1fr; }
@@ -886,6 +889,10 @@ const pintarJuntos = () => {
         <div class="nu__c"><span class="nu__n">${v.sintonia ?? "—"}<em>%</em></span><span class="nu__q">quedan a media estrella · ${v.clavadas ?? 0}% la clavan</span></div>
         <div class="nu__c"><span class="nu__n">${v.rachaViva}</span><span class="nu__q">semanas seguidas ahora · su récord es ${v.racha}</span></div>
       </div>
+
+      ${(v.solapamiento ?? []).length ? `<p class="nu__solape enter">
+        de todo lo que vieron desde entonces, ${v.solapamiento.map((p, i) => `<b>${esc(p.nombre)}</b> vio el <em>${p.pct}%</em> con ${esc(v.solapamiento[1 - i]?.nombre ?? "el otro")}`).join(" y ")}
+      </p>` : ""}
 
       <div class="tit" style="margin-top:2.6rem"><span class="slash">/</span><h2 class="caps">año a año</h2></div>
       <div class="nu__anios enter">

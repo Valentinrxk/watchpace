@@ -240,6 +240,20 @@ export const armarJuntos = ({ ronda = 0, modo = "comun", rechazadas = {}, hoy = 
 
     const juntas = verJuntas(A.diario ?? [], B.diario ?? [], hoy, cache);
 
+    /* el dato que hace que el panel exista: de todo lo que vio cada uno
+       desde que empezaron, cuanto fue con el otro */
+    if (juntas.vida) {
+        const desde = juntas.vida.primera.visto;
+        juntas.vida.solapamiento = datos.map((d) => {
+            const propias = (d.diario ?? []).filter((f) => f.visto >= desde).length;
+            return {
+                nombre: d.nombre,
+                propias,
+                pct: propias ? Math.round((juntas.vida.total / propias) * 100) : 0,
+            };
+        });
+    }
+
     return {
         personas, datos, comun, duelo, debo, revancha, giro, juntas,
         ritmos: datos.map((d) => ({ nombre: d.nombre, usuario: d.usuario, vistas: d.ritmo.vistas, meta: d.ritmo.meta, alDia: d.ritmo.alDia, deficit: d.ritmo.deficit })),

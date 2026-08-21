@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es" style="background:#cfd0d6">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<style>
+:root {
+  --silver-100:#e6e7eb; --silver-200:#dadbe0; --silver-300:#cfd0d6; --silver-400:#bfc0c7;
+  --silver-500:#a6a7af; --steel-600:#75767f; --steel-700:#4c4d55; --steel-800:#35353c;
+  --graphite:#232327; --red:#e10600; --bordo:#6d0f16;
+  --color-bg:var(--silver-300); --color-text:var(--graphite); --color-text-dim:var(--steel-600);
+  --color-border:rgba(35,35,39,.18); --color-border-strong:rgba(35,35,39,.38);
+  --surface:rgba(230,231,235,.55);
+  --font-sans:'Helvetica Neue',Helvetica,Arial,sans-serif;
+  --track-caps:.14em; --frame-x:clamp(1rem,4vw,3.5rem);
+  --expo:cubic-bezier(.19,1,.22,1);
+}
+[data-theme='dark'] {
+  --silver-100:#17171b; --silver-200:#1d1d22; --silver-300:#232328; --silver-400:#2a2a30;
+  --silver-500:#4e4f57; --steel-600:#8b8c94; --steel-700:#b7b8bf; --steel-800:#cfd0d6;
+  --graphite:#e2e3e7;
+  --color-border:rgba(226,227,231,.15); --color-border-strong:rgba(226,227,231,.32);
+  --surface:rgba(23,23,27,.5);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--color-bg)}
+body{background:var(--color-bg);color:var(--color-text);font-family:var(--font-sans);text-transform:lowercase;-webkit-font-smoothing:antialiased;padding:2rem var(--frame-x)}
+.caps{font-size:.6875rem;font-weight:500;letter-spacing:var(--track-caps);font-variant-numeric:tabular-nums;color:var(--color-text-dim)}
+.slash{color:var(--red);font-weight:700;letter-spacing:-.12em}
+.tit{display:flex;align-items:baseline;gap:.6rem;margin-bottom:1.5rem;border-bottom:1px solid var(--color-border);padding-bottom:.5rem}
+@keyframes rule-grow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes glitch-in{0%{opacity:0;transform:translate(-6px,2px);clip-path:inset(0 0 62% 0)}20%{opacity:1;transform:translate(4px,-2px);clip-path:inset(38% 0 0 0)}40%{opacity:1;transform:translate(-3px,0);clip-path:inset(0 0 24% 0)}60%{opacity:1;transform:translate(2px,1px);clip-path:inset(12% 0 0 0)}100%{opacity:1;transform:translate(0,0);clip-path:inset(0 0 0 0)}}
+.enter{animation:glitch-in .42s steps(5,end) both;animation-delay:calc(var(--i,0) * 45ms)}
+
+/* año a año: una fila por año. el dato se lee como texto y la barra solo
+   confirma la comparacion. mide ritmo (cada cuantos dias una), no total:
+   un año a medio andar no puede competir en cuentas absolutas */
+.nu__aa { --nu-dim:var(--steel-700); margin-top:-.5rem; }
+.nu__aasub { color:var(--nu-dim); font-size:.8125rem; line-height:1.5; margin:0 0 1.5rem; max-width:46ch; overflow-wrap:anywhere; }
+.nu__fila { padding:1rem 0 1.1rem; border-bottom:1px solid var(--color-border); }
+.nu__fila:first-of-type { border-top:1px solid var(--color-border); }
+.nu__fenc { display:flex; align-items:baseline; justify-content:space-between; gap:.75rem; }
+.nu__fy { font-size:clamp(1.55rem,5.2vw,2.1rem); font-weight:700; letter-spacing:-.05em; line-height:1; font-variant-numeric:tabular-nums; }
+.nu__fr { font-size:clamp(.875rem,2.8vw,1.05rem); letter-spacing:-.01em; text-align:right; font-variant-numeric:tabular-nums; white-space:nowrap; }
+.nu__fr b { font-weight:700; }
+.nu__ftrack { height:4px; background:var(--color-border); margin:.75rem 0 .6rem; }
+.nu__ffill { display:block; height:100%; background:var(--nu-dim); transform-origin:left; animation:rule-grow .7s var(--expo) both calc(var(--i,0) * 70ms + .15s); }
+.nu__fila--rec .nu__ffill { background:var(--red); }
+.nu__fpie { font-size:.8125rem; line-height:1.55; color:var(--nu-dim); overflow-wrap:anywhere; }
+.nu__ftag { display:inline-block; margin-left:.4rem; padding:.08rem .45rem; border:1px solid var(--red); color:var(--color-text); font-size:.6875rem; letter-spacing:var(--track-caps); white-space:nowrap; }
+</style></head>
+<body><div id="z"></div>
+<script>
+const v = {
+  primera:{visto:"2023-06-22"},
+  anios:[
+   {anio:"2023",total:3,dias:193,parcial:true,cada:64.3,proyeccion:null,enCurso:false},
+   {anio:"2024",total:41,dias:366,parcial:false,cada:8.9,proyeccion:null,enCurso:false},
+   {anio:"2025",total:44,dias:365,parcial:false,cada:8.3,proyeccion:null,enCurso:false},
+   {anio:"2026",total:42,dias:233,parcial:true,cada:5.5,proyeccion:66,enCurso:true}
+  ]
+};
+const MES=["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"];
+const largo=(iso)=>{const[a,m,d]=iso.split("-");return `${+d} de ${MES[+m-1]} de ${a}`;};
+
+const anios = [...v.anios].reverse();
+const pico = Math.max(...anios.map((x) => x.total / x.dias));
+const veloz = anios.length > 1 ? anios.reduce((m, x) => (x.cada < m.cada ? x : m)) : null;
+const arranque = v.primera.visto.slice(0, 4);
+const ritmo = (c) => (c >= 20 ? Math.round(c) : c);
+const ancho = (x) => Math.max(3, Math.round((x.total / x.dias) / pico * 100));
+const pie = (x) =>
+  x.enCurso ? `${x.total} juntas en ${x.dias} días · a este ritmo cierra en ${x.proyeccion}`
+  : x.anio === arranque ? `${x.total} juntas en ${x.dias} días · empezaron el ${largo(v.primera.visto).replace(/ de \d{4}$/, "")}`
+  : `${x.total} juntas · el año entero`;
+
+document.getElementById("z").innerHTML = `
+      <div class="tit" style="margin-top:2.6rem"><span class="slash">/</span><h2 class="caps">año a año</h2></div>
+      <div class="nu__aa">
+        <p class="nu__aasub">la barra mide cada cuánto ven una, no cuántas vieron. así un año a medio andar no compite en desventaja contra uno entero.</p>
+        ${anios.map((x, i) => `
+        <div class="nu__fila enter${veloz && x.anio === veloz.anio ? " nu__fila--rec" : ""}" style="--i:${i}">
+          <div class="nu__fenc">
+            <span class="nu__fy">${x.anio}</span>
+            <span class="nu__fr">1 cada <b>${ritmo(x.cada)}</b> días</span>
+          </div>
+          <div class="nu__ftrack"><span class="nu__ffill" style="width:${ancho(x)}%"></span></div>
+          <p class="nu__fpie">${pie(x)}${veloz && x.anio === veloz.anio ? `<span class="nu__ftag">el más rápido</span>` : ""}</p>
+        </div>`).join("")}
+      </div>`;
+</script>
+</body></html>
