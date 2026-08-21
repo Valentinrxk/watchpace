@@ -366,22 +366,65 @@ section + section { margin-top:4.5rem; }
 .carta__donde.si { color:var(--red); }
 .carta__poster { width:62px; aspect-ratio:2/3; object-fit:cover; border:1px solid var(--color-border); flex:none; }
 
-.ruleta { border:1px solid var(--color-border-strong); background:var(--surface); padding:2rem; text-align:center; }
-.ruleta__ventana {
-  font-size:clamp(1.3rem,4vw,2.2rem); font-weight:700; letter-spacing:-.04em;
-  min-height:2.4em; display:flex; align-items:center; justify-content:center;
-  border-top:1px solid var(--color-border); border-bottom:1px solid var(--color-border);
-  padding:1rem; margin-bottom:1.2rem; overflow:hidden;
+.ruleta { border:1px solid var(--color-border-strong); background:var(--surface); padding:1.6rem; position:relative; overflow:hidden; }
+.ruleta__cuantas { text-align:center; margin-bottom:1.2rem; opacity:.7; }
+.ruleta__caja { min-height:212px; display:flex; align-items:center; }
+.ruleta__acciones { justify-content:center; margin-top:1.4rem; }
+
+.rl { display:grid; grid-template-columns:124px 1fr; gap:1.4rem; align-items:start; width:100%; position:relative; }
+.rl__bg {
+  position:absolute; inset:-1.6rem; background-size:cover; background-position:center 28%;
+  filter:grayscale(1) contrast(1.15); opacity:.1; pointer-events:none; z-index:0;
+  -webkit-mask-image:linear-gradient(100deg,#000 0%,transparent 78%);
+  mask-image:linear-gradient(100deg,#000 0%,transparent 78%);
 }
-.ruleta__ventana.girando { color:var(--color-text-dim); }
-.ruleta__ganadora { color:var(--red); animation:sello-golpe .5s steps(5,end) both; }
-.ruleta__donde { font-size:.75rem; letter-spacing:var(--track-caps); color:var(--color-text-dim); margin-top:.5rem; }
+[data-theme='dark'] .rl__bg { opacity:.18; }
+.rl > *:not(.rl__bg) { position:relative; z-index:1; }
+.rl__tag { color:var(--red); font-size:.7rem; letter-spacing:var(--track-caps); margin-top:.45rem; overflow-wrap:anywhere; }
+.rl__poster { width:124px; aspect-ratio:2/3; object-fit:cover; border:1px solid var(--color-border); display:block; }
+.rl__poster--hueco { background:var(--skel); border:1px dashed var(--color-border-strong); }
+.rl__cuerpo { min-width:0; }
+.rl__de { color:var(--red); font-weight:700; margin-bottom:.4rem; }
+.rl__t { font-size:clamp(1.15rem,2.8vw,1.75rem); font-weight:700; letter-spacing:-.04em; line-height:1.05; overflow-wrap:anywhere; }
+.rl__sub { margin-top:.4rem; font-size:.78rem; color:var(--color-text-dim); overflow-wrap:anywhere; }
+.rl__meta { margin-top:.8rem; }
+.dir-bg {
+  position:absolute; top:0; left:0; right:0; height:220px; background-size:cover; background-position:center 28%;
+  filter:grayscale(1) contrast(1.15); opacity:.1; pointer-events:none; z-index:0;
+  -webkit-mask-image:linear-gradient(#000,transparent);
+  mask-image:linear-gradient(#000,transparent);
+}
+[data-theme='dark'] .dir-bg { opacity:.18; }
+#dirCuerpo { position:relative; }
+#dirCuerpo > *:not(.dir-bg) { position:relative; z-index:1; }
+.dir-tag { color:var(--red); font-size:.7rem; letter-spacing:var(--track-caps); margin:-.3rem 0 .7rem; overflow-wrap:anywhere; }
+.rl__sin {
+  margin-top:.9rem; font-size:.82rem; line-height:1.55; color:var(--color-text-dim);
+  display:-webkit-box; -webkit-line-clamp:4; -webkit-box-orient:vertical; overflow:hidden;
+}
+/* corte seco: mientras gira no hay transicion, cambia y ya */
+.rl--gira .rl__t { color:var(--color-text-dim); }
+.rl--gira .rl__poster { opacity:.45; filter:grayscale(1); }
+.rl--vacia .rl__t { color:var(--color-text-dim); font-weight:400; letter-spacing:-.02em; }
+.rl--gano { cursor:pointer; }
+.rl--gano .rl__t { animation:sello-golpe .5s steps(5,end) both; }
+.rl--gano .rl__poster { animation:glitch-in .42s steps(5,end) both; }
+.rl--gano:hover .rl__poster { border-color:var(--red); }
 
 .par { display:flex; align-items:baseline; gap:.6rem; font-size:.75rem; color:var(--color-text-dim); }
 .par b { color:var(--red); font-weight:700; }
 
 /* --- lo nuestro --- */
-.nu__primera { display:grid; grid-template-columns:auto 1fr; gap:1.5rem; align-items:center; border:1px solid var(--color-border-strong); background:var(--surface); padding:1.4rem; }
+.nu__primera { display:grid; grid-template-columns:auto 1fr; gap:1.5rem; align-items:center; border:1px solid var(--color-border-strong); background:var(--surface); padding:1.4rem; position:relative; overflow:hidden; cursor:pointer; }
+.nu__bg {
+  position:absolute; inset:0; background-size:cover; background-position:center 28%;
+  filter:grayscale(1) contrast(1.15); opacity:.09; pointer-events:none;
+  -webkit-mask-image:linear-gradient(100deg,#000 0%,transparent 74%);
+  mask-image:linear-gradient(100deg,#000 0%,transparent 74%);
+}
+[data-theme='dark'] .nu__bg { opacity:.16; }
+.nu__primera > *:not(.nu__bg) { position:relative; }
+.nu__primera:hover { border-color:var(--red); }
 .nu__poster { width:104px; height:156px; object-fit:cover; border:1px solid var(--color-border); }
 .nu__cuerpo { min-width:0; }
 .nu__t { font-size:clamp(1.3rem,3.4vw,2rem); font-weight:700; letter-spacing:-.04em; line-height:1.05; margin:.35rem 0 .5rem; }
@@ -429,6 +472,11 @@ section + section { margin-top:4.5rem; }
   .nu__poster { width:76px; height:114px; }
   .nu__grid { grid-template-columns:repeat(auto-fill,minmax(88px,1fr)); gap:.6rem; }
   .nu__anio { grid-template-columns:2.6rem 1fr 1.9rem; gap:.5rem; }
+  .ruleta { padding:1.1rem; }
+  .rl { grid-template-columns:88px 1fr; gap:1rem; }
+  .rl__poster { width:88px; }
+  .rl__sin { -webkit-line-clamp:2; font-size:.76rem; margin-top:.7rem; }
+  .ruleta__caja { min-height:168px; }
   /* las dos tienen que verse juntas para poder comparar: por eso no
      apilo, achico */
   .duelo { grid-template-columns:1fr 1fr; gap:.5rem; }
@@ -621,7 +669,7 @@ const $ = (id) => document.getElementById(id);
 const IMG = "https://image.tmdb.org/t/p/w342";
 const dormir = (ms) => new Promise((r) => setTimeout(r, ms));
 const suave = matchMedia("(prefers-reduced-motion: reduce)").matches;
-const INTERACTIVO = "a,button,[data-a],[data-min],[data-persona],[data-peli],.fila,.reto__c,.chip,.dir-link";
+const INTERACTIVO = "a,button,[data-a],[data-min],[data-persona],[data-peli],.fila,.reto__c,.chip,.dir-link,.rl--gano";
 
 let minutos = null, data = null, primera = true, numeroActual = 0, retoOffset = 0, peticion = 0, pila = [];
 
@@ -845,11 +893,22 @@ const pintarJuntos = () => {
 
   if (data.modo === "ruleta") {
     z.innerHTML = `<div class="ruleta enter">
-        <div class="caps">${data.giro.length} en el bolillero</div>
-        <div class="ruleta__ventana" id="ventana">tirá y no se discute</div>
-        <button class="btn btn--p" id="girar">girar</button>
+        <div class="caps ruleta__cuantas">${data.giro.length} en el bolillero · ${data.giro.filter((f) => donde(f).si).length} para ver ahora</div>
+        <div class="ruleta__caja" id="ventana">
+          <div class="rl rl--vacia">
+            <div class="rl__poster rl__poster--hueco"></div>
+            <div class="rl__cuerpo">
+              <div class="rl__t">tirá y no se discute</div>
+              <div class="rl__sub">sale una de la watchlist de cualquiera de los dos</div>
+            </div>
+          </div>
+        </div>
+        <div class="acciones ruleta__acciones" id="ruletaAcciones">
+          <button class="btn btn--p" id="girar">girar</button>
+        </div>
       </div>`;
     $("girar").addEventListener("click", girarRuleta);
+    precargarPosters();
     return;
   }
 
@@ -874,6 +933,7 @@ const pintarJuntos = () => {
 
     z.innerHTML = `
       <div class="nu__primera enter" data-peli="${esc(v.primera.nombre)}" data-anio="${v.primera.anio}">
+        ${v.primera.backdrop ? `<div class="nu__bg" style="background-image:url('${BACKDROP}${v.primera.backdrop}')"></div>` : ""}
         ${v.primera.poster ? `<img class="nu__poster" src="${IMG}${v.primera.poster}" alt="" onerror="this.remove()">` : ""}
         <div class="nu__cuerpo">
           <div class="caps">la primera que vieron juntos</div>
@@ -955,6 +1015,7 @@ const pintarJuntos = () => {
         <div class="hero__body">
           <div class="caps">los dos la quieren ver</div>
           <span class="mask"><span class="hero__t" data-peli="${esc(f.nombre)}" data-anio="${f.anio}">${esc(f.nombre)}</span></span>
+          ${f.tagline ? `<div class="hero__tag">${esc(f.tagline)}</div>` : ""}
           <div class="hero__sub">${f.anio}${f.minutos ? ` · ${f.minutos} min` : ""}${f.director ? ` · ${esc(f.director)}` : ""}</div>
           <div class="meta-row">
             ${f.puntaje ? `<span class="puntaje"><span class="puntaje__n">${f.puntaje}</span><span class="puntaje__d">/10</span></span>` : ""}
@@ -1011,37 +1072,67 @@ const carta = (f, i) => {
    borraba la ganadora justo despues de mostrarla. */
 let giroIdx = 0;
 
+/* las tapas tienen que estar en cache antes de girar, si no el carrete
+   parpadea en blanco mientras las baja */
+const BACKDROP = "https://image.tmdb.org/t/p/w780";
+
+const precargarPosters = () => {
+  for (const f of (data.giro ?? []).slice(0, 16)) {
+    if (f.poster) { const i = new Image(); i.src = IMG + f.poster; }
+    if (f.backdrop) { const b = new Image(); b.src = BACKDROP + f.backdrop; }
+  }
+};
+
+const fichaRuleta = (f, girando = false) => {
+  const w = donde(f);
+  return `<div class="rl${girando ? " rl--gira" : ""}">
+    ${f.backdrop ? `<div class="rl__bg" style="background-image:url('${BACKDROP}${f.backdrop}')"></div>` : ""}
+    ${f.poster
+      ? `<img class="rl__poster" src="${IMG}${f.poster}" alt="" onerror="this.classList.add('rl__poster--hueco')">`
+      : `<div class="rl__poster rl__poster--hueco"></div>`}
+    <div class="rl__cuerpo">
+      ${f.de ? `<div class="caps rl__de">la quiere ${esc(f.de)}</div>` : ""}
+      <div class="rl__t">${esc(f.nombre)}</div>
+      ${!girando && f.tagline ? `<div class="rl__tag">${esc(f.tagline)}</div>` : ""}
+      <div class="rl__sub">${f.anio}${f.minutos ? ` · ${f.minutos} min` : ""}${(f.generos ?? []).length ? ` · ${esc(f.generos.slice(0, 2).join("/"))}` : ""}${f.director ? ` · ${esc(f.director)}` : ""}</div>
+      ${girando ? "" : `<div class="meta-row rl__meta">
+        ${f.puntaje ? `<span class="puntaje"><span class="puntaje__n">${f.puntaje}</span><span class="puntaje__d">/10</span></span>` : ""}
+        <span class="donde ${w.si ? "donde--si" : "donde--no"}">${esc(w.txt)}</span>
+      </div>
+      ${f.sinopsis ? `<p class="rl__sin">${esc(f.sinopsis)}</p>` : ""}`}
+    </div>
+  </div>`;
+};
+
 const girarRuleta = async () => {
   const v = $("ventana");
   const boton = $("girar");
   if (!data.giro.length || boton.disabled) return;
 
-  document.querySelector(".ruleta__donde")?.remove();
-  document.querySelector(".ruleta .acciones")?.remove();
   boton.disabled = true;
-  v.classList.add("girando");
+  $("ruletaAcciones").querySelectorAll(".btn:not(#girar)").forEach((b) => b.remove());
 
   const ganadora = data.giro[giroIdx % data.giro.length];
   giroIdx++;
 
+  /* el carrete muestra tapa y titulo: mirar pasar las posibilidades es
+     la mitad de la gracia */
   const paso = data.giro.filter((f) => f !== ganadora);
-  for (let i = 0; i < 16; i++) {
-    v.textContent = paso[(giroIdx * 7 + i) % paso.length].nombre;
-    await dormir(55 + i * 15);
+  for (let i = 0; i < 14; i++) {
+    v.innerHTML = fichaRuleta(paso[(giroIdx * 7 + i) % paso.length], true);
+    await dormir(60 + i * 16);
   }
 
-  v.classList.remove("girando");
-  v.innerHTML = `<span class="ruleta__ganadora" data-peli="${esc(ganadora.nombre)}" data-anio="${ganadora.anio}">${esc(ganadora.nombre)}</span>`;
+  v.innerHTML = fichaRuleta(ganadora);
+  v.querySelector(".rl").classList.add("rl--gano");
+  v.querySelector(".rl").dataset.peli = ganadora.nombre;
+  v.querySelector(".rl").dataset.anio = ganadora.anio;
+
   boton.disabled = false;
   boton.textContent = "otra vez";
-
-  const w = donde(ganadora);
-  boton.insertAdjacentHTML("afterend",
-    `<div class="ruleta__donde">${ganadora.anio}${ganadora.minutos ? ` · ${ganadora.minutos} min` : ""} · ${esc(w.txt)}</div>
-     <div class="acciones" style="justify-content:center;margin-top:1rem">
-       <button class="btn btn--p" data-a="acepto" data-n="${esc(ganadora.nombre)}">va esta</button>
-       <button class="btn" data-peli="${esc(ganadora.nombre)}" data-anio="${ganadora.anio}">qué es</button>
-     </div>`);
+  boton.insertAdjacentHTML("beforebegin",
+    `<button class="btn btn--p" data-a="acepto" data-n="${esc(ganadora.nombre)}">va esta</button>`);
+  boton.classList.remove("btn--p");
 };
 
 const pintar = () => {
@@ -1191,8 +1282,10 @@ const htmlPelicula = (d) => {
         : d.enWatchlist ? "pendiente en tu watchlist" : "no está en tu watchlist"}</div>`;
 
   return `
+  ${d.backdrop ? `<div class="dir-bg" style="background-image:url('${BACKDROP}${d.backdrop}')"></div>` : ""}
   ${d.poster ? `<img class="dir-poster" src="${IMG}${d.poster}" alt="" onerror="this.remove()">` : ""}
   <div class="dir-panel__t">${esc(d.nombre)}</div>
+  ${d.tagline ? `<div class="dir-tag">${esc(d.tagline)}</div>` : ""}
   <div class="dir-panel__sub caps">${d.anio}${d.minutos ? ` · ${d.minutos} min` : ""}${d.generos.length ? ` · ${esc(d.generos.join("/"))}` : ""}</div>
 
   <div class="meta-row" style="margin-bottom:1.1rem">

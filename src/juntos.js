@@ -232,11 +232,16 @@ export const armarJuntos = ({ ronda = 0, modo = "comun", rechazadas = {}, hoy = 
     }
     revancha.sort((x, y) => y.brecha - x.brecha);
 
-    /* 5. ruleta: de donde sale depende del modo que estes mirando */
-    const bolillero = modo === "comun" && comun.length ? comun
-        : modo === "revancha" && revancha.length ? revancha
-        : [...soloA, ...soloB];
-    const giro = barajar(conStreamPrimero(bolillero).slice(0, 30), `${semilla}!ruleta`);
+    /* 5. ruleta: de donde sale depende del modo que estes mirando.
+       ojo con el bolillero de las watchlists sueltas: concatenar y
+       recortar dejaba SIEMPRE afuera al segundo, porque el sort es
+       estable y las del primero quedaban todas adelante. hay que tomar
+       de a mitades y recien despues barajar. */
+    const mitad = (arr, n) => conStreamPrimero(arr).slice(0, n);
+    const bolillero = modo === "comun" && comun.length ? conStreamPrimero(comun).slice(0, 30)
+        : modo === "revancha" && revancha.length ? conStreamPrimero(revancha).slice(0, 30)
+        : [...mitad(soloA, 15), ...mitad(soloB, 15)];
+    const giro = barajar(bolillero, `${semilla}!ruleta`);
 
     const juntas = verJuntas(A.diario ?? [], B.diario ?? [], hoy, cache);
 

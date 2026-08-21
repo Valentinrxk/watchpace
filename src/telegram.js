@@ -217,7 +217,10 @@ export const mensajeNuestro = (p) => {
 export const mensajeRuleta = (p) => {
     const g = p.giro?.[(p.ronda ?? 0) % Math.max(1, p.giro.length)];
     if (!g) return `el bolillero está vacío${esc(".")}`;
-    return ["🎰 *la ruleta decidió*", "", ficha(g), "", "_no se discute_"].join("\n");
+    const partes = ["🎰 *la ruleta decidió*", "", ficha(g)];
+    if (g.de) partes.push(`_la quería ${esc(g.de)}_`);
+    partes.push("", "_no se discute_");
+    return partes.join("\n");
 };
 
 export const botonesRuleta = (p) => {

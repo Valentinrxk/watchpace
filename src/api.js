@@ -105,7 +105,7 @@ export const construirJuntos = ({ estado: estadoDado = null } = {}) => {
         duelo: j.duelo.map((f) => (f ? conMarca(f, { de: f.de }) : null)),
         debo: j.debo.slice(0, 6).map((f) => conMarca(f, { recomienda: f.recomienda, nota: f.nota, para: f.para })),
         revancha: j.revancha.slice(0, 6).map((f) => conMarca(f, { notas: f.notas, brecha: f.brecha })),
-        giro: j.giro.slice(0, 24).map((f) => conMarca(f)),
+        giro: j.giro.slice(0, 24).map((f) => conMarca(f, { de: f.de ?? null })),
         estado,
     };
 };
