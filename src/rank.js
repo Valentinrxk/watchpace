@@ -17,7 +17,7 @@ export const facilidad = (ops = []) => {
    como la fecha iba al final, cambiar de dia movia el resultado 0,001 y
    la sugerencia quedaba clavada. este avalancha: un caracter distinto da
    un numero completamente distinto. */
-const azar = (semilla) => {
+export const azar = (semilla) => {
     let h = 2166136261;
     for (let i = 0; i < semilla.length; i++) {
         h ^= semilla.charCodeAt(i);

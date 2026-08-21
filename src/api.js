@@ -8,9 +8,10 @@ import { clasificar } from "./fmt.js";
 import { CONFIG } from "./config.js";
 import { cargarUsuario, configDe, leerPerfil } from "./usuarios.js";
 import { enRaiz } from "./rutas.js";
+import { armarJuntos, ES_JUNTOS } from "./juntos.js";
 
 const RUTA = enRaiz("cache/estado.json");
-const VACIO = { rechazadas: {}, plan: null, retosPasados: [], retosActivos: {}, retoActivo: null, snoozeHasta: null, mirando: null, historial: [] };
+const VACIO = { rechazadas: {}, plan: null, retosPasados: [], retosActivos: {}, retoActivo: null, snoozeHasta: null, mirando: null, historial: [], modo: "comun", ronda: 0 };
 
 export const leerEstado = () => (existsSync(RUTA) ? { ...VACIO, ...JSON.parse(readFileSync(RUTA, "utf8")) } : { ...VACIO });
 
@@ -58,6 +59,44 @@ const aFilm = (f) => {
         donde: c.sub.length ? c.sub : c.gratis.length ? c.gratis : [],
         dondeTipo: c.sub.length ? "sub" : c.gratis.length ? "gratis" : c.addon.length ? "addon" : c.alquiler.length ? "alquiler" : "ninguno",
         addon: c.addon,
+    };
+};
+
+const MODOS = [
+    { id: "comun", texto: "en común" },
+    { id: "duelo", texto: "uno y uno" },
+    { id: "debo", texto: "te la debo" },
+    { id: "revancha", texto: "revancha" },
+    { id: "ruleta", texto: "la ruleta" },
+];
+
+export const construirJuntos = ({ estado: estadoDado = null } = {}) => {
+    const hoy = new Date();
+    const estado = estadoDado ? { ...VACIO, ...estadoDado } : leerEstado();
+    PERSONAS = leerPersonas();
+
+    const modo = MODOS.some((m) => m.id === estado.modo) ? estado.modo : "comun";
+    const j = armarJuntos({ modo, ronda: estado.ronda ?? 0, rechazadas: estado.rechazadas, hoy });
+
+    const conMarca = (f, extra = {}) => ({ ...aFilm({ ...f, tmdb: f.m }), ...extra });
+
+    return {
+        tipo: "juntos",
+        usuario: ES_JUNTOS,
+        nombre: "juntos",
+        usuarios: [...CONFIG.usuarios.map((u) => ({ usuario: u.usuario, nombre: u.nombre })), { usuario: ES_JUNTOS, nombre: "juntos" }],
+        modos: MODOS.map((m) => ({ ...m, cuantas: j.totales[m.id] ?? j.totales.duelo })),
+        modo,
+        ronda: estado.ronda ?? 0,
+        ritmos: j.ritmos,
+        totales: j.totales,
+        plan: estado.plan?.fecha === hoyISO(hoy) ? estado.plan : null,
+        comun: j.comun.slice(0, 8).map((f) => conMarca(f)),
+        duelo: j.duelo.map((f) => (f ? conMarca(f, { de: f.de }) : null)),
+        debo: j.debo.slice(0, 6).map((f) => conMarca(f, { recomienda: f.recomienda, nota: f.nota, para: f.para })),
+        revancha: j.revancha.slice(0, 6).map((f) => conMarca(f, { notas: f.notas, brecha: f.brecha })),
+        giro: j.giro.slice(0, 24).map((f) => conMarca(f)),
+        estado,
     };
 };
 
@@ -222,6 +261,8 @@ export const reducir = (previo, { accion, nombre, retoId }) => {
         estado.retosPasados = [...new Set([...estado.retosPasados, retoId])];
         estado.retosActivos = Object.fromEntries(Object.entries(estado.retosActivos ?? {}).filter(([k]) => k !== retoId));
     }
+    if (accion === "modo" && nombre) { estado.modo = nombre; estado.ronda = 0; }
+    if (accion === "girar" || accion === "otra-ronda") estado.ronda = (estado.ronda ?? 0) + 1;
     if (accion === "reto-acepto" && retoId) {
         const ya = estado.retosActivos ?? {};
         estado.retosActivos = ya[retoId]

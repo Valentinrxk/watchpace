@@ -333,6 +333,47 @@ section + section { margin-top:4.5rem; }
 .dir-grupo > .caps { display:block; border-bottom:1px solid var(--color-border); padding-bottom:.4rem; margin-bottom:.3rem; }
 .dir-vacio { font-size:.82rem; color:var(--color-text-dim); padding:.6rem 0; }
 
+
+/* ——— juntos ——— */
+.dupla { display:flex; gap:2.5rem; flex-wrap:wrap; align-items:baseline; }
+.dupla__uno { display:flex; align-items:baseline; gap:.6rem; }
+.dupla__n { font-size:clamp(2.2rem,6vw,3.4rem); font-weight:700; letter-spacing:-.05em; line-height:.9; font-variant-numeric:tabular-nums; }
+.dupla__meta { color:var(--color-text-dim); font-size:.95rem; }
+.dupla__quien { font-size:.6875rem; letter-spacing:var(--track-caps); color:var(--color-text-dim); }
+
+.duelo { display:grid; grid-template-columns:1fr auto 1fr; gap:1.2rem; align-items:stretch; }
+.duelo__vs { align-self:center; color:var(--red); font-weight:700; letter-spacing:-.06em; font-size:1.1rem; }
+.carta {
+  border:1px solid var(--color-border-strong); background:var(--surface);
+  padding:1.3rem; display:flex; flex-direction:column; gap:.5rem; cursor:pointer;
+  transition:border-color .18s, transform .22s var(--expo);
+}
+.carta:hover { border-color:var(--red); transform:translateY(-3px); }
+.carta__de { font-size:.6875rem; letter-spacing:var(--track-caps); color:var(--red); font-weight:700; }
+.carta__t { font-size:1.25rem; font-weight:700; letter-spacing:-.03em; line-height:1.1; }
+.carta__sub { font-size:.78rem; color:var(--color-text-dim); flex:1; }
+.carta__poster { width:100%; aspect-ratio:2/3; object-fit:cover; border:1px solid var(--color-border); margin-bottom:.4rem; }
+
+.ruleta { border:1px solid var(--color-border-strong); background:var(--surface); padding:2rem; text-align:center; }
+.ruleta__ventana {
+  font-size:clamp(1.3rem,4vw,2.2rem); font-weight:700; letter-spacing:-.04em;
+  min-height:2.4em; display:flex; align-items:center; justify-content:center;
+  border-top:1px solid var(--color-border); border-bottom:1px solid var(--color-border);
+  padding:1rem; margin-bottom:1.2rem; overflow:hidden;
+}
+.ruleta__ventana.girando { color:var(--color-text-dim); }
+.ruleta__ganadora { color:var(--red); animation:sello-golpe .5s steps(5,end) both; }
+.ruleta__donde { font-size:.75rem; letter-spacing:var(--track-caps); color:var(--color-text-dim); margin-top:.5rem; }
+
+.par { display:flex; align-items:baseline; gap:.6rem; font-size:.75rem; color:var(--color-text-dim); }
+.par b { color:var(--red); font-weight:700; }
+
+@media (max-width:640px) {
+  .duelo { grid-template-columns:1fr; }
+  .duelo__vs { justify-self:center; }
+  .dupla { gap:1.4rem; }
+}
+
 /* ——— responsive ——— */
 @media (max-width:900px) {
   main { padding-top:calc(var(--hud-h) + 2.5rem); }
@@ -467,6 +508,14 @@ section + section { margin-top:4.5rem; }
     <section id="secAlt">
       <div class="tit"><span class="slash">/</span><h2 class="caps">si no</h2></div>
       <div id="alternativas"></div>
+    </section>
+
+
+    <section id="secJuntos" hidden>
+      <div class="dupla" id="dupla"></div>
+      <div class="tit" style="margin-top:2.5rem"><span class="slash">/</span><h2 class="caps">juntos</h2></div>
+      <div class="chips" id="modos"></div>
+      <div id="zonaJuntos"></div>
     </section>
 
     <section id="secRetos">
@@ -655,12 +704,151 @@ const pintarHoy = () => {
   </div>`;
 };
 
+
+const SECCION_JUNTOS = $("secJuntos").innerHTML;
+
+const pintarJuntos = () => {
+  $("boot").hidden = true;
+  $("app").hidden = false;
+  document.querySelectorAll("#app > section:not(#secJuntos)").forEach((sec) => (sec.hidden = true));
+  $("secJuntos").hidden = false;
+
+  usuario = data.usuario;
+  if (!location.search.includes("u=juntos")) history.replaceState(null, "", "?u=juntos");
+  $("user").textContent = "juntos";
+  $("user").dataset.otro = data.usuarios[0].usuario;
+  $("user").title = `volver a ${data.usuarios[0].nombre}`;
+  $("user").classList.remove("solo");
+
+  $("dupla").innerHTML = data.ritmos.map((r, i) => `
+    <div class="dupla__uno" style="--i:${i}">
+      <span class="mask"><span class="dupla__n">${r.vistas}</span></span>
+      <div>
+        <div class="dupla__meta">/ ${r.meta}</div>
+        <div class="dupla__quien">${esc(r.nombre)} · ${r.alDia ? `${-r.deficit} adelantad${r.nombre === "cande" ? "a" : "o"}` : `${r.deficit} atrasad${r.nombre === "cande" ? "a" : "o"}`}</div>
+      </div>
+    </div>`).join("");
+
+  $("modos").innerHTML = data.modos
+    .map((m) => `<button class="chip ${m.id === data.modo ? "on" : ""}" data-modo="${m.id}">${m.texto}${m.id !== "ruleta" ? ` ${m.cuantas}` : ""}</button>`)
+    .join("");
+
+  const z = $("zonaJuntos");
+
+  if (data.plan) {
+    z.innerHTML = `<div class="aviso enter"><div class="caps">esta noche ven</div>
+      <div class="hero__t" style="margin:.5rem 0 1.2rem">${esc(data.plan.nombre)}</div>
+      <button class="btn" data-a="cancelar-plan">cambiar de idea</button></div>`;
+    return;
+  }
+
+  if (data.modo === "duelo") {
+    const [a, b] = data.duelo;
+    z.innerHTML = !a || !b
+      ? `<div class="dir-vacio">no me quedan pares nuevos.</div>`
+      : `<div class="duelo">
+           ${carta(a, 0)}
+           <span class="duelo__vs enter" style="--i:1">vs</span>
+           ${carta(b, 2)}
+         </div>
+         <div class="acciones" style="margin-top:1.4rem">
+           <button class="btn" data-a="otra-ronda">otro par</button>
+         </div>`;
+    return;
+  }
+
+  if (data.modo === "ruleta") {
+    z.innerHTML = `<div class="ruleta enter">
+        <div class="caps">${data.giro.length} en el bolillero</div>
+        <div class="ruleta__ventana" id="ventana">tirá y no se discute</div>
+        <button class="btn btn--p" id="girar">girar</button>
+      </div>`;
+    $("girar").addEventListener("click", girarRuleta);
+    return;
+  }
+
+  const lista = data.modo === "comun" ? data.comun : data.modo === "debo" ? data.debo : data.revancha;
+  if (!lista.length) {
+    z.innerHTML = `<div class="dir-vacio">nada acá todavía. probá otro modo.</div>`;
+    return;
+  }
+
+  z.innerHTML = lista.map((f, i) => {
+    const w = donde(f);
+    const extra = data.modo === "debo"
+      ? `<div class="par"><b>${esc(f.recomienda)}</b> le puso ${"★".repeat(Math.round(f.nota))} · ${esc(f.para)} no la vio</div>`
+      : data.modo === "revancha"
+        ? `<div class="par">${f.notas.map((n) => `${esc(n.de)} <b>${"★".repeat(Math.round(n.nota))}</b>`).join(" &nbsp;vs&nbsp; ")}</div>`
+        : "";
+    return `<div class="fila enter" style="--i:${i}" data-a="acepto" data-n="${esc(f.nombre)}">
+      <span class="fila__n">${esc(f.nombre)} <span style="color:var(--color-text-dim)">(${f.anio})</span>${extra}</span>
+      <span class="fila__p">${nota(f.puntaje)}</span>
+      <span class="fila__d ${w.si ? "fila__d--si" : ""}">${f.minutos ? f.minutos + " min · " : ""}${esc(w.txt)}</span></div>`;
+  }).join("");
+};
+
+const carta = (f, i) => {
+  const w = donde(f);
+  return `<div class="carta enter" style="--i:${i}" data-a="acepto" data-n="${esc(f.nombre)}">
+    <div class="carta__de">la quiere ${esc(f.de)}</div>
+    ${f.poster ? `<img class="carta__poster" src="${IMG}${f.poster}" alt="" onerror="this.remove()">` : ""}
+    <div class="carta__t">${esc(f.nombre)}</div>
+    <div class="carta__sub">${f.anio}${f.minutos ? ` · ${f.minutos} min` : ""}${f.puntaje ? ` · ⭐ ${f.puntaje}` : ""}</div>
+    <div class="fila__d ${w.si ? "fila__d--si" : ""}" style="text-align:left">${esc(w.txt)}</div>
+  </div>`;
+};
+
+/* el bolillero ya viene barajado del servidor: cada tirada avanza uno
+   localmente. antes pedia al servidor al terminar, y ese re-render
+   borraba la ganadora justo despues de mostrarla. */
+let giroIdx = 0;
+
+const girarRuleta = async () => {
+  const v = $("ventana");
+  const boton = $("girar");
+  if (!data.giro.length || boton.disabled) return;
+
+  document.querySelector(".ruleta__donde")?.remove();
+  document.querySelector(".ruleta .acciones")?.remove();
+  boton.disabled = true;
+  v.classList.add("girando");
+
+  const ganadora = data.giro[giroIdx % data.giro.length];
+  giroIdx++;
+
+  const paso = data.giro.filter((f) => f !== ganadora);
+  for (let i = 0; i < 16; i++) {
+    v.textContent = paso[(giroIdx * 7 + i) % paso.length].nombre;
+    await dormir(55 + i * 15);
+  }
+
+  v.classList.remove("girando");
+  v.innerHTML = `<span class="ruleta__ganadora">${esc(ganadora.nombre)}</span>`;
+  boton.disabled = false;
+  boton.textContent = "otra vez";
+
+  const w = donde(ganadora);
+  boton.insertAdjacentHTML("afterend",
+    `<div class="ruleta__donde">${ganadora.anio}${ganadora.minutos ? ` · ${ganadora.minutos} min` : ""} · ${esc(w.txt)}</div>
+     <div class="acciones" style="justify-content:center;margin-top:1rem">
+       <button class="btn btn--p" data-a="acepto" data-n="${esc(ganadora.nombre)}">va esta</button>
+     </div>`);
+};
+
 const pintar = () => {
+  if (data.tipo === "juntos") return pintarJuntos();
+  document.querySelectorAll("#app > section").forEach((sec) => (sec.hidden = false));
+  $("secJuntos").hidden = true;
+  $("secJuntos").innerHTML = SECCION_JUNTOS;   /* no dejar dom viejo colgando */
+
   const r = data.ritmo;
   $("boot").hidden = true;
   $("app").hidden = false;
   usuario = data.usuario;
-  const otros = (data.usuarios ?? []).filter((u) => u.usuario !== data.usuario);
+  const todos = [...(data.usuarios ?? []), { usuario: "juntos", nombre: "juntos" }]
+    .filter((u, i, a) => a.findIndex((x) => x.usuario === u.usuario) === i);
+  const i = todos.findIndex((u) => u.usuario === data.usuario);
+  const otros = [todos[(i + 1) % todos.length]];
   $("user").textContent = data.nombre ?? data.usuario;
   $("user").classList.toggle("solo", !otros.length);
   $("user").title = otros.length ? `ver lo de ${otros[0].nombre}` : `@${data.usuario}`;
@@ -890,6 +1078,9 @@ document.addEventListener("click", (e) => {
 
   const pel = e.target.closest("[data-peli]");
   if (pel) return navegar({ tipo: "pelicula", nombre: pel.dataset.peli, anio: Number(pel.dataset.anio) });
+
+  const md = e.target.closest("[data-modo]");
+  if (md) return pedir("modo", { nombre: md.dataset.modo });
 
   const chip = e.target.closest("[data-min]");
   if (chip) { minutos = chip.dataset.min ? Number(chip.dataset.min) : null; return pedir(null); }

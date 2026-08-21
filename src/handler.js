@@ -1,4 +1,4 @@
-import { construirPayload, reducir, leerEstado, guardarEstado } from "./api.js";
+import { construirPayload, construirJuntos, reducir, leerEstado, guardarEstado } from "./api.js";
 import { hayKV, leerRemoto, guardarRemoto } from "./estado-remoto.js";
 import { CONFIG } from "./config.js";
 
@@ -31,5 +31,8 @@ export const manejarEstado = async (cuerpo = {}, { persistir = false } = {}) => 
         else if (persistir) guardarEstado(nuevo);
     }
 
-    return { ...construirPayload({ minutos, estado: nuevo, usuario }), estado: nuevo, modoEstado: modo };
+    const payload = usuario === "juntos"
+        ? construirJuntos({ estado: nuevo })
+        : construirPayload({ minutos, estado: nuevo, usuario });
+    return { ...payload, estado: nuevo, modoEstado: modo };
 };
