@@ -395,6 +395,11 @@ section + section { margin-top:4.5rem; }
 .nu__q { display:block; margin-top:.5rem; font-size:.625rem; letter-spacing:var(--track-caps); color:var(--color-text-dim); line-height:1.4; }
 .nu__c em { font-style:normal; color:var(--red); }
 
+.carta__pick { margin-top:.5rem; align-self:flex-start; background:none; border:0; padding:0; font:inherit; font-size:.6875rem; letter-spacing:var(--track-caps); color:var(--color-text-dim); text-transform:uppercase; }
+.carta:hover .carta__pick, .carta__pick:hover { color:var(--red); }
+.dir-dedos { display:flex; gap:.6rem; align-items:baseline; font-size:.75rem; padding:.25rem 0; }
+.dir-dedos b { font-weight:700; letter-spacing:var(--track-caps); font-size:.625rem; text-transform:uppercase; min-width:3.4rem; }
+.dir-dedos span { color:var(--color-text-dim); }
 .nu__grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(108px,1fr)); gap:.8rem; }
 .nu__peli img { width:100%; aspect-ratio:2/3; object-fit:cover; border:1px solid var(--color-border); transition:border-color .18s, transform .22s var(--expo); display:block; }
 .nu__peli:hover img { border-color:var(--red); transform:translateY(-3px); }
@@ -418,7 +423,9 @@ section + section { margin-top:4.5rem; }
   .carta { flex-direction:column; padding:.6rem; gap:.45rem; }
   /* el poster recortado: lo que importa es comparar las dos, no
      mirar la tapa */
-  .carta__poster { width:100%; height:132px; aspect-ratio:auto; object-position:center 22%; }
+  .carta__poster { width:100%; height:112px; aspect-ratio:auto; object-position:center 22%; }
+  /* en pantallas cortas el marcador no puede comerse la decision */
+  #secJuntos .juntas__ultima { display:none; }
   .carta__t { font-size:.85rem; }
   .duelo + .acciones { margin-top:.8rem !important; }
   .dupla { gap:1.4rem; }
@@ -466,6 +473,16 @@ section + section { margin-top:4.5rem; }
     transform:translateY(100%); padding:3rem 1.2rem 1.5rem;
   }
   .dir-panel.on { transform:translateY(0); }
+}
+
+/* pantallas bajas (SE, android chico): el duelo tiene que entrar igual,
+   asi que el marcador cede lo que no sirve para elegir */
+@media (max-height:720px) and (max-width:640px) {
+  #secJuntos { padding-top:1.2rem !important; }
+  #secJuntos > .tit { display:none; }
+  .juntas__n { font-size:2rem !important; }
+  .juntas__pie, #dupla > .caps { font-size:.6rem; }
+  .carta__poster { height:92px; }
 }
 
 @media (max-width:400px) {
@@ -783,7 +800,7 @@ const pintarJuntos = () => {
     <div class="caps" style="opacity:.7">
       ${data.ritmos.map((r) => `${esc(r.nombre)} ${r.vistas}/${r.meta}`).join(" &nbsp;·&nbsp; ")}
     </div>
-    ${j.ultima ? `<div class="caps" style="opacity:.55">última: ${esc(j.ultima.nombre)} · ${j.ultima.visto.slice(5)}</div>` : ""}`;
+    ${j.ultima ? `<div class="caps juntas__ultima" style="opacity:.55">última: ${esc(j.ultima.nombre)} · ${j.ultima.visto.slice(5)}</div>` : ""}`;
 
   $("modos").innerHTML = data.modos
     .map((m) => `<button class="chip ${m.id === data.modo ? "on" : ""}" data-modo="${m.id}">${m.texto}${m.id !== "ruleta" ? ` ${m.cuantas}` : ""}</button>`)
@@ -835,7 +852,7 @@ const pintarJuntos = () => {
     const est = (n) => (n ? `★${n}` : "—");
 
     z.innerHTML = `
-      <div class="nu__primera enter">
+      <div class="nu__primera enter" data-peli="${esc(v.primera.nombre)}" data-anio="${v.primera.anio}">
         ${v.primera.poster ? `<img class="nu__poster" src="${IMG}${v.primera.poster}" alt="" onerror="this.remove()">` : ""}
         <div class="nu__cuerpo">
           <div class="caps">la primera que vieron juntos</div>
@@ -860,7 +877,7 @@ const pintarJuntos = () => {
       ${(data.juntas.ultimas ?? []).length ? `
       <div class="tit" style="margin-top:3.4rem"><span class="slash">/</span><h2 class="caps">las últimas que vieron juntos</h2></div>
       <div class="ultimas-juntas">${data.juntas.ultimas.map((f, i) => `
-        <div class="uj enter" style="--i:${i}">
+        <div class="uj enter" style="--i:${i}" data-peli="${esc(f.nombre)}" data-anio="${f.anio}">
           <span class="uj__f">${f.visto.slice(5)}</span>
           <span class="uj__n">${esc(f.nombre)}</span>
           <span class="uj__notas">${est(f.notas[0])} · ${est(f.notas[1])}</span>
@@ -869,7 +886,7 @@ const pintarJuntos = () => {
       <div class="tit" style="margin-top:3.4rem"><span class="slash">/</span><h2 class="caps">las que amaron los dos</h2></div>
       <p class="caps" style="opacity:.6;margin:-.4rem 0 1.2rem">4½ o más de cada uno · la brecha entre ustedes promedia ${v.brecha} estrellas</p>
       <div class="nu__grid">
-        ${v.amadas.map((f, i) => `<div class="nu__peli enter" style="--i:${i}" data-a="acepto" data-n="${esc(f.nombre)}">
+        ${v.amadas.map((f, i) => `<div class="nu__peli enter" style="--i:${i}" data-peli="${esc(f.nombre)}" data-anio="${f.anio}">
           ${f.poster ? `<img src="${IMG}${f.poster}" alt="" loading="lazy">` : ""}
           <span>${esc(f.nombre)}<br>${est(f.notas[0])} · ${est(f.notas[1])}</span>
         </div>`).join("")}
@@ -897,7 +914,7 @@ const pintarJuntos = () => {
         ${f.poster ? `<img class="hero__poster" src="${IMG}${f.poster}" alt="" decoding="async">` : `<div class="hero__poster"></div>`}
         <div class="hero__body">
           <div class="caps">los dos la quieren ver</div>
-          <span class="mask"><span class="hero__t">${esc(f.nombre)}</span></span>
+          <span class="mask"><span class="hero__t" data-peli="${esc(f.nombre)}" data-anio="${f.anio}">${esc(f.nombre)}</span></span>
           <div class="hero__sub">${f.anio}${f.minutos ? ` · ${f.minutos} min` : ""}${f.director ? ` · ${esc(f.director)}` : ""}</div>
           <div class="meta-row">
             ${f.puntaje ? `<span class="puntaje"><span class="puntaje__n">${f.puntaje}</span><span class="puntaje__d">/10</span></span>` : ""}
@@ -913,7 +930,7 @@ const pintarJuntos = () => {
       <div class="tit" style="margin-top:2.2rem"><span class="slash">/</span><h2 class="caps">las otras ${lista.length - 1}</h2></div>
       ${lista.filter((_, i) => i !== (data.ronda ?? 0) % lista.length).map((g, i) => {
         const v = donde(g);
-        return `<div class="fila enter" style="--i:${i}" data-a="acepto" data-n="${esc(g.nombre)}">
+        return `<div class="fila enter" style="--i:${i}" data-peli="${esc(g.nombre)}" data-anio="${g.anio}">
           <span class="fila__n">${esc(g.nombre)} <span style="color:var(--color-text-dim)">(${g.anio})</span></span>
           <span class="fila__p">${nota(g.puntaje)}</span>
           <span class="fila__d ${v.si ? "fila__d--si" : ""}">${esc(v.txt)}</span></div>`;
@@ -928,7 +945,7 @@ const pintarJuntos = () => {
       : data.modo === "revancha"
         ? `<div class="par">${f.notas.map((n) => `${esc(n.de)} <b>${"★".repeat(Math.round(n.nota))}</b>`).join(" &nbsp;vs&nbsp; ")}</div>`
         : "";
-    return `<div class="fila enter" style="--i:${i}" data-a="acepto" data-n="${esc(f.nombre)}">
+    return `<div class="fila enter" style="--i:${i}" data-peli="${esc(f.nombre)}" data-anio="${f.anio}">
       <span class="fila__n">${esc(f.nombre)} <span style="color:var(--color-text-dim)">(${f.anio})</span>${extra}</span>
       <span class="fila__p">${nota(f.puntaje)}</span>
       <span class="fila__d ${w.si ? "fila__d--si" : ""}">${f.minutos ? f.minutos + " min · " : ""}${esc(w.txt)}</span></div>`;
@@ -937,13 +954,14 @@ const pintarJuntos = () => {
 
 const carta = (f, i) => {
   const w = donde(f);
-  return `<div class="carta enter" style="--i:${i}" data-a="acepto" data-n="${esc(f.nombre)}">
+  return `<div class="carta enter" style="--i:${i}" data-peli="${esc(f.nombre)}" data-anio="${f.anio}">
     ${f.poster ? `<img class="carta__poster" src="${IMG}${f.poster}" alt="" onerror="this.remove()">` : ""}
     <div class="carta__cuerpo">
       <div class="carta__de">la quiere ${esc(f.de)}</div>
       <div class="carta__t">${esc(f.nombre)}</div>
       <div class="carta__sub">${f.anio}${f.minutos ? ` · ${f.minutos} min` : ""}${f.puntaje ? ` · ⭐ ${f.puntaje}` : ""}</div>
       <div class="carta__donde ${w.si ? "si" : ""}">${esc(w.txt)}</div>
+      <button class="carta__pick" data-a="acepto" data-n="${esc(f.nombre)}">esta →</button>
     </div>
   </div>`;
 };
@@ -973,7 +991,7 @@ const girarRuleta = async () => {
   }
 
   v.classList.remove("girando");
-  v.innerHTML = `<span class="ruleta__ganadora">${esc(ganadora.nombre)}</span>`;
+  v.innerHTML = `<span class="ruleta__ganadora" data-peli="${esc(ganadora.nombre)}" data-anio="${ganadora.anio}">${esc(ganadora.nombre)}</span>`;
   boton.disabled = false;
   boton.textContent = "otra vez";
 
@@ -982,6 +1000,7 @@ const girarRuleta = async () => {
     `<div class="ruleta__donde">${ganadora.anio}${ganadora.minutos ? ` · ${ganadora.minutos} min` : ""} · ${esc(w.txt)}</div>
      <div class="acciones" style="justify-content:center;margin-top:1rem">
        <button class="btn btn--p" data-a="acepto" data-n="${esc(ganadora.nombre)}">va esta</button>
+       <button class="btn" data-peli="${esc(ganadora.nombre)}" data-anio="${ganadora.anio}">qué es</button>
      </div>`);
 };
 
@@ -1122,9 +1141,14 @@ const htmlPelicula = (d) => {
       <div class="dir-vacio">no la encontré en tmdb, así que no tengo datos suyos.</div>`;
 
   const w = donde(d);
-  const estado = d.vista
-    ? `la viste${d.visto ? ` el ${d.visto}` : ""}${d.miRating ? ` · le pusiste ${"★".repeat(Math.round(d.miRating))}` : " · sin puntuar"}`
-    : d.enWatchlist ? "pendiente en tu watchlist" : "no está en tu watchlist";
+  const suyo = (p) => p.vista
+    ? `la vio${p.visto ? ` el ${p.visto}` : ""}${p.rating ? ` · ${"★".repeat(Math.round(p.rating))}` : " · sin puntuar"}`
+    : p.enWatchlist ? "la tiene pendiente" : "no la tiene anotada";
+  const estado = d.dedos
+    ? d.dedos.map((p) => `<div class="dir-dedos"><b>${esc(p.nombre)}</b><span>${esc(suyo(p))}</span></div>`).join("")
+    : `<div class="caps">${d.vista
+        ? `la viste${d.visto ? ` el ${d.visto}` : ""}${d.miRating ? ` · le pusiste ${"★".repeat(Math.round(d.miRating))}` : " · sin puntuar"}`
+        : d.enWatchlist ? "pendiente en tu watchlist" : "no está en tu watchlist"}</div>`;
 
   return `
   ${d.poster ? `<img class="dir-poster" src="${IMG}${d.poster}" alt="" onerror="this.remove()">` : ""}
@@ -1136,7 +1160,7 @@ const htmlPelicula = (d) => {
     <span class="donde ${w.si ? "donde--si" : "donde--no"}">${esc(w.txt)}</span>
   </div>
 
-  <div class="caps" style="margin-bottom:1.2rem">${estado}</div>
+  <div style="margin-bottom:1.2rem">${estado}</div>
   ${d.sinopsis ? `<p class="hero__sin" style="-webkit-line-clamp:8;max-width:none">${esc(d.sinopsis)}</p>` : ""}
 
   ${d.directorNombre ? `<div class="dir-grupo"><span class="caps">dirección</span>
@@ -1146,7 +1170,8 @@ const htmlPelicula = (d) => {
       <div style="padding:.6rem 0;line-height:2.1">${d.reparto.map(personaChip).join(" · ")}</div></div>` : ""}
 
   <div class="acciones">
-    ${d.enWatchlist ? `<button class="btn btn--p" data-a="elegir" data-n="${esc(d.nombre)}" data-cierra="1">ver esta hoy</button>` : ""}
+    ${d.dedos ? `<button class="btn btn--p" data-a="acepto" data-n="${esc(d.nombre)}" data-cierra="1">esta ven hoy</button>`
+      : d.enWatchlist ? `<button class="btn btn--p" data-a="elegir" data-n="${esc(d.nombre)}" data-cierra="1">ver esta hoy</button>` : ""}
     ${d.uri ? `<a class="btn" href="${esc(d.uri)}" target="_blank" rel="noopener">letterboxd</a>` : ""}
   </div>`;
 };

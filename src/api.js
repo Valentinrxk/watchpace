@@ -188,7 +188,7 @@ const fuentes = (usuario = null) => {
     return {
         diario, watchlist, vistasFilas, cache,
         meta: (f) => cache[clave(f.nombre, f.anio)],
-        enDiario: new Map(diario.map((f) => [clave(f.nombre, f.anio), f])),
+        enDiario: new Map([...diario].reverse().map((f) => [clave(f.nombre, f.anio), f])),
         enWatchlist: new Map(watchlist.map((f) => [clave(f.nombre, f.anio), f])),
         yaVista: new Set(vistasFilas.map((f) => clave(f.nombre, f.anio))),
     };
@@ -237,10 +237,28 @@ export const porPersona = (id, usuario = null) => {
 
 export const porPelicula = (nombre, anio, usuario = null) => {
     const k = clave(nombre, Number(anio));
-    const { cache, enDiario, enWatchlist, yaVista } = fuentes(usuario);
+    const esJuntos = usuario === ES_JUNTOS;
+    const { cache, enDiario, enWatchlist, yaVista } = fuentes(esJuntos ? null : usuario);
     const m = cache[k];
     const wl = enWatchlist.get(k);
     const d = enDiario.get(k);
+
+    /* en juntos el panel no sirve de nada en primera persona: si la
+       agrego yo, el que pregunta "que es esto" es el otro. asi que dice
+       lo que le pasa a cada uno con la pelicula. */
+    const dedos = esJuntos
+        ? CONFIG.usuarios.map((u) => {
+            const f = fuentes(u.usuario);
+            const suya = f.enDiario.get(k);
+            return {
+                nombre: u.nombre,
+                enWatchlist: f.enWatchlist.has(k),
+                vista: f.yaVista.has(k),
+                visto: suya?.visto ?? null,
+                rating: suya?.rating ?? null,
+            };
+        })
+        : null;
 
     return {
         tipo: "pelicula",
@@ -251,6 +269,7 @@ export const porPelicula = (nombre, anio, usuario = null) => {
         visto: d?.visto ?? null,
         miRating: d?.rating ?? null,
         resuelta: Boolean(m?.tmdb),
+        dedos,
     };
 };
 
