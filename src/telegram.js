@@ -157,3 +157,55 @@ export const usuarioDe = async (chatId) => {
 };
 
 export const listaUsuarios = () => usuariosConfigurados();
+
+/* ─── juntos: decidir de a dos desde el telefono ─────────── */
+
+const dondeTxt = (f) =>
+    f.dondeTipo === "sub" || f.dondeTipo === "gratis" ? f.donde.join(", ")
+    : f.dondeTipo === "alquiler" ? "solo alquiler"
+    : f.dondeTipo === "addon" ? "add-on aparte" : "no está en streaming";
+
+const ficha = (f) =>
+    `*${esc(f.nombre)}* ${esc("(")}${f.anio}${esc(")")}\n${f.minutos ? `${f.minutos} min · ` : ""}${f.puntaje ? `⭐ ${esc(String(f.puntaje))} · ` : ""}${esc(dondeTxt(f))}`;
+
+export const mensajeDuelo = (p) => {
+    const [a, b] = p.duelo;
+    if (!a || !b) return `no me quedan pares nuevos${esc(".")}`;
+    return [
+        `${esc(p.ritmos.map((r) => `${r.nombre} ${r.vistas}/${r.meta}`).join(" · "))}`,
+        "",
+        `_la quiere ${esc(a.de)}_`,
+        ficha(a),
+        "",
+        `_la quiere ${esc(b.de)}_`,
+        ficha(b),
+    ].join("\n");
+};
+
+export const botonesDuelo = (p) => {
+    const [a, b] = p.duelo;
+    if (!a || !b) return { inline_keyboard: [[{ text: "otro par", callback_data: "juntos-otro|" }]] };
+    return {
+        inline_keyboard: [
+            [{ text: `▶ ${a.nombre.slice(0, 22)}`, callback_data: `juntos-elige|${a.nombre}`.slice(0, 64) }],
+            [{ text: `▶ ${b.nombre.slice(0, 22)}`, callback_data: `juntos-elige|${b.nombre}`.slice(0, 64) }],
+            [{ text: "🔀 otro par", callback_data: "juntos-otro|" }, { text: "🎰 ruleta", callback_data: "juntos-gira|" }],
+        ],
+    };
+};
+
+export const mensajeRuleta = (p) => {
+    const g = p.giro?.[(p.ronda ?? 0) % Math.max(1, p.giro.length)];
+    if (!g) return `el bolillero está vacío${esc(".")}`;
+    return ["🎰 *la ruleta decidió*", "", ficha(g), "", "_no se discute_"].join("\n");
+};
+
+export const botonesRuleta = (p) => {
+    const g = p.giro?.[(p.ronda ?? 0) % Math.max(1, p.giro.length)];
+    return {
+        inline_keyboard: [[
+            ...(g ? [{ text: "▶ va esta", callback_data: `juntos-elige|${g.nombre}`.slice(0, 64) }] : []),
+            { text: "🎰 otra vez", callback_data: "juntos-gira|" },
+        ]],
+    };
+};

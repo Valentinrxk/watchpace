@@ -2,7 +2,10 @@ import { manejarEstado } from "../src/handler.js";
 import {
     armarMensaje, botones, editar, enviar, responderBoton,
     secretoOk, usuarioDe, vincular, listaUsuarios,
+    mensajeDuelo, botonesDuelo, mensajeRuleta, botonesRuleta,
 } from "../src/telegram.js";
+
+const esc = (t) => String(t ?? "").replace(/[_*[\]()~`>#+\-=|{}.!\\]/g, (c) => "\\" + c);
 
 const leerCuerpo = (req) =>
     typeof req.body === "string" ? JSON.parse(req.body || "{}") : req.body ?? {};
@@ -69,6 +72,16 @@ const mensaje = async (m) => {
         return enviar(chat, tres.join("\n") || "sin retos");
     }
 
+    if (/^\/juntos/i.test(texto)) {
+        const p = await manejarEstado({ usuario: "juntos", accion: "modo", nombre: "duelo" });
+        return enviar(chat, mensajeDuelo(p), botonesDuelo(p));
+    }
+
+    if (/^\/ruleta/i.test(texto)) {
+        const p = await manejarEstado({ usuario: "juntos", accion: "modo", nombre: "ruleta" });
+        return enviar(chat, mensajeRuleta(p), botonesRuleta(p));
+    }
+
     const p = await manejarEstado({ usuario: quien.usuario });
     return enviar(chat, armarMensaje(p), botones(p));
 };
@@ -79,6 +92,24 @@ const boton = async (q) => {
     if (!quien) return responderBoton(q.id, "mandá /soy usuario primero");
 
     const [accion, dato] = String(q.data).split("|");
+
+    /* los modos de juntos usan el estado compartido, no el de quien toca */
+    if (accion.startsWith("juntos-")) {
+        const mapa = { "juntos-elige": "acepto", "juntos-otro": "otra-ronda", "juntos-gira": "girar" };
+        const p = await manejarEstado({ usuario: "juntos", accion: mapa[accion], nombre: dato });
+        await responderBoton(q.id, accion === "juntos-elige" ? "anotada para los dos" : "");
+
+        if (accion === "juntos-elige") {
+            return editar(chat, q.message.message_id, `✓ *${esc(dato)}* — esta noche ven esa`);
+        }
+        const esRuleta = accion === "juntos-gira";
+        return editar(
+            chat, q.message.message_id,
+            esRuleta ? mensajeRuleta(p) : mensajeDuelo(p),
+            esRuleta ? botonesRuleta(p) : botonesDuelo(p),
+        );
+    }
+
     const args = { usuario: quien.usuario };
 
     if (accion === "min") args.minutos = dato ? Number(dato) : null;

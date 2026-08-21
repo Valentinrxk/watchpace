@@ -1,7 +1,7 @@
 export const CONFIG = {
     usuarios: [
         { usuario: "valentinrxk", nombre: "valen", meta: 206 },
-        { usuario: "yuti", nombre: "cande", meta: 200 },
+        { usuario: "yuti", nombre: "cande", meta: 180 },
     ],
     porDefecto: "valentinrxk",
     contarRewatches: true,

@@ -335,6 +335,15 @@ section + section { margin-top:4.5rem; }
 
 
 /* ——— juntos ——— */
+.juntas { display:flex; align-items:baseline; gap:1rem; flex-wrap:wrap; }
+.juntas__n { font-size:clamp(3.5rem,11vw,7rem); font-weight:700; letter-spacing:-.05em; line-height:.85; font-variant-numeric:tabular-nums; }
+.juntas__q { font-size:clamp(1.2rem,3vw,2rem); color:var(--color-text-dim); letter-spacing:-.03em; }
+.juntas__pie { margin:1.4rem 0 .3rem; }
+.ultimas-juntas { display:flex; flex-direction:column; gap:.15rem; margin-top:1.6rem; }
+.uj { display:flex; align-items:baseline; gap:1rem; font-size:.8rem; padding:.3rem 0; border-bottom:1px solid var(--color-border); }
+.uj__f { color:var(--color-text-dim); font-size:.6875rem; letter-spacing:var(--track-caps); min-width:5.2rem; }
+.uj__n { flex:1; }
+.uj__notas { color:var(--red); font-size:.75rem; letter-spacing:.02em; }
 .dupla { display:flex; gap:2.5rem; flex-wrap:wrap; align-items:baseline; }
 .dupla__uno { display:flex; align-items:baseline; gap:.6rem; }
 .dupla__n { font-size:clamp(2.2rem,6vw,3.4rem); font-weight:700; letter-spacing:-.05em; line-height:.9; font-variant-numeric:tabular-nums; }
@@ -720,14 +729,25 @@ const pintarJuntos = () => {
   $("user").title = `volver a ${data.usuarios[0].nombre}`;
   $("user").classList.remove("solo");
 
-  $("dupla").innerHTML = data.ritmos.map((r, i) => `
-    <div class="dupla__uno" style="--i:${i}">
-      <span class="mask"><span class="dupla__n">${r.vistas}</span></span>
-      <div>
-        <div class="dupla__meta">/ ${r.meta}</div>
-        <div class="dupla__quien">${esc(r.nombre)} · ${r.alDia ? `${-r.deficit} adelantad${r.nombre === "cande" ? "a" : "o"}` : `${r.deficit} atrasad${r.nombre === "cande" ? "a" : "o"}`}</div>
-      </div>
-    </div>`).join("");
+  const j = data.juntas ?? {};
+  const estrellitas = (n) => (n ? `★${n}` : "—");
+  $("dupla").innerHTML = `
+    <div class="juntas">
+      <span class="mask"><span class="juntas__n">${j.total ?? 0}</span></span>
+      <span class="mask" style="--i:1"><span class="juntas__q">vieron juntos este año</span></span>
+    </div>
+    <div class="caps juntas__pie">
+      ${j.mismoDia ?? 0} el mismo día · ${j.cada ? `1 cada ${j.cada.toFixed(1)} días` : "—"} · van para ${j.proyeccion ?? 0} a fin de año
+    </div>
+    <div class="caps" style="opacity:.7">
+      ${data.ritmos.map((r) => `${esc(r.nombre)} ${r.vistas}/${r.meta}`).join(" &nbsp;·&nbsp; ")}
+    </div>
+    ${(j.ultimas ?? []).length ? `<div class="ultimas-juntas">${j.ultimas.map((f, i) => `
+      <div class="uj enter" style="--i:${i}">
+        <span class="uj__f">${f.visto.slice(5)}</span>
+        <span class="uj__n">${esc(f.nombre)}</span>
+        <span class="uj__notas">${estrellitas(f.notas[0])} · ${estrellitas(f.notas[1])}</span>
+      </div>`).join("")}</div>` : ""}`;
 
   $("modos").innerHTML = data.modos
     .map((m) => `<button class="chip ${m.id === data.modo ? "on" : ""}" data-modo="${m.id}">${m.texto}${m.id !== "ruleta" ? ` ${m.cuantas}` : ""}</button>`)

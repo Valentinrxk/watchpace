@@ -89,6 +89,7 @@ export const construirJuntos = ({ estado: estadoDado = null } = {}) => {
         modo,
         ronda: estado.ronda ?? 0,
         ritmos: j.ritmos,
+        juntas: { ...j.juntas, ultimas: j.juntas.ultimas },
         totales: j.totales,
         plan: estado.plan?.fecha === hoyISO(hoy) ? estado.plan : null,
         comun: j.comun.slice(0, 8).map((f) => conMarca(f)),
