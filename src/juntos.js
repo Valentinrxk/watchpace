@@ -18,6 +18,15 @@ const barajar = (items, semilla) =>
         .sort((a, b) => b.r - a.r)
         .map(({ f }) => f);
 
+/* toma una de cada lista por vuelta, para que recortar arriba no borre
+   una lista entera */
+const intercalar = (listas) => {
+    const salida = [];
+    const largo = Math.max(0, ...listas.map((l) => l.length));
+    for (let i = 0; i < largo; i++) for (const l of listas) if (l[i]) salida.push(l[i]);
+    return salida;
+};
+
 const conStreamPrimero = (items) =>
     [...items].sort((a, b) => mirable(b) - mirable(a) || facilidad(desde(b)) - facilidad(desde(a)));
 
@@ -211,14 +220,20 @@ export const armarJuntos = ({ ronda = 0, modo = "comun", rechazadas = {}, hoy = 
     const mejoresDe = (arr) => barajar(conStreamPrimero(arr).slice(0, 40), semilla);
     const duelo = [mejoresDe(soloA)[0] ?? null, mejoresDe(soloB)[0] ?? null];
 
-    /* 3. te la debo: uno le puso 4+ y el otro no la vio */
-    const debo = [];
-    for (const [uno, otro] of [[A, B], [B, A]]) {
+    /* 3. te la debo: uno le puso 4+ y el otro no la vio.
+       las dos direcciones se intercalan, no se concatenan: pegar una
+       lista despues de la otra y recortar arriba dejaba afuera al
+       segundo entero (el mismo error que tenia el bolillero). */
+    const porDireccion = [[A, B], [B, A]].map(([uno, otro]) => {
+        const suyas = [];
         for (const f of otro.watchlist) {
             const nota = uno.notas.get(clave(f.nombre, f.anio));
-            if (nota >= 4 && vivo(f)) debo.push({ ...f, recomienda: uno.nombre, nota, para: otro.nombre });
+            if (nota >= 4 && vivo(f)) suyas.push({ ...f, recomienda: uno.nombre, nota, para: otro.nombre });
         }
-    }
+        return suyas.sort((x, y) => y.nota - x.nota || mirable(y) - mirable(x));
+    });
+
+    const debo = intercalar(porDireccion);
 
     /* 4. revancha: la vieron los dos y la puntuaron muy distinto */
     const revancha = [];
@@ -240,7 +255,7 @@ export const armarJuntos = ({ ronda = 0, modo = "comun", rechazadas = {}, hoy = 
     const mitad = (arr, n) => conStreamPrimero(arr).slice(0, n);
     const bolillero = modo === "comun" && comun.length ? conStreamPrimero(comun).slice(0, 30)
         : modo === "revancha" && revancha.length ? conStreamPrimero(revancha).slice(0, 30)
-        : [...mitad(soloA, 15), ...mitad(soloB, 15)];
+        : intercalar([mitad(soloA, 15), mitad(soloB, 15)]);
     const giro = barajar(bolillero, `${semilla}!ruleta`);
 
     const juntas = verJuntas(A.diario ?? [], B.diario ?? [], hoy, cache);
