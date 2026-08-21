@@ -2,7 +2,7 @@ import { manejarEstado } from "../src/handler.js";
 import {
     armarMensaje, botones, editar, enviar, responderBoton,
     secretoOk, usuarioDe, vincular, listaUsuarios,
-    mensajeDuelo, botonesDuelo, mensajeRuleta, botonesRuleta,
+    mensajeDuelo, botonesDuelo, mensajeRuleta, botonesRuleta, mensajeNuestro,
 } from "../src/telegram.js";
 
 const esc = (t) => String(t ?? "").replace(/[_*[\]()~`>#+\-=|{}.!\\]/g, (c) => "\\" + c);
@@ -16,6 +16,7 @@ const AYUDA = [
     "/hoy — qué ver hoy",
     "/estado — cómo vas con la meta",
     "/retos — los tres de arriba",
+    "/juntos — decidir de a dos · /nuestro — lo de ustedes",
     "/soy `usuario` — vincular esta cuenta \\(ej\\: /soy valentinrxk\\)",
 ].join("\n");
 
@@ -75,6 +76,11 @@ const mensaje = async (m) => {
     if (/^\/juntos/i.test(texto)) {
         const p = await manejarEstado({ usuario: "juntos", accion: "modo", nombre: "duelo" });
         return enviar(chat, mensajeDuelo(p), botonesDuelo(p));
+    }
+
+    if (/^\/nuestro/i.test(texto)) {
+        const p = await manejarEstado({ usuario: "juntos", accion: "modo", nombre: "nuestro" });
+        return enviar(chat, mensajeNuestro(p));
     }
 
     if (/^\/ruleta/i.test(texto)) {

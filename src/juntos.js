@@ -27,8 +27,9 @@ const MS_DIA = 86400000;
 const dias = (a, b) => Math.abs(new Date(a) - new Date(b)) / MS_DIA;
 
 /* la misma pelicula anotada por los dos con un dia de diferencia o menos.
-   dos metas separadas no dicen nada de una pareja; esto si. */
-const verJuntas = (diarioA, diarioB, hoy) => {
+   el dia de diferencia no es otra cosa: es el que se olvido de anotarla
+   y la anoto al otro dia. por eso entra igual y no se distingue. */
+const verJuntas = (diarioA, diarioB, hoy, cache = {}) => {
     const deB = new Map();
     for (const f of diarioB) {
         const k = clave(f.nombre, f.anio);
@@ -45,8 +46,7 @@ const verJuntas = (diarioA, diarioB, hoy) => {
         if (!par) continue;
         usadas.add(k);
         juntas.push({
-            nombre: fa.nombre, anio: fa.anio, visto: fa.visto,
-            mismoDia: dias(fa.visto, par.visto) === 0,
+            nombre: fa.nombre, anio: fa.anio, visto: fa.visto, k,
             notas: [fa.rating ?? null, par.rating ?? null],
         });
     }
@@ -61,14 +61,72 @@ const verJuntas = (diarioA, diarioB, hoy) => {
 
     return {
         total: delAnio.length,
-        mismoDia: delAnio.filter((f) => f.mismoDia).length,
         ritmo,
         cada: ritmo > 0 ? 1 / ritmo : null,
         proyeccion: Math.round(delAnio.length + ritmo * restantes),
         ultima: delAnio[0] ?? null,
         ultimas: delAnio.slice(0, 6),
+        vida: loNuestro(juntas, hoy, cache),
     };
 };
+
+/* toda la historia junta, no solo la del año. el diario baja 7 años
+   pero la primera coincidencia es la que manda: antes de esa fecha
+   simplemente no veian nada juntos. */
+const loNuestro = (juntas, hoy, cache) => {
+    if (!juntas.length) return null;
+    const orden = [...juntas].sort((a, b) => a.visto.localeCompare(b.visto));
+    const primera = orden[0];
+
+    const conNota = juntas.filter((f) => f.notas[0] != null && f.notas[1] != null);
+    const cerca = conNota.filter((f) => Math.abs(f.notas[0] - f.notas[1]) <= 0.5).length;
+    const brecha = conNota.length
+        ? conNota.reduce((t, f) => t + Math.abs(f.notas[0] - f.notas[1]), 0) / conNota.length
+        : null;
+
+    const minutos = juntas.reduce((t, f) => t + (cache[f.k]?.minutos ?? 0), 0);
+
+    /* las que les volaron la cabeza a los dos */
+    const amadas = conNota
+        .filter((f) => f.notas[0] >= 4.5 && f.notas[1] >= 4.5)
+        .sort((a, b) => (b.notas[0] + b.notas[1]) - (a.notas[0] + a.notas[1]) || b.visto.localeCompare(a.visto))
+        .slice(0, 8)
+        .map((f) => ({ ...f, m: cache[f.k] ?? {} }));
+
+    /* semanas seguidas con al menos una: la racha de a dos */
+    const semanas = [...new Set(orden.map((f) => semanaDe(f.visto)))].sort();
+    let mejor = 1, corrida = 1;
+    for (let i = 1; i < semanas.length; i++) {
+        corrida = semanas[i] - semanas[i - 1] === 1 ? corrida + 1 : 1;
+        if (corrida > mejor) mejor = corrida;
+    }
+
+    const pa = new Date(primera.visto + "T00:00:00");
+    let prox = new Date(hoy.getFullYear(), pa.getMonth(), pa.getDate());
+    if (prox < hoy) prox = new Date(hoy.getFullYear() + 1, pa.getMonth(), pa.getDate());
+
+    const porAnio = {};
+    for (const f of juntas) porAnio[f.visto.slice(0, 4)] = (porAnio[f.visto.slice(0, 4)] ?? 0) + 1;
+
+    return {
+        total: juntas.length,
+        primera: { ...primera, m: cache[primera.k] ?? {} },
+        desde: Math.round((hoy - pa) / MS_DIA),
+        horas: Math.round(minutos / 60),
+        diasDePantalla: +(minutos / 1440).toFixed(1),
+        sintonia: conNota.length ? Math.round((cerca / conNota.length) * 100) : null,
+        brecha: brecha != null ? +brecha.toFixed(2) : null,
+        puntuadas: conNota.length,
+        amadas,
+        racha: mejor,
+        aniversario: { fecha: prox.toISOString().slice(0, 10), faltan: Math.round((prox - hoy) / MS_DIA), numero: prox.getFullYear() - pa.getFullYear() },
+        porAnio,
+    };
+};
+
+/* numero de semana absoluto, para medir rachas sin pelearme con el
+   cambio de año */
+const semanaDe = (iso) => Math.floor(new Date(iso + "T00:00:00") / (MS_DIA * 7));
 
 export const armarJuntos = ({ ronda = 0, modo = "comun", rechazadas = {}, hoy = new Date() } = {}) => {
     const cache = leerCache();
@@ -129,7 +187,7 @@ export const armarJuntos = ({ ronda = 0, modo = "comun", rechazadas = {}, hoy = 
         : [...soloA, ...soloB];
     const giro = barajar(conStreamPrimero(bolillero).slice(0, 30), `${semilla}!ruleta`);
 
-    const juntas = verJuntas(A.diario ?? [], B.diario ?? [], hoy);
+    const juntas = verJuntas(A.diario ?? [], B.diario ?? [], hoy, cache);
 
     return {
         personas, datos, comun, duelo, debo, revancha, giro, juntas,
@@ -140,6 +198,7 @@ export const armarJuntos = ({ ronda = 0, modo = "comun", rechazadas = {}, hoy = 
             duelo: soloA.length + soloB.length,
             debo: debo.length,
             revancha: revancha.length,
+            nuestro: juntas.vida?.total ?? 0,
         },
     };
 };

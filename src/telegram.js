@@ -194,6 +194,26 @@ export const botonesDuelo = (p) => {
     };
 };
 
+export const mensajeNuestro = (p) => {
+    const v = p.juntas?.vida;
+    if (!v) return `todavia no vieron nada juntos${esc(".")}`;
+    const MES = ["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"];
+    const [a, m, d] = v.primera.visto.split("-");
+    const anios = Math.floor(v.desde / 365);
+    return [
+        `*${v.total}* peliculas juntos`,
+        "",
+        `la primera fue *${esc(v.primera.nombre)}*`,
+        `el ${+d} de ${MES[+m - 1]} de ${a}, hace ${anios} años`,
+        "",
+        `${v.horas} horas de pantalla compartida ${esc("(")}${esc(String(v.diasDePantalla))} dias enteros${esc(")")}`,
+        `coinciden al puntuar el *${v.sintonia}%* de las veces`,
+        `su record: ${v.racha} semanas seguidas sin fallar`,
+        "",
+        `_${esc(v.amadas.slice(0, 3).map((f) => f.nombre).join(", "))} — las que amaron los dos_`,
+    ].join("\n");
+};
+
 export const mensajeRuleta = (p) => {
     const g = p.giro?.[(p.ronda ?? 0) % Math.max(1, p.giro.length)];
     if (!g) return `el bolillero está vacío${esc(".")}`;

@@ -68,6 +68,7 @@ const MODOS = [
     { id: "debo", texto: "te la debo" },
     { id: "revancha", texto: "revancha" },
     { id: "ruleta", texto: "la ruleta" },
+    { id: "nuestro", texto: "lo nuestro" },
 ];
 
 export const construirJuntos = ({ estado: estadoDado = null } = {}) => {
@@ -89,7 +90,14 @@ export const construirJuntos = ({ estado: estadoDado = null } = {}) => {
         modo,
         ronda: estado.ronda ?? 0,
         ritmos: j.ritmos,
-        juntas: { ...j.juntas, ultimas: j.juntas.ultimas },
+        juntas: {
+            ...j.juntas,
+            vida: j.juntas.vida && {
+                ...j.juntas.vida,
+                primera: conMarca(j.juntas.vida.primera, { notas: j.juntas.vida.primera.notas, visto: j.juntas.vida.primera.visto }),
+                amadas: j.juntas.vida.amadas.map((f) => conMarca(f, { notas: f.notas, visto: f.visto })),
+            },
+        },
         totales: j.totales,
         plan: estado.plan?.fecha === hoyISO(hoy) ? estado.plan : null,
         comun: j.comun.slice(0, 8).map((f) => conMarca(f)),

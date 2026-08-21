@@ -350,18 +350,21 @@ section + section { margin-top:4.5rem; }
 .dupla__meta { color:var(--color-text-dim); font-size:.95rem; }
 .dupla__quien { font-size:.6875rem; letter-spacing:var(--track-caps); color:var(--color-text-dim); }
 
-.duelo { display:grid; grid-template-columns:1fr auto 1fr; gap:1.2rem; align-items:stretch; }
-.duelo__vs { align-self:center; color:var(--red); font-weight:700; letter-spacing:-.06em; font-size:1.1rem; }
+.duelo { display:grid; grid-template-columns:1fr auto 1fr; gap:.9rem; align-items:stretch; }
+.duelo__vs { align-self:center; color:var(--red); font-weight:700; letter-spacing:-.06em; font-size:1rem; }
 .carta {
   border:1px solid var(--color-border-strong); background:var(--surface);
-  padding:1.3rem; display:flex; flex-direction:column; gap:.5rem; cursor:pointer;
-  transition:border-color .18s, transform .22s var(--expo);
+  padding:.8rem; display:flex; gap:.8rem; cursor:pointer; align-items:flex-start;
+  transition:border-color .18s, transform .2s var(--expo);
 }
-.carta:hover { border-color:var(--red); transform:translateY(-3px); }
-.carta__de { font-size:.6875rem; letter-spacing:var(--track-caps); color:var(--red); font-weight:700; }
-.carta__t { font-size:1.25rem; font-weight:700; letter-spacing:-.03em; line-height:1.1; }
-.carta__sub { font-size:.78rem; color:var(--color-text-dim); flex:1; }
-.carta__poster { width:100%; aspect-ratio:2/3; object-fit:cover; border:1px solid var(--color-border); margin-bottom:.4rem; }
+.carta:hover { border-color:var(--red); transform:translateY(-2px); }
+.carta__cuerpo { min-width:0; display:flex; flex-direction:column; gap:.2rem; }
+.carta__de { font-size:.625rem; letter-spacing:var(--track-caps); color:var(--red); font-weight:700; }
+.carta__t { font-size:.98rem; font-weight:700; letter-spacing:-.02em; line-height:1.15; overflow-wrap:anywhere; }
+.carta__sub { font-size:.7rem; color:var(--color-text-dim); }
+.carta__donde { font-size:.625rem; letter-spacing:var(--track-caps); color:var(--color-text-dim); overflow-wrap:anywhere; }
+.carta__donde.si { color:var(--red); }
+.carta__poster { width:62px; aspect-ratio:2/3; object-fit:cover; border:1px solid var(--color-border); flex:none; }
 
 .ruleta { border:1px solid var(--color-border-strong); background:var(--surface); padding:2rem; text-align:center; }
 .ruleta__ventana {
@@ -377,9 +380,47 @@ section + section { margin-top:4.5rem; }
 .par { display:flex; align-items:baseline; gap:.6rem; font-size:.75rem; color:var(--color-text-dim); }
 .par b { color:var(--red); font-weight:700; }
 
+/* --- lo nuestro --- */
+.nu__primera { display:grid; grid-template-columns:auto 1fr; gap:1.5rem; align-items:center; border:1px solid var(--color-border-strong); background:var(--surface); padding:1.4rem; }
+.nu__poster { width:104px; height:156px; object-fit:cover; border:1px solid var(--color-border); }
+.nu__cuerpo { min-width:0; }
+.nu__t { font-size:clamp(1.3rem,3.4vw,2rem); font-weight:700; letter-spacing:-.04em; line-height:1.05; margin:.35rem 0 .5rem; }
+.nu__fecha { color:var(--color-text-dim); font-size:.85rem; }
+.nu__notas { margin-top:.7rem; font-size:.8rem; color:var(--color-text-dim); }
+.nu__notas b { color:var(--color-text); font-weight:400; }
+
+.nu__cifras { display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--color-border); border:1px solid var(--color-border); border-top:0; }
+.nu__c { background:var(--surface); padding:1.2rem 1rem; }
+.nu__n { display:block; font-size:clamp(1.7rem,4.6vw,2.7rem); font-weight:700; letter-spacing:-.05em; line-height:.9; font-variant-numeric:tabular-nums; }
+.nu__q { display:block; margin-top:.5rem; font-size:.625rem; letter-spacing:var(--track-caps); color:var(--color-text-dim); line-height:1.4; }
+.nu__c em { font-style:normal; color:var(--red); }
+
+.nu__grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(108px,1fr)); gap:.8rem; }
+.nu__peli img { width:100%; aspect-ratio:2/3; object-fit:cover; border:1px solid var(--color-border); transition:border-color .18s, transform .22s var(--expo); display:block; }
+.nu__peli:hover img { border-color:var(--red); transform:translateY(-3px); }
+.nu__peli span { display:block; margin-top:.45rem; font-size:.6875rem; color:var(--color-text-dim); line-height:1.25; }
+
+.nu__barras { display:flex; gap:.5rem; align-items:flex-end; height:96px; margin:1.6rem 0 2.2rem; }
+.nu__b { flex:1; background:var(--color-border-strong); position:relative; min-height:2px; }
+.nu__b:last-child { background:var(--red); }
+.nu__b b { position:absolute; top:-1.25rem; left:0; right:0; text-align:center; font-size:.6875rem; font-weight:400; color:var(--color-text); font-variant-numeric:tabular-nums; }
+.nu__b i { position:absolute; bottom:-1.4rem; left:0; right:0; text-align:center; font-size:.625rem; font-style:normal; letter-spacing:var(--track-caps); color:var(--color-text-dim); }
+
 @media (max-width:640px) {
-  .duelo { grid-template-columns:1fr; }
-  .duelo__vs { justify-self:center; }
+  .nu__cifras { grid-template-columns:1fr 1fr; }
+  .nu__primera { grid-template-columns:auto 1fr; gap:1rem; padding:1rem; }
+  .nu__poster { width:76px; height:114px; }
+  .nu__grid { grid-template-columns:repeat(auto-fill,minmax(88px,1fr)); gap:.6rem; }
+  /* las dos tienen que verse juntas para poder comparar: por eso no
+     apilo, achico */
+  .duelo { grid-template-columns:1fr 1fr; gap:.5rem; }
+  .duelo__vs { display:none; }
+  .carta { flex-direction:column; padding:.6rem; gap:.45rem; }
+  /* el poster recortado: lo que importa es comparar las dos, no
+     mirar la tapa */
+  .carta__poster { width:100%; height:132px; aspect-ratio:auto; object-position:center 22%; }
+  .carta__t { font-size:.85rem; }
+  .duelo + .acciones { margin-top:.8rem !important; }
   .dupla { gap:1.4rem; }
 }
 
@@ -730,24 +771,19 @@ const pintarJuntos = () => {
   $("user").classList.remove("solo");
 
   const j = data.juntas ?? {};
-  const estrellitas = (n) => (n ? `★${n}` : "—");
+
   $("dupla").innerHTML = `
     <div class="juntas">
       <span class="mask"><span class="juntas__n">${j.total ?? 0}</span></span>
       <span class="mask" style="--i:1"><span class="juntas__q">vieron juntos este año</span></span>
     </div>
     <div class="caps juntas__pie">
-      ${j.mismoDia ?? 0} el mismo día · ${j.cada ? `1 cada ${j.cada.toFixed(1)} días` : "—"} · van para ${j.proyeccion ?? 0} a fin de año
+      ${j.cada ? `1 cada ${j.cada.toFixed(1)} días` : "—"} · van para ${j.proyeccion ?? 0} a fin de año
     </div>
     <div class="caps" style="opacity:.7">
       ${data.ritmos.map((r) => `${esc(r.nombre)} ${r.vistas}/${r.meta}`).join(" &nbsp;·&nbsp; ")}
     </div>
-    ${(j.ultimas ?? []).length ? `<div class="ultimas-juntas">${j.ultimas.map((f, i) => `
-      <div class="uj enter" style="--i:${i}">
-        <span class="uj__f">${f.visto.slice(5)}</span>
-        <span class="uj__n">${esc(f.nombre)}</span>
-        <span class="uj__notas">${estrellitas(f.notas[0])} · ${estrellitas(f.notas[1])}</span>
-      </div>`).join("")}</div>` : ""}`;
+    ${j.ultima ? `<div class="caps" style="opacity:.55">última: ${esc(j.ultima.nombre)} · ${j.ultima.visto.slice(5)}</div>` : ""}`;
 
   $("modos").innerHTML = data.modos
     .map((m) => `<button class="chip ${m.id === data.modo ? "on" : ""}" data-modo="${m.id}">${m.texto}${m.id !== "ruleta" ? ` ${m.cuantas}` : ""}</button>`)
@@ -787,9 +823,101 @@ const pintarJuntos = () => {
     return;
   }
 
+  if (data.modo === "nuestro") {
+    const v = data.juntas?.vida;
+    if (!v) { z.innerHTML = `<div class="dir-vacio">todavía no vieron nada juntos.</div>`; return; }
+    const MES = ["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"];
+    const largo = (iso) => { const [a,m,d] = iso.split("-"); return `${+d} de ${MES[+m-1]} de ${a}`; };
+    const hace = (d) => { const a = Math.floor(d/365), m = Math.floor((d%365)/30);
+      return a ? `hace ${a} año${a>1?"s":""}${m?` y ${m} mes${m>1?"es":""}`:""}` : `hace ${m} meses`; };
+    const anios = Object.entries(v.porAnio).sort();
+    const tope = Math.max(...anios.map(([,n]) => n));
+    const est = (n) => (n ? `★${n}` : "—");
+
+    z.innerHTML = `
+      <div class="nu__primera enter">
+        ${v.primera.poster ? `<img class="nu__poster" src="${IMG}${v.primera.poster}" alt="" onerror="this.remove()">` : ""}
+        <div class="nu__cuerpo">
+          <div class="caps">la primera que vieron juntos</div>
+          <div class="nu__t">${esc(v.primera.nombre)}</div>
+          <div class="nu__fecha">${largo(v.primera.visto)} · ${hace(v.desde)}</div>
+          <div class="nu__notas">le pusieron <b>${est(v.primera.notas[0])}</b> y <b>${est(v.primera.notas[1])}</b></div>
+        </div>
+      </div>
+
+      <div class="nu__cifras enter" style="--i:1">
+        <div class="nu__c"><span class="nu__n">${v.total}</span><span class="nu__q">películas juntos</span></div>
+        <div class="nu__c"><span class="nu__n">${v.horas}</span><span class="nu__q">horas · ${v.diasDePantalla} días enteros</span></div>
+        <div class="nu__c"><span class="nu__n">${v.sintonia}<em>%</em></span><span class="nu__q">coinciden al puntuar</span></div>
+        <div class="nu__c"><span class="nu__n">${v.racha}</span><span class="nu__q">semanas seguidas, su récord</span></div>
+      </div>
+
+      <div class="tit" style="margin-top:2.6rem"><span class="slash">/</span><h2 class="caps">año a año</h2></div>
+      <div class="nu__barras enter">
+        ${anios.map(([a,n]) => `<div class="nu__b" style="height:${Math.round(n/tope*100)}%"><b>${n}</b><i>${a}</i></div>`).join("")}
+      </div>
+
+      ${(data.juntas.ultimas ?? []).length ? `
+      <div class="tit" style="margin-top:3.4rem"><span class="slash">/</span><h2 class="caps">las últimas que vieron juntos</h2></div>
+      <div class="ultimas-juntas">${data.juntas.ultimas.map((f, i) => `
+        <div class="uj enter" style="--i:${i}">
+          <span class="uj__f">${f.visto.slice(5)}</span>
+          <span class="uj__n">${esc(f.nombre)}</span>
+          <span class="uj__notas">${est(f.notas[0])} · ${est(f.notas[1])}</span>
+        </div>`).join("")}</div>` : ""}
+
+      <div class="tit" style="margin-top:3.4rem"><span class="slash">/</span><h2 class="caps">las que amaron los dos</h2></div>
+      <p class="caps" style="opacity:.6;margin:-.4rem 0 1.2rem">4½ o más de cada uno · la brecha entre ustedes promedia ${v.brecha} estrellas</p>
+      <div class="nu__grid">
+        ${v.amadas.map((f, i) => `<div class="nu__peli enter" style="--i:${i}" data-a="acepto" data-n="${esc(f.nombre)}">
+          ${f.poster ? `<img src="${IMG}${f.poster}" alt="" loading="lazy">` : ""}
+          <span>${esc(f.nombre)}<br>${est(f.notas[0])} · ${est(f.notas[1])}</span>
+        </div>`).join("")}
+      </div>
+
+      <p class="caps" style="margin-top:3rem;opacity:.7">
+        el ${largo(v.aniversario.fecha).replace(/ de \d{4}$/, "")} son ${v.aniversario.numero} años de la primera · faltan ${v.aniversario.faltan} días
+      </p>`;
+    return;
+  }
+
   const lista = data.modo === "comun" ? data.comun : data.modo === "debo" ? data.debo : data.revancha;
   if (!lista.length) {
     z.innerHTML = `<div class="dir-vacio">nada acá todavía. probá otro modo.</div>`;
+    return;
+  }
+
+  /* "en comun" tiene que elegir, no listar: la lista entera es tarea
+     para el que mira, y para eso ya estaba la watchlist de letterboxd */
+  if (data.modo === "comun") {
+    const f = lista[(data.ronda ?? 0) % lista.length];
+    const w = donde(f);
+    z.innerHTML = `<div class="hero enter">
+        ${f.backdrop ? `<div class="hero__bg" style="background-image:url('https://image.tmdb.org/t/p/w780${f.backdrop}')"></div>` : ""}
+        ${f.poster ? `<img class="hero__poster" src="${IMG}${f.poster}" alt="" decoding="async">` : `<div class="hero__poster"></div>`}
+        <div class="hero__body">
+          <div class="caps">los dos la quieren ver</div>
+          <span class="mask"><span class="hero__t">${esc(f.nombre)}</span></span>
+          <div class="hero__sub">${f.anio}${f.minutos ? ` · ${f.minutos} min` : ""}${f.director ? ` · ${esc(f.director)}` : ""}</div>
+          <div class="meta-row">
+            ${f.puntaje ? `<span class="puntaje"><span class="puntaje__n">${f.puntaje}</span><span class="puntaje__d">/10</span></span>` : ""}
+            <span class="donde ${w.si ? "donde--si" : "donde--no"}">${esc(w.txt)}</span>
+          </div>
+          ${f.sinopsis ? `<p class="hero__sin">${esc(f.sinopsis)}</p>` : ""}
+          <div class="acciones">
+            <button class="btn btn--p" data-a="acepto" data-n="${esc(f.nombre)}">esta</button>
+            <button class="btn" data-a="otra-ronda">otra</button>
+          </div>
+        </div>
+      </div>
+      <div class="tit" style="margin-top:2.2rem"><span class="slash">/</span><h2 class="caps">las otras ${lista.length - 1}</h2></div>
+      ${lista.filter((_, i) => i !== (data.ronda ?? 0) % lista.length).map((g, i) => {
+        const v = donde(g);
+        return `<div class="fila enter" style="--i:${i}" data-a="acepto" data-n="${esc(g.nombre)}">
+          <span class="fila__n">${esc(g.nombre)} <span style="color:var(--color-text-dim)">(${g.anio})</span></span>
+          <span class="fila__p">${nota(g.puntaje)}</span>
+          <span class="fila__d ${v.si ? "fila__d--si" : ""}">${esc(v.txt)}</span></div>`;
+      }).join("")}`;
     return;
   }
 
@@ -810,11 +938,13 @@ const pintarJuntos = () => {
 const carta = (f, i) => {
   const w = donde(f);
   return `<div class="carta enter" style="--i:${i}" data-a="acepto" data-n="${esc(f.nombre)}">
-    <div class="carta__de">la quiere ${esc(f.de)}</div>
     ${f.poster ? `<img class="carta__poster" src="${IMG}${f.poster}" alt="" onerror="this.remove()">` : ""}
-    <div class="carta__t">${esc(f.nombre)}</div>
-    <div class="carta__sub">${f.anio}${f.minutos ? ` · ${f.minutos} min` : ""}${f.puntaje ? ` · ⭐ ${f.puntaje}` : ""}</div>
-    <div class="fila__d ${w.si ? "fila__d--si" : ""}" style="text-align:left">${esc(w.txt)}</div>
+    <div class="carta__cuerpo">
+      <div class="carta__de">la quiere ${esc(f.de)}</div>
+      <div class="carta__t">${esc(f.nombre)}</div>
+      <div class="carta__sub">${f.anio}${f.minutos ? ` · ${f.minutos} min` : ""}${f.puntaje ? ` · ⭐ ${f.puntaje}` : ""}</div>
+      <div class="carta__donde ${w.si ? "si" : ""}">${esc(w.txt)}</div>
+    </div>
   </div>`;
 };
 

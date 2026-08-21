@@ -28,10 +28,20 @@ export const guardarPerfil = (usuario, perfil) => {
 export const bajarPerfil = async (usuario, { anios = 1, onPaso = () => {} } = {}) => {
     const hoy = new Date();
     const diario = [];
+    const bajados = new Set();
     for (let i = 0; i < anios; i++) {
         const a = hoy.getFullYear() - i;
+        bajados.add(String(a));
         onPaso(`diario ${a}`);
         diario.push(...(await traerDiario(usuario, a)));
+    }
+
+    /* el sync diario solo baja el año en curso, pero el pasado no cambia
+       nunca: lo conservo en vez de pisarlo, si no cada sync borraba la
+       historia compartida */
+    const previo = leerPerfil(usuario);
+    if (previo?.diario?.length) {
+        diario.push(...previo.diario.filter((f) => !bajados.has(f.visto.slice(0, 4))));
     }
 
     onPaso("vistas");

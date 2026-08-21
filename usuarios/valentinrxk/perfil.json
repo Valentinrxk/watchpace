@@ -1256,6 +1256,1558 @@
    "rating": 4,
    "rewatch": false,
    "clave": "1133427825"
+  },
+  {
+   "nombre": "Jackass: The Movie",
+   "anio": 2002,
+   "visto": "2025-12-29",
+   "rating": 3,
+   "rewatch": true,
+   "clave": "1127487301"
+  },
+  {
+   "nombre": "Cuckoo",
+   "anio": 2024,
+   "visto": "2025-12-25",
+   "rating": 3.5,
+   "rewatch": false,
+   "clave": "1121039395"
+  },
+  {
+   "nombre": "Weapons",
+   "anio": 2025,
+   "visto": "2025-12-21",
+   "rating": 3.5,
+   "rewatch": true,
+   "clave": "1114522866"
+  },
+  {
+   "nombre": "Full Metal Jacket",
+   "anio": 1987,
+   "visto": "2025-12-19",
+   "rating": 4,
+   "rewatch": false,
+   "clave": "1110380828"
+  },
+  {
+   "nombre": "The Lord of the Rings: The Fellowship of the Ring",
+   "anio": 2001,
+   "visto": "2025-12-18",
+   "rating": 4.5,
+   "rewatch": false,
+   "clave": "1109415422"
+  },
+  {
+   "nombre": "Bugonia",
+   "anio": 2025,
+   "visto": "2025-12-12",
+   "rating": 4,
+   "rewatch": false,
+   "clave": "1101811877"
+  },
+  {
+   "nombre": "Gunman",
+   "anio": 2025,
+   "visto": "2025-12-05",
+   "rating": 4,
+   "rewatch": false,
+   "clave": "1094625763"
+  },
+  {
+   "nombre": "Buena Vista Social Club",
+   "anio": 1999,
+   "visto": "2025-12-05",
+   "rating": 4,
+   "rewatch": false,
+   "clave": "1093918453"
+  },
+  {
+   "nombre": "Whiplash",
+   "anio": 2014,
+   "visto": "2025-12-01",
+   "rating": 4,
+   "rewatch": false,
+   "clave": "1090992603"
+  },
+  {
+   "nombre": "Scott Pilgrim vs. the World",
+   "anio": 2010,
+   "visto": "2025-12-01",
+   "rating": 4.5,
+   "rewatch": true,
+   "clave": "1090992350"
+  },
+  {
+   "nombre": "The Godfather",
+   "anio": 1972,
+   "visto": "2025-11-29",
+   "rating": 4.5,
+   "rewatch": true,
+   "clave": "1088424632"
+  },
+  {
+   "nombre": "Die My Love",
+   "anio": 2025,
+   "visto": "2025-11-25",
+   "rating": 2.5,
+   "rewatch": false,
+   "clave": "1085124979"
+  },
+  {
+   "nombre": "House",
+   "anio": 1977,
+   "visto": "2025-11-20",
+   "rating": 4,
+   "rewatch": false,
+   "clave": "1079580768"
+  },
+  {
+   "nombre": "Frankenstein",
+   "anio": 2025,
+   "visto": "2025-11-17",
+   "rating": 2,
+   "rewatch": false,
+   "clave": "1076776093"
+  },
+  {
+   "nombre": "Calle Malaga",
+   "anio": 2025,
+   "visto": "2025-11-09",
+   "rating": 4,
+   "rewatch": false,
+   "clave": "1068357208"
+  },
+  {
+   "nombre": "The Last Viking",
+   "anio": 2025,
+   "visto": "2025-11-09",
+   "rating": 3.5,
+   "rewatch": false,
+   "clave": "1068355436"
+  },
+  {
+   "nombre": "Rosaura at 10 O'Clock",
+   "anio": 1958,
+   "visto": "2025-11-08",
+   "rating": 4,
+   "rewatch": false,
+   "clave": "1067335711"
+  },
+  {
+   "nombre": "Kiss of the Spider Woman",
+   "anio": 2025,
+   "visto": "2025-11-08",
+   "rating": 3.5,
+   "rewatch": false,
+   "clave": "1066923710"
+  },
+  {
+   "nombre": "Suzaki Paradise: Red Light District",
+   "anio": 1956,
+   "visto": "2025-11-08",
+   "rating": 3.5,
+   "rewatch": false,
+   "clave": "1066565506"
+  },
+  {
+   "nombre": "A Useful Ghost",
+   "anio": 2025,
+   "visto": "2025-11-08",
+   "rating": 2,
+   "rewatch": false,
+   "clave": "1066189238"
+  },
+  {
+   "nombre": "The Last One for the Road",
+   "anio": 2025,
+   "visto": "2025-11-07",
+   "rating": 4.5,
+   "rewatch": false,
+   "clave": "1065991305"
+  },
+  {
+   "nombre": "Spring Breakers",
+   "anio": 2012,
+   "visto": "2025-11-02",
+   "rating": 3,
+   "rewatch": false,
+   "clave": "1061666245"
+  },
+  {
+   "nombre": "Scooby-Doo",
+   "anio": 2002,
+   "visto": "2025-11-02",
+   "rating": 3,
+   "rewatch": false,
+   "clave": "1061665714"
+  },
+  {
+   "nombre": "Magnolia",
+   "anio": 1999,
+   "visto": "2025-10-28",
+   "rating": 4.5,
+   "rewatch": false,
+   "clave": "1056244683"
+  },
+  {
+   "nombre": "Boogie Nights",
+   "anio": 1997,
+   "visto": "2025-10-28",
+   "rating": 2.5,
+   "rewatch": false,
+   "clave": "1056244483"
+  },
+  {
+   "nombre": "The Game",
+   "anio": 1997,
+   "visto": "2025-10-15",
+   "rating": 4,
+   "rewatch": false,
+   "clave": "1042198950"
+  },
+  {
+   "nombre": "The Suicide Squad",
+   "anio": 2021,
+   "visto": "2025-10-12",
+   "rating": 3,
+   "rewatch": false,
+   "clave": "1039919627"
+  },
+  {
+   "nombre": "Take Me to the River",
+   "anio": 2015,
+   "visto": "2025-10-10",
+   "rating": 2.5,
+   "rewatch": false,
+   "clave": "1037939084"
+  },
+  {
+   "nombre": "The Doom Generation",
+   "anio": 1995,
+   "visto": "2025-10-10",
+   "rating": 2,
+   "rewatch": false,
+   "clave": "1037098811"
+  },
+  {
+   "nombre": "One Battle After Another",
+   "anio": 2025,
+   "visto": "2025-09-29",
+   "rating": 4.5,
+   "rewatch": false,
+   "clave": "1027952423"
+  },
+  {
+   "nombre": "The Vanishing",
+   "anio": 1988,
+   "visto": "2025-09-27",
+   "rating": 4,
+   "rewatch": false,
+   "clave": "1025562242"
+  },
+  {
+   "nombre": "Bring Her Back",
+   "anio": 2025,
+   "visto": "2025-09-27",
+   "rating": 4,
+   "rewatch": false,
+   "clave": "1025070399"
+  },
+  {
+   "nombre": "Stephanie",
+   "anio": 2005,
+   "visto": "2025-09-22",
+   "rating": 0.5,
+   "rewatch": false,
+   "clave": "1021753965"
+  },
+  {
+   "nombre": "Pusher II",
+   "anio": 2004,
+   "visto": "2025-09-18",
+   "rating": 4,
+   "rewatch": false,
+   "clave": "1017835176"
+  },
+  {
+   "nombre": "Pusher",
+   "anio": 1996,
+   "visto": "2025-09-12",
+   "rating": 4,
+   "rewatch": false,
+   "clave": "1012648521"
+  },
+  {
+   "nombre": "Extraordinary Stories",
+   "anio": 2008,
+   "visto": "2025-09-06",
+   "rating": 4.5,
+   "rewatch": false,
+   "clave": "1006850682"
+  },
+  {
+   "nombre": "Into the Abyss",
+   "anio": 2022,
+   "visto": "2025-09-06",
+   "rating": 2,
+   "rewatch": false,
+   "clave": "1006341024"
+  },
+  {
+   "nombre": "Sucker Punch",
+   "anio": 2011,
+   "visto": "2025-08-17",
+   "rating": null,
+   "rewatch": false,
+   "clave": "1079586252"
+  },
+  {
+   "nombre": "Moebius",
+   "anio": 1996,
+   "visto": "2025-08-14",
+   "rating": 4,
+   "rewatch": false,
+   "clave": "983354240"
+  },
+  {
+   "nombre": "After Hours",
+   "anio": 1985,
+   "visto": "2025-08-11",
+   "rating": 4,
+   "rewatch": false,
+   "clave": "980328769"
+  },
+  {
+   "nombre": "Weapons",
+   "anio": 2025,
+   "visto": "2025-08-10",
+   "rating": 3,
+   "rewatch": false,
+   "clave": "978044574"
+  },
+  {
+   "nombre": "Superman",
+   "anio": 2025,
+   "visto": "2025-07-29",
+   "rating": 4,
+   "rewatch": false,
+   "clave": "965215739"
+  },
+  {
+   "nombre": "The Man from Earth",
+   "anio": 2007,
+   "visto": "2025-07-24",
+   "rating": 3.5,
+   "rewatch": false,
+   "clave": "958815759"
+  },
+  {
+   "nombre": "1978",
+   "anio": 2024,
+   "visto": "2025-07-22",
+   "rating": 2,
+   "rewatch": false,
+   "clave": "956454362"
+  },
+  {
+   "nombre": "All About Lily Chou-Chou",
+   "anio": 2001,
+   "visto": "2025-07-21",
+   "rating": 4.5,
+   "rewatch": false,
+   "clave": "955476612"
+  },
+  {
+   "nombre": "Mind Game",
+   "anio": 2004,
+   "visto": "2025-07-19",
+   "rating": 5,
+   "rewatch": false,
+   "clave": "952186593"
+  },
+  {
+   "nombre": "He's All That",
+   "anio": 2021,
+   "visto": "2025-07-10",
+   "rating": 1,
+   "rewatch": false,
+   "clave": "941753155"
+  },
+  {
+   "nombre": "Pulse",
+   "anio": 2001,
+   "visto": "2025-07-07",
+   "rating": 4,
+   "rewatch": false,
+   "clave": "939722100"
+  },
+  {
+   "nombre": "Retribution",
+   "anio": 2006,
+   "visto": "2025-07-03",
+   "rating": 4,
+   "rewatch": false,
+   "clave": "935364726"
+  },
+  {
+   "nombre": "Cure",
+   "anio": 1997,
+   "visto": "2025-07-03",
+   "rating": 5,
+   "rewatch": true,
+   "clave": "935324173"
+  },
+  {
+   "nombre": "Possession",
+   "anio": 1981,
+   "visto": "2025-07-02",
+   "rating": 4,
+   "rewatch": false,
+   "clave": "934370463"
+  },
+  {
+   "nombre": "Dogtooth",
+   "anio": 2009,
+   "visto": "2025-06-29",
+   "rating": 4,
+   "rewatch": false,
+   "clave": "930900718"
+  },
+  {
+   "nombre": "The Conformist",
+   "anio": 1970,
+   "visto": "2025-06-25",
+   "rating": 4,
+   "rewatch": false,
+   "clave": "927565271"
+  },
+  {
+   "nombre": "Gran Torino",
+   "anio": 2008,
+   "visto": "2025-06-15",
+   "rating": 4,
+   "rewatch": false,
+   "clave": "916933284"
+  },
+  {
+   "nombre": "Maniac",
+   "anio": 2018,
+   "visto": "2025-06-14",
+   "rating": 3.5,
+   "rewatch": false,
+   "clave": "916136070"
+  },
+  {
+   "nombre": "Lost Highway",
+   "anio": 1997,
+   "visto": "2025-06-13",
+   "rating": 4,
+   "rewatch": true,
+   "clave": "915316595"
+  },
+  {
+   "nombre": "The Aura",
+   "anio": 2005,
+   "visto": "2025-06-10",
+   "rating": 4,
+   "rewatch": false,
+   "clave": "912387875"
+  },
+  {
+   "nombre": "Lilo & Stitch",
+   "anio": 2025,
+   "visto": "2025-06-09",
+   "rating": null,
+   "rewatch": false,
+   "clave": "912387421"
+  },
+  {
+   "nombre": "Tape",
+   "anio": 2001,
+   "visto": "2025-05-31",
+   "rating": 4,
+   "rewatch": false,
+   "clave": "903158124"
+  },
+  {
+   "nombre": "Final Destination Bloodlines",
+   "anio": 2025,
+   "visto": "2025-05-31",
+   "rating": 3,
+   "rewatch": false,
+   "clave": "903083099"
+  },
+  {
+   "nombre": "I Saw the Devil",
+   "anio": 2010,
+   "visto": "2025-05-29",
+   "rating": 4.5,
+   "rewatch": false,
+   "clave": "901639250"
+  },
+  {
+   "nombre": "The Monkey",
+   "anio": 2025,
+   "visto": "2025-05-28",
+   "rating": 2.5,
+   "rewatch": false,
+   "clave": "901214373"
+  },
+  {
+   "nombre": "Memories of Murder",
+   "anio": 2003,
+   "visto": "2025-05-24",
+   "rating": 4.5,
+   "rewatch": true,
+   "clave": "896706961"
+  },
+  {
+   "nombre": "Rush Hour 2",
+   "anio": 2001,
+   "visto": "2025-05-18",
+   "rating": null,
+   "rewatch": false,
+   "clave": "891616514"
+  },
+  {
+   "nombre": "Rush Hour",
+   "anio": 1998,
+   "visto": "2025-05-18",
+   "rating": null,
+   "rewatch": false,
+   "clave": "891614877"
+  },
+  {
+   "nombre": "Little Miss Sunshine",
+   "anio": 2006,
+   "visto": "2025-05-17",
+   "rating": 4.5,
+   "rewatch": false,
+   "clave": "890985663"
+  },
+  {
+   "nombre": "Unforgiven",
+   "anio": 1992,
+   "visto": "2025-05-17",
+   "rating": 3,
+   "rewatch": false,
+   "clave": "890821748"
+  },
+  {
+   "nombre": "COLORFUL STAGE! The Movie: A Miku Who Can't Sing",
+   "anio": 2025,
+   "visto": "2025-05-15",
+   "rating": null,
+   "rewatch": false,
+   "clave": "889332018"
+  },
+  {
+   "nombre": "Memoir of a Snail",
+   "anio": 2024,
+   "visto": "2025-05-14",
+   "rating": 4.5,
+   "rewatch": false,
+   "clave": "887934466"
+  },
+  {
+   "nombre": "The Secret in Their Eyes",
+   "anio": 2009,
+   "visto": "2025-05-10",
+   "rating": 5,
+   "rewatch": true,
+   "clave": "884979160"
+  },
+  {
+   "nombre": "Forrest Gump",
+   "anio": 1994,
+   "visto": "2025-05-10",
+   "rating": 4.5,
+   "rewatch": true,
+   "clave": "884764978"
+  },
+  {
+   "nombre": "Enter the Void",
+   "anio": 2009,
+   "visto": "2025-05-02",
+   "rating": 4,
+   "rewatch": false,
+   "clave": "878310633"
+  },
+  {
+   "nombre": "Sinners",
+   "anio": 2025,
+   "visto": "2025-04-27",
+   "rating": 4,
+   "rewatch": false,
+   "clave": "873462398"
+  },
+  {
+   "nombre": "The Matrix",
+   "anio": 1999,
+   "visto": "2025-04-24",
+   "rating": 4.5,
+   "rewatch": true,
+   "clave": "871524116"
+  },
+  {
+   "nombre": "Conclave",
+   "anio": 2024,
+   "visto": "2025-04-23",
+   "rating": 4,
+   "rewatch": false,
+   "clave": "870278437"
+  },
+  {
+   "nombre": "The Texas Chain Saw Massacre",
+   "anio": 1974,
+   "visto": "2025-04-20",
+   "rating": 4,
+   "rewatch": false,
+   "clave": "867357968"
+  },
+  {
+   "nombre": "Flies",
+   "anio": 2023,
+   "visto": "2025-04-13",
+   "rating": 3.5,
+   "rewatch": false,
+   "clave": "861091085"
+  },
+  {
+   "nombre": "Monkey Kingdom",
+   "anio": 2015,
+   "visto": "2025-04-13",
+   "rating": 5,
+   "rewatch": false,
+   "clave": "860791256"
+  },
+  {
+   "nombre": "Mickey 17",
+   "anio": 2025,
+   "visto": "2025-04-10",
+   "rating": 4,
+   "rewatch": false,
+   "clave": "858663545"
+  },
+  {
+   "nombre": "Inglourious Basterds",
+   "anio": 2009,
+   "visto": "2025-04-04",
+   "rating": 5,
+   "rewatch": true,
+   "clave": "853543347"
+  },
+  {
+   "nombre": "Shaolin Soccer",
+   "anio": 2001,
+   "visto": "2025-03-24",
+   "rating": null,
+   "rewatch": false,
+   "clave": "845295078"
+  },
+  {
+   "nombre": "Jacob's Ladder",
+   "anio": 1990,
+   "visto": "2025-03-24",
+   "rating": 4,
+   "rewatch": false,
+   "clave": "845220410"
+  },
+  {
+   "nombre": "Revanche",
+   "anio": 2008,
+   "visto": "2025-03-24",
+   "rating": 4,
+   "rewatch": false,
+   "clave": "845219863"
+  },
+  {
+   "nombre": "Mishima: A Life in Four Chapters",
+   "anio": 1985,
+   "visto": "2025-03-07",
+   "rating": 4.5,
+   "rewatch": false,
+   "clave": "880476250"
+  },
+  {
+   "nombre": "Gosford Park",
+   "anio": 2001,
+   "visto": "2025-03-02",
+   "rating": 2.5,
+   "rewatch": false,
+   "clave": "824958419"
+  },
+  {
+   "nombre": "You Don't Mess with the Zohan",
+   "anio": 2008,
+   "visto": "2025-02-28",
+   "rating": 4,
+   "rewatch": false,
+   "clave": "822882917"
+  },
+  {
+   "nombre": "Legend",
+   "anio": 2015,
+   "visto": "2025-02-20",
+   "rating": 3,
+   "rewatch": false,
+   "clave": "815331292"
+  },
+  {
+   "nombre": "Blink Twice",
+   "anio": 2024,
+   "visto": "2025-02-18",
+   "rating": 2.5,
+   "rewatch": false,
+   "clave": "814023814"
+  },
+  {
+   "nombre": "Triangle of Sadness",
+   "anio": 2022,
+   "visto": "2025-02-17",
+   "rating": 3.5,
+   "rewatch": false,
+   "clave": "812603046"
+  },
+  {
+   "nombre": "Look Back",
+   "anio": 2024,
+   "visto": "2025-02-15",
+   "rating": 3,
+   "rewatch": false,
+   "clave": "810853275"
+  },
+  {
+   "nombre": "Bullet Train",
+   "anio": 2022,
+   "visto": "2025-02-15",
+   "rating": 3,
+   "rewatch": false,
+   "clave": "810852394"
+  },
+  {
+   "nombre": "Sin City",
+   "anio": 2005,
+   "visto": "2025-02-08",
+   "rating": 4,
+   "rewatch": false,
+   "clave": "803964563"
+  },
+  {
+   "nombre": "Mulholland Drive",
+   "anio": 2001,
+   "visto": "2025-02-07",
+   "rating": 5,
+   "rewatch": true,
+   "clave": "802247611"
+  },
+  {
+   "nombre": "Companion",
+   "anio": 2025,
+   "visto": "2025-02-03",
+   "rating": 2,
+   "rewatch": false,
+   "clave": "799544868"
+  },
+  {
+   "nombre": "Anora",
+   "anio": 2024,
+   "visto": "2025-02-01",
+   "rating": 4,
+   "rewatch": false,
+   "clave": "796489112"
+  },
+  {
+   "nombre": "A Real Pain",
+   "anio": 2024,
+   "visto": "2025-01-20",
+   "rating": 3.5,
+   "rewatch": false,
+   "clave": "783437859"
+  },
+  {
+   "nombre": "Minority Report",
+   "anio": 2002,
+   "visto": "2025-01-19",
+   "rating": 3.5,
+   "rewatch": false,
+   "clave": "782698099"
+  },
+  {
+   "nombre": "Misery",
+   "anio": 1990,
+   "visto": "2025-01-16",
+   "rating": 4,
+   "rewatch": false,
+   "clave": "853542883"
+  },
+  {
+   "nombre": "Hot Fuzz",
+   "anio": 2007,
+   "visto": "2025-01-13",
+   "rating": 2.5,
+   "rewatch": false,
+   "clave": "775875364"
+  },
+  {
+   "nombre": "Lady Vengeance",
+   "anio": 2005,
+   "visto": "2025-01-11",
+   "rating": 4.5,
+   "rewatch": false,
+   "clave": "772621304"
+  },
+  {
+   "nombre": "The Beast",
+   "anio": 2023,
+   "visto": "2025-01-11",
+   "rating": 2.5,
+   "rewatch": false,
+   "clave": "772620843"
+  },
+  {
+   "nombre": "Nosferatu",
+   "anio": 2024,
+   "visto": "2025-01-07",
+   "rating": 4,
+   "rewatch": false,
+   "clave": "765640938"
+  },
+  {
+   "nombre": "Zoolander",
+   "anio": 2001,
+   "visto": "2025-01-01",
+   "rating": 5,
+   "rewatch": true,
+   "clave": "757384018"
+  },
+  {
+   "nombre": "Incendies",
+   "anio": 2010,
+   "visto": "2024-12-15",
+   "rating": 4.5,
+   "rewatch": false,
+   "clave": "738974285"
+  },
+  {
+   "nombre": "Queer",
+   "anio": 2024,
+   "visto": "2024-12-13",
+   "rating": 3,
+   "rewatch": false,
+   "clave": "736507466"
+  },
+  {
+   "nombre": "Reality+",
+   "anio": 2014,
+   "visto": "2024-11-23",
+   "rating": 2.5,
+   "rewatch": false,
+   "clave": "721617494"
+  },
+  {
+   "nombre": "Fox and His Friends",
+   "anio": 1975,
+   "visto": "2024-11-13",
+   "rating": 3.5,
+   "rewatch": false,
+   "clave": "714429702"
+  },
+  {
+   "nombre": "Woman of the Hour",
+   "anio": 2023,
+   "visto": "2024-11-08",
+   "rating": 3.5,
+   "rewatch": false,
+   "clave": "711140468"
+  },
+  {
+   "nombre": "The Substance",
+   "anio": 2024,
+   "visto": "2024-11-04",
+   "rating": 3,
+   "rewatch": true,
+   "clave": "708308357"
+  },
+  {
+   "nombre": "The Full Monty",
+   "anio": 1997,
+   "visto": "2024-11-03",
+   "rating": 4,
+   "rewatch": false,
+   "clave": "707602876"
+  },
+  {
+   "nombre": "Terrifier",
+   "anio": 2016,
+   "visto": "2024-10-30",
+   "rating": 2.5,
+   "rewatch": false,
+   "clave": "704030725"
+  },
+  {
+   "nombre": "Smile 2",
+   "anio": 2024,
+   "visto": "2024-10-20",
+   "rating": 3.5,
+   "rewatch": false,
+   "clave": "696149851"
+  },
+  {
+   "nombre": "Crash",
+   "anio": 1996,
+   "visto": "2024-10-18",
+   "rating": 3,
+   "rewatch": false,
+   "clave": "694914676"
+  },
+  {
+   "nombre": "Joker: Folie à Deux",
+   "anio": 2024,
+   "visto": "2024-10-11",
+   "rating": 1.5,
+   "rewatch": false,
+   "clave": "689443094"
+  },
+  {
+   "nombre": "Babylon",
+   "anio": 2022,
+   "visto": "2024-09-24",
+   "rating": 4,
+   "rewatch": false,
+   "clave": "677810279"
+  },
+  {
+   "nombre": "Kinds of Kindness",
+   "anio": 2024,
+   "visto": "2024-09-18",
+   "rating": 3,
+   "rewatch": false,
+   "clave": "673891783"
+  },
+  {
+   "nombre": "The Warriors",
+   "anio": 1979,
+   "visto": "2024-09-14",
+   "rating": 4.5,
+   "rewatch": true,
+   "clave": "671444933"
+  },
+  {
+   "nombre": "Zootopia",
+   "anio": 2016,
+   "visto": "2024-09-14",
+   "rating": 1,
+   "rewatch": false,
+   "clave": "671321753"
+  },
+  {
+   "nombre": "Deadpool & Wolverine",
+   "anio": 2024,
+   "visto": "2024-09-08",
+   "rating": 3.5,
+   "rewatch": false,
+   "clave": "668023528"
+  },
+  {
+   "nombre": "Se7en",
+   "anio": 1995,
+   "visto": "2024-09-04",
+   "rating": 5,
+   "rewatch": true,
+   "clave": "664695787"
+  },
+  {
+   "nombre": "Signs",
+   "anio": 2002,
+   "visto": "2024-08-26",
+   "rating": 3.5,
+   "rewatch": false,
+   "clave": "658813188"
+  },
+  {
+   "nombre": "3 Women",
+   "anio": 1977,
+   "visto": "2024-08-24",
+   "rating": 2,
+   "rewatch": false,
+   "clave": "657618025"
+  },
+  {
+   "nombre": "Longlegs",
+   "anio": 2024,
+   "visto": "2024-08-24",
+   "rating": 4,
+   "rewatch": false,
+   "clave": "657617607"
+  },
+  {
+   "nombre": "Game Night",
+   "anio": 2018,
+   "visto": "2024-08-17",
+   "rating": 3.5,
+   "rewatch": false,
+   "clave": "652433729"
+  },
+  {
+   "nombre": "Trap",
+   "anio": 2024,
+   "visto": "2024-08-17",
+   "rating": 3,
+   "rewatch": false,
+   "clave": "652433566"
+  },
+  {
+   "nombre": "The House That Jack Built",
+   "anio": 2018,
+   "visto": "2024-08-13",
+   "rating": 4,
+   "rewatch": false,
+   "clave": "649833443"
+  },
+  {
+   "nombre": "Talk to Her",
+   "anio": 2002,
+   "visto": "2024-08-11",
+   "rating": 4,
+   "rewatch": false,
+   "clave": "648870754"
+  },
+  {
+   "nombre": "MaXXXine",
+   "anio": 2024,
+   "visto": "2024-08-03",
+   "rating": 3.5,
+   "rewatch": false,
+   "clave": "643020225"
+  },
+  {
+   "nombre": "Rear Window",
+   "anio": 1954,
+   "visto": "2024-07-28",
+   "rating": 4,
+   "rewatch": false,
+   "clave": "639845978"
+  },
+  {
+   "nombre": "Stop Making Sense",
+   "anio": 1984,
+   "visto": "2024-07-23",
+   "rating": 5,
+   "rewatch": true,
+   "clave": "636144619"
+  },
+  {
+   "nombre": "Cure",
+   "anio": 1997,
+   "visto": "2024-07-21",
+   "rating": 4,
+   "rewatch": false,
+   "clave": "635169494"
+  },
+  {
+   "nombre": "Love Lies Bleeding",
+   "anio": 2024,
+   "visto": "2024-07-21",
+   "rating": 2.5,
+   "rewatch": false,
+   "clave": "635155512"
+  },
+  {
+   "nombre": "Love, Lies",
+   "anio": 2016,
+   "visto": "2024-07-21",
+   "rating": 2.5,
+   "rewatch": false,
+   "clave": "634708412"
+  },
+  {
+   "nombre": "Audition",
+   "anio": 1999,
+   "visto": "2024-07-19",
+   "rating": 3,
+   "rewatch": false,
+   "clave": "633578502"
+  },
+  {
+   "nombre": "Late Night with the Devil",
+   "anio": 2023,
+   "visto": "2024-07-19",
+   "rating": 3.5,
+   "rewatch": false,
+   "clave": "633531193"
+  },
+  {
+   "nombre": "Platoon",
+   "anio": 1986,
+   "visto": "2024-07-10",
+   "rating": 4,
+   "rewatch": false,
+   "clave": "627380990"
+  },
+  {
+   "nombre": "Jackie Brown",
+   "anio": 1997,
+   "visto": "2024-07-08",
+   "rating": 3.5,
+   "rewatch": false,
+   "clave": "626467719"
+  },
+  {
+   "nombre": "Los ganadores",
+   "anio": 2016,
+   "visto": "2024-07-03",
+   "rating": 3,
+   "rewatch": false,
+   "clave": "623146942"
+  },
+  {
+   "nombre": "Nocturnal Animals",
+   "anio": 2016,
+   "visto": "2024-07-01",
+   "rating": 3.5,
+   "rewatch": false,
+   "clave": "621925432"
+  },
+  {
+   "nombre": "The Big Lebowski",
+   "anio": 1998,
+   "visto": "2024-07-01",
+   "rating": 4,
+   "rewatch": true,
+   "clave": "621567491"
+  },
+  {
+   "nombre": "LaRoy, Texas",
+   "anio": 2023,
+   "visto": "2024-06-30",
+   "rating": 4,
+   "rewatch": false,
+   "clave": "620970578"
+  },
+  {
+   "nombre": "The Big Lebowski",
+   "anio": 1998,
+   "visto": "2024-06-25",
+   "rating": 3.5,
+   "rewatch": true,
+   "clave": "618219221"
+  },
+  {
+   "nombre": "Days of Vinyl",
+   "anio": 2012,
+   "visto": "2024-06-23",
+   "rating": 3.5,
+   "rewatch": false,
+   "clave": "617253964"
+  },
+  {
+   "nombre": "Todo el año es Navidad",
+   "anio": 2018,
+   "visto": "2024-06-19",
+   "rating": 4,
+   "rewatch": false,
+   "clave": "614563843"
+  },
+  {
+   "nombre": "Martyrs",
+   "anio": 2008,
+   "visto": "2024-06-16",
+   "rating": 4,
+   "rewatch": true,
+   "clave": "612810520"
+  },
+  {
+   "nombre": "Three Identical Strangers",
+   "anio": 2018,
+   "visto": "2024-06-13",
+   "rating": 3.5,
+   "rewatch": false,
+   "clave": "610884241"
+  },
+  {
+   "nombre": "Mad Max: Fury Road",
+   "anio": 2015,
+   "visto": "2024-06-09",
+   "rating": 4.5,
+   "rewatch": false,
+   "clave": "609156890"
+  },
+  {
+   "nombre": "Furiosa: A Mad Max Saga",
+   "anio": 2024,
+   "visto": "2024-06-08",
+   "rating": 4,
+   "rewatch": false,
+   "clave": "607832874"
+  },
+  {
+   "nombre": "Bones and All",
+   "anio": 2022,
+   "visto": "2024-05-28",
+   "rating": 3,
+   "rewatch": false,
+   "clave": "601684230"
+  },
+  {
+   "nombre": "Sicario",
+   "anio": 2015,
+   "visto": "2024-05-25",
+   "rating": 4,
+   "rewatch": false,
+   "clave": "599813823"
+  },
+  {
+   "nombre": "The Last Temptation of Christ",
+   "anio": 1988,
+   "visto": "2024-05-25",
+   "rating": 4,
+   "rewatch": false,
+   "clave": "599736336"
+  },
+  {
+   "nombre": "Challengers",
+   "anio": 2024,
+   "visto": "2024-05-25",
+   "rating": 4,
+   "rewatch": false,
+   "clave": "599258093"
+  },
+  {
+   "nombre": "Little Children",
+   "anio": 2006,
+   "visto": "2024-05-24",
+   "rating": 3.5,
+   "rewatch": false,
+   "clave": "598888218"
+  },
+  {
+   "nombre": "A Good Day",
+   "anio": 2010,
+   "visto": "2024-05-23",
+   "rating": 5,
+   "rewatch": false,
+   "clave": "598100338"
+  },
+  {
+   "nombre": "Clue",
+   "anio": 1985,
+   "visto": "2024-05-15",
+   "rating": 4,
+   "rewatch": false,
+   "clave": "593761559"
+  },
+  {
+   "nombre": "Baby Reindeer",
+   "anio": 2024,
+   "visto": "2024-05-12",
+   "rating": 4,
+   "rewatch": false,
+   "clave": "591928302"
+  },
+  {
+   "nombre": "Scarface",
+   "anio": 1983,
+   "visto": "2024-04-22",
+   "rating": 4.5,
+   "rewatch": true,
+   "clave": "579734352"
+  },
+  {
+   "nombre": "Anomalisa",
+   "anio": 2015,
+   "visto": "2024-04-07",
+   "rating": 3,
+   "rewatch": false,
+   "clave": "570859994"
+  },
+  {
+   "nombre": "Mommy",
+   "anio": 2014,
+   "visto": "2024-04-01",
+   "rating": 3.5,
+   "rewatch": false,
+   "clave": "566760259"
+  },
+  {
+   "nombre": "Vengeance",
+   "anio": 2022,
+   "visto": "2024-03-31",
+   "rating": 3.5,
+   "rewatch": false,
+   "clave": "566559448"
+  },
+  {
+   "nombre": "Infinity Pool",
+   "anio": 2023,
+   "visto": "2024-03-30",
+   "rating": 1.5,
+   "rewatch": false,
+   "clave": "565552680"
+  },
+  {
+   "nombre": "Mary and Max",
+   "anio": 2009,
+   "visto": "2024-03-24",
+   "rating": 4.5,
+   "rewatch": false,
+   "clave": "561361066"
+  },
+  {
+   "nombre": "The Holdovers",
+   "anio": 2023,
+   "visto": "2024-03-20",
+   "rating": 4,
+   "rewatch": false,
+   "clave": "558687668"
+  },
+  {
+   "nombre": "Anatomy of a Fall",
+   "anio": 2023,
+   "visto": "2024-02-28",
+   "rating": 4,
+   "rewatch": false,
+   "clave": "543732695"
+  },
+  {
+   "nombre": "The Worst Person in the World",
+   "anio": 2021,
+   "visto": "2024-02-21",
+   "rating": 2,
+   "rewatch": false,
+   "clave": "539527066"
+  },
+  {
+   "nombre": "The Banshees of Inisherin",
+   "anio": 2022,
+   "visto": "2024-02-18",
+   "rating": 3.5,
+   "rewatch": false,
+   "clave": "536802883"
+  },
+  {
+   "nombre": "12 Angry Men",
+   "anio": 1957,
+   "visto": "2024-02-12",
+   "rating": 5,
+   "rewatch": false,
+   "clave": "533186720"
+  },
+  {
+   "nombre": "The Florida Project",
+   "anio": 2017,
+   "visto": "2024-02-08",
+   "rating": 4,
+   "rewatch": false,
+   "clave": "570506646"
+  },
+  {
+   "nombre": "Being John Malkovich",
+   "anio": 1999,
+   "visto": "2024-01-28",
+   "rating": 4,
+   "rewatch": false,
+   "clave": "522895539"
+  },
+  {
+   "nombre": "Poor Things",
+   "anio": 2023,
+   "visto": "2024-01-25",
+   "rating": 4,
+   "rewatch": false,
+   "clave": "520822956"
+  },
+  {
+   "nombre": "Priscilla",
+   "anio": 2023,
+   "visto": "2024-01-20",
+   "rating": 2,
+   "rewatch": false,
+   "clave": "516971167"
+  },
+  {
+   "nombre": "Mommy Dead and Dearest",
+   "anio": 2017,
+   "visto": "2024-01-08",
+   "rating": 3,
+   "rewatch": false,
+   "clave": "507479706"
+  },
+  {
+   "nombre": "Brick",
+   "anio": 2005,
+   "visto": "2024-01-06",
+   "rating": 3,
+   "rewatch": false,
+   "clave": "505392721"
+  },
+  {
+   "nombre": "The Killer",
+   "anio": 2023,
+   "visto": "2024-01-06",
+   "rating": 4,
+   "rewatch": false,
+   "clave": "505392442"
+  },
+  {
+   "nombre": "The Hunger Games: The Ballad of Songbirds & Snakes",
+   "anio": 2023,
+   "visto": "2024-01-06",
+   "rating": 3.5,
+   "rewatch": false,
+   "clave": "505391688"
+  },
+  {
+   "nombre": "Liar Liar",
+   "anio": 1997,
+   "visto": "2024-01-05",
+   "rating": null,
+   "rewatch": false,
+   "clave": "504456783"
+  },
+  {
+   "nombre": "Old",
+   "anio": 2021,
+   "visto": "2023-11-11",
+   "rating": 0.5,
+   "rewatch": false,
+   "clave": "471232699"
+  },
+  {
+   "nombre": "Midnight in Paris",
+   "anio": 2011,
+   "visto": "2023-10-30",
+   "rating": 3.5,
+   "rewatch": false,
+   "clave": "465666092"
+  },
+  {
+   "nombre": "Oppenheimer",
+   "anio": 2023,
+   "visto": "2023-07-25",
+   "rating": 4,
+   "rewatch": false,
+   "clave": "420084461"
+  },
+  {
+   "nombre": "Guardians of the Galaxy Vol. 3",
+   "anio": 2023,
+   "visto": "2023-07-08",
+   "rating": 3.5,
+   "rewatch": false,
+   "clave": "853545645"
+  },
+  {
+   "nombre": "Oldboy",
+   "anio": 2003,
+   "visto": "2023-07-05",
+   "rating": 4,
+   "rewatch": false,
+   "clave": "410164360"
+  },
+  {
+   "nombre": "No Country for Old Men",
+   "anio": 2007,
+   "visto": "2023-06-29",
+   "rating": 4.5,
+   "rewatch": false,
+   "clave": "853543950"
+  },
+  {
+   "nombre": "What We Do in the Shadows",
+   "anio": 2014,
+   "visto": "2023-06-22",
+   "rating": 4,
+   "rewatch": false,
+   "clave": "404109672"
+  },
+  {
+   "nombre": "The Master",
+   "anio": 2012,
+   "visto": "2023-06-04",
+   "rating": 2,
+   "rewatch": false,
+   "clave": "397102756"
+  },
+  {
+   "nombre": "X",
+   "anio": 2022,
+   "visto": "2022-12-16",
+   "rating": 3,
+   "rewatch": false,
+   "clave": "853560380"
+  },
+  {
+   "nombre": "Blade Runner 2049",
+   "anio": 2017,
+   "visto": "2022-05-26",
+   "rating": 4.5,
+   "rewatch": false,
+   "clave": "263539905"
+  },
+  {
+   "nombre": "Lost in Translation",
+   "anio": 2003,
+   "visto": "2022-01-12",
+   "rating": 3.5,
+   "rewatch": false,
+   "clave": "853544553"
+  },
+  {
+   "nombre": "Before Sunrise",
+   "anio": 1995,
+   "visto": "2021-12-03",
+   "rating": 5,
+   "rewatch": true,
+   "clave": "213740783"
+  },
+  {
+   "nombre": "Joker",
+   "anio": 2019,
+   "visto": "2021-06-20",
+   "rating": 2.5,
+   "rewatch": true,
+   "clave": "177801345"
+  },
+  {
+   "nombre": "Climax",
+   "anio": 2018,
+   "visto": "2020-08-11",
+   "rating": 4,
+   "rewatch": true,
+   "clave": "118807263"
+  },
+  {
+   "nombre": "Funny Games",
+   "anio": 1997,
+   "visto": "2020-08-04",
+   "rating": 4,
+   "rewatch": false,
+   "clave": "117704358"
+  },
+  {
+   "nombre": "Monsters, Inc.",
+   "anio": 2001,
+   "visto": "2020-08-03",
+   "rating": 5,
+   "rewatch": false,
+   "clave": "117576048"
+  },
+  {
+   "nombre": "The Lobster",
+   "anio": 2015,
+   "visto": "2020-07-19",
+   "rating": 4.5,
+   "rewatch": true,
+   "clave": "115213253"
+  },
+  {
+   "nombre": "A Silent Voice: The Movie",
+   "anio": 2016,
+   "visto": "2020-06-03",
+   "rating": 3.5,
+   "rewatch": false,
+   "clave": "731545570"
   }
  ],
  "vistas": [
@@ -9116,6 +10668,5 @@
    "orden": 293
   }
  ],
- "actualizado": "2026-08-20T22:51:42.368Z",
- "revisado": "2026-08-21T14:04:16.190Z"
+ "actualizado": "2026-08-21T14:28:40.983Z"
 }
