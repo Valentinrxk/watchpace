@@ -82,7 +82,7 @@ export const construirPayload = ({ minutos = null, estado: estadoDado = null, us
         return !minutos || d == null || d <= minutos;
     };
     const pool = minutos && pre.filter(cabe).length >= 8 ? pre.filter(cabe) : pre;
-    const orden = rankearFinal({ candidatas: pool.slice(0, 40), minutosDisponibles: minutos });
+    const orden = rankearFinal({ candidatas: pool.slice(0, 40), minutosDisponibles: minutos, hoy });
 
     const retos = generarRetos({ diario, watchlist, vistasFilas, cache, personas: PERSONAS, activos: estado.retosActivos ?? {}, ritmo, hoy })
         .filter((r) => !estado.retosPasados.includes(r.id))

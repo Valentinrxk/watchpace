@@ -1,4 +1,5 @@
 const MS_DIA = 86400000;
+const POOL = 14;
 
 export const FACILIDAD = {
     "netflix.com": 50, "disneyplus.com": 50, "hbomax.com": 50, "max.com": 50, "primevideo.com": 50,
@@ -12,13 +13,27 @@ export const facilidad = (ops = []) => {
     return Math.max(...subs.map((o) => FACILIDAD[o.host] ?? 20));
 };
 
-const semillaDiaria = (nombre, hoy) => {
-    const s = `${nombre}${hoy.toISOString().slice(0, 10)}`;
-    let h = 0;
-    for (const c of s) h = (h * 31 + c.charCodeAt(0)) % 9973;
-    return (h / 9973) * 12;
+/* fnv-1a con mezcla final. el hash anterior era h*31+c sobre el string:
+   como la fecha iba al final, cambiar de dia movia el resultado 0,001 y
+   la sugerencia quedaba clavada. este avalancha: un caracter distinto da
+   un numero completamente distinto. */
+const azar = (semilla) => {
+    let h = 2166136261;
+    for (let i = 0; i < semilla.length; i++) {
+        h ^= semilla.charCodeAt(i);
+        h = Math.imul(h, 16777619);
+    }
+    h ^= h >>> 15;
+    h = Math.imul(h, 2246822507);
+    h ^= h >>> 13;
+    return (h >>> 0) / 4294967296;
 };
 
+export const diaDe = (hoy) =>
+    `${hoy.getFullYear()}-${hoy.getMonth() + 1}-${hoy.getDate()}`;
+
+/* calidad pura: que tan buena candidata es, sin azar.
+   el azar decide el ORDEN del dia, no quien entra al pool. */
 export const prerankear = ({ watchlist, hoy = new Date(), rechazadas = {} }) =>
     watchlist
         .map((f) => {
@@ -26,8 +41,8 @@ export const prerankear = ({ watchlist, hoy = new Date(), rechazadas = {} }) =>
                orden 0 es la mas nueva, el final de la lista la mas vieja */
             const dias = f.agregada ? Math.floor((hoy - new Date(f.agregada)) / MS_DIA) : null;
             const antiguedad = dias !== null ? Math.min(30, dias / 60) : Math.min(30, (f.orden ?? 0) / 15);
-            const castigo = rechazadas[f.nombre] && hoy - new Date(rechazadas[f.nombre]) < 7 * MS_DIA ? -100 : 0;
-            return { ...f, diasEnLista: dias, score: antiguedad + castigo + semillaDiaria(f.nombre, hoy) };
+            const castigo = rechazadas[f.nombre] && hoy - new Date(rechazadas[f.nombre]) < 7 * MS_DIA ? -1000 : 0;
+            return { ...f, diasEnLista: dias, score: antiguedad + castigo };
         })
         .sort((a, b) => b.score - a.score);
 
@@ -35,7 +50,7 @@ const desdeTmdb = (t) => (t?.proveedores?.suscripcion ?? []).map((n) => ({ host:
 
 const duracionDe = (f) => f.minutos ?? f.tmdb?.minutos ?? f.m?.minutos ?? null;
 
-export const rankearFinal = ({ candidatas, minutosDisponibles = null }) => {
+export const rankearFinal = ({ candidatas, minutosDisponibles = null, hoy = new Date() }) => {
     const entra = (f) => {
         const dura = duracionDe(f);
         return !minutosDisponibles || dura === null || dura <= minutosDisponibles;
@@ -44,7 +59,7 @@ export const rankearFinal = ({ candidatas, minutosDisponibles = null }) => {
     const caben = minutosDisponibles ? candidatas.filter(entra) : candidatas;
     const base = caben.length >= 3 ? caben : candidatas;
 
-    return base
+    const puntuadas = base
         .map((f) => {
             const ops = f.ops?.length ? f.ops : desdeTmdb(f.tmdb);
             const bonusStreaming = facilidad(ops) * (f.ops?.length ? 1 : 0.6);
@@ -54,4 +69,19 @@ export const rankearFinal = ({ candidatas, minutosDisponibles = null }) => {
             return { ...f, score: f.score + bonusStreaming + aprovecha + incierta };
         })
         .sort((a, b) => b.score - a.score);
+
+    /* la calidad elige quienes son dignas; el dia elige el orden entre
+       ellas. si no, la mejor por decimas gana siempre y todos los dias
+       ves la misma. las rechazadas quedan fuera del pool por su castigo. */
+    const dia = diaDe(hoy);
+    const vivas = puntuadas.filter((f) => f.score > -500);
+    const pool = vivas.slice(0, POOL);
+    const resto = vivas.slice(POOL);
+
+    const barajado = pool
+        .map((f) => ({ f, r: azar(`${dia}|${f.nombre}|${f.anio}`) }))
+        .sort((a, b) => b.r - a.r)
+        .map(({ f }) => f);
+
+    return [...barajado, ...resto, ...puntuadas.filter((f) => f.score <= -500)];
 };
