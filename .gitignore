@@ -4,3 +4,5 @@ cache/chrome/
 
 .vercel
 .env*.local
+
+cache/sync.log
