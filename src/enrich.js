@@ -42,7 +42,10 @@ const correr = async () => {
 
     const cache = leerCache();
     const viejo = (k) => cache[k]?.tmdb && cache[k].repartoIds === undefined;
-    const faltan = [...universo.entries()].filter(([k]) => !cache[k] || viejo(k)).map(([, f]) => f);
+    /* una entrada con error tambien se reintenta: sin esto, una corrida
+       sin token dejaba esas peliculas rotas para siempre, porque el
+       objeto {error} es truthy y pasaba como si estuviera resuelta */
+    const faltan = [...universo.entries()].filter(([k]) => !cache[k] || cache[k].error || viejo(k)).map(([, f]) => f);
 
     console.log(`universo ${universo.size} (${porUsuario.join(" · ")}) · en cache ${universo.size - faltan.length} · a resolver ${faltan.length}`);
     if (!faltan.length) return resolverNombres(cache);

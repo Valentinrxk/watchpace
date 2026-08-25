@@ -100,6 +100,9 @@ try {
     const { stdout } = await correr(process.execPath, [enRaiz("src", "enrich.js")], { cwd: enRaiz(), timeout: 900000 });
     log(`enriquecido: ${stdout.trim().split("\n").at(-1)}`);
 } catch (e) {
+    /* los perfiles igual vale la pena publicarlos, pero que quede en rojo
+       para enterarse */
+    fallos++;
     log(`enriquecido fallo: ${String(e.message).split("\n")[0]}`);
 }
 
