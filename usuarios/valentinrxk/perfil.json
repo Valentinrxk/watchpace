@@ -2,14 +2,6 @@
  "usuario": "valentinrxk",
  "diario": [
   {
-   "nombre": "Office Space",
-   "anio": 1999,
-   "visto": "2026-08-24",
-   "rating": 3.5,
-   "rewatch": false,
-   "clave": "1466261163"
-  },
-  {
    "nombre": "Burst City",
    "anio": 1982,
    "visto": "2026-08-23",
@@ -7258,13 +7250,6 @@
    "slug": "the-matrix",
    "clave": "the-matrix",
    "uri": "https://letterboxd.com/film/the-matrix/"
-  },
-  {
-   "nombre": "Office Space",
-   "anio": 1999,
-   "slug": "office-space",
-   "clave": "office-space",
-   "uri": "https://letterboxd.com/film/office-space/"
   },
   {
    "nombre": "Buena Vista Social Club",
