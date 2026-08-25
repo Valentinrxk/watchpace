@@ -49,7 +49,7 @@ for (const { usuario } of usuariosConfigurados()) {
     try {
         /* cloudflare desafia por volumen: bajar 30 paginas cada 6h fue lo
            que nos hizo comer 403. primero preguntamos con dos pedidos */
-        if (antes) {
+        if (antes && process.env.WATCHPACE_FORZAR !== "1") {
             const h = await huellaBarata(usuario);
             const igualVistas = h.ultimaVista === antes.diario[0]?.visto && h.ultimaPeli === antes.diario[0]?.nombre;
             const igualLista = h.primeraWatchlist && h.primeraWatchlist === antes.watchlist[0]?.slug;
