@@ -1,0 +1,55 @@
+name: sync
+
+# el sync vivia en una tarea programada de windows: si la notebook estaba
+# apagada, produccion se quedaba congelada. aca corre igual siempre.
+on:
+  schedule:
+    # UTC. argentina es UTC-3, asi que esto es 08:00 y 20:00 hora local.
+    # github atrasa los cron bajo carga y a veces se saltea corridas: por
+    # eso dos por dia y no una.
+    - cron: "0 11 * * *"
+    - cron: "0 23 * * *"
+  workflow_dispatch:
+    inputs:
+      prueba:
+        description: "correr sin publicar (solo mira si letterboxd responde)"
+        type: boolean
+        default: false
+
+# el push del sync no dispara este workflow (solo corre por schedule o a
+# mano), asi que no hay loop. el concurrency es para que una corrida
+# manual no se pise con la programada.
+concurrency:
+  group: sync
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      # el proyecto no tiene dependencias de runtime, asi que no hay
+      # npm install: se corre el script y ya.
+
+      - name: quien commitea
+        run: |
+          git config user.name "watchpace"
+          git config user.email "82244733+Valentinrxk@users.noreply.github.com"
+
+      - name: sincronizar
+        env:
+          TMDB_TOKEN: ${{ secrets.TMDB_TOKEN }}
+          KV_REST_API_URL: ${{ secrets.KV_REST_API_URL }}
+          KV_REST_API_TOKEN: ${{ secrets.KV_REST_API_TOKEN }}
+          WATCHPACE_DEPLOY: ${{ inputs.prueba && '0' || '1' }}
+        run: node scripts/sync.mjs
