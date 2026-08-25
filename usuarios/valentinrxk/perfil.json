@@ -2,6 +2,14 @@
  "usuario": "valentinrxk",
  "diario": [
   {
+   "nombre": "Snowpiercer",
+   "anio": 2013,
+   "visto": "2026-08-25",
+   "rating": 3.5,
+   "rewatch": false,
+   "clave": "1468356799"
+  },
+  {
    "nombre": "Office Space",
    "anio": 1999,
    "visto": "2026-08-24",
@@ -2835,6 +2843,13 @@
   }
  ],
  "vistas": [
+  {
+   "nombre": "Snowpiercer",
+   "anio": 2013,
+   "slug": "snowpiercer",
+   "clave": "snowpiercer",
+   "uri": "https://letterboxd.com/film/snowpiercer/"
+  },
   {
    "nombre": "Office Space",
    "anio": 1999,
@@ -10697,5 +10712,5 @@
    "orden": 291
   }
  ],
- "actualizado": "2026-08-25T18:17:10.521Z"
+ "actualizado": "2026-08-25T22:40:15.144Z"
 }
