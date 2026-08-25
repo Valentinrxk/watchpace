@@ -15,10 +15,6 @@ on:
         description: "correr sin publicar (solo mira si letterboxd responde)"
         type: boolean
         default: false
-      forzar:
-        description: "bajar el perfil entero aunque no haya cambios"
-        type: boolean
-        default: false
 
 # el push del sync no dispara este workflow (solo corre por schedule o a
 # mano), asi que no hay loop. el concurrency es para que una corrida
@@ -56,5 +52,4 @@ jobs:
           KV_REST_API_URL: ${{ secrets.KV_REST_API_URL }}
           KV_REST_API_TOKEN: ${{ secrets.KV_REST_API_TOKEN }}
           WATCHPACE_DEPLOY: ${{ inputs.prueba && '0' || '1' }}
-          WATCHPACE_FORZAR: ${{ inputs.forzar && '1' || '0' }}
         run: node scripts/sync.mjs

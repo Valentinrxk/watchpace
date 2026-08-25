@@ -1,7 +1,7 @@
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { enRaiz } from "./rutas.js";
 import { clave } from "./letterboxd.js";
-import { traerDiario, traerVistas, traerWatchlist } from "./perfil.js";
+import { traerDiario, traerVistas, traerWatchlist, traerRssDiario, primeraDeWatchlist } from "./perfil.js";
 import { CONFIG } from "./config.js";
 
 const carpeta = (usuario) => enRaiz("usuarios", usuario);
@@ -21,6 +21,27 @@ export const guardarPerfil = (usuario, perfil) => {
     mkdirSync(carpeta(usuario), { recursive: true });
     writeFileSync(rutaPerfil(usuario), JSON.stringify(perfil, null, 1));
     return perfil;
+};
+
+/* un perfil no encoge: si letterboxd nos devolvio basura (un desafio, una
+   pagina de mantenimiento) el parser saca listas vacias y las guardariamos
+   encima de los datos buenos. mejor abortar y reintentar en la proxima. */
+export class PerfilSospechoso extends Error {}
+
+export const verificarPerfil = (usuario, nuevo) => {
+    const antes = leerPerfil(usuario);
+    if (!antes) return nuevo;
+
+    for (const campo of ["diario", "vistas", "watchlist"]) {
+        const a = antes[campo]?.length ?? 0;
+        const n = nuevo[campo]?.length ?? 0;
+        if (a >= 10 && n < a * 0.75) {
+            throw new PerfilSospechoso(
+                `${campo} paso de ${a} a ${n}; no lo guardo`,
+            );
+        }
+    }
+    return nuevo;
 };
 
 /* trae todo el perfil publico. anios: cuantos anios de diario bajar hacia
@@ -50,7 +71,83 @@ export const bajarPerfil = async (usuario, { anios = 1, onPaso = () => {} } = {}
     onPaso("watchlist");
     const watchlist = (await traerWatchlist(usuario)).map((f, i) => ({ ...f, orden: i }));
 
-    return guardarPerfil(usuario, { usuario, diario, vistas, watchlist, actualizado: new Date().toISOString() });
+    return guardarPerfil(
+        usuario,
+        verificarPerfil(usuario, { usuario, diario, vistas, watchlist, actualizado: new Date().toISOString() }),
+    );
+};
+
+/* actualizacion liviana: en vez de rebajar 30 paginas, lee el rss (que
+   trae las ultimas 50 funciones) y lo mezcla con lo que ya teniamos. la
+   watchlist solo se rebaja si su primer item cambio.
+
+   dos motivos: las paginas del diario dan 403 fuera de una conexion
+   domestica, y aun donde funcionan, 2 pedidos son mas sanos que 30. */
+export const actualizarPerfil = async (usuario, { onPaso = () => {} } = {}) => {
+    const antes = leerPerfil(usuario);
+    if (!antes) throw new Error(`no tengo el perfil de ${usuario}; bajalo entero primero`);
+
+    onPaso("rss");
+    const rss = await traerRssDiario(usuario);
+    if (!rss.length) throw new Error("el rss vino vacio");
+
+    /* la clave es el id de la funcion, unico por registro: sirve para no
+       duplicar un rewatch de la misma pelicula */
+    const porClave = new Map(antes.diario.filter((f) => f.clave).map((f) => [f.clave, f]));
+    const porFechaTitulo = new Set(antes.diario.map((f) => `${f.visto}|${f.nombre}`));
+
+    const nuevas = rss.filter((f) =>
+        !(f.clave && porClave.has(f.clave)) && !porFechaTitulo.has(`${f.visto}|${f.nombre}`));
+
+    /* el rss tambien corrige: si le cambiaste la nota a algo ya anotado */
+    const diario = antes.diario.map((f) => {
+        const r = f.clave ? rss.find((x) => x.clave === f.clave) : null;
+        return r && r.rating !== f.rating ? { ...f, rating: r.rating } : f;
+    });
+
+    for (const f of nuevas) {
+        diario.push({ nombre: f.nombre, anio: f.anio, visto: f.visto, rating: f.rating, rewatch: f.rewatch, clave: f.clave });
+    }
+    diario.sort((a, b) => b.visto.localeCompare(a.visto));
+
+    /* lo que se vio por primera vez entra tambien al historial completo */
+    const enVistas = new Set(antes.vistas.map((f) => clave(f.nombre, f.anio)));
+    const vistas = [...antes.vistas];
+    for (const f of nuevas) {
+        const k = clave(f.nombre, f.anio);
+        if (enVistas.has(k)) continue;
+        enVistas.add(k);
+        vistas.unshift({
+            nombre: f.nombre, anio: f.anio,
+            slug: f.slug ?? null, clave: f.slug ?? k,
+            uri: f.slug ? `https://letterboxd.com/film/${f.slug}/` : null,
+        });
+    }
+
+    onPaso("watchlist");
+    let watchlist = antes.watchlist;
+    let watchlistTocada = false;
+    try {
+        const primera = await primeraDeWatchlist(usuario);
+        if (primera && primera !== antes.watchlist[0]?.slug) {
+            onPaso("watchlist completa");
+            watchlist = (await traerWatchlist(usuario)).map((f, i) => ({ ...f, orden: i }));
+            watchlistTocada = true;
+        }
+    } catch (e) {
+        /* que la watchlist falle no puede tirar abajo lo que ya conseguimos */
+        onPaso(`watchlist fallo (${e.message})`);
+    }
+
+    const perfil = {
+        ...antes,
+        diario,
+        vistas,
+        watchlist,
+        actualizado: new Date().toISOString(),
+    };
+    guardarPerfil(usuario, verificarPerfil(usuario, perfil));
+    return { perfil, nuevas, watchlistTocada };
 };
 
 /* misma forma que devolvia cargarExport, para que nada aguas abajo cambie */
