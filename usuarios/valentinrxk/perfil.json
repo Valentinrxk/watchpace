@@ -2,6 +2,14 @@
  "usuario": "valentinrxk",
  "diario": [
   {
+   "nombre": "Office Space",
+   "anio": 1999,
+   "visto": "2026-08-24",
+   "rating": 3.5,
+   "rewatch": false,
+   "clave": "1466261163"
+  },
+  {
    "nombre": "Burst City",
    "anio": 1982,
    "visto": "2026-08-23",
@@ -2827,6 +2835,13 @@
   }
  ],
  "vistas": [
+  {
+   "nombre": "Office Space",
+   "anio": 1999,
+   "slug": "office-space",
+   "clave": "office-space",
+   "uri": "https://letterboxd.com/film/office-space/"
+  },
   {
    "nombre": "The Odyssey",
    "anio": 2026,
@@ -10682,5 +10697,5 @@
    "orden": 291
   }
  ],
- "actualizado": "2026-08-25T18:11:18.415Z"
+ "actualizado": "2026-08-25T18:13:09.814Z"
 }
