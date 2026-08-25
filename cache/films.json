@@ -84687,5 +84687,139 @@
    ]
   },
   "actualizado": "2026-08-20T19:45:22.878Z"
+ },
+ "Blow-Up::1966": {
+  "tmdb": 1052,
+  "titulo": "Blow-Up",
+  "original": "Blow-Up",
+  "sinopsis": "Un fotógrafo realiza unas tomas en un parque londinense y descubre al revelarlas una forma irreconocible que resulta ser un cadáver.",
+  "tagline": "A veces, la realidad es la fantasía más extraña de todas.",
+  "puntaje": 7.3,
+  "votos": 1400,
+  "minutos": 108,
+  "generos": [
+   "Drama",
+   "Misterio",
+   "Suspense"
+  ],
+  "paises": [
+   "GB",
+   "US",
+   "IT"
+  ],
+  "idioma": "en",
+  "director": "Michelangelo Antonioni",
+  "directorId": 15189,
+  "reparto": [
+   "David Hemmings",
+   "Vanessa Redgrave",
+   "Sarah Miles",
+   "John Castle",
+   "Veruschka von Lehndorff"
+  ],
+  "repartoIds": [
+   15196,
+   13333,
+   15197,
+   15198,
+   15199
+  ],
+  "popularidad": 5.045,
+  "poster": "/bwlz1BnokYtsol8chqVgjG1ICB6.jpg",
+  "backdrop": "/rWtRkNGkg05rET8taCA96c7heLb.jpg",
+  "proveedores": {
+   "suscripcion": [],
+   "gratis": [],
+   "alquiler": [
+    "Apple TV Store"
+   ]
+  },
+  "actualizado": "2026-08-25T17:55:33.201Z"
+ },
+ "The Lost Brother::2017": {
+  "tmdb": 447904,
+  "titulo": "El otro hermano",
+  "original": "El otro hermano",
+  "sinopsis": "Cetarti, un empleado público que acaba de ser despedido, viaja desde Buenos Aires a Lapachito, un solitario pueblo en la provincia del Chaco. Debe hacerse cargo de los cadáveres de su madre y su hermano que han sido brutalmente asesinados, y con quienes no lo une ningún lazo afectivo. Lo único que moviliza a Cetarti a emprender el viaje es la posibilidad de cobrar un modesto seguro de vida para poder radicarse en Brasil. Allí conoce a Duarte, una suerte de capo del pueblo y amigo del asesino de su madre, con quien establece una extraña sociedad para gestionar y cobrar ese dinero.",
+  "tagline": "Nada más peligroso que un hombre común.",
+  "puntaje": 7,
+  "votos": 50,
+  "minutos": 112,
+  "generos": [
+   "Suspense",
+   "Drama",
+   "Crimen"
+  ],
+  "paises": [
+   "AR"
+  ],
+  "idioma": "es",
+  "director": "Adrián Caetano",
+  "directorId": 230217,
+  "reparto": [
+   "Leonardo Sbaraglia",
+   "Daniel Hendler",
+   "Ángela Molina",
+   "Alián Devetac",
+   "Pablo Cedrón"
+  ],
+  "repartoIds": [
+   19803,
+   131867,
+   3822,
+   1292404,
+   74910
+  ],
+  "popularidad": 0.7407,
+  "poster": "/ueJ0hARGGEA2JT1o3e9DEpjErat.jpg",
+  "backdrop": "/kOmTEgbJAj6RTFTa5lhBytqc97e.jpg",
+  "proveedores": {
+   "suscripcion": [
+    "HBO Max"
+   ],
+   "gratis": [],
+   "alquiler": []
+  },
+  "actualizado": "2026-08-25T17:55:33.228Z"
+ },
+ "Yussef Is Complicated::2015": {
+  "tmdb": 498298,
+  "titulo": "Yussef Is Complicated",
+  "original": "Yussef Is Complicated",
+  "sinopsis": "Surly and silent, Yussef cuts a lonely figure at school, isolated from staff and pupils alike. But when a vicious schoolyard fight leaves a boy severely injured and Yussef on the brink of expulsion, his one ally and friend, long suffering teacher Emily Robson, is summoned to a crisis meeting to decide what to do with this aggressive outcast. The next day, she sets the class an assignment; 'the day that changed my life'.",
+  "tagline": null,
+  "puntaje": 8,
+  "votos": 3,
+  "minutos": 19,
+  "generos": [
+   "Drama"
+  ],
+  "paises": [],
+  "idioma": "en",
+  "director": "Vaughn Stein",
+  "directorId": 1585062,
+  "reparto": [
+   "Rohan Popat",
+   "Miranda Raison",
+   "Alex Lawther",
+   "Jamie Ballard",
+   "Aaron Rozanski"
+  ],
+  "repartoIds": [
+   1959422,
+   195525,
+   1379277,
+   1321621,
+   3851585
+  ],
+  "popularidad": 0.8626,
+  "poster": "/kd0HYPRIm8WtFIGRlYAbX7nsF15.jpg",
+  "backdrop": null,
+  "proveedores": {
+   "suscripcion": [],
+   "gratis": [],
+   "alquiler": []
+  },
+  "actualizado": "2026-08-25T17:55:33.403Z"
  }
 }
