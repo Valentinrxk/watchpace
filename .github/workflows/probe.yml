@@ -1,0 +1,42 @@
+name: probe
+
+# temporal: averiguar que URLs de letterboxd responden desde una IP de
+# github. se borra cuando tengamos la respuesta.
+on:
+  workflow_dispatch:
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: probar urls
+        run: |
+          node --input-type=module -e '
+          const u = "valentinrxk";
+          const urls = [
+            ["rss",              `https://letterboxd.com/${u}/rss/`],
+            ["watchlist p1",     `https://letterboxd.com/${u}/watchlist/`],
+            ["watchlist p2",     `https://letterboxd.com/${u}/watchlist/page/2/`],
+            ["films p1",         `https://letterboxd.com/${u}/films/`],
+            ["films p2",         `https://letterboxd.com/${u}/films/page/2/`],
+            ["diary anio",       `https://letterboxd.com/${u}/films/diary/for/2026/`],
+            ["diary",            `https://letterboxd.com/${u}/films/diary/`],
+            ["diary p2",         `https://letterboxd.com/${u}/films/diary/for/2026/page/2/`],
+          ];
+          const UA = { headers: { "user-agent": "watchpace/0.1 (personal use)" } };
+          for (const [nombre, url] of urls) {
+            try {
+              const r = await fetch(url, UA);
+              const cf = r.headers.get("cf-mitigated") ?? "";
+              console.log(`${nombre.padEnd(14)} ${r.status} ${cf ? "cf-mitigated:" + cf : ""}`);
+            } catch (e) {
+              console.log(`${nombre.padEnd(14)} ERROR ${e.message}`);
+            }
+            await new Promise((s) => setTimeout(s, 1500));
+          }
+          '
