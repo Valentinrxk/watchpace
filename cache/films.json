@@ -84866,5 +84866,61 @@
    "alquiler": []
   },
   "actualizado": "2026-09-04T14:52:46.783Z"
+ },
+ "Shrek 2::2004": {
+  "tmdb": 809,
+  "titulo": "Shrek 2",
+  "original": "Shrek 2",
+  "sinopsis": "Cuando Shrek y la princesa Fiona regresan de su luna de miel, los padres de ella los invitan a visitar el reino de Muy Muy Lejano para celebrar la boda. Para Shrek, al que nunca abandona su fiel amigo Asno, esto constituye un gran problema. Los padres de Fiona, por su parte, no esperaban que su yerno tuviera un aspecto semejante y, mucho menos, que su hija hubiera cambiado tanto. Todo esto trastoca los planes del rey respecto al futuro del reino. Pero entonces entran en escena la maquiavélica Hada Madrina, su arrogante hijo el Príncipe Encantador y un minino muy especial: el Gato con Botas, experto cazador de ogros.",
+  "tagline": "Érase otra vez ...",
+  "puntaje": 7.3,
+  "votos": 13727,
+  "minutos": 92,
+  "generos": [
+   "Animación",
+   "Comedia",
+   "Familia",
+   "Fantasía",
+   "Romance"
+  ],
+  "paises": [
+   "US"
+  ],
+  "idioma": "en",
+  "director": "Conrad Vernon",
+  "directorId": 12080,
+  "reparto": [
+   "Mike Myers",
+   "Eddie Murphy",
+   "Cameron Diaz",
+   "Julie Andrews",
+   "Antonio Banderas"
+  ],
+  "repartoIds": [
+   12073,
+   776,
+   6941,
+   5823,
+   3131
+  ],
+  "popularidad": 24.3882,
+  "poster": "/knRt4E8KyfwEv0SVu9LsLvD28IQ.jpg",
+  "backdrop": "/8ohobj5lAIbl5XWw11FywS3IRrS.jpg",
+  "proveedores": {
+   "suscripcion": [
+    "Netflix",
+    "Amazon Prime Video",
+    "MovistarTV",
+    "Claro video",
+    "HBO Max",
+    "Universal+ Amazon Channel"
+   ],
+   "gratis": [],
+   "alquiler": [
+    "Apple TV Store",
+    "Google Play Movies"
+   ]
+  },
+  "actualizado": "2026-09-04T20:09:02.154Z"
  }
 }

@@ -10,6 +10,14 @@
    "clave": "1482132009"
   },
   {
+   "nombre": "Shrek 2",
+   "anio": 2004,
+   "visto": "2026-09-04",
+   "rating": null,
+   "rewatch": false,
+   "clave": "1482265526"
+  },
+  {
    "nombre": "Snowpiercer",
    "anio": 2013,
    "visto": "2026-08-25",
@@ -2851,6 +2859,13 @@
   }
  ],
  "vistas": [
+  {
+   "nombre": "Shrek 2",
+   "anio": 2004,
+   "slug": "shrek-2",
+   "clave": "shrek-2",
+   "uri": "https://letterboxd.com/film/shrek-2/"
+  },
   {
    "nombre": "Revenge",
    "anio": 2017,
@@ -10727,5 +10742,5 @@
    "orden": 291
   }
  ],
- "actualizado": "2026-09-04T16:46:11.606Z"
+ "actualizado": "2026-09-04T20:09:01.297Z"
 }
