@@ -2,6 +2,14 @@
  "usuario": "valentinrxk",
  "diario": [
   {
+   "nombre": "Revenge",
+   "anio": 2017,
+   "visto": "2026-09-04",
+   "rating": 2.5,
+   "rewatch": false,
+   "clave": "1482132009"
+  },
+  {
    "nombre": "Snowpiercer",
    "anio": 2013,
    "visto": "2026-08-25",
@@ -2843,6 +2851,13 @@
   }
  ],
  "vistas": [
+  {
+   "nombre": "Revenge",
+   "anio": 2017,
+   "slug": "revenge-2017",
+   "clave": "revenge-2017",
+   "uri": "https://letterboxd.com/film/revenge-2017/"
+  },
   {
    "nombre": "Snowpiercer",
    "anio": 2013,
@@ -10712,5 +10727,5 @@
    "orden": 291
   }
  ],
- "actualizado": "2026-09-04T14:52:46.003Z"
+ "actualizado": "2026-09-04T16:46:11.606Z"
 }
