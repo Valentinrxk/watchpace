@@ -54,9 +54,9 @@ jobs:
           TMDB_TOKEN: ${{ secrets.TMDB_TOKEN }}
           KV_REST_API_URL: ${{ secrets.KV_REST_API_URL }}
           KV_REST_API_TOKEN: ${{ secrets.KV_REST_API_TOKEN }}
-          # sin esto el push llega a github pero vercel no lo construye:
-          # el plan hobby ignora los commits que no son de un colaborador
-          # del proyecto, y aca el que pushea es github-actions[bot].
+          # dispara el build explicitamente, para que la corrida sepa si
+          # el deploy salio. (el parate del 25/08 al 04/09 no era esto:
+          # era que el repo estaba privado, que en hobby no deploya.)
           VERCEL_DEPLOY_HOOK: ${{ secrets.VERCEL_DEPLOY_HOOK }}
           WATCHPACE_DEPLOY: ${{ inputs.prueba && '0' || '1' }}
         run: node scripts/sync.mjs

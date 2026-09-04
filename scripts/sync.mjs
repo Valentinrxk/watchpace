@@ -143,14 +143,14 @@ if (process.env.WATCHPACE_DEPLOY === "0") {
 
 const git = (...args) => correr("git", args, { cwd: enRaiz(), timeout: 120000 });
 
-/* pushear ya no alcanza para deployar: quien pushea desde el runner es
-   github-actions[bot], y el plan hobby de vercel solo construye commits de
-   alguien con acceso al proyecto ("the deployment was blocked because the
-   commit author did not have contributing access"). o sea que los commits
-   de sync llegaban a github y ahi se quedaban: produccion solo se movia
-   cuando pusheabas vos a mano.
-   el deploy hook es una url que dispara el build igual, sin mirar quien
-   firmo el commit. se crea en vercel > settings > git > deploy hooks. */
+/* entre el 25/08 y el 04/09 vercel no construyo un solo deploy. el mensaje
+   ("the deployment was blocked because the commit author did not have
+   contributing access") hace pensar que es por quien firma el commit, pero
+   no: el plan hobby no deploya repos PRIVADOS, y bloqueaba por igual los
+   pushes del bot y los propios. se arreglo haciendo publico el repo.
+   el hook se queda igual, ahora por otro motivo: dispara el build de forma
+   explicita, asi esta corrida se entera de si el deploy salio en vez de
+   pushear y confiar. se crea en vercel > settings > git > deploy hooks. */
 const avisarAVercel = async () => {
     const hook = process.env.VERCEL_DEPLOY_HOOK;
     /* si llegamos aca es porque hay datos nuevos pusheados. sin el hook se
