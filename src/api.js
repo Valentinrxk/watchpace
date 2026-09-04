@@ -71,8 +71,7 @@ const MODOS = [
     { id: "nuestro", texto: "lo nuestro" },
 ];
 
-export const construirJuntos = ({ estado: estadoDado = null } = {}) => {
-    const hoy = new Date();
+export const construirJuntos = ({ estado: estadoDado = null, hoy = new Date() } = {}) => {
     const estado = estadoDado ? { ...VACIO, ...estadoDado } : leerEstado();
     PERSONAS = leerPersonas();
 
@@ -110,8 +109,7 @@ export const construirJuntos = ({ estado: estadoDado = null } = {}) => {
     };
 };
 
-export const construirPayload = ({ minutos = null, estado: estadoDado = null, usuario = null } = {}) => {
-    const hoy = new Date();
+export const construirPayload = ({ minutos = null, estado: estadoDado = null, usuario = null, hoy = new Date() } = {}) => {
     const quien = configDe(usuario ?? CONFIG.porDefecto);
     const { diario, watchlist, vistasFilas, sincronizadas, watchlistEnVivo, watchlistActualizada } =
         cargarUsuario(quien.usuario, { fechasWatchlist: fechasDe(quien.usuario) });

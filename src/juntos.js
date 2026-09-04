@@ -2,7 +2,7 @@ import { clave } from "./letterboxd.js";
 import { leerCache, leerPersonas } from "./enrich.js";
 import { cargarUsuario, configDe } from "./usuarios.js";
 import { calcularRitmo } from "./pace.js";
-import { azar, diaDe, facilidad } from "./rank.js";
+import { azar, diaDe, facilidad, rotarPorDia } from "./rank.js";
 import { clasificar, mirable } from "./fmt.js";
 import { CONFIG } from "./config.js";
 
@@ -209,8 +209,15 @@ export const armarJuntos = ({ ronda = 0, modo = "comun", rechazadas = {}, hoy = 
     const wlA = setDe(A.watchlist), wlB = setDe(B.watchlist);
     const vivo = (f) => !rechazadas[f.nombre];
 
-    /* 1. los dos la quieren ver */
-    const comun = conStreamPrimero(A.watchlist.filter((f) => wlB.has(clave(f.nombre, f.anio)))).filter(vivo);
+    /* 1. los dos la quieren ver.
+       esto no se barajaba: salia ordenado por streaming y nada mas, asi
+       que el primero de la lista era el mismo todos los dias. */
+    const enComun = conStreamPrimero(A.watchlist.filter((f) => wlB.has(clave(f.nombre, f.anio)))).filter(vivo);
+    /* las que se pueden ver hoy van adelante, pero rotando entre ellas */
+    const comun = [
+        ...rotarPorDia(enComun.filter(mirable), hoy, "!comun"),
+        ...enComun.filter((f) => !mirable(f)),
+    ];
 
     /* 2. duelo: una de cada watchlist que el otro no vio */
     const soloA = A.watchlist.filter((f) => !wlB.has(clave(f.nombre, f.anio)) && !B.vistas.has(clave(f.nombre, f.anio))).filter(vivo);
