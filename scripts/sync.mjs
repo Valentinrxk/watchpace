@@ -141,12 +141,42 @@ if (process.env.WATCHPACE_DEPLOY === "0") {
     await salir(0);
 }
 
-/* el repo esta conectado a vercel: pushear ya deploya */
 const git = (...args) => correr("git", args, { cwd: enRaiz(), timeout: 120000 });
+
+/* pushear ya no alcanza para deployar: quien pushea desde el runner es
+   github-actions[bot], y el plan hobby de vercel solo construye commits de
+   alguien con acceso al proyecto ("the deployment was blocked because the
+   commit author did not have contributing access"). o sea que los commits
+   de sync llegaban a github y ahi se quedaban: produccion solo se movia
+   cuando pusheabas vos a mano.
+   el deploy hook es una url que dispara el build igual, sin mirar quien
+   firmo el commit. se crea en vercel > settings > git > deploy hooks. */
+const avisarAVercel = async () => {
+    const hook = process.env.VERCEL_DEPLOY_HOOK;
+    /* si llegamos aca es porque hay datos nuevos pusheados. sin el hook se
+       quedan en github y la app sigue mostrando lo viejo: eso es un fallo,
+       no un aviso, o volvemos a tener un job en verde que no publica nada. */
+    if (!hook) {
+        fallos++;
+        motivo = "falta VERCEL_DEPLOY_HOOK: pushee, pero vercel no deploya el commit del bot";
+        return log(motivo);
+    }
+    try {
+        const r = await fetch(hook, { method: "POST" });
+        if (!r.ok) throw new Error(`hook ${r.status}`);
+        log("deploy disparado");
+    } catch (e) {
+        fallos++;
+        motivo = `no pude disparar el deploy: ${e.message}`;
+        log(motivo);
+    }
+};
 
 /* solo los archivos de datos que este script genera. con `git add -A` un
    job automatico se lleva puesto el codigo que tengas a medio escribir */
 const MIOS = ["usuarios", "cache/films.json", "cache/personas.json"];
+
+let publicado = false;
 
 try {
     await git("add", "--", ...MIOS);
@@ -160,11 +190,14 @@ try {
     /* explicito: en un runner limpio no hay upstream configurado */
     await git("pull", "--rebase", "--autostash", "origin", "master");
     await git("push", "origin", "HEAD:master");
-    log("pusheado — vercel deploya solo");
+    publicado = true;
+    log("pusheado");
 } catch (e) {
     fallos++;
     motivo = String(e.stderr || e.message).split("\n")[0];
     log(`git fallo: ${motivo}`);
 }
+
+if (publicado) await avisarAVercel();
 
 await salir(0);
