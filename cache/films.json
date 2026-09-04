@@ -84821,5 +84821,50 @@
    "alquiler": []
   },
   "actualizado": "2026-08-25T17:55:33.403Z"
+ },
+ "Skintown::2026": {
+  "tmdb": 1453069,
+  "titulo": "Skintown",
+  "original": "Skintown",
+  "sinopsis": "1994. As Northern Ireland takes its first steps towards peace, best friends Vinny and Jonty are about to jump start their futures with the most reckless trip of their lives.",
+  "tagline": null,
+  "puntaje": null,
+  "votos": 0,
+  "minutos": 99,
+  "generos": [
+   "Comedia",
+   "Drama"
+  ],
+  "paises": [
+   "XI",
+   "GB",
+   "US"
+  ],
+  "idioma": "en",
+  "director": "Kieron J. Walsh",
+  "directorId": 227412,
+  "reparto": [
+   "Jack Rowan",
+   "Chris Walley",
+   "Jamie Lee O'Donnell",
+   "Hope Ikpoku Jnr",
+   "Martin McCann"
+  ],
+  "repartoIds": [
+   1796798,
+   1656685,
+   1963195,
+   3344630,
+   76104
+  ],
+  "popularidad": 2.7758,
+  "poster": "/yUVA3HebQJ5dlgF4xTa4TLSadfl.jpg",
+  "backdrop": null,
+  "proveedores": {
+   "suscripcion": [],
+   "gratis": [],
+   "alquiler": []
+  },
+  "actualizado": "2026-09-04T14:52:46.783Z"
  }
 }
