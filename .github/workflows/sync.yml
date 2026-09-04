@@ -4,11 +4,14 @@ name: sync
 # apagada, produccion se quedaba congelada. aca corre igual siempre.
 on:
   schedule:
-    # UTC. argentina es UTC-3, asi que esto es 08:00 y 20:00 hora local.
-    # github atrasa los cron bajo carga y a veces se saltea corridas: por
-    # eso dos por dia y no una.
-    - cron: "0 11 * * *"
-    - cron: "0 23 * * *"
+    # cada 2 horas. el sync son 2 pedidos y tarda menos de un segundo, asi
+    # que no hay razon para espaciarlo: dos veces por dia significaba ver
+    # una peli, logearla, y que la app se enterara a la noche.
+    #
+    # el minuto 17 es a proposito: github encola los cron y los que caen
+    # en punto llegan con horas de atraso (los de "0 11" venian
+    # disparando 14:52).
+    - cron: "17 */2 * * *"
   workflow_dispatch:
     inputs:
       prueba:
