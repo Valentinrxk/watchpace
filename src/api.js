@@ -11,6 +11,7 @@ import { enRaiz } from "./rutas.js";
 import { armarJuntos, ES_JUNTOS } from "./juntos.js";
 
 const RUTA = enRaiz("cache/estado.json");
+const RUTA_SYNC = enRaiz("cache/sync.json");
 const VACIO = { rechazadas: {}, plan: null, retosPasados: [], retosActivos: {}, retoActivo: null, snoozeHasta: null, mirando: null, historial: [], modo: "comun", ronda: 0 };
 
 export const leerEstado = () => (existsSync(RUTA) ? { ...VACIO, ...JSON.parse(readFileSync(RUTA, "utf8")) } : { ...VACIO });
@@ -19,6 +20,13 @@ export const guardarEstado = (e) => {
     mkdirSync(enRaiz("cache"), { recursive: true });
     writeFileSync(RUTA, JSON.stringify(e, null, 1));
     return e;
+};
+
+/* cuando corrio el sync es un hecho del deploy, no del usuario. lo deja
+   scripts/sync.mjs en cada corrida: en kv cuando hay (el runner de github
+   y vercel no comparten disco) y si no, aca al lado. */
+export const leerMarcaSync = () => {
+    try { return JSON.parse(readFileSync(RUTA_SYNC, "utf8")); } catch { return null; }
 };
 
 let PERSONAS = leerPersonas();
@@ -117,6 +125,7 @@ export const construirPayload = ({ minutos = null, estado: estadoDado = null, us
     /* cuando se sincronizo el dato es un hecho del deploy, no del usuario:
        en serverless el estado viene del navegador y no lo sabria */
     const enDisco = leerEstado();
+    const marca = leerMarcaSync();
     const estado = estadoDado ? { ...VACIO, ...estadoDado } : enDisco;
     PERSONAS = leerPersonas();
 
@@ -129,7 +138,9 @@ export const construirPayload = ({ minutos = null, estado: estadoDado = null, us
         return !minutos || d == null || d <= minutos;
     };
     const pool = minutos && pre.filter(cabe).length >= 8 ? pre.filter(cabe) : pre;
-    const orden = rankearFinal({ candidatas: pool.slice(0, 40), minutosDisponibles: minutos, hoy });
+    /* 40 candidatas sobre una watchlist de 300 eran siempre las mismas 40:
+       el corte por antiguedad no se mueve hasta que agregas o sacas algo. */
+    const orden = rankearFinal({ candidatas: pool.slice(0, 60), minutosDisponibles: minutos, hoy });
 
     const retos = generarRetos({ diario, watchlist, vistasFilas, cache, personas: PERSONAS, activos: estado.retosActivos ?? {}, ritmo, hoy })
         .filter((r) => !estado.retosPasados.includes(r.id))
@@ -161,9 +172,9 @@ export const construirPayload = ({ minutos = null, estado: estadoDado = null, us
         retoActivo: estado.retoActivo,
         cumplidoReciente: (estado.historial ?? []).filter((h) => h.tipo === "cumplido").at(-1) ?? null,
         sync: {
-            ultima: enDisco.ultimaSync ?? estado.ultimaSync ?? null,
-            ultimoIntento: enDisco.ultimoIntento ?? null,
-            error: enDisco.ultimoError ?? null,
+            ultima: marca?.ultima ?? enDisco.ultimaSync ?? estado.ultimaSync ?? null,
+            ultimoIntento: marca?.ultimoIntento ?? enDisco.ultimoIntento ?? null,
+            error: marca ? marca.error : enDisco.ultimoError ?? null,
             nuevasDesdeExport: sincronizadas,
             watchlist: watchlistActualizada,
             watchlistEnVivo,

@@ -2,7 +2,7 @@ import { clave } from "./letterboxd.js";
 import { leerCache, leerPersonas } from "./enrich.js";
 import { cargarUsuario, configDe } from "./usuarios.js";
 import { calcularRitmo } from "./pace.js";
-import { azar, diaDe, facilidad, rotarPorDia } from "./rank.js";
+import { azar, diaDe, facilidad, ordenDelDia } from "./rank.js";
 import { clasificar, mirable } from "./fmt.js";
 import { CONFIG } from "./config.js";
 
@@ -215,7 +215,7 @@ export const armarJuntos = ({ ronda = 0, modo = "comun", rechazadas = {}, hoy = 
     const enComun = conStreamPrimero(A.watchlist.filter((f) => wlB.has(clave(f.nombre, f.anio)))).filter(vivo);
     /* las que se pueden ver hoy van adelante, pero rotando entre ellas */
     const comun = [
-        ...rotarPorDia(enComun.filter(mirable), hoy, "!comun"),
+        ...ordenDelDia(enComun.filter(mirable), hoy, "!comun"),
         ...enComun.filter((f) => !mirable(f)),
     ];
 

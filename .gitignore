@@ -6,3 +6,4 @@ cache/chrome/
 .env*.local
 
 cache/sync.log
+cache/sync.json

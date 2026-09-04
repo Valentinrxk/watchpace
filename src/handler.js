@@ -1,5 +1,5 @@
 import { construirPayload, construirJuntos, reducir, leerEstado, guardarEstado } from "./api.js";
-import { hayKV, leerRemoto, guardarRemoto } from "./estado-remoto.js";
+import { hayKV, leerRemoto, guardarRemoto, leerSyncRemoto } from "./estado-remoto.js";
 import { CONFIG } from "./config.js";
 
 /* un solo endpoint para leer y para actuar.
@@ -34,5 +34,14 @@ export const manejarEstado = async (cuerpo = {}, { persistir = false } = {}) => 
     const payload = usuario === "juntos"
         ? construirJuntos({ estado: nuevo })
         : construirPayload({ minutos, estado: nuevo, usuario });
-    return { ...payload, estado: nuevo, modoEstado: modo };
+
+    /* en vercel el disco es el del deploy: la marca que dejo el sync de
+       las 14:17 no esta ahi, esta en kv. sin esto el header muestra la
+       fecha del ultimo deploy y parece que hace dias que no sincroniza. */
+    const marca = payload.sync && hayKV() ? await leerSyncRemoto() : null;
+    const sync = marca
+        ? { ...payload.sync, ultima: marca.ultima ?? payload.sync.ultima, ultimoIntento: marca.ultimoIntento ?? payload.sync.ultimoIntento, error: marca.error ?? null }
+        : payload.sync;
+
+    return { ...payload, ...(payload.sync ? { sync } : {}), estado: nuevo, modoEstado: modo };
 };

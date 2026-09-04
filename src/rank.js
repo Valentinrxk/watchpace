@@ -1,5 +1,12 @@
 const MS_DIA = 86400000;
-const POOL = 14;
+
+/* de donde puede salir la sugerencia del dia. era 14, y como en pantalla
+   entran 7, todos los dias se veia la mitad del mismo pool: literalmente
+   las mismas peliculas siempre. con 42 son seis dias sin repetir ninguna. */
+const POOL = 42;
+
+/* lo que entra en pantalla: la sugerencia + las 6 alternativas */
+const VENTANA = 7;
 
 export const FACILIDAD = {
     "netflix.com": 50, "disneyplus.com": 50, "hbomax.com": 50, "max.com": 50, "primevideo.com": 50,
@@ -50,24 +57,44 @@ const desdeTmdb = (t) => (t?.proveedores?.suscripcion ?? []).map((n) => ({ host:
 
 const duracionDe = (f) => f.minutos ?? f.tmdb?.minutos ?? f.m?.minutos ?? null;
 
-/* barajar cada dia por separado suena bien pero repite: cada dia es un
-   sorteo nuevo e independiente, asi que la misma pelicula sale tres veces
-   en dos semanas. esto ordena una vez por bloque y despues corre el punto
-   de arranque un lugar por dia, o sea que recorre TODA la lista antes de
-   repetir una. */
 export const numeroDeDia = (hoy) =>
     Math.floor(Date.UTC(hoy.getFullYear(), hoy.getMonth(), hoy.getDate()) / 86400000);
 
-export const rotarPorDia = (items, hoy, sal = "") => {
-    if (items.length < 2) return items;
-    const dia = numeroDeDia(hoy);
-    const bloque = Math.floor(dia / items.length);
-    const barajado = items
-        .map((f) => ({ f, r: azar(`${bloque}${sal}|${f.nombre}|${f.anio}`) }))
+const barajar = (items, semilla) =>
+    items
+        .map((f) => ({ f, r: azar(`${semilla}|${f.nombre}|${f.anio}`) }))
         .sort((a, b) => b.r - a.r)
         .map(({ f }) => f);
-    const desde = dia % items.length;
-    return [...barajado.slice(desde), ...barajado.slice(0, desde)];
+
+/* la rotacion de a un lugar por dia cumplia en el papel (recorria toda la
+   lista antes de repetir) pero en pantalla se veia igual todos los dias:
+   la lista de ayer corrida un puesto, seis de las siete repetidas y en la
+   misma secuencia.
+   esto reparte el pool en paginas del tamaño de la pantalla y el dia elige
+   una: dos dias seguidos no comparten ni una pelicula. el reparto es de a
+   bandas — la lista ya viene ordenada por calidad, asi que cada pagina se
+   lleva una del podio, una del medio y una del fondo, y ningun dia queda
+   con las sobras. cada vuelta re-baraja las bandas, asi que la pagina del
+   proximo martes no es la de este martes. */
+export const ordenDelDia = (items, hoy, sal = "") => {
+    if (items.length < 2) return items;
+
+    const dia = numeroDeDia(hoy);
+    const paginas = Math.max(1, Math.round(items.length / VENTANA));
+    if (paginas < 2) return barajar(items, `${dia}${sal}`);
+
+    const vuelta = Math.floor(dia / paginas);
+    const reparto = Array.from({ length: paginas }, () => []);
+    for (let i = 0; i < items.length; i += paginas) {
+        barajar(items.slice(i, i + paginas), `${vuelta}${sal}#${i}`)
+            .forEach((f, k) => reparto[k].push(f));
+    }
+
+    const deHoy = dia % paginas;
+    return [
+        ...barajar(reparto[deHoy], `${dia}${sal}`),
+        ...reparto.filter((_, k) => k !== deHoy).flat(),
+    ];
 };
 
 export const rankearFinal = ({ candidatas, minutosDisponibles = null, hoy = new Date() }) => {
@@ -93,10 +120,9 @@ export const rankearFinal = ({ candidatas, minutosDisponibles = null, hoy = new 
     /* la calidad elige quienes son dignas; el dia elige el orden entre
        ellas. si no, la mejor por decimas gana siempre y todos los dias
        ves la misma. las rechazadas quedan fuera del pool por su castigo. */
-    const dia = diaDe(hoy);
     const vivas = puntuadas.filter((f) => f.score > -500);
     const pool = vivas.slice(0, POOL);
     const resto = vivas.slice(POOL);
 
-    return [...rotarPorDia(pool, hoy), ...resto, ...puntuadas.filter((f) => f.score <= -500)];
+    return [...ordenDelDia(pool, hoy), ...resto, ...puntuadas.filter((f) => f.score <= -500)];
 };

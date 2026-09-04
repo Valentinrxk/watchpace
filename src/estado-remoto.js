@@ -11,6 +11,11 @@ export const hayKV = () => Boolean(URL_KV() && TOKEN());
 
 const llave = (usuario) => `watchpace:estado:${usuario}`;
 
+/* la marca del sync no es estado del usuario: la escribe el runner de
+   github y la lee la app en vercel, que no comparten disco. por eso va
+   en kv y en su propia llave. */
+const LLAVE_SYNC = "watchpace:sync";
+
 const comando = async (cmd) => {
     const r = await fetch(URL_KV(), {
         method: "POST",
@@ -35,6 +40,26 @@ export const guardarRemoto = async (usuario, estado) => {
     if (!hayKV()) return false;
     try {
         await comando(["SET", llave(usuario), JSON.stringify(estado)]);
+        return true;
+    } catch {
+        return false;
+    }
+};
+
+export const leerSyncRemoto = async () => {
+    if (!hayKV()) return null;
+    try {
+        const v = await comando(["GET", LLAVE_SYNC]);
+        return v ? JSON.parse(v) : null;
+    } catch {
+        return null;
+    }
+};
+
+export const guardarSyncRemoto = async (marca) => {
+    if (!hayKV()) return false;
+    try {
+        await comando(["SET", LLAVE_SYNC, JSON.stringify(marca)]);
         return true;
     } catch {
         return false;

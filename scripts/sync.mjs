@@ -1,9 +1,10 @@
+import { writeFileSync } from "node:fs";
 import { execFile } from "node:child_process";
 import { promisify } from "node:util";
 import { bajarPerfil, actualizarPerfil, leerPerfil, usuariosConfigurados } from "../src/usuarios.js";
 import { clave } from "../src/letterboxd.js";
 import { enRaiz } from "../src/rutas.js";
-import { hayKV, leerRemoto, guardarRemoto } from "../src/estado-remoto.js";
+import { hayKV, leerRemoto, guardarRemoto, leerSyncRemoto, guardarSyncRemoto } from "../src/estado-remoto.js";
 import { leerEstado, guardarEstado } from "../src/api.js";
 
 /* si planificaste una peli y despues aparece en tu diario, el plan se
@@ -41,6 +42,30 @@ const huella = (p) => (p ? `${p.diario.length}/${p.vistas.length}/${p.watchlist.
 
 let cambios = 0;
 let fallos = 0;
+let motivo = null;
+
+/* el header muestra "sincronizado hace X" y estaba clavado en el 20/08:
+   ese dato lo escribia el sync viejo, el que corria en la notebook y
+   guardaba cache/estado.json. desde que el sync vive en github actions no
+   lo tocaba nadie, asi que la fecha era la del ultimo commit de ese
+   archivo y solo envejecia. ahora cada corrida deja su marca, haya
+   novedades o no: lo que se muestra es cuando miramos letterboxd, no
+   cuando cambio algo. */
+const arranque = new Date().toISOString();
+
+const anotarCorrida = async () => {
+    const previa = (hayKV() ? await leerSyncRemoto() : null) ?? {};
+    const marca = {
+        ultimoIntento: arranque,
+        ultima: fallos ? (previa.ultima ?? null) : new Date().toISOString(),
+        error: fallos ? motivo : null,
+    };
+    /* sin kv (local) queda en disco, que es de donde lo lee el server */
+    if (!(await guardarSyncRemoto(marca))) {
+        try { writeFileSync(enRaiz("cache", "sync.json"), JSON.stringify(marca, null, 1)); }
+        catch { /* no vale la pena romper el sync por la marca */ }
+    }
+};
 
 /* sin token no se puede enriquecer, y enrich.js escribiria el cache con
    respuestas vacias. mejor no arrancar. */
@@ -82,17 +107,21 @@ for (const { usuario } of usuariosConfigurados()) {
         }
     } catch (e) {
         fallos++;
+        motivo = e.message;
         log(`${usuario}: fallo — ${e.message}`);
     }
 }
 
 /* salir en 0 con todo fallando hacia que el job diera verde y nadie se
    enterara de que hacia dias que no se sincronizaba */
-const salir = (codigo) => process.exit(fallos ? 1 : codigo);
+const salir = async (codigo) => {
+    await anotarCorrida();
+    process.exit(fallos ? 1 : codigo);
+};
 
 if (!cambios) {
     log(fallos ? `nada que publicar · ${fallos} fallaron` : "nada que publicar");
-    salir(0);
+    await salir(0);
 }
 
 /* metadata de tmdb para lo que haya aparecido */
@@ -103,12 +132,13 @@ try {
     /* los perfiles igual vale la pena publicarlos, pero que quede en rojo
        para enterarse */
     fallos++;
-    log(`enriquecido fallo: ${String(e.message).split("\n")[0]}`);
+    motivo = String(e.message).split("\n")[0];
+    log(`enriquecido fallo: ${motivo}`);
 }
 
 if (process.env.WATCHPACE_DEPLOY === "0") {
     log("deploy apagado, no pusheo");
-    salir(0);
+    await salir(0);
 }
 
 /* el repo esta conectado a vercel: pushear ya deploya */
@@ -123,7 +153,7 @@ try {
     const { stdout: pendiente } = await git("diff", "--cached", "--name-only");
     if (!pendiente.trim()) {
         log("los datos no cambiaron, no hay que publicar");
-        salir(0);
+        await salir(0);
     }
     log(`publicando: ${pendiente.trim().split(/\r?\n/).join(", ")}`);
     await git("commit", "-m", `sync ${new Date().toISOString().slice(0, 16).replace("T", " ")}`);
@@ -133,7 +163,8 @@ try {
     log("pusheado — vercel deploya solo");
 } catch (e) {
     fallos++;
-    log(`git fallo: ${String(e.stderr || e.message).split("\n")[0]}`);
+    motivo = String(e.stderr || e.message).split("\n")[0];
+    log(`git fallo: ${motivo}`);
 }
 
-salir(0);
+await salir(0);
