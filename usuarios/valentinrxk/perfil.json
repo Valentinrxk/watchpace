@@ -18,6 +18,14 @@
    "clave": "1482265526"
   },
   {
+   "nombre": "The Apartment",
+   "anio": 1960,
+   "visto": "2026-09-04",
+   "rating": 4,
+   "rewatch": false,
+   "clave": "1482931720"
+  },
+  {
    "nombre": "Snowpiercer",
    "anio": 2013,
    "visto": "2026-08-25",
@@ -2859,6 +2867,13 @@
   }
  ],
  "vistas": [
+  {
+   "nombre": "The Apartment",
+   "anio": 1960,
+   "slug": "the-apartment",
+   "clave": "the-apartment",
+   "uri": "https://letterboxd.com/film/the-apartment/"
+  },
   {
    "nombre": "Shrek 2",
    "anio": 2004,
@@ -10742,5 +10757,5 @@
    "orden": 291
   }
  ],
- "actualizado": "2026-09-04T20:09:01.297Z"
+ "actualizado": "2026-09-05T10:43:40.671Z"
 }
