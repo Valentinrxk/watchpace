@@ -84922,5 +84922,97 @@
    ]
   },
   "actualizado": "2026-09-04T20:09:02.154Z"
+ },
+ "Personal Shopper::2016": {
+  "tmdb": 340676,
+  "titulo": "Personal Shopper",
+  "original": "Personal Shopper",
+  "sinopsis": "Maureen, una joven estadounidense en París, se hace cargo del guardarropa de una celebridad. Aunque no le gusta su trabajo, es lo único que encontró para pagar su estancia mientras espera una manifestación del espíritu de Lewis, su hermano gemelo desaparecido hace poco. Maureen comienza entonces a recibir en su móvil extraños mensajes anónimos.",
+  "tagline": "Un Film de Olivier Assayas",
+  "puntaje": 5.9,
+  "votos": 1345,
+  "minutos": 110,
+  "generos": [
+   "Drama",
+   "Misterio",
+   "Suspense"
+  ],
+  "paises": [
+   "CZ",
+   "FR",
+   "DE"
+  ],
+  "idioma": "fr",
+  "director": "Olivier Assayas",
+  "directorId": 21678,
+  "reparto": [
+   "Kristen Stewart",
+   "Lars Eidinger",
+   "Sigrid Bouaziz",
+   "Anders Danielsen Lie",
+   "Ty Olwin"
+  ],
+  "repartoIds": [
+   37917,
+   111420,
+   1330967,
+   71610,
+   1617083
+  ],
+  "popularidad": 4.8778,
+  "poster": "/6IhZUIj6DYpHx3E6Df6QED6n0SN.jpg",
+  "backdrop": "/2I4Pe9EN5NlVC90X1JDrbYObZY5.jpg",
+  "proveedores": {
+   "suscripcion": [],
+   "gratis": [],
+   "alquiler": [
+    "Apple TV Store",
+    "Google Play Movies",
+    "Claro video"
+   ]
+  },
+  "actualizado": "2026-09-05T15:20:17.883Z"
+ },
+ "Labios de churrasco::1994": {
+  "tmdb": 251884,
+  "titulo": "Labios de churrasco",
+  "original": "Labios de churrasco",
+  "sinopsis": "Three boys, sons of the suburb, the street and  the economic depression, stroll for a microworld where the crime, the incomprehension and the solitude are their permanent companies.",
+  "tagline": null,
+  "puntaje": 5.7,
+  "votos": 6,
+  "minutos": 62,
+  "generos": [
+   "Drama"
+  ],
+  "paises": [
+   "AR"
+  ],
+  "idioma": "es",
+  "director": "Raúl Perrone",
+  "directorId": 1277121,
+  "reparto": [
+   "Fabián Vena",
+   "Violeta Naón",
+   "Gustavo Prone",
+   "Yiyi de la Motta",
+   "Gustavo Aldana"
+  ],
+  "repartoIds": [
+   105743,
+   2695389,
+   2276125,
+   3312930,
+   3312931
+  ],
+  "popularidad": 0.841,
+  "poster": "/xzUWNg4p0LLwu0BWKmYnu21QoJ2.jpg",
+  "backdrop": null,
+  "proveedores": {
+   "suscripcion": [],
+   "gratis": [],
+   "alquiler": []
+  },
+  "actualizado": "2026-09-05T15:20:17.966Z"
  }
 }
