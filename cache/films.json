@@ -85014,5 +85014,52 @@
    "alquiler": []
   },
   "actualizado": "2026-09-05T15:20:17.966Z"
+ },
+ "Sunset Boulevard::1950": {
+  "tmdb": 599,
+  "titulo": "El crepúsculo de los dioses",
+  "original": "Sunset Boulevard",
+  "sinopsis": "Joe Gillis es un joven escritor de segunda fila que, acosado por sus acreedores, se refugia casualmente en la mansión de Norma Desmond, antigua estrella del cine mudo, que vive fuera de la realidad, acompañada únicamente de su fiel criado Max. A partir de ese momento, la actriz pretende que Joe corrija un guión que ella ha escrito y que va a significar su regreso al cine.",
+  "tagline": "Una historia de hollywood",
+  "puntaje": 8.3,
+  "votos": 3012,
+  "minutos": 110,
+  "generos": [
+   "Drama"
+  ],
+  "paises": [
+   "US"
+  ],
+  "idioma": "en",
+  "director": "Billy Wilder",
+  "directorId": 3146,
+  "reparto": [
+   "William Holden",
+   "Gloria Swanson",
+   "Erich von Stroheim",
+   "Nancy Olson",
+   "Fred Clark"
+  ],
+  "repartoIds": [
+   8252,
+   8629,
+   8630,
+   8631,
+   8632
+  ],
+  "popularidad": 13.8679,
+  "poster": "/sVILYytrnjsEXBcZyxHMJ5jP74t.jpg",
+  "backdrop": "/p47ihFj4A7EpBjmPHdTj4ipyq1S.jpg",
+  "proveedores": {
+   "suscripcion": [],
+   "gratis": [],
+   "alquiler": [
+    "Apple TV Store",
+    "Google Play Movies",
+    "Claro video",
+    "Amazon Video"
+   ]
+  },
+  "actualizado": "2026-09-06T04:48:41.415Z"
  }
 }
