@@ -85061,5 +85061,95 @@
    ]
   },
   "actualizado": "2026-09-06T04:48:41.415Z"
+ },
+ "Thief::1981": {
+  "tmdb": 11524,
+  "titulo": "Ladrón",
+  "original": "Thief",
+  "sinopsis": "Frank es un ladrón de joyas experto en el negocio de diamantes. Sin embargo, tras haber pasado algunos años en la cárcel, llega a la conclusión de que lo que realmente desea es abandonar su profesión y tener una agradable vida familiar. Pero antes tendrá que resolver ciertos problemas. Para acelerar el proceso interviene en un gran negocio en el que participa un gángster muy poderoso.",
+  "tagline": "Esta noche, el sueldo que lleva a casa son 410.000 dólares... libre de impuestos.",
+  "puntaje": 7.2,
+  "votos": 888,
+  "minutos": 123,
+  "generos": [
+   "Crimen",
+   "Suspense",
+   "Drama"
+  ],
+  "paises": [
+   "US"
+  ],
+  "idioma": "en",
+  "director": "Michael Mann",
+  "directorId": 638,
+  "reparto": [
+   "James Caan",
+   "Tuesday Weld",
+   "Robert Prosky",
+   "Willie Nelson",
+   "Jim Belushi"
+  ],
+  "repartoIds": [
+   3085,
+   4514,
+   10360,
+   8261,
+   26485
+  ],
+  "popularidad": 5.4479,
+  "poster": "/mAzubZQtH4GWiAgVheKwwpDIQ8.jpg",
+  "backdrop": "/3pYudqkEC8rkjqpBw8pqoLUtGHe.jpg",
+  "proveedores": {
+   "suscripcion": [
+    "MGM+ Apple TV Channel",
+    "MGM Plus Amazon Channel"
+   ],
+   "gratis": [],
+   "alquiler": []
+  },
+  "actualizado": "2026-09-06T11:05:34.527Z"
+ },
+ "Vanya on 42nd Street::1994": {
+  "tmdb": 32636,
+  "titulo": "Vania en la calle 42",
+  "original": "Vanya on 42nd Street",
+  "sinopsis": "El grupo de teatro de André Gregory se dispone a interpretar El Tio Vania, la famosa obra de Anton Chejov, en una adaptación del dramaturgo David Mamet. El teatro está abandonado y la compañía ha prescindido de la ambientación y del vestuario. Mientras, Louis Malle registra todo con la cámara. Es un planteamiento sencillo que introduce en la magia del teatro, donde los atores pasan de un momento a otro de ser personas a ser personajes, y donde cada línea de diálogo se vive con una intensidad imposible de encontrar en cualquier otro sitio",
+  "tagline": null,
+  "puntaje": 6.6,
+  "votos": 97,
+  "minutos": 123,
+  "generos": [
+   "Drama"
+  ],
+  "paises": [
+   "US",
+   "GB"
+  ],
+  "idioma": "en",
+  "director": "Louis Malle",
+  "directorId": 15389,
+  "reparto": [
+   "Wallace Shawn",
+   "Julianne Moore",
+   "Larry Pine",
+   "Brooke Smith",
+   "George Gaynes"
+  ],
+  "repartoIds": [
+   12900,
+   1231,
+   19511,
+   31649,
+   57351
+  ],
+  "popularidad": 1.932,
+  "poster": "/2mV0u67LAsFG2F80HCkrD6o6Sru.jpg",
+  "backdrop": "/llXsPTScDIdQjgsescQyKaIZA6l.jpg",
+  "proveedores": {
+   "suscripcion": [],
+   "gratis": [],
+   "alquiler": []
+  },
+  "actualizado": "2026-09-06T11:05:34.529Z"
  }
 }
