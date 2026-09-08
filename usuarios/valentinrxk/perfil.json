@@ -2,6 +2,14 @@
  "usuario": "valentinrxk",
  "diario": [
   {
+   "nombre": "Blade",
+   "anio": 1998,
+   "visto": "2026-09-08",
+   "rating": 3.5,
+   "rewatch": false,
+   "clave": "1488187918"
+  },
+  {
    "nombre": "Revenge",
    "anio": 2017,
    "visto": "2026-09-04",
@@ -2867,6 +2875,13 @@
   }
  ],
  "vistas": [
+  {
+   "nombre": "Blade",
+   "anio": 1998,
+   "slug": "blade",
+   "clave": "blade",
+   "uri": "https://letterboxd.com/film/blade/"
+  },
   {
    "nombre": "The Apartment",
    "anio": 1960,
@@ -10757,5 +10772,5 @@
    "orden": 291
   }
  ],
- "actualizado": "2026-09-06T11:05:10.957Z"
+ "actualizado": "2026-09-08T16:43:17.093Z"
 }

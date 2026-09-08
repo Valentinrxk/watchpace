@@ -85151,5 +85151,54 @@
    "alquiler": []
   },
   "actualizado": "2026-09-06T11:05:34.529Z"
+ },
+ "Blade::1998": {
+  "tmdb": 36647,
+  "titulo": "Blade",
+  "original": "Blade",
+  "sinopsis": "En un mundo cohabitado en guerra por hombres y vampiros Blade es un vampiro que, al contrario que el resto, no se alimenta de humanos, y que pretende acabar con la raza de \"seres superiores\" que mordieron a su madre cuando estaba embarazada.",
+  "tagline": "El poder de un inmortal. El alma de un humano. El corazón de un héroe.",
+  "puntaje": 6.9,
+  "votos": 6937,
+  "minutos": 120,
+  "generos": [
+   "Terror",
+   "Acción"
+  ],
+  "paises": [
+   "US"
+  ],
+  "idioma": "en",
+  "director": "Stephen Norrington",
+  "directorId": 10808,
+  "reparto": [
+   "Wesley Snipes",
+   "Stephen Dorff",
+   "Kris Kristofferson",
+   "N'Bushe Wright",
+   "Donal Logue"
+  ],
+  "repartoIds": [
+   10814,
+   10822,
+   10823,
+   10824,
+   10825
+  ],
+  "popularidad": 16.2918,
+  "poster": "/dCsTsFX4PT9wewpKYaddwPHYI3A.jpg",
+  "backdrop": "/7NKfxJrQn053UJeLftlx4m4NTzo.jpg",
+  "proveedores": {
+   "suscripcion": [
+    "Netflix",
+    "HBO Max"
+   ],
+   "gratis": [],
+   "alquiler": [
+    "Apple TV Store",
+    "Google Play Movies"
+   ]
+  },
+  "actualizado": "2026-09-08T16:43:17.963Z"
  }
 }
