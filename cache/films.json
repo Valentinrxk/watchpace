@@ -85200,5 +85200,47 @@
    ]
   },
   "actualizado": "2026-09-08T16:43:17.963Z"
+ },
+ "As Meninas::1995": {
+  "tmdb": 278460,
+  "titulo": "As Meninas",
+  "original": "As Meninas",
+  "sinopsis": "During the military dictatorship in Brazil, Lorena, Lia and Ana Clara, three university students of different social backgrounds and origins meet at a nun's pension in São Paulo. Besides their differences, they become close friends, sharing their dramas and dreams, helping each other until the day they have to separate permanently.",
+  "tagline": null,
+  "puntaje": 6.3,
+  "votos": 8,
+  "minutos": 92,
+  "generos": [
+   "Drama"
+  ],
+  "paises": [
+   "BR"
+  ],
+  "idioma": "pt",
+  "director": "Emiliano Ribeiro",
+  "directorId": 1328127,
+  "reparto": [
+   "Adriana Esteves",
+   "Drica Moraes",
+   "Cláudia Liz",
+   "Otávio Augusto",
+   "Camila Amado"
+  ],
+  "repartoIds": [
+   1241212,
+   112180,
+   1082560,
+   10062,
+   223337
+  ],
+  "popularidad": 1.1146,
+  "poster": "/7KzbrMCezMnPc1yWVZqlCfNebss.jpg",
+  "backdrop": "/qMvBrLTLSLOOkxdqHxtGlTktbOl.jpg",
+  "proveedores": {
+   "suscripcion": [],
+   "gratis": [],
+   "alquiler": []
+  },
+  "actualizado": "2026-09-09T13:00:36.910Z"
  }
 }
