@@ -85370,5 +85370,51 @@
    "alquiler": []
   },
   "actualizado": "2026-09-10T07:22:45.114Z"
+ },
+ "Certain Women::2016": {
+  "tmdb": 340487,
+  "titulo": "Vidas de mujer",
+  "original": "Certain Women",
+  "sinopsis": "Las vidas de tres mujeres se cruzan en un pequeño pueblo de Estados Unidos, donde cada una está intentando abrirse camino sin demasiado éxito.",
+  "tagline": null,
+  "puntaje": 6,
+  "votos": 392,
+  "minutos": 107,
+  "generos": [
+   "Drama"
+  ],
+  "paises": [
+   "US"
+  ],
+  "idioma": "en",
+  "director": "Kelly Reichardt",
+  "directorId": 56383,
+  "reparto": [
+   "Laura Dern",
+   "Kristen Stewart",
+   "Michelle Williams",
+   "Lily Gladstone",
+   "James Le Gros"
+  ],
+  "repartoIds": [
+   4784,
+   37917,
+   1812,
+   1183917,
+   6474
+  ],
+  "popularidad": 3.7631,
+  "poster": "/tSp71Tp9kHSfw0ELJz7U4NpwVeV.jpg",
+  "backdrop": "/rq63u5290HJ6k42J5Mfi8KNu8Rl.jpg",
+  "proveedores": {
+   "suscripcion": [
+    "Sony One Amazon Channel"
+   ],
+   "gratis": [],
+   "alquiler": [
+    "Claro video"
+   ]
+  },
+  "actualizado": "2026-09-10T17:44:28.089Z"
  }
 }
