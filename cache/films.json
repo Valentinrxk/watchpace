@@ -85242,5 +85242,133 @@
    "alquiler": []
   },
   "actualizado": "2026-09-09T13:00:36.910Z"
+ },
+ "Boys::2018": {
+  "tmdb": 548537,
+  "titulo": "Jonas",
+  "original": "Jonas",
+  "sinopsis": "Cuando Jonas tenía 14 años, conoció al carismático pero misterioso Nathan. Además de guiarlo en su sexualidad, Jonas pronto enfrenta algo oscuro e incluso peligroso acerca de su nuevo amigo. Ahora, un adulto atractivo y sexualmente seguro, los recuerdos todavía lo persiguen. Tratando frenéticamente de juntar las piezas faltantes, Jonas está decidido a romper las cadenas del pasado y finalmente liberarse.",
+  "tagline": null,
+  "puntaje": 6.8,
+  "votos": 278,
+  "minutos": 82,
+  "generos": [
+   "Drama",
+   "Romance",
+   "Película de TV"
+  ],
+  "paises": [
+   "FR"
+  ],
+  "idioma": "fr",
+  "director": "Christophe Charrier",
+  "directorId": 2128823,
+  "reparto": [
+   "Félix Maritaud",
+   "Nicolas Bauwens",
+   "Tommy Lee Baïk",
+   "Aure Atika",
+   "Ilian Bergala"
+  ],
+  "repartoIds": [
+   1871353,
+   2128822,
+   1588620,
+   19116,
+   1387016
+  ],
+  "popularidad": 2.4147,
+  "poster": "/jCoiHmqJPOyyk4dM7hwuFl44cWH.jpg",
+  "backdrop": "/9SoO0ip0hCgtiYFffxYDTE7xzXh.jpg",
+  "proveedores": {
+   "suscripcion": [],
+   "gratis": [],
+   "alquiler": []
+  },
+  "actualizado": "2026-09-10T07:22:44.986Z"
+ },
+ "Souvenir::2026": {
+  "tmdb": 1556709,
+  "titulo": "Souvenir",
+  "original": "Souvenir",
+  "sinopsis": "A chance encounter between old friends Kevin and Dani leads to an unexpected day-long adventure through New York City as they attempt to return a stranger’s lost wallet, forcing them to confront unresolved feelings and life-changing decisions.",
+  "tagline": null,
+  "puntaje": null,
+  "votos": 0,
+  "minutos": null,
+  "generos": [
+   "Comedia"
+  ],
+  "paises": [
+   "US"
+  ],
+  "idioma": "en",
+  "director": "David Ketterer Spencer",
+  "directorId": 3173857,
+  "reparto": [
+   "Ruby Cruz",
+   "Eric Berryman",
+   "Janeane Garofalo",
+   "Mozhan Navabi",
+   "Laith Nakli"
+  ],
+  "repartoIds": [
+   2806036,
+   1620981,
+   21197,
+   81839,
+   164465
+  ],
+  "popularidad": 2.0339,
+  "poster": "/kSPpY1A1x7iRHCU5ywzbNHtn4T.jpg",
+  "backdrop": null,
+  "proveedores": {
+   "suscripcion": [],
+   "gratis": [],
+   "alquiler": []
+  },
+  "actualizado": "2026-09-10T07:22:45.093Z"
+ },
+ "WWJD?::2024": {
+  "tmdb": 1187967,
+  "titulo": "WWJD?",
+  "original": "WWJD?",
+  "sinopsis": "Three LA girls, dragging the body of the man they accidentally ran over with their car through the desert, fight about the most politically correct way to dispose of the corpse.",
+  "tagline": null,
+  "puntaje": 7.5,
+  "votos": 4,
+  "minutos": 13,
+  "generos": [
+   "Comedia"
+  ],
+  "paises": [
+   "US"
+  ],
+  "idioma": "en",
+  "director": "Dempsey Bryk",
+  "directorId": 1844055,
+  "reparto": [
+   "Ruby Cruz",
+   "Abby Quinn",
+   "Katie Douglas",
+   "Tony Revolori",
+   "Zho Davis"
+  ],
+  "repartoIds": [
+   2806036,
+   1473432,
+   1183993,
+   1291350,
+   4913776
+  ],
+  "popularidad": 1.2188,
+  "poster": "/wBPkVTPGrCKbibW26Nek7akWREa.jpg",
+  "backdrop": "/1bkAjvYsVtSZPPttTHiq6EZoxyF.jpg",
+  "proveedores": {
+   "suscripcion": [],
+   "gratis": [],
+   "alquiler": []
+  },
+  "actualizado": "2026-09-10T07:22:45.114Z"
  }
 }
