@@ -85416,5 +85416,50 @@
    ]
   },
   "actualizado": "2026-09-10T17:44:28.089Z"
+ },
+ "Wings of Desire::1987": {
+  "tmdb": 144,
+  "titulo": "El cielo sobre Berlín",
+  "original": "Der Himmel über Berlin",
+  "sinopsis": "Dos ángeles sobrevuelan Berlín, ciudad dividida por el \"muro de la vergüenza\". Sólo son visibles para los niños y los hombres de corazón puro. Testigos impotentes que no pueden cambiar el curso de los acontecimientos, sienten una gran compasión por los seres humanos. Uno de ellos, decidido a conocer los sentimientos de los mortales, se enamora de una joven trapecista.",
+  "tagline": "Hay ángeles en las calles de Berlín.",
+  "puntaje": 7.8,
+  "votos": 1531,
+  "minutos": 128,
+  "generos": [
+   "Drama",
+   "Fantasía",
+   "Romance"
+  ],
+  "paises": [
+   "DE",
+   "FR"
+  ],
+  "idioma": "de",
+  "director": "Wim Wenders",
+  "directorId": 2303,
+  "reparto": [
+   "Bruno Ganz",
+   "Solveig Dommartin",
+   "Otto Sander",
+   "Curt Bois",
+   "Peter Falk"
+  ],
+  "repartoIds": [
+   2310,
+   2312,
+   2311,
+   2313,
+   2314
+  ],
+  "popularidad": 4.5614,
+  "poster": "/3BUvkcxlIjrZN0wlgIK0cB8rAtp.jpg",
+  "backdrop": "/7TlGXrB4WQ3wbpOCUQnBXseCuOl.jpg",
+  "proveedores": {
+   "suscripcion": [],
+   "gratis": [],
+   "alquiler": []
+  },
+  "actualizado": "2026-09-13T12:01:00.303Z"
  }
 }
