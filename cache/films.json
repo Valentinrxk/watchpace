@@ -85461,5 +85461,49 @@
    "alquiler": []
   },
   "actualizado": "2026-09-13T12:01:00.303Z"
+ },
+ "East of Eden::1955": {
+  "tmdb": 220,
+  "titulo": "Al este del Edén",
+  "original": "East of Eden",
+  "sinopsis": "Un granjero californiano tiene dos hijos, Cal y Aron, de caracteres muy diferentes, pero ambos compiten por el cariño de su padre. La situación de Cal se complica cuando averigua que, en realidad, su madre no sólo no está muerta, sino que además regenta un local de alterne.",
+  "tagline": "¡Por lo que una chica hizo... lo que un chico hizo... de éxtasis y venganza!",
+  "puntaje": 7.5,
+  "votos": 833,
+  "minutos": 115,
+  "generos": [
+   "Drama"
+  ],
+  "paises": [
+   "US"
+  ],
+  "idioma": "en",
+  "director": "Elia Kazan",
+  "directorId": 2746,
+  "reparto": [
+   "James Dean",
+   "Julie Harris",
+   "Raymond Massey",
+   "Richard Davalos",
+   "Jo Van Fleet"
+  ],
+  "repartoIds": [
+   2749,
+   2750,
+   2669,
+   2751,
+   2752
+  ],
+  "popularidad": 5.7425,
+  "poster": "/scR9IoLj0zGwR5d3yc0NyjsjYsw.jpg",
+  "backdrop": "/u7i1XtbOubq0xwRy2Zbgmox6g9W.jpg",
+  "proveedores": {
+   "suscripcion": [],
+   "gratis": [],
+   "alquiler": [
+    "Apple TV Store"
+   ]
+  },
+  "actualizado": "2026-09-13T20:55:40.751Z"
  }
 }
