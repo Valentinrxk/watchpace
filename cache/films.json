@@ -85505,5 +85505,50 @@
    ]
   },
   "actualizado": "2026-09-13T20:55:40.751Z"
+ },
+ "Piranha 3D::2010": {
+  "tmdb": 43593,
+  "titulo": "Piraña 3D",
+  "original": "Piranha 3D",
+  "sinopsis": "El lago Victoria (Arizona) es un lugar que se llena de gente joven durante las vacaciones de primavera. De repente, se producen una serie de temblores submarinos que liberan unos peces prehistóricos antropófagos. Todos deberán unir sus fuerzas para sobrevivir a estas criaturas. Remake del clásico de terror dirigido por Joe Dante",
+  "tagline": "Mar, sexo y sangre.",
+  "puntaje": 5.4,
+  "votos": 2457,
+  "minutos": 89,
+  "generos": [
+   "Comedia",
+   "Terror"
+  ],
+  "paises": [
+   "US"
+  ],
+  "idioma": "en",
+  "director": "Alexandre Aja",
+  "directorId": 59291,
+  "reparto": [
+   "Elisabeth Shue",
+   "Jerry O'Connell",
+   "Steven R. McQueen",
+   "Jessica Szohr",
+   "Kelly Brook"
+  ],
+  "repartoIds": [
+   1951,
+   3035,
+   88699,
+   130782,
+   38561
+  ],
+  "popularidad": 7.5504,
+  "poster": "/lIodGaZNJbbShF5bDgf51cqpAKa.jpg",
+  "backdrop": "/AF0PiDItegyUtlBGDMGlSQbtro.jpg",
+  "proveedores": {
+   "suscripcion": [
+    "MovistarTV"
+   ],
+   "gratis": [],
+   "alquiler": []
+  },
+  "actualizado": "2026-09-14T13:00:06.049Z"
  }
 }
