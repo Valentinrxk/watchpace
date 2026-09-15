@@ -85550,5 +85550,93 @@
    "alquiler": []
   },
   "actualizado": "2026-09-14T13:00:06.049Z"
+ },
+ "Female Prisoner Scorpion: Beast Stable::1973": {
+  "tmdb": 35282,
+  "titulo": "Female Prisoner Scorpion: Beast Stable",
+  "original": "女囚さそり けもの部屋",
+  "sinopsis": "Tras lograr fugarse de prisión, busca a su amiga Yuki para esconderse con ella un tiempo. En la huida mutilará a un policía, que pondrá todo su empeño en vengarse y acabar con Nami. Tercera entrega de la saga Sasori.",
+  "tagline": null,
+  "puntaje": 6.8,
+  "votos": 82,
+  "minutos": 73,
+  "generos": [
+   "Drama",
+   "Acción",
+   "Suspense"
+  ],
+  "paises": [
+   "JP"
+  ],
+  "idioma": "ja",
+  "director": "伊藤俊也",
+  "directorId": 107563,
+  "reparto": [
+   "梶芽衣子",
+   "成田三樹夫",
+   "李麗仙",
+   "渡辺やよい",
+   "佐藤晟也"
+  ],
+  "repartoIds": [
+   25461,
+   81277,
+   553327,
+   1098546,
+   138438
+  ],
+  "popularidad": 1.7908,
+  "poster": "/nsAPrsFddO0jB8EWMIAZtmrGyy5.jpg",
+  "backdrop": "/3QHESiate2Gou0kcZQAUeLrptmW.jpg",
+  "proveedores": {
+   "suscripcion": [],
+   "gratis": [],
+   "alquiler": []
+  },
+  "actualizado": "2026-09-15T21:28:13.013Z"
+ },
+ "Female Prisoner Scorpion: Jailhouse 41::1972": {
+  "tmdb": 39872,
+  "titulo": "Female Prisoner Scorpion: Jailhouse 41",
+  "original": "女囚さそり 第41雑居房",
+  "sinopsis": "Tras cumplir su venganza y acabar con Sugimi, Matsu es enviada nuevamente a prisión donde pasará mucho tiempo aislada. Un día tras ser violada por unos guardias por orden del director, escapará con otras reclusas, y buscará vengarse del alcaide. Segunda entrega de la saga Sasori.",
+  "tagline": null,
+  "puntaje": 7.1,
+  "votos": 118,
+  "minutos": 90,
+  "generos": [
+   "Acción",
+   "Drama",
+   "Suspense"
+  ],
+  "paises": [
+   "JP"
+  ],
+  "idioma": "ja",
+  "director": "伊藤俊也",
+  "directorId": 107563,
+  "reparto": [
+   "梶芽衣子",
+   "Fumio Watanabe",
+   "白石加代子",
+   "荒砂ゆき",
+   "伊佐山ひろ子"
+  ],
+  "repartoIds": [
+   25461,
+   224662,
+   551651,
+   134815,
+   229408
+  ],
+  "popularidad": 1.8639,
+  "poster": "/mVmtfl3YJc04BJKy6PcFnol0RZG.jpg",
+  "backdrop": "/gpttyaLQTVfHDYxAuJjzJdFLbbT.jpg",
+  "proveedores": {
+   "suscripcion": [],
+   "gratis": [],
+   "alquiler": []
+  },
+  "actualizado": "2026-09-15T21:28:13.039Z"
  }
 }
