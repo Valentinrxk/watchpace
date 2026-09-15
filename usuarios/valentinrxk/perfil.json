@@ -2,6 +2,14 @@
  "usuario": "valentinrxk",
  "diario": [
   {
+   "nombre": "Akira",
+   "anio": 1988,
+   "visto": "2026-09-14",
+   "rating": 5,
+   "rewatch": true,
+   "clave": "1496761857"
+  },
+  {
    "nombre": "Zoolander",
    "anio": 2001,
    "visto": "2026-09-13",
@@ -10764,5 +10772,5 @@
    "orden": 289
   }
  ],
- "actualizado": "2026-09-14T12:59:41.466Z"
+ "actualizado": "2026-09-15T05:01:12.208Z"
 }
