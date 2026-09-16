@@ -85638,5 +85638,105 @@
    "alquiler": []
   },
   "actualizado": "2026-09-15T21:28:13.039Z"
+ },
+ "Night at the Museum::2006": {
+  "tmdb": 1593,
+  "titulo": "Noche en el museo",
+  "original": "Night at the Museum",
+  "sinopsis": "Un padre divorciado trata de establecerse, impresionar a su hijo y encontrar su destino. Él se presenta para un trabajo como vigilante nocturno en el Museo Americano de Historia Natural de la ciudad de Nueva York y, posteriormente, descubre que los objetos expuestos, animados por un artefacto mágico de Egipto, vuelven a la vida durante la noche. Al principio le va muy mal tratando de mantener el orden y la calma en el museo, pero al final se vuelve muy buen amigo de todos y juntos ayudan a recuperar aquel artefacto mágico egipcio, ya que ha sido robado por los antiguos vigilantes del museo.",
+  "tagline": "Donde la historia cobra vida",
+  "puntaje": 6.6,
+  "votos": 11196,
+  "minutos": 108,
+  "generos": [
+   "Fantasía",
+   "Familia",
+   "Comedia"
+  ],
+  "paises": [
+   "US",
+   "GB"
+  ],
+  "idioma": "en",
+  "director": "Shawn Levy",
+  "directorId": 17825,
+  "reparto": [
+   "Ben Stiller",
+   "Carla Gugino",
+   "Dick Van Dyke",
+   "Mickey Rooney",
+   "Bill Cobbs"
+  ],
+  "repartoIds": [
+   7399,
+   17832,
+   61303,
+   1937,
+   8854
+  ],
+  "popularidad": 12.0813,
+  "poster": "/1Esw7HZUmHzDeJIZq4ZmTZrhunT.jpg",
+  "backdrop": "/1ZVlzOBYCggLzvVYHK7Im6LohjC.jpg",
+  "proveedores": {
+   "suscripcion": [
+    "Netflix",
+    "Apple TV",
+    "Disney Plus",
+    "Apple TV Amazon Channel"
+   ],
+   "gratis": [],
+   "alquiler": [
+    "Google Play Movies"
+   ]
+  },
+  "actualizado": "2026-09-16T18:14:03.578Z"
+ },
+ "The Brother from Another Planet::1984": {
+  "tmdb": 26889,
+  "titulo": "El hermano de otro planeta",
+  "original": "The Brother from Another Planet",
+  "sinopsis": "Narra la historia de un extraterrestre perdido en la ciudad de Nueva York, a quienes los vecinos le apodarán \"El Hermano\". Gracias a su ayuda, así como el empleo de sus poderes, conseguirá adaptarse como un ciudadano más, reparando máquinas de videojuegos, mientras es perseguido por unos hombres de negro. (FILMAFFINITY)",
+  "tagline": null,
+  "puntaje": 6.7,
+  "votos": 102,
+  "minutos": 108,
+  "generos": [
+   "Comedia",
+   "Ciencia ficción",
+   "Drama"
+  ],
+  "paises": [
+   "US"
+  ],
+  "idioma": "en",
+  "director": "John Sayles",
+  "directorId": 102445,
+  "reparto": [
+   "Joe Morton",
+   "Rosanna Carter",
+   "Ray Ramirez",
+   "Yves Rene",
+   "Peter Richardson"
+  ],
+  "repartoIds": [
+   3977,
+   96536,
+   74839,
+   96537,
+   3233498
+  ],
+  "popularidad": 2.2188,
+  "poster": "/1swwvFItseptOY7jcGlYOdV2Lea.jpg",
+  "backdrop": "/tyxq6nV8hBqWdw0ht90h33koyuf.jpg",
+  "proveedores": {
+   "suscripcion": [
+    "Artiflix"
+   ],
+   "gratis": [
+    "Plex"
+   ],
+   "alquiler": []
+  },
+  "actualizado": "2026-09-16T18:14:03.655Z"
  }
 }
