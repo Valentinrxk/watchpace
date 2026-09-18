@@ -85780,5 +85780,51 @@
    "alquiler": []
   },
   "actualizado": "2026-09-16T21:25:06.065Z"
+ },
+ "Resident Evil::2026": {
+  "tmdb": 1423191,
+  "titulo": "Resident Evil",
+  "original": "Resident Evil",
+  "sinopsis": "Película basada en la saga de videojuegos de Capcom del mismo nombre. En una reinvención totalmente nueva, el mensajero médico Bryan se ve inmerso en una carrera de acción sin descanso por la supervivencia, mientras el caos se desata a su alrededor.",
+  "tagline": null,
+  "puntaje": 7.8,
+  "votos": 55,
+  "minutos": 93,
+  "generos": [
+   "Terror",
+   "Ciencia ficción",
+   "Aventura"
+  ],
+  "paises": [
+   "US",
+   "DE",
+   "FR"
+  ],
+  "idioma": "en",
+  "director": "Zach Cregger",
+  "directorId": 84833,
+  "reparto": [
+   "Austin Abrams",
+   "Zach Cherry",
+   "Kali Reis",
+   "Paul Walter Hauser",
+   "Johnno Wilson"
+  ],
+  "repartoIds": [
+   148992,
+   1838225,
+   3119545,
+   1294982,
+   1169291
+  ],
+  "popularidad": 243.9374,
+  "poster": "/3d8D5tZXiPUE2VmRjnrTNzFORBa.jpg",
+  "backdrop": "/1CIaRYKf3zg2Xyce1CSfCMg2Vfw.jpg",
+  "proveedores": {
+   "suscripcion": [],
+   "gratis": [],
+   "alquiler": []
+  },
+  "actualizado": "2026-09-18T11:26:26.281Z"
  }
 }
