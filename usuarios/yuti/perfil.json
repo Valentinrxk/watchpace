@@ -2,6 +2,14 @@
  "usuario": "yuti",
  "diario": [
   {
+   "nombre": "Resident Evil",
+   "anio": 2026,
+   "visto": "2026-09-21",
+   "rating": 3,
+   "rewatch": false,
+   "clave": "1505222324"
+  },
+  {
    "nombre": "The Apartment",
    "anio": 1960,
    "visto": "2026-09-05",
@@ -3555,6 +3563,13 @@
   }
  ],
  "vistas": [
+  {
+   "nombre": "Resident Evil",
+   "anio": 2026,
+   "slug": "resident-evil-2026",
+   "clave": "resident-evil-2026",
+   "uri": "https://letterboxd.com/film/resident-evil-2026/"
+  },
   {
    "nombre": "The Apartment",
    "anio": 1960,
@@ -12425,5 +12440,5 @@
    "orden": 480
   }
  ],
- "actualizado": "2026-09-21T12:59:08.286Z"
+ "actualizado": "2026-09-21T19:33:10.523Z"
 }
