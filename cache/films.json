@@ -85826,5 +85826,51 @@
    "alquiler": []
   },
   "actualizado": "2026-09-18T11:26:26.281Z"
+ },
+ "Ballad of a Small Player::2025": {
+  "tmdb": 1272166,
+  "titulo": "Maldita suerte",
+  "original": "Ballad of a Small Player",
+  "sinopsis": "En los deslumbrantes casinos de Macao, un jugador que huye de su pasado queda fascinado por una enigmática mujer en la mesa de bacará.",
+  "tagline": null,
+  "puntaje": 5.8,
+  "votos": 358,
+  "minutos": 101,
+  "generos": [
+   "Crimen",
+   "Drama"
+  ],
+  "paises": [
+   "DE",
+   "GB"
+  ],
+  "idioma": "en",
+  "director": "Edward Berger",
+  "directorId": 221522,
+  "reparto": [
+   "Colin Farrell",
+   "Fala Chen",
+   "Tilda Swinton",
+   "葉德嫻",
+   "Alex Jennings"
+  ],
+  "repartoIds": [
+   72466,
+   123701,
+   3063,
+   87840,
+   15739
+  ],
+  "popularidad": 9.8941,
+  "poster": "/jd4p4omMZIywNP5vYbrPUfL1phX.jpg",
+  "backdrop": "/cc48kfehVAkgG73BsPcFLMoxa8h.jpg",
+  "proveedores": {
+   "suscripcion": [
+    "Netflix"
+   ],
+   "gratis": [],
+   "alquiler": []
+  },
+  "actualizado": "2026-09-22T05:08:05.880Z"
  }
 }
