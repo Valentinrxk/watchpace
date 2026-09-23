@@ -85872,5 +85872,51 @@
    "alquiler": []
   },
   "actualizado": "2026-09-22T05:08:05.880Z"
+ },
+ "Godzilla Minus One::2023": {
+  "tmdb": 940721,
+  "titulo": "Godzilla Minus One",
+  "original": "ゴジラ-1.0",
+  "sinopsis": "En el Japón de la posguerra, Godzilla trae una nueva devastación a un paisaje ya abrasado. Sin intervención militar ni ayuda gubernamental a la vista, los supervivientes deben unirse frente a la desesperación y luchar contra un horror implacable.",
+  "tagline": null,
+  "puntaje": 7.6,
+  "votos": 3431,
+  "minutos": 125,
+  "generos": [
+   "Ciencia ficción",
+   "Terror",
+   "Acción"
+  ],
+  "paises": [
+   "JP"
+  ],
+  "idioma": "ja",
+  "director": "Takashi Yamazaki",
+  "directorId": 43652,
+  "reparto": [
+   "Ryunosuke Kamiki",
+   "浜辺美波",
+   "山田裕貴",
+   "Munetaka Aoki",
+   "吉岡秀隆"
+  ],
+  "repartoIds": [
+   225730,
+   1516266,
+   1161474,
+   111640,
+   111691
+  ],
+  "popularidad": 20.8416,
+  "poster": "/q35kdC8ci9Fm2gVQazJdsohtGpD.jpg",
+  "backdrop": "/oHBhHoNe59VH6bUMazDtJmWOFSS.jpg",
+  "proveedores": {
+   "suscripcion": [
+    "Netflix"
+   ],
+   "gratis": [],
+   "alquiler": []
+  },
+  "actualizado": "2026-09-23T07:49:50.948Z"
  }
 }
