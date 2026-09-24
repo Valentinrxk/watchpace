@@ -2,7 +2,7 @@
 <html lang="es" style="background: #cfd0d6">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 <meta name="theme-color" content="#cfd0d6" />
 <title>watchpace</title>
@@ -19,6 +19,7 @@
   --silver-100:#e6e7eb; --silver-200:#dadbe0; --silver-300:#cfd0d6; --silver-400:#bfc0c7;
   --silver-500:#a6a7af; --steel-600:#75767f; --steel-700:#4c4d55; --steel-800:#35353c;
   --graphite:#232327; --red:#e10600; --bordo:#6d0f16;
+  --red-luz:#ff5a52; --tinta-velo:10,10,12; --texto-velo:#f1f1f3;
   --color-bg:var(--silver-300); --color-text:var(--graphite); --color-text-dim:var(--steel-600);
   --color-border:rgba(35,35,39,.18); --color-border-strong:rgba(35,35,39,.38);
   --surface:rgba(230,231,235,.55); --hud-bg:rgba(230,231,235,.92);
@@ -429,15 +430,90 @@ section + section { margin-top:4.5rem; }
 .soy { text-align:center; margin-top:1.3rem; opacity:.55; }
 .soy__cambiar { font:inherit; letter-spacing:inherit; text-transform:inherit; color:inherit; background:none; border:0; padding:0; text-decoration:underline; cursor:pointer; }
 .soy__cambiar:hover { color:var(--red); }
-.adv__ops { display:flex; flex-wrap:wrap; gap:.4rem; justify-content:center; margin-top:1.5rem; }
-.adv__ops .chip { min-width:3.2rem; }
-.adv__ops .chip:disabled { cursor:default; opacity:.4; }
-.adv__ops .chip.on, .adv__ops .chip.adv__real { opacity:1; }
-.adv__ops .chip.adv__real { border-color:var(--red); color:var(--red); font-weight:700; }
-.adv__veredicto { text-align:center; margin-top:1.3rem; }
+.juego { max-width:30rem; margin:0 auto; display:flex; flex-direction:column; gap:1rem; }
+.juego__pie { text-align:center; opacity:.7; }
+.juego__pista { text-align:center; opacity:.45; font-size:.6rem; margin-top:-.35rem; }
+.juego__barra { display:flex; gap:.6rem; padding:.8rem 0; }
+.juego__barra .btn { flex:1; min-height:3.25rem; font-size:.8rem; text-align:center; }
+/* sin nota elegida el boton no invita: borde y nada mas */
+.juego__barra .btn:disabled { background:none; border-color:var(--color-border-strong); color:var(--color-text-dim); cursor:default; }
+.juego .soy { margin-top:0; }
+
+/* la tarjeta de los juegos: la tapa entera y el texto encima */
+.jc__mazo { display:grid; justify-items:center; position:relative; }
+.jc__mazo > * { grid-area:1/1; }
+.jc {
+  position:relative; overflow:hidden; aspect-ratio:2/3; max-width:100%;
+  height:min(56vh, 34rem); height:min(56svh, 34rem);
+  border:1px solid var(--color-border-strong); background:var(--skel);
+  cursor:pointer; user-select:none; -webkit-user-select:none; touch-action:pan-y;
+  --si:0; --no:0;
+}
+.jc--bajo { height:min(38vh, 22rem); height:min(38svh, 22rem); align-self:center; }
+.jc__img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; pointer-events:none; }
+.jc__velo { position:absolute; inset:0; pointer-events:none; background:linear-gradient(to top, rgba(var(--tinta-velo),.92) 0%, rgba(var(--tinta-velo),.55) 32%, transparent 60%); }
+.jc__texto { position:absolute; left:0; right:0; bottom:0; padding:1.1rem; color:var(--texto-velo); pointer-events:none; }
+.jc__arriba { color:var(--red-luz); font-weight:700; font-size:.625rem; margin-bottom:.35rem; }
+.jc__t { font-size:clamp(1.45rem, 6.5vw, 2rem); font-weight:700; letter-spacing:-.04em; line-height:1.02; overflow-wrap:anywhere; }
+.jc--bajo .jc__t { font-size:clamp(1.15rem, 5vw, 1.5rem); }
+.jc__sub { margin-top:.45rem; font-size:.78rem; opacity:.78; }
+.jc__donde { color:var(--red-luz); }
+.jc--arriba { z-index:1; }
+.jc--atras { transform:scale(.94) translateY(.7rem); opacity:.6; pointer-events:none; }
+.jc--sube { animation:jc-sube .28s var(--expo) both; }
+@keyframes jc-sube { from { transform:scale(.94) translateY(.7rem); opacity:.6; } }
+.jc__sello {
+  position:absolute; top:1.3rem; padding:.25rem .8rem; border:3px solid; pointer-events:none;
+  font-weight:700; font-size:1.7rem; letter-spacing:.08em; text-transform:uppercase;
+}
+.jc__sello--si { left:1rem; color:var(--red-luz); transform:rotate(-12deg); opacity:var(--si); }
+.jc__sello--no { right:1rem; color:var(--texto-velo); transform:rotate(12deg); opacity:var(--no); }
+.jc--si { --si:1; } .jc--no { --no:1; }
+.jc__festejo {
+  z-index:2; align-self:center; justify-self:stretch; text-align:center; pointer-events:none;
+  background:rgba(var(--tinta-velo),.82); color:var(--texto-velo); padding:1.6rem 1rem;
+  animation:jc-festejo 2.6s var(--expo) both;
+}
+.jc__festejo b { display:block; color:var(--red-luz); font-size:2.6rem; letter-spacing:-.05em; line-height:1; }
+@keyframes jc-festejo { 0% { opacity:0; transform:scale(.8); } 12%, 75% { opacity:1; transform:none; } 100% { opacity:0; } }
+
+/* estrellas como las de letterboxd: se tocan o se arrastran, de a media */
+.estrellas { position:relative; display:inline-block; align-self:center; font-size:3.3rem; line-height:1; padding:.15rem 0; touch-action:none; cursor:pointer; user-select:none; -webkit-user-select:none; }
+.estrellas i { display:inline-block; width:1em; text-align:center; font-style:normal; }
+.estrellas__base { color:var(--silver-500); white-space:nowrap; }
+.estrellas__llenas { position:absolute; top:.15rem; left:0; overflow:hidden; white-space:nowrap; color:var(--red); pointer-events:none; }
+.estrellas:focus-visible { outline:1px solid var(--red); outline-offset:4px; }
+.estrellas--fijas { font-size:1.45rem; padding:0; cursor:default; touch-action:auto; }
+.estrellas--fijas .estrellas__llenas { top:0; }
+.estrellas--tuyas .estrellas__llenas { color:var(--color-text); }
+.adv__q { text-align:center; font-size:1.15rem; font-weight:700; letter-spacing:-.02em; }
+.adv__valor { text-align:center; opacity:.6; margin-top:-.5rem; min-height:1.2em; }
+.adv__res { display:grid; grid-template-columns:auto auto; gap:.35rem .8rem; align-items:center; justify-content:center; }
+.adv__res .caps { text-align:right; opacity:.7; }
+.adv__veredicto { text-align:center; }
 .adv__veredicto .hito__t { font-size:1.35rem; }
 .adv__veredicto--si .hito__t { color:var(--red); }
 .matches { display:grid; grid-template-columns:repeat(auto-fill,minmax(min(260px,100%),1fr)); gap:.9rem; }
+#modos { position:relative; }
+@media (max-width:640px) {
+  /* ocho modos en tres renglones empujaban el juego fuera de la pantalla:
+     en el telefono van en una fila que se desliza */
+  #modos {
+    flex-wrap:nowrap; overflow-x:auto; scrollbar-width:none; overscroll-behavior-x:contain;
+    -webkit-mask-image:linear-gradient(to right, #000 82%, transparent);
+    mask-image:linear-gradient(to right, #000 82%, transparent);
+  }
+  #modos::-webkit-scrollbar { display:none; }
+  #modos .chip { flex:none; padding:.5rem .85rem; }
+  /* los botones van abajo, donde llega el pulgar, y se quedan ahi mientras
+     la tarjeta este en pantalla */
+  .juego__barra {
+    position:sticky; bottom:0; z-index:5;
+    padding-bottom:calc(.8rem + env(safe-area-inset-bottom));
+    background:linear-gradient(to bottom, transparent, var(--color-bg) 38%);
+  }
+  .matches { grid-template-columns:1fr 1fr; gap:.5rem; }
+}
 
 /* --- lo nuestro --- */
 .nu__primera { display:grid; grid-template-columns:auto 1fr; gap:1.5rem; align-items:center; border:1px solid var(--color-border-strong); background:var(--surface); padding:1.4rem; position:relative; overflow:hidden; cursor:pointer; }
@@ -917,6 +993,18 @@ const pintarJuntos = () => {
 
   const z = $("zonaJuntos");
 
+  /* en el telefono, tocar un modo lleva la pantalla hasta el: con el
+     encabezado arriba el juego quedaba a mitad de pantalla para abajo */
+  const entra = modoPintado !== data.modo;
+  modoPintado = data.modo;
+  const modos = $("modos"), activo = modos.querySelector(".on");
+  if (activo) modos.scrollLeft = activo.offsetLeft - (modos.clientWidth - activo.offsetWidth) / 2;
+  if (irAlModo && esTelefono()) {
+    irAlModo = false;
+    requestAnimationFrame(() => scrollTo({ top: modos.getBoundingClientRect().top + scrollY - 58, behavior: suave ? "auto" : "smooth" }));
+  }
+
+
   if (data.plan) {
     z.innerHTML = `<div class="aviso enter"><div class="caps">esta noche ven</div>
       <div class="hero__t" style="margin:.5rem 0 1.2rem">${esc(data.plan.nombre)}</div>
@@ -939,8 +1027,8 @@ const pintarJuntos = () => {
     return;
   }
 
-  if (data.modo === "match") return pintarMatch(z);
-  if (data.modo === "adivina") return pintarAdivina(z);
+  if (data.modo === "match") return pintarMatch(z, entra);
+  if (data.modo === "adivina") return pintarAdivina(z, entra);
 
   if (data.modo === "ruleta") {
     z.innerHTML = `<div class="ruleta enter">
@@ -1174,47 +1262,130 @@ const pieSoy = (yo) => `<div class="caps soy">sos ${esc(yo.nombre)} · <button c
 
 /* notas de letterboxd: de a media estrella */
 const notaLarga = (n) => (n == null ? "—" : "★".repeat(Math.floor(n)) + (n % 1 ? "½" : ""));
-const notaCorta = (n) => `★${Math.floor(n) || ""}${n % 1 ? "½" : ""}`;
+const CINCO = "<i>★</i>".repeat(5);
+const estrellasFijas = (v, tuyas = false) =>
+  `<span class="estrellas estrellas--fijas${tuyas ? " estrellas--tuyas" : ""}"><span class="estrellas__base">${CINCO}</span><span class="estrellas__llenas" style="width:${v * 20}%">${CINCO}</span></span>`;
+
+/* los juegos se piensan para el telefono: tapa grande, botones abajo */
+const TAPA_GRANDE = "https://image.tmdb.org/t/p/w500";
+const esTelefono = () => matchMedia("(max-width:640px)").matches;
+let modoPintado = null, irAlModo = false;
+
+const cartaJuego = (f, { arriba = "", sub = "", clase = "", sellos = false } = {}) => `
+  <div class="jc ${clase}" data-peli="${esc(f.nombre)}" data-anio="${f.anio}">
+    ${f.poster ? `<img class="jc__img" src="${TAPA_GRANDE}${f.poster}" alt="" draggable="false" onerror="this.remove()">` : ""}
+    <div class="jc__velo"></div>
+    <div class="jc__texto">
+      ${arriba ? `<div class="caps jc__arriba">${arriba}</div>` : ""}
+      <div class="jc__t">${esc(f.nombre)}</div>
+      ${sub ? `<div class="jc__sub">${sub}</div>` : ""}
+    </div>
+    ${sellos ? `<div class="jc__sello jc__sello--si">sí</div><div class="jc__sello jc__sello--no">no</div>` : ""}
+  </div>`;
 
 /* match: el que completa el par lo festeja */
-let recienMatch = null;
+let recienMatch = null, votando = false;
 
-const pintarMatch = (z) => {
+const subMatch = (g) => {
+  const w = donde(g);
+  return `${g.anio}${g.minutos ? ` · ${g.minutos} min` : ""} · <span class="${w.si ? "jc__donde" : ""}">${esc(w.txt)}</span>`;
+};
+
+const pintarMatch = (z, entra) => {
   const q = yoYElOtro();
   if (!q) { z.innerHTML = quienSos("para votar"); return; }
   const m = data.match ?? { mazo: [], matches: [], votados: {} };
-  const f = m.mazo[0];
+  const [f, sig] = m.mazo;
   const festejo = recienMatch
-    ? `<div class="hito hito--reto enter"><div><div class="hito__t">¡match!</div>
-         <div class="hito__d">${esc(q.otro.nombre)} también quiere ver ${esc(recienMatch)}</div></div></div>`
+    ? `<div class="jc__festejo"><b>¡match!</b>${esc(q.otro.nombre)} también quiere ver ${esc(recienMatch)}</div>`
     : "";
   recienMatch = null;
 
-  z.innerHTML = `${festejo}
-    <div class="ruleta enter">
-      <div class="caps ruleta__cuantas">votás sin ver lo de ${esc(q.otro.nombre)} · si los dos dicen que sí, es match</div>
-      <div class="ruleta__caja">${f
-        ? `<div style="width:100%;cursor:pointer" data-peli="${esc(f.nombre)}" data-anio="${f.anio}">${fichaRuleta(f)}</div>`
-        : `<div class="rl rl--vacia"><div class="rl__poster rl__poster--hueco"></div><div class="rl__cuerpo">
-             <div class="rl__t">no te quedan por votar</div>
-             <div class="rl__sub">el lunes se baraja de nuevo</div></div></div>`}</div>
-      ${f ? `<div class="acciones ruleta__acciones">
-        <button class="btn btn--p" data-a="voto" data-v="1" data-n="${esc(f.nombre)}" data-anio="${f.anio}">sí, con ${esc(q.otro.nombre)}</button>
-        <button class="btn" data-a="voto" data-v="0" data-n="${esc(f.nombre)}" data-anio="${f.anio}">no</button>
-      </div>` : ""}
+  z.innerHTML = `
+    <div class="juego${entra ? " enter" : ""}">
+      <div class="caps juego__pie">votás sin ver lo de ${esc(q.otro.nombre)} · si los dos dicen que sí, es match</div>
+      ${f ? `
+        <div class="jc__mazo">
+          ${sig ? cartaJuego(sig, { clase: "jc--atras", arriba: `la quiere ${esc(sig.de)}`, sub: subMatch(sig) }) : ""}
+          ${cartaJuego(f, { clase: `jc--arriba${entra ? "" : " jc--sube"}`, arriba: `la quiere ${esc(f.de)}`, sub: subMatch(f), sellos: true })}
+          ${festejo}
+        </div>
+        <div class="caps juego__pista">deslizá → sí · ← no · tocála para ver más</div>
+        <div class="juego__barra">
+          <button class="btn" data-voto="0">no</button>
+          <button class="btn btn--p" data-voto="1">sí, con ${esc(q.otro.nombre)}</button>
+        </div>`
+      : `<div class="jc__mazo">
+          <div class="aviso" style="justify-self:stretch"><div class="caps">por esta semana</div>
+            <div class="hero__t" style="margin:.5rem 0 .4rem">no te quedan por votar</div>
+            <div class="hito__d">el lunes se baraja de nuevo</div></div>
+          ${festejo}
+        </div>`}
       ${pieSoy(q.yo)}
     </div>
-    <div class="tit" style="margin-top:2.2rem"><span class="slash">/</span><h2 class="caps">matches</h2>
+    <div class="tit" style="margin-top:2.2rem"><span class="slash">/</span><h2 class="caps">matches ${m.matches.length || ""}</h2>
       <span class="caps" style="margin-left:auto;opacity:.6">votaron: ${esc(q.yo.nombre)} ${m.votados[q.yo.usuario] ?? 0} · ${esc(q.otro.nombre)} ${m.votados[q.otro.usuario] ?? 0}</span></div>
     ${m.matches.length
       ? `<div class="matches">${m.matches.map((g, i) => carta(g, i)).join("")}</div>`
       : `<div class="dir-vacio">todavía ninguno. cuando ${esc(q.otro.nombre)} vote las mismas que vos, aparecen acá.</div>`}`;
+  if (f) armarDeslizar();
+};
+
+const votar = async (valor) => {
+  const tapa = document.querySelector(".jc--arriba");
+  const f = data.match?.mazo?.[0];
+  if (!tapa || !f || votando) return;
+  votando = true;
+  tapa.classList.add(valor ? "jc--si" : "jc--no");
+  if (!suave) {
+    tapa.style.transition = "transform .3s var(--expo), opacity .3s";
+    tapa.style.transform = `translateX(${valor ? 130 : -130}%) rotate(${valor ? 16 : -16}deg)`;
+    tapa.style.opacity = "0";
+    await dormir(170);
+  }
+  try { await pedir("voto", { nombre: f.nombre, anio: f.anio, valor: String(valor) }); }
+  finally { votando = false; }
+};
+
+/* deslizar: horizontal vota, vertical sigue siendo scroll (touch-action) */
+const armarDeslizar = () => {
+  const c = document.querySelector(".jc--arriba");
+  if (!c) return;
+  let x0 = null, y0 = 0, dx = 0, arrastra = false;
+  c.addEventListener("pointerdown", (e) => {
+    x0 = e.clientX; y0 = e.clientY; dx = 0; arrastra = false;
+    c.style.transition = "none";
+  });
+  c.addEventListener("pointermove", (e) => {
+    if (x0 == null) return;
+    dx = e.clientX - x0;
+    if (!arrastra && Math.abs(dx) > 10 && Math.abs(dx) > Math.abs(e.clientY - y0)) {
+      arrastra = true;
+      c.dataset.arrastrada = "1";
+      try { c.setPointerCapture(e.pointerId); } catch (err) {}
+    }
+    if (!arrastra) return;
+    c.style.transform = `translateX(${dx}px) rotate(${dx / 18}deg)`;
+    c.style.setProperty("--si", Math.max(0, Math.min(1, dx / 90)));
+    c.style.setProperty("--no", Math.max(0, Math.min(1, -dx / 90)));
+  });
+  const soltar = () => {
+    if (x0 == null) return;
+    x0 = null;
+    if (arrastra && Math.abs(dx) > 90) return votar(dx > 0 ? 1 : 0);
+    c.style.transition = "transform .3s var(--expo)";
+    c.style.transform = "";
+    c.style.setProperty("--si", 0);
+    c.style.setProperty("--no", 0);
+  };
+  c.addEventListener("pointerup", soltar);
+  c.addEventListener("pointercancel", soltar);
 };
 
 /* ¿cuanto le puso?: una que vieron juntos y adivinás la nota del otro.
    lo que dijiste va al servidor, que lo compara con la nota de verdad y
    arma el perfil de cada uno: asi el otro ve como te va */
-let pregunta = null, respuesta = null;
+let pregunta = null, respuesta = null, elegida = null;
 const enEstaSesion = new Set();
 const perfilDe = (u) => (data.juego ?? []).find((p) => p.usuario === u);
 
@@ -1229,12 +1400,14 @@ const nuevaPregunta = (u) => {
 
 const responder = (valor) => {
   const q = yoYElOtro();
-  if (!q || !pregunta || respuesta != null) return;
+  if (!q || !pregunta || respuesta != null || !valor) return;
   respuesta = valor;
   enEstaSesion.add(`${pregunta.nombre}::${pregunta.anio}`);
   pintar();
   pedir("adivino", { nombre: pregunta.nombre, anio: pregunta.anio, valor });
 };
+
+const otraPregunta = () => { pregunta = null; respuesta = null; elegida = null; };
 
 const puntitos = (xs) => `<span class="jg__puntos">${xs.map((si) => `<i class="jg__punto${si ? " si" : ""}"></i>`).join("")}</span>`;
 
@@ -1265,7 +1438,7 @@ const quienConoceMas = () => {
   return `${esc(mas.nombre)} conoce más a ${esc(mas.adivinaA)} (${mas.acierto}%) que ${esc(menos.nombre)} a ${esc(menos.adivinaA)} (${menos.acierto}%)`;
 };
 
-const pintarAdivina = (z) => {
+const pintarAdivina = (z, entra) => {
   const q = yoYElOtro();
   if (!q) { z.innerHTML = quienSos("para jugar"); return; }
   if (!pregunta) pregunta = nuevaPregunta(q.yo.usuario);
@@ -1273,36 +1446,80 @@ const pintarAdivina = (z) => {
 
   const f = pregunta, suya = f.notas[1 - q.i], mia = f.notas[q.i];
   const p = perfilDe(q.yo.usuario);
-  const OPCIONES = [0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5];
   const d = respuesta == null ? null : Math.abs(respuesta - suya);
-  const veredicto = d == null ? "" : `<div class="adv__veredicto enter ${d === 0 ? "adv__veredicto--si" : ""}">
-      <div class="hito__t">${d === 0 ? "clavada" : d <= 0.5 ? "casi" : d >= 2 ? "¿seguro que la vieron juntos?" : "ni ahí"}</div>
-      <div class="hito__d">${esc(q.otro.nombre)} le puso ${notaLarga(suya)} · vos ${notaLarga(mia)}</div>
-    </div>`;
   const marcador = p?.jugadas
     ? `${p.clavadas} clavada${p.clavadas === 1 ? "" : "s"} · ${p.casi} casi · de ${p.jugadas}${p.racha > 1 ? ` · racha de ${p.racha}` : ""}`
     : `hay ${data.adivina.length} que puntuaron los dos`;
   const versus = quienConoceMas();
 
-  z.innerHTML = `<div class="ruleta enter">
-      <div class="caps ruleta__cuantas">${marcador}</div>
-      <div class="rl" data-peli="${esc(f.nombre)}" data-anio="${f.anio}" style="cursor:pointer">
-        ${f.poster ? `<img class="rl__poster" src="${IMG}${f.poster}" alt="" onerror="this.classList.add('rl__poster--hueco')">` : `<div class="rl__poster rl__poster--hueco"></div>`}
-        <div class="rl__cuerpo">
-          <div class="caps rl__de">la vieron juntos el ${f.visto.split("-").reverse().join("/")}</div>
-          <div class="rl__t">${esc(f.nombre)}</div>
-          <div class="rl__sub">${f.anio}</div>
-          <div class="rl__t" style="font-size:1rem;margin-top:1.4rem">¿cuánto le puso ${esc(q.otro.nombre)}?</div>
-        </div>
+  const pregunto = `
+      <div class="estrellas" id="estrellas" role="slider" tabindex="0" aria-label="la nota que le puso ${esc(q.otro.nombre)}"
+           aria-valuemin="0.5" aria-valuemax="5" aria-valuenow="${elegida ?? 0}">
+        <div class="estrellas__base">${CINCO}</div>
+        <div class="estrellas__llenas" style="width:${(elegida ?? 0) * 20}%">${CINCO}</div>
       </div>
-      <div class="adv__ops">${OPCIONES.map((o) => `<button class="chip${respuesta === o ? " on" : ""}${d != null && o === suya ? " adv__real" : ""}" data-adivino="${o}"${d != null ? " disabled" : ""}>${notaCorta(o)}</button>`).join("")}</div>
-      ${veredicto}
-      ${d != null ? `<div class="acciones ruleta__acciones"><button class="btn btn--p" data-adivina-otra>otra</button></div>` : ""}
+      <div class="caps adv__valor" id="advValor">${elegida ? notaLarga(elegida) : "tocá o arrastrá las estrellas"}</div>
+      <div class="juego__barra">
+        <button class="btn btn--p" id="advVa" data-adivina-va${elegida ? "" : " disabled"}>${elegida ? `va, ${notaLarga(elegida)}` : "elegí una nota"}</button>
+      </div>`;
+  const revelo = d == null ? "" : `
+      <div class="adv__res">
+        <span class="caps">${esc(q.otro.nombre)}</span>${estrellasFijas(suya)}
+        <span class="caps">vos dijiste</span>${estrellasFijas(respuesta, true)}
+      </div>
+      <div class="adv__veredicto enter${d === 0 ? " adv__veredicto--si" : ""}">
+        <div class="hito__t">${d === 0 ? "clavada" : d <= 0.5 ? "casi" : d >= 2 ? "¿seguro que la vieron juntos?" : "ni ahí"}</div>
+        <div class="hito__d">vos le pusiste ${notaLarga(mia)}</div>
+      </div>
+      <div class="juego__barra"><button class="btn btn--p" data-adivina-otra>otra</button></div>`;
+
+  z.innerHTML = `
+    <div class="juego${entra ? " enter" : ""}">
+      <div class="caps juego__pie">${marcador}</div>
+      ${cartaJuego(f, { clase: "jc--bajo", arriba: `la vieron juntos el ${f.visto.split("-").reverse().join("/")}`, sub: String(f.anio) })}
+      <div class="adv__q">¿cuánto le puso ${esc(q.otro.nombre)}?</div>
+      ${d == null ? pregunto : revelo}
       ${pieSoy(q.yo)}
     </div>
     <div class="tit" style="margin-top:2.2rem"><span class="slash">/</span><h2 class="caps">cómo les va</h2></div>
     ${versus ? `<p class="caps" style="opacity:.7;margin:-.4rem 0 1.2rem">${versus}</p>` : ""}
     <div class="jg__grid">${(data.juego ?? []).map(tarjetaJuego).join("")}</div>`;
+  if (d == null) armarEstrellas();
+};
+
+/* tocar elige, arrastrar ajusta; el boton de abajo confirma, asi un dedo
+   que se resbala no cuenta como respuesta */
+const armarEstrellas = () => {
+  const el = $("estrellas");
+  if (!el) return;
+  const fijar = (v) => {
+    elegida = v;
+    el.querySelector(".estrellas__llenas").style.width = `${v * 20}%`;
+    el.setAttribute("aria-valuenow", v);
+    $("advValor").textContent = notaLarga(v);
+    const va = $("advVa");
+    va.disabled = false;
+    va.textContent = `va, ${notaLarga(v)}`;
+  };
+  const desdeX = (x) => {
+    const r = el.getBoundingClientRect();
+    return Math.min(5, Math.max(0.5, Math.ceil(((x - r.left) / r.width) * 10) / 2));
+  };
+  let apretado = false;
+  el.addEventListener("pointerdown", (e) => {
+    apretado = true;
+    try { el.setPointerCapture(e.pointerId); } catch (err) {}
+    fijar(desdeX(e.clientX));
+  });
+  el.addEventListener("pointermove", (e) => { if (apretado) fijar(desdeX(e.clientX)); });
+  el.addEventListener("pointerup", () => (apretado = false));
+  el.addEventListener("pointercancel", () => (apretado = false));
+  el.addEventListener("keydown", (e) => {
+    const v = elegida ?? 0;
+    if (e.key === "ArrowRight" || e.key === "ArrowUp") { e.preventDefault(); fijar(Math.min(5, v + 0.5)); }
+    if (e.key === "ArrowLeft" || e.key === "ArrowDown") { e.preventDefault(); fijar(Math.max(0.5, v - 0.5)); }
+    if (e.key === "Enter" && elegida) responder(elegida);
+  });
 };
 
 const girarRuleta = async () => {
@@ -1581,13 +1798,18 @@ document.addEventListener("click", (e) => {
   const s = e.target.closest("[data-soy]");
   if (s) {
     fijarSoy(s.dataset.soy || null);
-    pregunta = null; respuesta = null;
+    otraPregunta();
     return pedir(null);
   }
 
-  const adv = e.target.closest("[data-adivino]");
-  if (adv) return responder(Number(adv.dataset.adivino));
-  if (e.target.closest("[data-adivina-otra]")) { pregunta = null; respuesta = null; return pintar(); }
+  /* una tarjeta que se arrastro no se abre al soltarla */
+  const jc = e.target.closest(".jc");
+  if (jc?.dataset.arrastrada) { delete jc.dataset.arrastrada; return; }
+
+  const voto = e.target.closest("[data-voto]");
+  if (voto) return votar(Number(voto.dataset.voto));
+  if (e.target.closest("[data-adivina-va]")) return responder(elegida);
+  if (e.target.closest("[data-adivina-otra]")) { otraPregunta(); return pintar(); }
 
   const el = e.target.closest("[data-a]");
   if (el && el.tagName !== "A") {
@@ -1603,7 +1825,7 @@ document.addEventListener("click", (e) => {
   if (pel) return navegar({ tipo: "pelicula", nombre: pel.dataset.peli, anio: Number(pel.dataset.anio) });
 
   const md = e.target.closest("[data-modo]");
-  if (md) return pedir("modo", { nombre: md.dataset.modo });
+  if (md) { irAlModo = true; return pedir("modo", { nombre: md.dataset.modo }); }
 
   const chip = e.target.closest("[data-min]");
   if (chip) { minutos = chip.dataset.min ? Number(chip.dataset.min) : null; return pedir(null); }
