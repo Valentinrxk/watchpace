@@ -724,11 +724,15 @@ const filaPeli = (f, derecha, i = 0) => `<div class="fila enter" style="--i:${i}
     <span class="fila__p">${nota(f.puntaje)}</span>
     <span class="fila__d">${derecha}</span></div>`;
 
+/* paginas de a tres que no dan la vuelta: la que mezclaba el final con el
+   principio no habia forma de contarla, y el contador decia "3 de 34"
+   fijo estuvieras donde estuvieras */
 const ventanaRetos = () => {
   const n = data.retos.length;
   if (!n) return [];
-  retoOffset = ((retoOffset % n) + n) % n;
-  return Array.from({ length: Math.min(3, n) }, (_, i) => data.retos[(retoOffset + i) % n]);
+  if (retoOffset < 0 || retoOffset >= n) retoOffset = 0;
+  retoOffset -= retoOffset % 3;
+  return data.retos.slice(retoOffset, retoOffset + 3);
 };
 
 const contarHasta = (el, destino) => {
@@ -749,7 +753,17 @@ const contarHasta = (el, destino) => {
   requestAnimationFrame(tic);
 };
 
-const pedir = async (accion, extra = {}) => {
+/* las acciones van de a una. con kv cada request lee el estado, lo cambia
+   y lo guarda: dos "paso" seguidos en vuelo leian lo mismo y el segundo
+   guardaba sin el primero, asi que el clic se perdia */
+let enCola = Promise.resolve();
+const pedir = (accion, extra = {}) => {
+  const turno = enCola.then(() => pedirYa(accion, extra));
+  enCola = turno.catch(() => {});
+  return turno;
+};
+
+const pedirYa = async (accion, extra = {}) => {
   const mia = ++peticion;
   document.body.classList.add("pidiendo");
 
@@ -769,6 +783,13 @@ const pedir = async (accion, extra = {}) => {
 
   data = recibido;
   guardarEstadoLocal(recibido.estado);
+  /* aceptar un reto lo manda adelante (los activos van primero): la
+     ventana se quedaba en la pagina de antes, la tarjeta desaparecia y
+     parecia que el boton no habia hecho nada. la ventana lo sigue. */
+  if (accion === "reto-acepto" && extra.retoId && data.retos) {
+    const i = data.retos.findIndex((t) => t.id === extra.retoId);
+    if (i >= 0) retoOffset = i;
+  }
   document.body.classList.remove("pidiendo");
   pintar();
 };
@@ -1184,9 +1205,12 @@ const pintar = () => {
     .join("");
 
   $("secRetos").hidden = !data.retos.length;
-  $("retosCuenta").textContent = `${Math.min(3, data.retos.length)} de ${data.retos.length}`;
+  const ventana = ventanaRetos();
+  $("retosCuenta").textContent = ventana.length > 1
+    ? `${retoOffset + 1}–${retoOffset + ventana.length} de ${data.retos.length}`
+    : `${retoOffset + 1} de ${data.retos.length}`;
   $("retosRefresh").hidden = data.retos.length <= 3;
-  $("retos").innerHTML = ventanaRetos().map((t, i) => `
+  $("retos").innerHTML = ventana.map((t, i) => `
     <div class="reto enter ${t.completado ? "hecho" : t.activo ? "on" : ""}${t.completado && yaFestejado(t.id) ? " viejo" : ""}" data-reto="${esc(t.id)}" style="--i:${i}">
       <div class="reto__t">${esc(t.titulo)}</div>
       <div class="reto__d">${esc(t.detalle)}</div>
