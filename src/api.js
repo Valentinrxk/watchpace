@@ -119,7 +119,8 @@ export const construirJuntos = ({ estado: estadoDado = null, hoy = new Date() } 
         },
         totales: j.totales,
         plan: estado.plan?.fecha === hoyISO(hoy) ? estado.plan : null,
-        comun: j.comun.slice(0, 8).map((f) => conMarca(f)),
+        /* enteras: "otra" recorre la lista, y con 8 las otras 26 no salian nunca */
+        comun: j.comun.map((f) => conMarca(f)),
         duelo: j.duelo.map((f) => (f ? conMarca(f, { de: f.de }) : null)),
         debo: j.debo.slice(0, 6).map((f) => conMarca(f, { recomienda: f.recomienda, nota: f.nota, para: f.para })),
         revancha: j.revancha.slice(0, 6).map((f) => conMarca(f, { notas: f.notas, brecha: f.brecha })),

@@ -1049,8 +1049,9 @@ const pintarJuntos = () => {
           </div>
         </div>
       </div>
-      <div class="tit" style="margin-top:2.2rem"><span class="slash">/</span><h2 class="caps">las otras ${lista.length - 1}</h2></div>
-      ${lista.filter((_, i) => i !== (data.ronda ?? 0) % lista.length).map((g, i) => {
+      <div class="tit" style="margin-top:2.2rem"><span class="slash">/</span><h2 class="caps">las que siguen</h2>
+        <span class="caps" style="margin-left:auto;opacity:.6">${(data.ronda ?? 0) % lista.length + 1} de ${lista.length}</span></div>
+      ${Array.from({ length: Math.min(7, lista.length - 1) }, (_, i) => lista[((data.ronda ?? 0) + 1 + i) % lista.length]).map((g, i) => {
         const v = donde(g);
         return `<div class="fila enter" style="--i:${i}" data-peli="${esc(g.nombre)}" data-anio="${g.anio}">
           <span class="fila__n">${esc(g.nombre)} <span style="color:var(--color-text-dim)">(${g.anio})</span></span>
@@ -1098,7 +1099,7 @@ let giroIdx = 0;
 const BACKDROP = "https://image.tmdb.org/t/p/w780";
 
 const precargarPosters = () => {
-  for (const f of (data.giro ?? []).slice(0, 16)) {
+  for (const f of data.giro ?? []) {
     if (f.poster) { const i = new Image(); i.src = IMG + f.poster; }
     if (f.backdrop) { const b = new Image(); b.src = BACKDROP + f.backdrop; }
   }

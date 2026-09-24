@@ -213,10 +213,13 @@ export const armarJuntos = ({ ronda = 0, modo = "comun", rechazadas = {}, hoy = 
        esto no se barajaba: salia ordenado por streaming y nada mas, asi
        que el primero de la lista era el mismo todos los dias. */
     const enComun = conStreamPrimero(A.watchlist.filter((f) => wlB.has(clave(f.nombre, f.anio)))).filter(vivo);
-    /* las que se pueden ver hoy van adelante, pero rotando entre ellas */
+    /* las que se pueden ver hoy van adelante, pero rotando entre ellas.
+       las que no estan en streaming rotan tambien: eran 29 de 34 y salian
+       siempre en el mismo orden, asi que despues de las 5 mirables venian
+       las mismas tres todos los dias */
     const comun = [
         ...ordenDelDia(enComun.filter(mirable), hoy, "!comun"),
-        ...enComun.filter((f) => !mirable(f)),
+        ...ordenDelDia(enComun.filter((f) => !mirable(f)), hoy, "!comun-resto"),
     ];
 
     /* 2. duelo: una de cada watchlist que el otro no vio */
@@ -258,12 +261,20 @@ export const armarJuntos = ({ ronda = 0, modo = "comun", rechazadas = {}, hoy = 
        ojo con el bolillero de las watchlists sueltas: concatenar y
        recortar dejaba SIEMPRE afuera al segundo, porque el sort es
        estable y las del primero quedaban todas adelante. hay que tomar
-       de a mitades y recien despues barajar. */
-    const mitad = (arr, n) => conStreamPrimero(arr).slice(0, n);
-    const bolillero = modo === "comun" && comun.length ? conStreamPrimero(comun).slice(0, 30)
-        : modo === "revancha" && revancha.length ? conStreamPrimero(revancha).slice(0, 30)
-        : intercalar([mitad(soloA, 15), mitad(soloB, 15)]);
-    const giro = barajar(bolillero, `${semilla}!ruleta`);
+       de a mitades y recien despues barajar.
+       y el azar tiene que ser azar: con la semilla del dia, abrir la app
+       y girar daba siempre la misma, y el bolillero eran las 15 mas faciles
+       de cada lado, las mismas 30 siempre. ahora entra todo lo que se puede
+       ver de las dos watchlists y cada pedido baraja distinto. */
+    const suerte = Math.random().toString(36).slice(2);
+    const paraGirar = (arr) => {
+        const si = arr.filter(mirable);
+        return si.length >= 10 ? si : conStreamPrimero(arr);
+    };
+    const bolillero = modo === "comun" && comun.length ? comun
+        : modo === "revancha" && revancha.length ? revancha
+        : [...paraGirar(soloA), ...paraGirar(soloB)];
+    const giro = barajar(bolillero, `${suerte}!ruleta`);
 
     const juntas = verJuntas(A.diario ?? [], B.diario ?? [], hoy, cache);
 
