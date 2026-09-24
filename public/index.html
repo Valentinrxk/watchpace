@@ -145,6 +145,11 @@ body {
 body.pidiendo .rec { opacity:1; animation:rec-blink .5s steps(1,end) infinite; }
 
 main { padding:calc(var(--hud-h) + 3.5rem) var(--frame-x) 0; max-width:1120px; margin:0 auto; }
+/* la tarjeta del match sale volando por el costado: sin esto el telefono
+   agrandaba la pagina para que entrara, se veia todo mas chico y el scroll
+   saltaba arriba. clip y no hidden: hidden rompe la barra fija de abajo */
+main { overflow-x:clip; }
+@supports not (overflow:clip) { main { overflow-x:hidden; } }
 section + section { margin-top:4.5rem; }
 .tit { display:flex; align-items:baseline; gap:.6rem; margin-bottom:1.5rem; border-bottom:1px solid var(--color-border); padding-bottom:.5rem; }
 .tit__sp { flex:1; }
@@ -471,10 +476,12 @@ section + section { margin-top:4.5rem; }
 .jc--bajo .jc__t { font-size:clamp(1.15rem, 5vw, 1.5rem); }
 .jc__sub { margin-top:.45rem; font-size:.78rem; opacity:.78; }
 .jc__donde { color:var(--red-luz); }
+.jc__mazo .jc { transition:transform .3s var(--expo), opacity .3s var(--expo); }
 .jc--arriba { z-index:1; }
-.jc--atras { transform:scale(.94) translateY(.7rem); opacity:.6; pointer-events:none; }
-.jc--sube { animation:jc-sube .28s var(--expo) both; }
-@keyframes jc-sube { from { transform:scale(.94) translateY(.7rem); opacity:.6; } }
+.jc--atras { transform:translateY(.7rem) scale(.95); opacity:.55; pointer-events:none; }
+.jc--nace { transform:translateY(1.4rem) scale(.9); opacity:0; }
+.jc--sale { pointer-events:none; z-index:2; }
+.jc__fin { justify-self:stretch; }
 .jc__sello {
   position:absolute; top:1.3rem; padding:.25rem .8rem; border:3px solid; pointer-events:none;
   font-weight:700; font-size:1.7rem; letter-spacing:.08em; text-transform:uppercase;
@@ -483,7 +490,7 @@ section + section { margin-top:4.5rem; }
 .jc__sello--no { right:1rem; color:var(--texto-velo); transform:rotate(12deg); opacity:var(--no); }
 .jc--si { --si:1; } .jc--no { --no:1; }
 .jc__festejo {
-  z-index:2; align-self:center; justify-self:stretch; text-align:center; pointer-events:none;
+  z-index:3; align-self:center; justify-self:stretch; text-align:center; pointer-events:none;
   background:rgba(var(--tinta-velo),.82); color:var(--texto-velo); padding:1.6rem 1rem;
   animation:jc-festejo 2.6s var(--expo) both;
 }
@@ -969,8 +976,6 @@ const pedirYa = async (accion, extra = {}) => {
     const i = data.retos.findIndex((t) => t.id === extra.retoId);
     if (i >= 0) retoOffset = i;
   }
-  if (accion === "voto" && extra.valor === "1" &&
-      data.match?.matches.some((f) => f.nombre === extra.nombre && f.anio === Number(extra.anio))) recienMatch = extra.nombre;
   document.body.classList.remove("pidiendo");
   pintar();
 };
@@ -1361,76 +1366,164 @@ const cartaJuego = (f, { arriba = "", sub = "", clase = "", sellos = false, abre
     ${sellos ? `<div class="jc__sello jc__sello--si">sí</div><div class="jc__sello jc__sello--no">no</div>` : ""}
   </div>`;
 
-/* match: el que completa el par lo festeja */
-let recienMatch = null, votando = false;
+/* match: el mazo vive en el telefono. votar no espera al servidor ni
+   repinta la pagina: la de arriba se va, la de atras (que es de verdad la
+   que sigue) crece hasta su lugar, y el voto viaja de fondo.
+   antes cada voto repintaba todo juntos, y como el servidor intercala
+   adelante lo que el otro ya aprobo, el orden se corria en cada voto: la
+   que asomaba atras casi nunca era la que venia */
+let mazoLocal = null, mazoDe = null, votando = false;
+const votadasLocal = new Set();
+const kPeli = (f) => `${f.nombre}::${f.anio}`;
+const yaVote = (f) => votadasLocal.has(`${mazoDe}|${kPeli(f)}`);
 
 const subMatch = (g) => {
   const w = donde(g);
   return `${g.anio}${g.minutos ? ` · ${g.minutos} min` : ""} · <span class="${w.si ? "jc__donde" : ""}">${esc(w.txt)}</span>`;
+};
+const htmlTapa = (f, lugar) => cartaJuego(f, { clase: lugar, arriba: `la quiere ${esc(f.de)}`, sub: subMatch(f), sellos: true });
+
+/* lo que manda el servidor se suma al final: nunca reordena lo que ya
+   esta en pantalla */
+const sumarAlMazo = (nuevas) => {
+  const ya = new Set(mazoLocal.map(kPeli));
+  for (const f of nuevas) if (!ya.has(kPeli(f)) && !yaVote(f)) mazoLocal.push(f);
+};
+
+const pintarMazo = () => {
+  const el = $("mazo");
+  if (!el) return;
+  const [f, sig] = mazoLocal;
+  el.innerHTML = f
+    ? `${sig ? htmlTapa(sig, "jc--atras") : ""}${htmlTapa(f, "jc--arriba")}`
+    : `<div class="aviso jc__fin"><div class="caps">por esta semana</div>
+         <div class="hero__t" style="margin:.5rem 0 .4rem">no te quedan por votar</div>
+         <div class="hito__d">el lunes se baraja de nuevo</div></div>`;
+  $("matchBarra").hidden = !f;
+  $("matchPista").hidden = !f;
+  if (f) armarDeslizar();
+};
+
+/* si atras no hay ninguna y ya llego la que sigue, que asome */
+const completarAtras = () => {
+  const el = $("mazo");
+  const sig = mazoLocal?.[1];
+  if (!el || !sig || el.querySelector(".jc--atras") || !el.querySelector(".jc--arriba")) return;
+  el.insertAdjacentHTML("afterbegin", htmlTapa(sig, "jc--atras jc--nace"));
+  requestAnimationFrame(() => requestAnimationFrame(() => el.querySelector(".jc--nace")?.classList.remove("jc--nace")));
+};
+
+const pintarMatches = (nueva = null) => {
+  const zona = $("matchesZona"), q = yoYElOtro();
+  if (!zona || !q) return;
+  const m = data.match ?? { matches: [], votados: {} };
+  zona.innerHTML = `
+    <div class="tit" style="margin-top:2.2rem"><span class="slash">/</span><h2 class="caps">matches ${m.matches.length || ""}</h2>
+      <span class="caps" style="margin-left:auto;opacity:.6">votaron: ${esc(q.yo.nombre)} ${m.votados[q.yo.usuario] ?? 0} · ${esc(q.otro.nombre)} ${m.votados[q.otro.usuario] ?? 0}</span></div>
+    ${m.matches.length
+      ? `<div class="matches">${m.matches.map((g, i) => carta(g, i).replace("carta enter", kPeli(g) === nueva ? "carta enter" : "carta")).join("")}</div>`
+      : `<div class="dir-vacio">todavía ninguno. cuando ${esc(q.otro.nombre)} vote las mismas que vos, aparecen acá.</div>`}`;
 };
 
 const pintarMatch = (z, entra) => {
   const q = yoYElOtro();
   if (!q) { z.innerHTML = quienSos("para votar"); return; }
   const m = data.match ?? { mazo: [], matches: [], votados: {} };
-  const [f, sig] = m.mazo;
-  const festejo = recienMatch
-    ? `<div class="jc__festejo"><b>¡match!</b>${esc(q.otro.nombre)} también quiere ver ${esc(recienMatch)}</div>`
-    : "";
-  recienMatch = null;
+  /* el mazo se arma una vez por persona; volver al modo no lo reordena */
+  if (!mazoLocal || mazoDe !== q.yo.usuario) { mazoDe = q.yo.usuario; mazoLocal = []; }
+  sumarAlMazo(m.mazo);
 
   z.innerHTML = `
     <div class="juego${entra ? " enter" : ""}">
       <div class="caps juego__pie">votás sin ver lo de ${esc(q.otro.nombre)} · si los dos dicen que sí, es match</div>
-      ${f ? `
-        <div class="jc__mazo">
-          ${sig ? cartaJuego(sig, { clase: "jc--atras", arriba: `la quiere ${esc(sig.de)}`, sub: subMatch(sig) }) : ""}
-          ${cartaJuego(f, { clase: `jc--arriba${entra ? "" : " jc--sube"}`, arriba: `la quiere ${esc(f.de)}`, sub: subMatch(f), sellos: true })}
-          ${festejo}
-        </div>
-        <div class="caps juego__pista">deslizá → sí · ← no · tocála para ver más</div>
-        <div class="juego__barra">
-          <button class="btn" data-voto="0">no</button>
-          <button class="btn btn--p" data-voto="1">sí, con ${esc(q.otro.nombre)}</button>
-        </div>`
-      : `<div class="jc__mazo">
-          <div class="aviso" style="justify-self:stretch"><div class="caps">por esta semana</div>
-            <div class="hero__t" style="margin:.5rem 0 .4rem">no te quedan por votar</div>
-            <div class="hito__d">el lunes se baraja de nuevo</div></div>
-          ${festejo}
-        </div>`}
+      <div class="jc__mazo" id="mazo"></div>
+      <div class="caps juego__pista" id="matchPista">deslizá → sí · ← no · tocála para ver más</div>
+      <div class="juego__barra" id="matchBarra">
+        <button class="btn" data-voto="0">no</button>
+        <button class="btn btn--p" data-voto="1">sí, con ${esc(q.otro.nombre)}</button>
+      </div>
       ${pieSoy(q.yo)}
     </div>
-    <div class="tit" style="margin-top:2.2rem"><span class="slash">/</span><h2 class="caps">matches ${m.matches.length || ""}</h2>
-      <span class="caps" style="margin-left:auto;opacity:.6">votaron: ${esc(q.yo.nombre)} ${m.votados[q.yo.usuario] ?? 0} · ${esc(q.otro.nombre)} ${m.votados[q.otro.usuario] ?? 0}</span></div>
-    ${m.matches.length
-      ? `<div class="matches">${m.matches.map((g, i) => carta(g, i)).join("")}</div>`
-      : `<div class="dir-vacio">todavía ninguno. cuando ${esc(q.otro.nombre)} vote las mismas que vos, aparecen acá.</div>`}`;
-  if (f) armarDeslizar();
+    <div id="matchesZona"></div>`;
+  pintarMazo();
+  pintarMatches();
 };
 
-const votar = async (valor) => {
-  const tapa = document.querySelector(".jc--arriba");
-  const f = data.match?.mazo?.[0];
-  if (!tapa || !f || votando) return;
+const festejarMatch = (f) => {
+  const q = yoYElOtro(), el = $("mazo");
+  if (!q || !el) return;
+  el.querySelector(".jc__festejo")?.remove();
+  el.insertAdjacentHTML("beforeend", `<div class="jc__festejo" role="status"><b>¡match!</b>${esc(q.otro.nombre)} también quiere ver ${esc(f.nombre)}</div>`);
+  try { navigator.vibrate?.(80); } catch (e) {}
+  setTimeout(() => el.querySelector(".jc__festejo")?.remove(), 2700);
+};
+
+/* el voto va de fondo y en fila (ver pedir). la respuesta solo toca lo
+   que cambia: la lista de matches, los contadores y el final del mazo */
+const anotarVoto = (f, valor, quien) => {
+  enCola = enCola.then(async () => {
+    const r = await fetch("/api/estado", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({ usuario: "juntos", accion: "voto", nombre: f.nombre, anio: f.anio, valor: String(valor), quien,
+        estado: usuario === "juntos" ? leerEstadoLocal() : null }),
+    }).then((x) => x.json()).catch(() => null);
+    if (!r || r.error || r.tipo !== "juntos" || data?.tipo !== "juntos") return;
+    data.match = r.match;
+    data.modos = r.modos;
+    data.totales = r.totales;
+    data.estado = r.estado;
+    if (usuario === "juntos") guardarEstadoLocal(r.estado);
+    if (data.modo !== "match" || mazoDe !== quien) return;
+
+    sumarAlMazo(r.match.mazo);
+    if ($("mazo") && !$("mazo").querySelector(".jc") && mazoLocal.length) pintarMazo();
+    else completarAtras();
+
+    const esMatch = valor === 1 && r.match.matches.some((g) => kPeli(g) === kPeli(f));
+    pintarMatches(esMatch ? kPeli(f) : null);
+    const chip = document.querySelector('#modos [data-modo="match"]');
+    if (chip) chip.textContent = `match ${r.match.matches.length}`;
+    if (esMatch) festejarMatch(f);
+  }).catch(() => {});
+};
+
+const votar = (valor) => {
+  const f = mazoLocal?.[0];
+  const tapa = document.querySelector("#mazo .jc--arriba:not(.jc--sale)");
+  if (!f || !tapa || votando) return;
   votando = true;
-  tapa.classList.add(valor ? "jc--si" : "jc--no");
+  votadasLocal.add(`${mazoDe}|${kPeli(f)}`);
+  mazoLocal.shift();
+  anotarVoto(f, valor, mazoDe);
+
+  tapa.classList.add(valor ? "jc--si" : "jc--no", "jc--sale");
   if (!suave) {
     tapa.style.transition = "transform .3s var(--expo), opacity .3s";
     tapa.style.transform = `translateX(${valor ? 130 : -130}%) rotate(${valor ? 16 : -16}deg)`;
-    tapa.style.opacity = "0";
-    await dormir(170);
   }
-  try { await pedir("voto", { nombre: f.nombre, anio: f.anio, valor: String(valor) }); }
-  finally { votando = false; }
+  tapa.style.opacity = "0";
+
+  /* la de atras pasa adelante con una transicion, sin salto de tamaño */
+  document.querySelector("#mazo .jc--atras")?.classList.replace("jc--atras", "jc--arriba");
+  completarAtras();
+
+  setTimeout(() => {
+    tapa.remove();
+    votando = false;
+    if (!mazoLocal.length) pintarMazo();
+    else armarDeslizar();
+  }, suave ? 0 : 300);
 };
 
 /* deslizar: horizontal vota, vertical sigue siendo scroll (touch-action) */
 const armarDeslizar = () => {
-  const c = document.querySelector(".jc--arriba");
-  if (!c) return;
+  const c = document.querySelector("#mazo .jc--arriba:not(.jc--sale)");
+  if (!c || c.dataset.deslizable) return;
+  c.dataset.deslizable = "1";
   let x0 = null, y0 = 0, dx = 0, arrastra = false;
   c.addEventListener("pointerdown", (e) => {
+    if (votando) return;
     x0 = e.clientX; y0 = e.clientY; dx = 0; arrastra = false;
     c.style.transition = "none";
   });
@@ -1451,7 +1544,7 @@ const armarDeslizar = () => {
     if (x0 == null) return;
     x0 = null;
     if (arrastra && Math.abs(dx) > 90) return votar(dx > 0 ? 1 : 0);
-    c.style.transition = "transform .3s var(--expo)";
+    c.style.transition = "";
     c.style.transform = "";
     c.style.setProperty("--si", 0);
     c.style.setProperty("--no", 0);
