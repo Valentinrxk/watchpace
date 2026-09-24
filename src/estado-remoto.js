@@ -65,3 +65,64 @@ export const guardarSyncRemoto = async (marca) => {
         return false;
     }
 };
+
+/* lo que escriben los dos a la vez no puede ir en el estado de juntos: es
+   un solo json que se lee, se cambia y se guarda, y dos telefonos votando
+   o jugando al mismo tiempo se pisaban. va en estructuras propias, con
+   operaciones atomicas: un hash con los votos del match y una lista de
+   jugadas por persona. */
+const LLAVE_VOTOS = "watchpace:votos";
+const llaveJugadas = (usuario) => `watchpace:jugadas:${usuario}`;
+const TOPE_JUGADAS = 1000;
+
+/* upstash devuelve HGETALL como lista plana [campo, valor, ...] */
+const aPares = (r) => (Array.isArray(r) ? r.flatMap((x, i) => (i % 2 ? [] : [[x, r[i + 1]]])) : Object.entries(r ?? {}));
+
+export const votarRemoto = async (k, usuario, valor, otros) => {
+    if (!hayKV()) return false;
+    try {
+        await comando(["HSET", LLAVE_VOTOS, `${usuario}\t${k}`, String(valor)]);
+        /* escribir y despues leer: el ultimo de los dos en votar ve el
+           voto del otro seguro, asi que el match no se escapa */
+        const suyos = await comando(["HMGET", LLAVE_VOTOS, ...otros.map((u) => `${u}\t${k}`)]);
+        if (valor === 1 && suyos.every((v) => v === "1")) await comando(["HSETNX", LLAVE_VOTOS, `match\t${k}`, new Date().toISOString()]);
+        return true;
+    } catch {
+        return false;
+    }
+};
+
+export const leerVotosRemotos = async () => {
+    if (!hayKV()) return null;
+    try {
+        const votos = {};
+        for (const [campo, valor] of aPares(await comando(["HGETALL", LLAVE_VOTOS]))) {
+            const [quien, k] = campo.split("\t");
+            (votos[k] ??= {})[quien] = quien === "match" ? valor : Number(valor);
+        }
+        return votos;
+    } catch {
+        return null;
+    }
+};
+
+export const anotarJugadaRemota = async (usuario, jugada) => {
+    if (!hayKV()) return false;
+    try {
+        await comando(["RPUSH", llaveJugadas(usuario), JSON.stringify(jugada)]);
+        await comando(["LTRIM", llaveJugadas(usuario), String(-TOPE_JUGADAS), "-1"]);
+        return true;
+    } catch {
+        return false;
+    }
+};
+
+export const leerJugadasRemotas = async (usuarios) => {
+    if (!hayKV()) return null;
+    try {
+        const listas = await Promise.all(usuarios.map((u) => comando(["LRANGE", llaveJugadas(u), "0", "-1"])));
+        return listas.flatMap((l, i) => (l ?? []).map((x) => ({ ...JSON.parse(x), quien: usuarios[i] })));
+    } catch {
+        return null;
+    }
+};

@@ -76,6 +76,10 @@ const verJuntas = (diarioA, diarioB, hoy, cache = {}) => {
         ultima: delAnio[0] ?? null,
         ultimas: delAnio.slice(0, 6),
         vida: loNuestro(juntas, hoy, cache),
+        /* el material de "¿cuanto le puso?": las que puntuaron los dos */
+        puntuadas: juntas
+            .filter((f) => f.notas[0] != null && f.notas[1] != null)
+            .map((f) => ({ nombre: f.nombre, anio: f.anio, visto: f.visto, notas: f.notas, poster: cache[f.k]?.poster ?? null })),
     };
 };
 
@@ -188,7 +192,7 @@ const semanaDe = (iso) => {
     return Math.round(d.getTime() / (MS_DIA * 7));
 };
 
-export const armarJuntos = ({ ronda = 0, modo = "comun", rechazadas = {}, hoy = new Date() } = {}) => {
+export const armarJuntos = ({ ronda = 0, modo = "comun", rechazadas = {}, votos = {}, jugadas = [], quien = null, hoy = new Date() } = {}) => {
     const cache = leerCache();
     const personas = leerPersonas();
     const quienes = CONFIG.usuarios.map((u) => configDe(u.usuario));
@@ -276,7 +280,74 @@ export const armarJuntos = ({ ronda = 0, modo = "comun", rechazadas = {}, hoy = 
         : [...paraGirar(soloA), ...paraGirar(soloB)];
     const giro = barajar(bolillero, `${suerte}!ruleta`);
 
+    /* 6. match: cada uno vota desde su telefono sin ver lo del otro, y
+       cuando los dos dijeron que si, es match. el mazo es el mismo para
+       los dos (se baraja por semana) y lo que el otro ya aprobo se
+       intercala adelante: si no, podian pasar semanas sin coincidir.
+       lo que el otro rechazo no se muestra, ya no puede ser match. */
+    const usuarios = datos.map((d) => d.usuario);
+    const otro = usuarios.find((u) => u !== quien);
+    const votoDe = (f, u) => votos[clave(f.nombre, f.anio)]?.[u];
+    const mazo = barajar([...paraGirar(soloA), ...paraGirar(soloB)], `${semanaDe(hoy.toISOString().slice(0, 10))}!match`);
+    const pendientes = usuarios.includes(quien)
+        ? mazo.filter((f) => votoDe(f, quien) === undefined && votoDe(f, otro) !== 0)
+        : [];
+    const porClave = new Map([...A.watchlist, ...B.watchlist].map((f) => [clave(f.nombre, f.anio), f]));
+    const match = {
+        mazo: intercalar([
+            pendientes.filter((f) => votoDe(f, otro) === 1),
+            pendientes.filter((f) => votoDe(f, otro) === undefined),
+        ]).slice(0, 8),
+        /* si ya la vio alguno sale de la watchlist, y del match con ella */
+        matches: Object.entries(votos)
+            .filter(([k, v]) => v.match && porClave.has(k))
+            .sort(([, a], [, b]) => b.match.localeCompare(a.match))
+            .map(([k, v]) => ({ ...porClave.get(k), desde: v.match })),
+        votados: Object.fromEntries(usuarios.map((u) => [u, Object.values(votos).filter((v) => v[u] !== undefined).length])),
+    };
+
     const juntas = verJuntas(A.diario ?? [], B.diario ?? [], hoy, cache);
+
+    /* 7. ¿cuanto le puso?: el perfil de cada uno, que lo ven los dos. se
+       calcula aca con las notas de verdad: el telefono solo manda lo que
+       dijo, asi que si alguien le cambia la nota a una peli el historial
+       se corrige solo */
+    const puntuada = new Map(juntas.puntuadas.map((f) => [clave(f.nombre, f.anio), f]));
+    const media = (xs) => (xs.length ? +(xs.reduce((t, x) => t + x, 0) / xs.length).toFixed(2) : null);
+    const acierta = (x) => Math.abs(x.error) <= 0.5;
+    const juego = datos.map((d, i) => {
+        const suyas = jugadas
+            .filter((j) => j.quien === d.usuario && puntuada.has(j.k))
+            .sort((a, b) => String(a.en).localeCompare(String(b.en)))
+            .map((j) => {
+                const f = puntuada.get(j.k);
+                const real = f.notas[1 - i];
+                return { nombre: f.nombre, anio: f.anio, dijo: j.dijo, real, error: j.dijo - real };
+            });
+        let racha = 0;
+        for (let n = suyas.length - 1; n >= 0 && acierta(suyas[n]); n--) racha++;
+        let mejor = 0, corrida = 0;
+        for (const x of suyas) mejor = Math.max(mejor, (corrida = acierta(x) ? corrida + 1 : 0));
+        const peor = [...suyas].reverse().sort((a, b) => Math.abs(b.error) - Math.abs(a.error))[0];
+        return {
+            usuario: d.usuario,
+            nombre: d.nombre,
+            adivinaA: datos[1 - i].nombre,
+            jugadas: suyas.length,
+            clavadas: suyas.filter((x) => x.error === 0).length,
+            casi: suyas.filter((x) => Math.abs(x.error) === 0.5).length,
+            acierto: suyas.length ? Math.round((suyas.filter(acierta).length / suyas.length) * 100) : null,
+            racha,
+            mejor,
+            errorMedio: media(suyas.map((x) => Math.abs(x.error))),
+            /* positivo: cree que el otro pone mas estrellas de las que pone */
+            sesgo: media(suyas.map((x) => x.error)),
+            peor: peor && Math.abs(peor.error) >= 1.5 ? peor : null,
+            ultimas: suyas.slice(-10).map(acierta),
+            /* para no repetirle las ultimas que le tocaron */
+            recientes: suyas.slice(-40).map((x) => clave(x.nombre, x.anio)),
+        };
+    });
 
     /* el dato que hace que el panel exista: de todo lo que vio cada uno
        desde que empezaron, cuanto fue con el otro */
@@ -293,7 +364,7 @@ export const armarJuntos = ({ ronda = 0, modo = "comun", rechazadas = {}, hoy = 
     }
 
     return {
-        personas, datos, comun, duelo, debo, revancha, giro, juntas,
+        personas, datos, comun, duelo, debo, revancha, giro, juntas, match, juego,
         ritmos: datos.map((d) => ({ nombre: d.nombre, usuario: d.usuario, vistas: d.ritmo.vistas, meta: d.ritmo.meta, alDia: d.ritmo.alDia, deficit: d.ritmo.deficit })),
         totales: {
             comun: comun.length,
@@ -302,6 +373,8 @@ export const armarJuntos = ({ ronda = 0, modo = "comun", rechazadas = {}, hoy = 
             debo: debo.length,
             revancha: revancha.length,
             nuestro: juntas.vida?.total ?? 0,
+            match: match.matches.length,
+            adivina: juntas.puntuadas.length,
         },
     };
 };

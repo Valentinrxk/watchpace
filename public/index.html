@@ -414,6 +414,31 @@ section + section { margin-top:4.5rem; }
 .par { display:flex; align-items:baseline; gap:.6rem; font-size:.75rem; color:var(--color-text-dim); }
 .par b { color:var(--red); font-weight:700; }
 
+/* --- match y ¿cuánto le puso? --- */
+.jg__grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr)); gap:1px; background:var(--color-border); border:1px solid var(--color-border); }
+.jg { background:var(--color-bg); padding:1.4rem; display:flex; flex-direction:column; gap:.45rem; }
+.jg__quien { color:var(--red); font-weight:700; }
+.jg__n { font-size:2.6rem; font-weight:700; letter-spacing:-.05em; line-height:1; }
+.jg__pie { opacity:.6; }
+.jg__d { font-size:.8rem; color:var(--color-text-dim); line-height:1.5; }
+.jg__d b { color:var(--color-text); font-weight:600; }
+.jg__vacio { font-size:.85rem; color:var(--color-text-dim); }
+.jg__puntos { display:flex; gap:.35rem; margin-top:.4rem; }
+.jg__punto { width:.55rem; height:.55rem; border:1px solid var(--color-border-strong); border-radius:50%; }
+.jg__punto.si { background:var(--red); border-color:var(--red); }
+.soy { text-align:center; margin-top:1.3rem; opacity:.55; }
+.soy__cambiar { font:inherit; letter-spacing:inherit; text-transform:inherit; color:inherit; background:none; border:0; padding:0; text-decoration:underline; cursor:pointer; }
+.soy__cambiar:hover { color:var(--red); }
+.adv__ops { display:flex; flex-wrap:wrap; gap:.4rem; justify-content:center; margin-top:1.5rem; }
+.adv__ops .chip { min-width:3.2rem; }
+.adv__ops .chip:disabled { cursor:default; opacity:.4; }
+.adv__ops .chip.on, .adv__ops .chip.adv__real { opacity:1; }
+.adv__ops .chip.adv__real { border-color:var(--red); color:var(--red); font-weight:700; }
+.adv__veredicto { text-align:center; margin-top:1.3rem; }
+.adv__veredicto .hito__t { font-size:1.35rem; }
+.adv__veredicto--si .hito__t { color:var(--red); }
+.matches { display:grid; grid-template-columns:repeat(auto-fill,minmax(min(260px,100%),1fr)); gap:.9rem; }
+
 /* --- lo nuestro --- */
 .nu__primera { display:grid; grid-template-columns:auto 1fr; gap:1.5rem; align-items:center; border:1px solid var(--color-border-strong); background:var(--surface); padding:1.4rem; position:relative; overflow:hidden; cursor:pointer; }
 .nu__bg {
@@ -774,7 +799,7 @@ const pedirYa = async (accion, extra = {}) => {
     fetch("/api/estado", {
       method: "POST",
       headers: { "content-type": "application/json" },
-      body: JSON.stringify({ minutos, accion, ...extra, usuario, estado: leerEstadoLocal() }),
+      body: JSON.stringify({ minutos, accion, ...extra, usuario, estado: leerEstadoLocal(), quien: soy() }),
     }),
     salida,
   ]);
@@ -790,6 +815,8 @@ const pedirYa = async (accion, extra = {}) => {
     const i = data.retos.findIndex((t) => t.id === extra.retoId);
     if (i >= 0) retoOffset = i;
   }
+  if (accion === "voto" && extra.valor === "1" &&
+      data.match?.matches.some((f) => f.nombre === extra.nombre && f.anio === Number(extra.anio))) recienMatch = extra.nombre;
   document.body.classList.remove("pidiendo");
   pintar();
 };
@@ -885,7 +912,7 @@ const pintarJuntos = () => {
     ${j.ultima ? `<div class="caps juntas__ultima" style="opacity:.55">última: ${esc(j.ultima.nombre)} · ${j.ultima.visto.slice(5)}</div>` : ""}`;
 
   $("modos").innerHTML = data.modos
-    .map((m) => `<button class="chip ${m.id === data.modo ? "on" : ""}" data-modo="${m.id}">${m.texto}${m.id !== "ruleta" ? ` ${m.cuantas}` : ""}</button>`)
+    .map((m) => `<button class="chip ${m.id === data.modo ? "on" : ""}" data-modo="${m.id}">${m.texto}${!["ruleta", "adivina"].includes(m.id) ? ` ${m.cuantas}` : ""}</button>`)
     .join("");
 
   const z = $("zonaJuntos");
@@ -911,6 +938,9 @@ const pintarJuntos = () => {
          </div>`;
     return;
   }
+
+  if (data.modo === "match") return pintarMatch(z);
+  if (data.modo === "adivina") return pintarAdivina(z);
 
   if (data.modo === "ruleta") {
     z.innerHTML = `<div class="ruleta enter">
@@ -1124,6 +1154,155 @@ const fichaRuleta = (f, girando = false) => {
       ${f.sinopsis ? `<p class="rl__sin">${esc(f.sinopsis)}</p>` : ""}`}
     </div>
   </div>`;
+};
+
+/* quien tiene el telefono: el match y el juego necesitan saber de quien
+   es el voto. se elige una vez y queda en este navegador */
+const soy = () => { try { return localStorage.getItem("wp.soy"); } catch (e) { return null; } };
+const fijarSoy = (u) => { try { u ? localStorage.setItem("wp.soy", u) : localStorage.removeItem("wp.soy"); } catch (e) {} };
+const lasDos = () => (data.usuarios ?? []).filter((u) => u.usuario !== "juntos");
+const yoYElOtro = () => {
+  const ps = lasDos(), yo = ps.find((u) => u.usuario === soy());
+  return yo ? { yo, otro: ps.find((u) => u !== yo), i: ps.indexOf(yo) } : null;
+};
+const quienSos = (para) => `<div class="aviso enter" style="text-align:center">
+    <div class="caps">${para}</div>
+    <div class="hero__t" style="margin:.5rem 0 1.2rem">¿quién sos?</div>
+    <div class="acciones" style="justify-content:center">${lasDos().map((u) => `<button class="btn" data-soy="${esc(u.usuario)}">${esc(u.nombre)}</button>`).join("")}</div>
+  </div>`;
+const pieSoy = (yo) => `<div class="caps soy">sos ${esc(yo.nombre)} · <button class="soy__cambiar" data-soy="">no soy yo</button></div>`;
+
+/* notas de letterboxd: de a media estrella */
+const notaLarga = (n) => (n == null ? "—" : "★".repeat(Math.floor(n)) + (n % 1 ? "½" : ""));
+const notaCorta = (n) => `★${Math.floor(n) || ""}${n % 1 ? "½" : ""}`;
+
+/* match: el que completa el par lo festeja */
+let recienMatch = null;
+
+const pintarMatch = (z) => {
+  const q = yoYElOtro();
+  if (!q) { z.innerHTML = quienSos("para votar"); return; }
+  const m = data.match ?? { mazo: [], matches: [], votados: {} };
+  const f = m.mazo[0];
+  const festejo = recienMatch
+    ? `<div class="hito hito--reto enter"><div><div class="hito__t">¡match!</div>
+         <div class="hito__d">${esc(q.otro.nombre)} también quiere ver ${esc(recienMatch)}</div></div></div>`
+    : "";
+  recienMatch = null;
+
+  z.innerHTML = `${festejo}
+    <div class="ruleta enter">
+      <div class="caps ruleta__cuantas">votás sin ver lo de ${esc(q.otro.nombre)} · si los dos dicen que sí, es match</div>
+      <div class="ruleta__caja">${f
+        ? `<div style="width:100%;cursor:pointer" data-peli="${esc(f.nombre)}" data-anio="${f.anio}">${fichaRuleta(f)}</div>`
+        : `<div class="rl rl--vacia"><div class="rl__poster rl__poster--hueco"></div><div class="rl__cuerpo">
+             <div class="rl__t">no te quedan por votar</div>
+             <div class="rl__sub">el lunes se baraja de nuevo</div></div></div>`}</div>
+      ${f ? `<div class="acciones ruleta__acciones">
+        <button class="btn btn--p" data-a="voto" data-v="1" data-n="${esc(f.nombre)}" data-anio="${f.anio}">sí, con ${esc(q.otro.nombre)}</button>
+        <button class="btn" data-a="voto" data-v="0" data-n="${esc(f.nombre)}" data-anio="${f.anio}">no</button>
+      </div>` : ""}
+      ${pieSoy(q.yo)}
+    </div>
+    <div class="tit" style="margin-top:2.2rem"><span class="slash">/</span><h2 class="caps">matches</h2>
+      <span class="caps" style="margin-left:auto;opacity:.6">votaron: ${esc(q.yo.nombre)} ${m.votados[q.yo.usuario] ?? 0} · ${esc(q.otro.nombre)} ${m.votados[q.otro.usuario] ?? 0}</span></div>
+    ${m.matches.length
+      ? `<div class="matches">${m.matches.map((g, i) => carta(g, i)).join("")}</div>`
+      : `<div class="dir-vacio">todavía ninguno. cuando ${esc(q.otro.nombre)} vote las mismas que vos, aparecen acá.</div>`}`;
+};
+
+/* ¿cuanto le puso?: una que vieron juntos y adivinás la nota del otro.
+   lo que dijiste va al servidor, que lo compara con la nota de verdad y
+   arma el perfil de cada uno: asi el otro ve como te va */
+let pregunta = null, respuesta = null;
+const enEstaSesion = new Set();
+const perfilDe = (u) => (data.juego ?? []).find((p) => p.usuario === u);
+
+/* al azar, sin repetir las ultimas 40 que te tocaron */
+const nuevaPregunta = (u) => {
+  const todas = data.adivina ?? [];
+  const recientes = new Set([...(perfilDe(u)?.recientes ?? []), ...enEstaSesion]);
+  const libres = todas.filter((f) => !recientes.has(`${f.nombre}::${f.anio}`));
+  const de = libres.length ? libres : todas;
+  return de.length ? de[Math.floor(Math.random() * de.length)] : null;
+};
+
+const responder = (valor) => {
+  const q = yoYElOtro();
+  if (!q || !pregunta || respuesta != null) return;
+  respuesta = valor;
+  enEstaSesion.add(`${pregunta.nombre}::${pregunta.anio}`);
+  pintar();
+  pedir("adivino", { nombre: pregunta.nombre, anio: pregunta.anio, valor });
+};
+
+const puntitos = (xs) => `<span class="jg__puntos">${xs.map((si) => `<i class="jg__punto${si ? " si" : ""}"></i>`).join("")}</span>`;
+
+const tarjetaJuego = (p, i) => {
+  if (!p?.jugadas) return `<div class="jg enter" style="--i:${i}">
+      <div class="caps jg__quien">${esc(p?.nombre ?? "")} adivinando a ${esc(p?.adivinaA ?? "")}</div>
+      <div class="jg__vacio">todavía no jugó</div></div>`;
+  const sesgo = p.sesgo == null || Math.abs(p.sesgo) < 0.25 ? `le tira parejo`
+    : p.sesgo > 0 ? `le tira de más: cree que ${esc(p.adivinaA)} pone más estrellas de las que pone`
+    : `le tira de menos: cree que ${esc(p.adivinaA)} pone menos estrellas de las que pone`;
+  return `<div class="jg enter" style="--i:${i}">
+      <div class="caps jg__quien">${esc(p.nombre)} adivinando a ${esc(p.adivinaA)}</div>
+      <div><span class="jg__n">${p.acierto}%</span> <span class="caps jg__pie">le emboca</span></div>
+      <div class="jg__d">${p.clavadas} clavada${p.clavadas === 1 ? "" : "s"} · ${p.casi} a media estrella · de ${p.jugadas}</div>
+      <div class="jg__d">racha ${p.racha}${p.mejor > p.racha ? ` · la mejor fue de ${p.mejor}` : p.racha > 1 ? " · es la mejor" : ""}</div>
+      <div class="jg__d">se equivoca por ${String(p.errorMedio).replace(".", ",")} estrellas en promedio · ${sesgo}</div>
+      ${p.peor ? `<div class="jg__d">la peor: a <b>${esc(p.peor.nombre)}</b> le dio ${notaLarga(p.peor.dijo)} y era ${notaLarga(p.peor.real)}</div>` : ""}
+      ${puntitos(p.ultimas)}
+    </div>`;
+};
+
+/* quien conoce mas a quien, cuando los dos jugaron lo suficiente */
+const quienConoceMas = () => {
+  const [a, b] = data.juego ?? [];
+  if (!a || !b || a.jugadas < 5 || b.jugadas < 5) return "";
+  if (a.acierto === b.acierto) return `empatados: los dos le embocan al otro el ${a.acierto}%`;
+  const [mas, menos] = a.acierto > b.acierto ? [a, b] : [b, a];
+  return `${esc(mas.nombre)} conoce más a ${esc(mas.adivinaA)} (${mas.acierto}%) que ${esc(menos.nombre)} a ${esc(menos.adivinaA)} (${menos.acierto}%)`;
+};
+
+const pintarAdivina = (z) => {
+  const q = yoYElOtro();
+  if (!q) { z.innerHTML = quienSos("para jugar"); return; }
+  if (!pregunta) pregunta = nuevaPregunta(q.yo.usuario);
+  if (!pregunta) { z.innerHTML = `<div class="dir-vacio">todavía no hay ninguna que hayan puntuado los dos.</div>`; return; }
+
+  const f = pregunta, suya = f.notas[1 - q.i], mia = f.notas[q.i];
+  const p = perfilDe(q.yo.usuario);
+  const OPCIONES = [0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5];
+  const d = respuesta == null ? null : Math.abs(respuesta - suya);
+  const veredicto = d == null ? "" : `<div class="adv__veredicto enter ${d === 0 ? "adv__veredicto--si" : ""}">
+      <div class="hito__t">${d === 0 ? "clavada" : d <= 0.5 ? "casi" : d >= 2 ? "¿seguro que la vieron juntos?" : "ni ahí"}</div>
+      <div class="hito__d">${esc(q.otro.nombre)} le puso ${notaLarga(suya)} · vos ${notaLarga(mia)}</div>
+    </div>`;
+  const marcador = p?.jugadas
+    ? `${p.clavadas} clavada${p.clavadas === 1 ? "" : "s"} · ${p.casi} casi · de ${p.jugadas}${p.racha > 1 ? ` · racha de ${p.racha}` : ""}`
+    : `hay ${data.adivina.length} que puntuaron los dos`;
+  const versus = quienConoceMas();
+
+  z.innerHTML = `<div class="ruleta enter">
+      <div class="caps ruleta__cuantas">${marcador}</div>
+      <div class="rl" data-peli="${esc(f.nombre)}" data-anio="${f.anio}" style="cursor:pointer">
+        ${f.poster ? `<img class="rl__poster" src="${IMG}${f.poster}" alt="" onerror="this.classList.add('rl__poster--hueco')">` : `<div class="rl__poster rl__poster--hueco"></div>`}
+        <div class="rl__cuerpo">
+          <div class="caps rl__de">la vieron juntos el ${f.visto.split("-").reverse().join("/")}</div>
+          <div class="rl__t">${esc(f.nombre)}</div>
+          <div class="rl__sub">${f.anio}</div>
+          <div class="rl__t" style="font-size:1rem;margin-top:1.4rem">¿cuánto le puso ${esc(q.otro.nombre)}?</div>
+        </div>
+      </div>
+      <div class="adv__ops">${OPCIONES.map((o) => `<button class="chip${respuesta === o ? " on" : ""}${d != null && o === suya ? " adv__real" : ""}" data-adivino="${o}"${d != null ? " disabled" : ""}>${notaCorta(o)}</button>`).join("")}</div>
+      ${veredicto}
+      ${d != null ? `<div class="acciones ruleta__acciones"><button class="btn btn--p" data-adivina-otra>otra</button></div>` : ""}
+      ${pieSoy(q.yo)}
+    </div>
+    <div class="tit" style="margin-top:2.2rem"><span class="slash">/</span><h2 class="caps">cómo les va</h2></div>
+    ${versus ? `<p class="caps" style="opacity:.7;margin:-.4rem 0 1.2rem">${versus}</p>` : ""}
+    <div class="jg__grid">${(data.juego ?? []).map(tarjetaJuego).join("")}</div>`;
 };
 
 const girarRuleta = async () => {
@@ -1399,11 +1578,22 @@ document.addEventListener("click", (e) => {
     return;
   }
 
+  const s = e.target.closest("[data-soy]");
+  if (s) {
+    fijarSoy(s.dataset.soy || null);
+    pregunta = null; respuesta = null;
+    return pedir(null);
+  }
+
+  const adv = e.target.closest("[data-adivino]");
+  if (adv) return responder(Number(adv.dataset.adivino));
+  if (e.target.closest("[data-adivina-otra]")) { pregunta = null; respuesta = null; return pintar(); }
+
   const el = e.target.closest("[data-a]");
   if (el && el.tagName !== "A") {
     e.preventDefault();
     if (el.dataset.cierra) cerrarPanel();
-    return pedir(el.dataset.a, { nombre: el.dataset.n, retoId: el.dataset.r });
+    return pedir(el.dataset.a, { nombre: el.dataset.n, retoId: el.dataset.r, anio: el.dataset.anio, valor: el.dataset.v });
   }
 
   const per = e.target.closest("[data-persona]");

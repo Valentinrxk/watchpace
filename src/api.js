@@ -12,7 +12,7 @@ import { armarJuntos, ES_JUNTOS } from "./juntos.js";
 
 const RUTA = enRaiz("cache/estado.json");
 const RUTA_SYNC = enRaiz("cache/sync.json");
-const VACIO = { rechazadas: {}, plan: null, retosPasados: [], retosActivos: {}, retoActivo: null, snoozeHasta: null, mirando: null, historial: [], modo: "comun", ronda: 0 };
+const VACIO = { rechazadas: {}, plan: null, retosPasados: [], retosActivos: {}, retoActivo: null, snoozeHasta: null, mirando: null, historial: [], modo: "comun", ronda: 0, votos: {}, jugadas: [] };
 
 export const leerEstado = () => (existsSync(RUTA) ? { ...VACIO, ...JSON.parse(readFileSync(RUTA, "utf8")) } : { ...VACIO });
 
@@ -88,14 +88,17 @@ const MODOS = [
     { id: "revancha", texto: "revancha" },
     { id: "ruleta", texto: "la ruleta" },
     { id: "nuestro", texto: "lo nuestro" },
+    { id: "match", texto: "match" },
+    { id: "adivina", texto: "¿cuánto le puso?" },
 ];
 
-export const construirJuntos = ({ estado: estadoDado = null, hoy = new Date() } = {}) => {
+export const construirJuntos = ({ estado: estadoDado = null, quien = null, hoy = new Date() } = {}) => {
     const estado = estadoDado ? { ...VACIO, ...estadoDado } : leerEstado();
     PERSONAS = leerPersonas();
 
     const modo = MODOS.some((m) => m.id === estado.modo) ? estado.modo : "comun";
-    const j = armarJuntos({ modo, ronda: estado.ronda ?? 0, rechazadas: estado.rechazadas, hoy });
+    const j = armarJuntos({ modo, ronda: estado.ronda ?? 0, rechazadas: estado.rechazadas, votos: estado.votos ?? {}, jugadas: estado.jugadas ?? [], quien, hoy });
+    const { puntuadas, ...juntas } = j.juntas;
 
     const conMarca = (f, extra = {}) => ({ ...aFilm({ ...f, tmdb: f.m }), ...extra });
 
@@ -109,7 +112,7 @@ export const construirJuntos = ({ estado: estadoDado = null, hoy = new Date() } 
         ronda: estado.ronda ?? 0,
         ritmos: j.ritmos,
         juntas: {
-            ...j.juntas,
+            ...juntas,
             vida: j.juntas.vida && {
                 ...j.juntas.vida,
                 primera: conMarca(j.juntas.vida.primera, { notas: j.juntas.vida.primera.notas, visto: j.juntas.vida.primera.visto }),
@@ -125,6 +128,13 @@ export const construirJuntos = ({ estado: estadoDado = null, hoy = new Date() } 
         debo: j.debo.slice(0, 6).map((f) => conMarca(f, { recomienda: f.recomienda, nota: f.nota, para: f.para })),
         revancha: j.revancha.slice(0, 6).map((f) => conMarca(f, { notas: f.notas, brecha: f.brecha })),
         giro: j.giro.slice(0, 24).map((f) => conMarca(f, { de: f.de ?? null })),
+        match: {
+            mazo: j.match.mazo.map((f) => conMarca(f, { de: f.de })),
+            matches: j.match.matches.map((f) => conMarca(f, { de: f.de, desde: f.desde })),
+            votados: j.match.votados,
+        },
+        adivina: puntuadas,
+        juego: j.juego,
         estado,
     };
 };
@@ -297,7 +307,7 @@ export const porPelicula = (nombre, anio, usuario = null) => {
 
 /* puro: (estado, accion) -> estado nuevo. el server local lo persiste en
    disco; en serverless el estado viaja con el request y vuelve al cliente. */
-export const reducir = (previo, { accion, nombre, retoId }) => {
+export const reducir = (previo, { accion, nombre, retoId, anio = null, quien = null, valor = null }) => {
     const estado = { ...VACIO, ...previo };
     const ahora = new Date().toISOString();
 
@@ -319,7 +329,19 @@ export const reducir = (previo, { accion, nombre, retoId }) => {
             ? Object.fromEntries(Object.entries(ya).filter(([k]) => k !== retoId))
             : { ...ya, [retoId]: hoyISO() };
     }
-    if (accion === "limpiar") return { ...VACIO, ultimaSync: previo?.ultimaSync ?? null, ultimaSyncWatchlist: previo?.ultimaSyncWatchlist ?? null };
+    /* el voto del match. la fecha del match queda para ordenar la lista
+       y para que el que completa el par pueda festejarlo */
+    if (accion === "voto" && nombre && anio && CONFIG.usuarios.some((u) => u.usuario === quien)) {
+        const k = clave(nombre, Number(anio));
+        const v = { ...(estado.votos?.[k] ?? {}), [quien]: String(valor) === "1" ? 1 : 0 };
+        if (!v.match && CONFIG.usuarios.every((u) => v[u.usuario] === 1)) v.match = ahora;
+        estado.votos = { ...estado.votos, [k]: v };
+    }
+    if (accion === "adivino" && nombre && anio && valor != null && CONFIG.usuarios.some((u) => u.usuario === quien)) {
+        estado.jugadas = [...(estado.jugadas ?? []), { quien, k: clave(nombre, Number(anio)), dijo: Number(valor), en: ahora }].slice(-1000);
+    }
+    /* los votos y las jugadas son de los dos: limpiar no se los lleva */
+    if (accion === "limpiar") return { ...VACIO, votos: previo?.votos ?? {}, jugadas: previo?.jugadas ?? [], ultimaSync: previo?.ultimaSync ?? null, ultimaSyncWatchlist: previo?.ultimaSyncWatchlist ?? null };
 
     return estado;
 };
