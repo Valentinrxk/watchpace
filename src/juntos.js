@@ -322,7 +322,7 @@ export const armarJuntos = ({ ronda = 0, modo = "comun", rechazadas = {}, votos 
             .map((j) => {
                 const f = puntuada.get(j.k);
                 const real = f.notas[1 - i];
-                return { nombre: f.nombre, anio: f.anio, dijo: j.dijo, real, error: j.dijo - real };
+                return { nombre: f.nombre, anio: f.anio, poster: f.poster, dijo: j.dijo, real, error: j.dijo - real };
             });
         let racha = 0;
         for (let n = suyas.length - 1; n >= 0 && acierta(suyas[n]); n--) racha++;
@@ -343,6 +343,14 @@ export const armarJuntos = ({ ronda = 0, modo = "comun", rechazadas = {}, votos 
             /* positivo: cree que el otro pone mas estrellas de las que pone */
             sesgo: media(suyas.map((x) => x.error)),
             peor: peor && Math.abs(peor.error) >= 1.5 ? peor : null,
+            /* "en cuales le erro mas": una por peli, la peor vez, y solo las
+               de una estrella o mas (media estrella es casi, no error) */
+            errores: [...new Map([...suyas]
+                .sort((a, b) => Math.abs(a.error) - Math.abs(b.error))
+                .map((x) => [clave(x.nombre, x.anio), x])).values()]
+                .filter((x) => Math.abs(x.error) >= 1)
+                .sort((a, b) => Math.abs(b.error) - Math.abs(a.error))
+                .slice(0, 12),
             ultimas: suyas.slice(-10).map(acierta),
             /* para no repetirle las ultimas que le tocaron */
             recientes: suyas.slice(-40).map((x) => clave(x.nombre, x.anio)),

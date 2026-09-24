@@ -427,6 +427,19 @@ section + section { margin-top:4.5rem; }
 .jg__puntos { display:flex; gap:.35rem; margin-top:.4rem; }
 .jg__punto { width:.55rem; height:.55rem; border:1px solid var(--color-border-strong); border-radius:50%; }
 .jg__punto.si { background:var(--red); border-color:var(--red); }
+.jg__ver {
+  align-self:flex-start; margin-top:.4rem; padding:.7rem 0 .35rem; background:none; border:0; cursor:pointer;
+  font:inherit; font-size:.6875rem; letter-spacing:var(--track-caps); text-transform:lowercase; color:var(--red);
+  text-decoration:underline; text-underline-offset:.3em;
+}
+.jg__errores { display:flex; flex-direction:column; border-top:1px solid var(--color-border); }
+.jg__errores[hidden] { display:none; }
+.jg__leyenda { font-size:.6rem; opacity:.55; padding:.6rem 0 .2rem; }
+.jg__err { display:grid; grid-template-columns:2.2rem 1fr auto; gap:.75rem; align-items:center; padding:.55rem 0; border-bottom:1px solid var(--color-border); cursor:pointer; }
+.jg__err img, .jg__err-hueco { display:block; width:2.2rem; aspect-ratio:2/3; object-fit:cover; border:1px solid var(--color-border); background:var(--skel); }
+.jg__err-t { min-width:0; font-size:.85rem; font-weight:600; line-height:1.2; overflow-wrap:anywhere; }
+.jg__err-t small { display:block; margin-top:.15rem; font-size:.72rem; font-weight:400; color:var(--color-text-dim); }
+.jg__err-n { font-size:1.05rem; color:var(--red); letter-spacing:-.02em; white-space:nowrap; }
 .soy { text-align:center; margin-top:1.3rem; opacity:.55; }
 .soy__cambiar { font:inherit; letter-spacing:inherit; text-transform:inherit; color:inherit; background:none; border:0; padding:0; text-decoration:underline; cursor:pointer; }
 .soy__cambiar:hover { color:var(--red); }
@@ -1409,6 +1422,23 @@ const responder = (valor) => {
 
 const otraPregunta = () => { pregunta = null; respuesta = null; elegida = null; };
 
+/* "en cuales le erro mas": se abre debajo de cada perfil y queda abierto
+   aunque se repinte al contestar otra */
+const erroresAbiertos = new Set();
+const cuanto = (n) => `${Math.floor(n) || ""}${n % 1 ? "½" : ""}`;
+const listaErrores = (p) => `
+  <div class="jg__errores" id="errores-${esc(p.usuario)}"${erroresAbiertos.has(p.usuario) ? "" : " hidden"}>
+    <div class="caps jg__leyenda">+ le tiró de más · − le tiró de menos</div>
+    ${p.errores.map((x) => `<div class="jg__err" data-peli="${esc(x.nombre)}" data-anio="${x.anio}">
+      ${x.poster ? `<img src="${IMG}${x.poster}" alt="" loading="lazy" onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'jg__err-hueco'}))">` : `<span class="jg__err-hueco"></span>`}
+      <span class="jg__err-t">${esc(x.nombre)}<small>dijo ${notaLarga(x.dijo)} · era ${notaLarga(x.real)}</small></span>
+      <b class="jg__err-n">${x.error > 0 ? "+" : "−"}${cuanto(Math.abs(x.error))}</b>
+    </div>`).join("")}
+  </div>`;
+const botonErrores = (p) => p.errores?.length
+  ? `<button class="jg__ver" data-errores="${esc(p.usuario)}" aria-expanded="${erroresAbiertos.has(p.usuario)}" aria-controls="errores-${esc(p.usuario)}">${erroresAbiertos.has(p.usuario) ? "ocultar" : `en cuáles le erró más (${p.errores.length})`}</button>${listaErrores(p)}`
+  : `<div class="jg__d" style="margin-top:.4rem">todavía no le erró por una estrella o más</div>`;
+
 const puntitos = (xs) => `<span class="jg__puntos">${xs.map((si) => `<i class="jg__punto${si ? " si" : ""}"></i>`).join("")}</span>`;
 
 const tarjetaJuego = (p, i) => {
@@ -1426,6 +1456,7 @@ const tarjetaJuego = (p, i) => {
       <div class="jg__d">se equivoca por ${String(p.errorMedio).replace(".", ",")} estrellas en promedio · ${sesgo}</div>
       ${p.peor ? `<div class="jg__d">la peor: a <b>${esc(p.peor.nombre)}</b> le dio ${notaLarga(p.peor.dijo)} y era ${notaLarga(p.peor.real)}</div>` : ""}
       ${puntitos(p.ultimas)}
+      ${botonErrores(p)}
     </div>`;
 };
 
@@ -1805,6 +1836,17 @@ document.addEventListener("click", (e) => {
   /* una tarjeta que se arrastro no se abre al soltarla */
   const jc = e.target.closest(".jc");
   if (jc?.dataset.arrastrada) { delete jc.dataset.arrastrada; return; }
+
+  const ver = e.target.closest("[data-errores]");
+  if (ver) {
+    const u = ver.dataset.errores, lista = $(`errores-${u}`);
+    const abrir = !erroresAbiertos.has(u);
+    abrir ? erroresAbiertos.add(u) : erroresAbiertos.delete(u);
+    lista.hidden = !abrir;
+    ver.setAttribute("aria-expanded", abrir);
+    ver.textContent = abrir ? "ocultar" : `en cuáles le erró más (${lista.querySelectorAll(".jg__err").length})`;
+    return;
+  }
 
   const voto = e.target.closest("[data-voto]");
   if (voto) return votar(Number(voto.dataset.voto));
