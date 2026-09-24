@@ -504,6 +504,60 @@ section + section { margin-top:4.5rem; }
 .adv__res { display:grid; grid-template-columns:auto auto; gap:.35rem .8rem; align-items:center; justify-content:center; }
 .adv__res .caps { text-align:right; opacity:.7; }
 .adv__veredicto { text-align:center; }
+.jc--quieta { cursor:default; }
+.jc__dupla { display:grid; grid-template-columns:1fr 1fr; gap:.6rem; }
+.jc--par { height:auto; width:100%; }
+.jc--par .jc__texto { padding:.75rem; }
+.jc--par .jc__t { font-size:clamp(.95rem, 4.2vw, 1.2rem); }
+.jc--par .jc__sub { font-size:.68rem; }
+.jc--par:focus-visible { outline:2px solid var(--red); outline-offset:2px; }
+.jc--gana { outline:3px solid var(--red); outline-offset:-3px; }
+.jc--pierde { opacity:.5; }
+.jc__nota { position:absolute; top:.6rem; left:.6rem; z-index:1; padding:.25rem .5rem; background:rgba(var(--tinta-velo),.85); color:var(--red-luz); font-size:1rem; font-weight:700; }
+.an__anio { text-align:center; font-size:3.4rem; font-weight:700; letter-spacing:-.05em; line-height:1; font-variant-numeric:tabular-nums; }
+.an__control { display:flex; align-items:center; gap:.6rem; }
+.an__control input { flex:1; min-width:0; height:2.75rem; accent-color:var(--red); }
+.an__paso { min-width:2.75rem; min-height:2.75rem; padding:0; font-size:1.1rem; }
+
+/* --- tu año --- */
+.ta__nums { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(150px,45%),1fr)); gap:1px; background:var(--color-border); border:1px solid var(--color-border); }
+.ta__num { background:var(--color-bg); padding:1.1rem; display:flex; flex-direction:column; gap:.2rem; }
+.ta__num b { font-size:2.4rem; font-weight:700; letter-spacing:-.05em; line-height:1; }
+.ta__num small { font-size:.72rem; color:var(--color-text-dim); line-height:1.4; }
+.ta__graf { margin-top:1.8rem; display:flex; flex-direction:column; gap:.8rem; }
+.ta__graf > .caps { opacity:.7; }
+.ta__barras { display:flex; gap:.3rem; height:8rem; }
+.ta__barra { flex:1; min-width:0; display:flex; flex-direction:column; align-items:center; gap:.3rem; }
+.ta__col { flex:1; width:100%; display:flex; align-items:flex-end; }
+.ta__col i { display:block; width:100%; min-height:2px; background:var(--color-border-strong); }
+.ta__barra.top .ta__col i { background:var(--red); }
+.ta__n, .ta__e { font-size:.6rem; color:var(--color-text-dim); letter-spacing:.04em; white-space:nowrap; }
+.ta__barra.top .ta__n { color:var(--red); font-weight:700; }
+.ta__listas { margin-top:1.8rem; display:grid; grid-template-columns:repeat(auto-fit,minmax(min(150px,100%),1fr)); gap:1.4rem 1.2rem; }
+.ta__lista { display:flex; flex-direction:column; min-width:0; }
+.ta__lista .caps { margin-bottom:.35rem; opacity:.7; }
+.ta__fila { display:flex; justify-content:space-between; gap:.8rem; padding:.45rem 0; border-bottom:1px solid var(--color-border); font-size:.85rem; }
+.ta__fila span { min-width:0; overflow-wrap:anywhere; }
+.ta__fila b { color:var(--red); }
+.ta__sueltos { margin-top:1.8rem; display:flex; flex-direction:column; gap:.55rem; font-size:.9rem; color:var(--color-text-dim); }
+.ta__sueltos b { color:var(--color-text); font-weight:600; }
+.ta__suelto[data-peli] { cursor:pointer; }
+.ta__mejores-t { margin:1.8rem 0 .8rem; opacity:.7; }
+.ta__mejores { display:flex; gap:.7rem; overflow-x:auto; scrollbar-width:none; padding-bottom:.3rem; scroll-snap-type:x proximity; }
+.ta__mejores::-webkit-scrollbar { display:none; }
+.ta__peli { flex:none; width:6.5rem; display:flex; flex-direction:column; gap:.3rem; cursor:pointer; scroll-snap-align:start; }
+.ta__peli img, .ta__hueco { display:block; width:100%; aspect-ratio:2/3; object-fit:cover; border:1px solid var(--color-border); background:var(--skel); }
+.ta__peli span { font-size:.72rem; font-weight:600; line-height:1.2; overflow-wrap:anywhere; }
+.ta__peli small { font-size:.7rem; color:var(--red); }
+
+/* --- sinopsis que se abren --- */
+.sin--cortada { cursor:pointer; }
+.sin--abierta { display:block !important; -webkit-line-clamp:unset !important; overflow:visible !important; }
+.sin__mas {
+  display:inline-block; margin-top:.3rem; padding:.45rem 0; background:none; border:0; cursor:pointer;
+  font:inherit; font-size:.625rem; letter-spacing:var(--track-caps); text-transform:lowercase; color:var(--red);
+  text-decoration:underline; text-underline-offset:.3em;
+}
 .adv__veredicto .hito__t { font-size:1.35rem; }
 .adv__veredicto--si .hito__t { color:var(--red); }
 .matches { display:grid; grid-template-columns:repeat(auto-fill,minmax(min(260px,100%),1fr)); gap:.9rem; }
@@ -752,6 +806,12 @@ section + section { margin-top:4.5rem; }
       <div id="alternativas"></div>
     </section>
 
+    <section id="secSolo" hidden>
+      <div class="tit"><span class="slash">/</span><h2 class="caps">jugá solo</h2></div>
+      <div class="chips" id="chipsSolo"></div>
+      <div id="zonaSolo"></div>
+    </section>
+
 
     <section id="secJuntos" hidden>
       <div class="dupla" id="dupla"></div>
@@ -769,6 +829,11 @@ section + section { margin-top:4.5rem; }
       </div>
       <div id="retoLogro"></div>
       <div class="retos" id="retos"></div>
+    </section>
+
+    <section id="secAnio" hidden>
+      <div class="tit"><span class="slash">/</span><h2 class="caps" id="titAnio">tu año</h2></div>
+      <div id="zonaAnio"></div>
     </section>
 
     <section>
@@ -1284,8 +1349,8 @@ const TAPA_GRANDE = "https://image.tmdb.org/t/p/w500";
 const esTelefono = () => matchMedia("(max-width:640px)").matches;
 let modoPintado = null, irAlModo = false;
 
-const cartaJuego = (f, { arriba = "", sub = "", clase = "", sellos = false } = {}) => `
-  <div class="jc ${clase}" data-peli="${esc(f.nombre)}" data-anio="${f.anio}">
+const cartaJuego = (f, { arriba = "", sub = "", clase = "", sellos = false, abre = true } = {}) => `
+  <div class="jc ${clase}${abre ? "" : " jc--quieta"}"${abre ? ` data-peli="${esc(f.nombre)}" data-anio="${f.anio}"` : ""}>
     ${f.poster ? `<img class="jc__img" src="${TAPA_GRANDE}${f.poster}" alt="" draggable="false" onerror="this.remove()">` : ""}
     <div class="jc__velo"></div>
     <div class="jc__texto">
@@ -1553,6 +1618,243 @@ const armarEstrellas = () => {
   });
 };
 
+/* ---------- jugá solo: juegos con tu propio diario ---------- */
+const SOLOS = [{ id: "cual", texto: "¿cuál te gustó más?" }, { id: "anio", texto: "¿de qué año es?" }];
+const llaveSolo = () => `wp.solo.${data?.usuario}`;
+let soloModo = null, soloDe = null;
+let par = null, parElegida = null;
+let anioPeli = null, anioDicho = null, anioElegido = 2000;
+const soloVistas = new Set();
+const ANIO_MIN = 1920, ANIO_MAX = new Date().getFullYear();
+
+const modoSolo = () => {
+  if (soloModo) return soloModo;
+  try { return localStorage.getItem(llaveSolo()) || "cual"; } catch (e) { return "cual"; }
+};
+const statsSolo = (id) => data.estado?.solo?.[id] ?? {};
+const marcadorSolo = (id, vacio) => {
+  const s = statsSolo(id);
+  return s.jugadas
+    ? `${s.aciertos} de ${s.jugadas}${s.racha > 1 ? ` · racha de ${s.racha}` : ""}${s.mejor > 1 ? ` · mejor ${s.mejor}` : ""}`
+    : vacio;
+};
+const alAzar = (xs) => xs[Math.floor(Math.random() * xs.length)];
+const kSolo = (f) => `${f.nombre}::${f.anio}`;
+
+/* dos que puntuaste con al menos una estrella de diferencia: con media
+   es tirar una moneda */
+const nuevoPar = () => {
+  const con = (data.solo?.pelis ?? []).filter((f) => f.rating);
+  const libres = con.filter((f) => !soloVistas.has("c" + kSolo(f)));
+  const de = libres.length > 10 ? libres : con;
+  for (let i = 0; i < 80 && de.length > 1; i++) {
+    const a = alAzar(de), b = alAzar(de);
+    if (a !== b && Math.abs(a.rating - b.rating) >= 1) {
+      soloVistas.add("c" + kSolo(a)); soloVistas.add("c" + kSolo(b));
+      return [a, b];
+    }
+  }
+  return null;
+};
+const nuevaDeAnio = () => {
+  const con = (data.solo?.pelis ?? []).filter((f) => f.poster);
+  const libres = con.filter((f) => !soloVistas.has("a" + kSolo(f)));
+  const f = alAzar(libres.length ? libres : con) ?? null;
+  if (f) soloVistas.add("a" + kSolo(f));
+  return f;
+};
+const otraSolo = () => { par = null; parElegida = null; anioPeli = null; anioDicho = null; anioElegido = 2000; };
+
+/* lo que dijiste se anota sin repintar la pagina: la sugerencia de arriba
+   no tiene por que parpadear porque jugaste */
+const anotarSolo = (juego, valor) => {
+  enCola = enCola.then(async () => {
+    const r = await fetch("/api/estado", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({ accion: "solo", nombre: juego, valor: String(valor), usuario, estado: leerEstadoLocal() }),
+    }).then((x) => x.json()).catch(() => null);
+    if (!r || r.error || r.usuario !== data.usuario) return;
+    data.estado = r.estado;
+    guardarEstadoLocal(r.estado);
+    pintarSolo();
+  }).catch(() => {});
+};
+
+const elegirPar = (i) => {
+  if (!par || parElegida != null) return;
+  parElegida = i;
+  const gana = par[0].rating > par[1].rating ? 0 : 1;
+  pintarSolo();
+  anotarSolo("cual", i === gana ? 1 : 0);
+};
+
+const moverAnio = (v) => {
+  anioElegido = Math.min(ANIO_MAX, Math.max(ANIO_MIN, v));
+  const r = $("anRango"); if (r) r.value = anioElegido;
+  $("anAnio").textContent = anioElegido;
+  $("anVa").textContent = `va, ${anioElegido}`;
+};
+const responderAnio = () => {
+  if (!anioPeli || anioDicho != null) return;
+  anioDicho = anioElegido;
+  pintarSolo();
+  anotarSolo("anio", Math.abs(anioDicho - anioPeli.anio));
+};
+
+const tarjetaPar = (f, i, gana) => {
+  const revelada = parElegida != null;
+  return `<div class="jc jc--par${revelada ? (i === gana ? " jc--gana" : " jc--pierde") : ""}"
+      ${revelada ? `data-peli="${esc(f.nombre)}" data-anio="${f.anio}"` : `data-elijo="${i}" role="button" tabindex="0"`}>
+    ${f.poster ? `<img class="jc__img" src="${TAPA_GRANDE}${f.poster}" alt="" draggable="false" onerror="this.remove()">` : ""}
+    <div class="jc__velo"></div>
+    ${revelada ? `<div class="jc__nota">${notaLarga(f.rating)}</div>` : ""}
+    <div class="jc__texto">
+      <div class="jc__t">${esc(f.nombre)}</div>
+      <div class="jc__sub">${f.anio}${f.director ? ` · ${esc(f.director)}` : ""}</div>
+    </div>
+  </div>`;
+};
+
+const pintarSolo = (entra = false) => {
+  if (soloDe !== data.usuario) { soloDe = data.usuario; soloModo = null; otraSolo(); }
+  const pelis = data.solo?.pelis ?? [];
+  $("secSolo").hidden = pelis.filter((f) => f.rating).length < 6;
+  if ($("secSolo").hidden) return;
+  const modo = modoSolo();
+  $("chipsSolo").innerHTML = SOLOS.map((m) => `<button class="chip ${m.id === modo ? "on" : ""}" data-solo="${m.id}">${m.texto}</button>`).join("");
+  const z = $("zonaSolo");
+
+  if (modo === "cual") {
+    if (!par) { par = nuevoPar(); parElegida = null; }
+    if (!par) { z.innerHTML = `<div class="dir-vacio">necesito más pelis puntuadas.</div>`; return; }
+    const gana = par[0].rating > par[1].rating ? 0 : 1;
+    const bien = parElegida === gana;
+    z.innerHTML = `<div class="juego${entra ? " enter" : ""}">
+        <div class="caps juego__pie">${marcadorSolo("cual", "dos de tu diario: ¿a cuál le pusiste más estrellas?")}</div>
+        <div class="jc__dupla">${tarjetaPar(par[0], 0, gana)}${tarjetaPar(par[1], 1, gana)}</div>
+        ${parElegida == null
+          ? `<div class="caps juego__pista">tocá la que puntuaste más alto</div>`
+          : `<div class="adv__veredicto enter${bien ? " adv__veredicto--si" : ""}">
+               <div class="hito__t">${bien ? "sí" : "no, al revés"}</div>
+               <div class="hito__d">${esc(par[gana].nombre)} ${notaLarga(par[gana].rating)} · ${esc(par[1 - gana].nombre)} ${notaLarga(par[1 - gana].rating)}</div>
+             </div>
+             <div class="juego__barra"><button class="btn btn--p" data-solo-otra>otra</button></div>`}
+      </div>`;
+    return;
+  }
+
+  if (!anioPeli) { anioPeli = nuevaDeAnio(); anioDicho = null; }
+  if (!anioPeli) { z.innerHTML = `<div class="dir-vacio">todavía no hay pelis para esto.</div>`; return; }
+  const f = anioPeli, d = anioDicho == null ? null : Math.abs(anioDicho - f.anio);
+  z.innerHTML = `<div class="juego${entra ? " enter" : ""}">
+      <div class="caps juego__pie">${marcadorSolo("anio", "una de tu diario: ¿de qué año es?")}</div>
+      ${cartaJuego(f, { clase: "jc--bajo", arriba: f.director ? `de ${esc(f.director)}` : "", abre: d != null })}
+      ${d == null ? `
+        <div class="an__anio" id="anAnio">${anioElegido}</div>
+        <div class="an__control">
+          <button class="btn an__paso" data-anio-paso="-1" aria-label="un año antes">−</button>
+          <input type="range" id="anRango" min="${ANIO_MIN}" max="${ANIO_MAX}" step="1" value="${anioElegido}" aria-label="año de estreno">
+          <button class="btn an__paso" data-anio-paso="1" aria-label="un año después">+</button>
+        </div>
+        <div class="juego__barra"><button class="btn btn--p" id="anVa" data-anio-va>va, ${anioElegido}</button></div>`
+      : `
+        <div class="an__anio">${f.anio}</div>
+        <div class="adv__veredicto enter${d === 0 ? " adv__veredicto--si" : ""}">
+          <div class="hito__t">${d === 0 ? "clavado" : d <= 2 ? "cerca" : d <= 10 ? `a ${d} años` : "ni cerca"}</div>
+          <div class="hito__d">dijiste ${anioDicho}${d ? ` · le erraste por ${d} año${d === 1 ? "" : "s"}` : ""}</div>
+        </div>
+        <div class="juego__barra"><button class="btn btn--p" data-solo-otra>otra</button></div>`}
+    </div>`;
+  $("anRango")?.addEventListener("input", (e) => moverAnio(Number(e.target.value)));
+};
+
+/* ---------- tu año ---------- */
+const barras = (xs, etiqueta, top) => {
+  const alto = Math.max(1, ...xs.map((x) => x.n));
+  return `<div class="ta__barras">${xs.map((x) => `<div class="ta__barra${x === top ? " top" : ""}">
+      <span class="ta__n">${x.n || ""}</span>
+      <div class="ta__col"><i style="height:${(x.n / alto) * 100}%"></i></div>
+      <span class="ta__e">${etiqueta(x)}</span></div>`).join("")}</div>`;
+};
+
+const pintarAnio = () => {
+  const a = data.solo?.anio;
+  $("secAnio").hidden = !a;
+  if (!a) return;
+  $("titAnio").textContent = `tu ${a.anio}`;
+  const puntuadas = a.estrellas.reduce((t, x) => t + x.n, 0);
+  const notaTop = a.estrellas.reduce((m, x) => (x.n > m.n ? x : m), a.estrellas[0]);
+  const mesTop = a.porMes.reduce((m, x) => (x.n > m.n ? x : m), a.porMes[0]);
+  const dif = a.vistas - a.anioPasado;
+  const lista = (titulo, xs) => xs.length ? `<div class="ta__lista"><span class="caps">${titulo}</span>
+      ${xs.map((x) => `<div class="ta__fila"><span>${esc(x.nombre)}</span><b>${x.cuantas}</b></div>`).join("")}</div>` : "";
+  const peli = (f, txt) => `<div class="ta__suelto" data-peli="${esc(f.nombre)}" data-anio="${f.anio}">${txt}</div>`;
+
+  $("zonaAnio").innerHTML = `
+    <div class="ta__nums">
+      <div class="ta__num"><b>${a.vistas}</b><span class="caps">pelis</span>
+        <small>${a.anioPasado ? `${dif >= 0 ? `${dif} más` : `${-dif} menos`} que el año pasado a esta altura` : "&nbsp;"}</small></div>
+      <div class="ta__num"><b>${a.horas}</b><span class="caps">horas</span>
+        <small>${String((a.horas / 24).toFixed(1)).replace(".", ",")} días enteros de pantalla</small></div>
+      <div class="ta__num"><b>${a.promedio ? String(a.promedio).replace(".", ",") : "—"}</b><span class="caps">nota promedio</span>
+        <small>de ${puntuadas} puntuadas</small></div>
+      <div class="ta__num"><b>${a.racha}</b><span class="caps">días seguidos</span>
+        <small>tu racha más larga</small></div>
+    </div>
+
+    <div class="ta__graf">
+      <span class="caps">cómo repartís las estrellas · la que más das: ${notaLarga(notaTop.nota)}</span>
+      ${barras(a.estrellas, (x) => cuanto(x.nota), notaTop)}
+    </div>
+    <div class="ta__graf">
+      <span class="caps">mes a mes · ${mesTop.mes} fue el más cinéfilo</span>
+      ${barras(a.porMes, (x) => x.mes, mesTop)}
+    </div>
+
+    <div class="ta__listas">
+      ${lista("directores", a.directores)}${lista("géneros", a.generos)}${lista("países", a.paises)}${lista("décadas", a.decadas)}
+    </div>
+
+    <div class="ta__sueltos">
+      ${a.dia ? `<div class="ta__suelto">el <b>${a.dia.nombre}</b> es tu día: ${a.dia.cuantas} pelis</div>` : ""}
+      ${a.vieja ? peli(a.vieja, `la más vieja: <b>${esc(a.vieja.nombre)}</b> (${a.vieja.anio})`) : ""}
+      ${a.larga ? peli(a.larga, `la más larga: <b>${esc(a.larga.nombre)}</b> (${a.larga.minutos} min)`) : ""}
+      ${a.rewatches ? `<div class="ta__suelto">volviste a ver <b>${a.rewatches}</b></div>` : ""}
+    </div>
+
+    ${a.mejores.length ? `<div class="caps ta__mejores-t">las que mejor puntuaste</div>
+      <div class="ta__mejores">${a.mejores.map((f) => `<div class="ta__peli" data-peli="${esc(f.nombre)}" data-anio="${f.anio}">
+        ${f.poster ? `<img src="${IMG}${f.poster}" alt="" loading="lazy" onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'ta__hueco'}))">` : `<span class="ta__hueco"></span>`}
+        <span>${esc(f.nombre)}</span><small>${notaLarga(f.rating)}</small></div>`).join("")}</div>` : ""}`;
+};
+
+/* ---------- sinopsis que no entran ----------
+   se cortan en 4 renglones (2 en la ruleta del telefono) para no empujar
+   todo para abajo, pero se tienen que poder leer enteras: si una no entra
+   aparece "seguir leyendo", y tocar el texto tambien la abre */
+const marcarCortadas = () => {
+  for (const p of document.querySelectorAll(".hero__sin:not([data-medida]), .rl__sin:not([data-medida])")) {
+    if (!p.clientHeight) continue;
+    p.dataset.medida = "1";
+    if (p.scrollHeight <= p.clientHeight + 2) continue;
+    p.classList.add("sin--cortada");
+    p.insertAdjacentHTML("afterend", `<button class="sin__mas" type="button">seguir leyendo</button>`);
+  }
+};
+let medirPendiente = false;
+new MutationObserver(() => {
+  if (medirPendiente) return;
+  medirPendiente = true;
+  requestAnimationFrame(() => { medirPendiente = false; marcarCortadas(); });
+}).observe(document.body, { childList: true, subtree: true });
+
+const abrirSinopsis = (p) => {
+  const abierta = p.classList.toggle("sin--abierta");
+  const b = p.nextElementSibling;
+  if (b?.classList.contains("sin__mas")) b.textContent = abierta ? "menos" : "seguir leyendo";
+};
+
 const girarRuleta = async () => {
   const v = $("ventana");
   const boton = $("girar");
@@ -1685,6 +1987,8 @@ const pintar = () => {
     .map((f, i) => filaPeli({ ...f, puntaje: null }, `${estrellas(f.rating)}${fechaCorta(f.visto)}`, i))
     .join("");
 
+  pintarSolo(primera);
+  pintarAnio();
   primera = false;
 };
 
@@ -1698,9 +2002,16 @@ const cerrarPanel = () => {
   setTimeout(() => { dirPanel.hidden = true; dirFondo.hidden = true; }, 360);
 };
 
+/* mientras juegan a "¿cuanto le puso?" la ficha no puede decir las notas:
+   seria mirar la respuesta. tampoco las de otras pelis (del director, de
+   un actor), que pueden tocar despues */
+const sinNotas = () => data?.tipo === "juntos" && data?.modo === "adivina";
+const avisoSinNotas = () => (sinNotas() ? `<div class="caps" style="opacity:.5;margin-bottom:1rem">las notas no se ven mientras juegan</div>` : "");
+
 const htmlPersona = (d) => `
   <div class="dir-panel__t">${esc(d.nombre)}</div>
   <div class="dir-panel__sub caps">${d.pendientes.length} pendiente${d.pendientes.length === 1 ? "" : "s"} · ${d.vistas.length} vista${d.vistas.length === 1 ? "" : "s"}</div>
+  ${avisoSinNotas()}
 
   <div class="dir-grupo">
     <span class="caps">en tu watchlist</span>
@@ -1712,7 +2023,7 @@ const htmlPersona = (d) => `
   <div class="dir-grupo">
     <span class="caps">ya viste</span>
     ${d.vistas.length
-      ? d.vistas.map((f, i) => filaPeli(f, `${estrellas(f.miRating)}${fechaCorta(f.visto)}`, i)).join("")
+      ? d.vistas.map((f, i) => filaPeli(f, `${estrellas(sinNotas() ? null : f.miRating)}${fechaCorta(f.visto)}`, i)).join("")
       : `<div class="dir-vacio">ninguna todavía.</div>`}
   </div>
 
@@ -1725,12 +2036,12 @@ const htmlPelicula = (d) => {
 
   const w = donde(d);
   const suyo = (p) => p.vista
-    ? `la vio${p.visto ? ` el ${p.visto}` : ""}${p.rating ? ` · ${"★".repeat(Math.round(p.rating))}` : " · sin puntuar"}`
+    ? `la vio${p.visto ? ` el ${p.visto}` : ""}${sinNotas() ? "" : p.rating ? ` · ${"★".repeat(Math.round(p.rating))}` : " · sin puntuar"}`
     : p.enWatchlist ? "la tiene pendiente" : "no la tiene anotada";
   const estado = d.dedos
     ? d.dedos.map((p) => `<div class="dir-dedos"><b>${esc(p.nombre)}</b><span>${esc(suyo(p))}</span></div>`).join("")
     : `<div class="caps">${d.vista
-        ? `la viste${d.visto ? ` el ${d.visto}` : ""}${d.miRating ? ` · le pusiste ${"★".repeat(Math.round(d.miRating))}` : " · sin puntuar"}`
+        ? `la viste${d.visto ? ` el ${d.visto}` : ""}${sinNotas() ? "" : d.miRating ? ` · le pusiste ${"★".repeat(Math.round(d.miRating))}` : " · sin puntuar"}`
         : d.enWatchlist ? "pendiente en tu watchlist" : "no está en tu watchlist"}</div>`;
 
   return `
@@ -1746,7 +2057,8 @@ const htmlPelicula = (d) => {
   </div>
 
   <div style="margin-bottom:1.2rem">${estado}</div>
-  ${d.sinopsis ? `<p class="hero__sin" style="-webkit-line-clamp:8;max-width:none">${esc(d.sinopsis)}</p>` : ""}
+  ${avisoSinNotas()}
+  ${d.sinopsis ? `<p class="hero__sin sin--abierta" data-medida="1" style="max-width:none">${esc(d.sinopsis)}</p>` : ""}
 
   ${d.directorNombre ? `<div class="dir-grupo"><span class="caps">dirección</span>
       <div style="padding:.6rem 0">${d.directorId ? `<span class="dir-link" data-persona="${d.directorId}">${esc(d.directorNombre)}</span>` : esc(d.directorNombre)}</div></div>` : ""}
@@ -1837,6 +2149,24 @@ document.addEventListener("click", (e) => {
   const jc = e.target.closest(".jc");
   if (jc?.dataset.arrastrada) { delete jc.dataset.arrastrada; return; }
 
+  const mas = e.target.closest(".sin__mas");
+  if (mas) return abrirSinopsis(mas.previousElementSibling);
+  const sin = e.target.closest(".sin--cortada");
+  if (sin) return abrirSinopsis(sin);
+
+  const so = e.target.closest("[data-solo]");
+  if (so) {
+    soloModo = so.dataset.solo;
+    try { localStorage.setItem(llaveSolo(), soloModo); } catch (err) {}
+    return pintarSolo(true);
+  }
+  const elijo = e.target.closest("[data-elijo]");
+  if (elijo) return elegirPar(Number(elijo.dataset.elijo));
+  const paso = e.target.closest("[data-anio-paso]");
+  if (paso) return moverAnio(anioElegido + Number(paso.dataset.anioPaso));
+  if (e.target.closest("[data-anio-va]")) return responderAnio();
+  if (e.target.closest("[data-solo-otra]")) { otraSolo(); return pintarSolo(); }
+
   const ver = e.target.closest("[data-errores]");
   if (ver) {
     const u = ver.dataset.errores, lista = $(`errores-${u}`);
@@ -1871,6 +2201,11 @@ document.addEventListener("click", (e) => {
 
   const chip = e.target.closest("[data-min]");
   if (chip) { minutos = chip.dataset.min ? Number(chip.dataset.min) : null; return pedir(null); }
+});
+
+addEventListener("keydown", (e) => {
+  const el = e.target.closest?.("[data-elijo]");
+  if (el && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); elegirPar(Number(el.dataset.elijo)); }
 });
 
 $("user").addEventListener("click", () => {

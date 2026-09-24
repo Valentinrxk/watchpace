@@ -9,6 +9,7 @@ import { CONFIG } from "./config.js";
 import { cargarUsuario, configDe, leerPerfil } from "./usuarios.js";
 import { enRaiz } from "./rutas.js";
 import { armarJuntos, ES_JUNTOS } from "./juntos.js";
+import { armarSolo } from "./solo.js";
 
 const RUTA = enRaiz("cache/estado.json");
 const RUTA_SYNC = enRaiz("cache/sync.json");
@@ -203,6 +204,7 @@ export const construirPayload = ({ minutos = null, estado: estadoDado = null, us
         },
         historial: (estado.historial ?? []).slice(-5).reverse(),
         ultimas: diario.slice(0, 5).map((f) => ({ nombre: f.nombre, anio: f.anio, visto: f.visto, rating: f.rating })),
+        solo: armarSolo({ diario, cache, personas: PERSONAS, hoy }),
     };
 };
 
@@ -340,8 +342,26 @@ export const reducir = (previo, { accion, nombre, retoId, anio = null, quien = n
     if (accion === "adivino" && nombre && anio && valor != null && CONFIG.usuarios.some((u) => u.usuario === quien)) {
         estado.jugadas = [...(estado.jugadas ?? []), { quien, k: clave(nombre, Number(anio)), dijo: Number(valor), en: ahora }].slice(-1000);
     }
+    /* los juegos solos: lo juega uno solo, asi que va en su estado y ya.
+       "cual" anota si acerto (1/0); "anio" anota por cuantos años erro */
+    if (accion === "solo" && (nombre === "cual" || nombre === "anio") && valor != null) {
+        const v = Math.abs(Number(valor));
+        const acierta = nombre === "cual" ? v === 1 : v <= 2;
+        const previo = estado.solo?.[nombre] ?? {};
+        const racha = acierta ? (previo.racha ?? 0) + 1 : 0;
+        estado.solo = {
+            ...estado.solo,
+            [nombre]: {
+                jugadas: (previo.jugadas ?? 0) + 1,
+                aciertos: (previo.aciertos ?? 0) + (acierta ? 1 : 0),
+                clavadas: (previo.clavadas ?? 0) + (nombre === "anio" && v === 0 ? 1 : 0),
+                racha,
+                mejor: Math.max(previo.mejor ?? 0, racha),
+            },
+        };
+    }
     /* los votos y las jugadas son de los dos: limpiar no se los lleva */
-    if (accion === "limpiar") return { ...VACIO, votos: previo?.votos ?? {}, jugadas: previo?.jugadas ?? [], ultimaSync: previo?.ultimaSync ?? null, ultimaSyncWatchlist: previo?.ultimaSyncWatchlist ?? null };
+    if (accion === "limpiar") return { ...VACIO, votos: previo?.votos ?? {}, jugadas: previo?.jugadas ?? [], solo: previo?.solo ?? {}, ultimaSync: previo?.ultimaSync ?? null, ultimaSyncWatchlist: previo?.ultimaSyncWatchlist ?? null };
 
     return estado;
 };
