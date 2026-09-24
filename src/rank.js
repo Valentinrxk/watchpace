@@ -1,10 +1,5 @@
 const MS_DIA = 86400000;
 
-/* de donde puede salir la sugerencia del dia. era 14, y como en pantalla
-   entran 7, todos los dias se veia la mitad del mismo pool: literalmente
-   las mismas peliculas siempre. con 42 son seis dias sin repetir ninguna. */
-const POOL = 42;
-
 /* lo que entra en pantalla: la sugerencia + las 6 alternativas */
 const VENTANA = 7;
 
@@ -117,12 +112,13 @@ export const rankearFinal = ({ candidatas, minutosDisponibles = null, hoy = new 
         })
         .sort((a, b) => b.score - a.score);
 
-    /* la calidad elige quienes son dignas; el dia elige el orden entre
-       ellas. si no, la mejor por decimas gana siempre y todos los dias
-       ves la misma. las rechazadas quedan fuera del pool por su castigo. */
+    /* el dia recorre la watchlist entera; la calidad solo reparte las
+       bandas, asi cada pagina trae una de las mejores. el pool era de 42
+       cortado por antiguedad, y como lo agregado en 2020 ya no envejece
+       (topea en 30) eran siempre las mismas: en 90 dias se veian 44 de
+       292 y nunca nada de 2025 ni 2026. las rechazadas quedan fuera por
+       su castigo. */
     const vivas = puntuadas.filter((f) => f.score > -500);
-    const pool = vivas.slice(0, POOL);
-    const resto = vivas.slice(POOL);
 
-    return [...ordenDelDia(pool, hoy), ...resto, ...puntuadas.filter((f) => f.score <= -500)];
+    return [...ordenDelDia(vivas, hoy), ...puntuadas.filter((f) => f.score <= -500)];
 };

@@ -44,6 +44,17 @@ const fechasDe = (usuario) => {
 
 const hoyISO = (d = new Date()) => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
 
+/* "viste la que planificaste" es noticia un par de dias. sin vencimiento
+   quedaba para siempre el ultimo plan cumplido: en la web lo tapaba un
+   flag del localStorage, pero en un navegador nuevo, en telegram y en el
+   nudge seguia diciendo snowpiercer un mes despues */
+const DIAS_AVISO = 3;
+const avisoDeCumplido = (historial, hoy) => {
+    const c = (historial ?? []).filter((h) => h.tipo === "cumplido").at(-1);
+    const desde = hoyISO(new Date(hoy.getFullYear(), hoy.getMonth(), hoy.getDate() - DIAS_AVISO));
+    return c && c.visto >= desde ? c : null;
+};
+
 const aFilm = (f) => {
     const c = clasificar(f);
     const t = f.tmdb ?? f.m ?? {};
@@ -138,9 +149,9 @@ export const construirPayload = ({ minutos = null, estado: estadoDado = null, us
         return !minutos || d == null || d <= minutos;
     };
     const pool = minutos && pre.filter(cabe).length >= 8 ? pre.filter(cabe) : pre;
-    /* 40 candidatas sobre una watchlist de 300 eran siempre las mismas 40:
-       el corte por antiguedad no se mueve hasta que agregas o sacas algo. */
-    const orden = rankearFinal({ candidatas: pool.slice(0, 60), minutosDisponibles: minutos, hoy });
+    /* sin corte: cualquier corte por antiguedad deja siempre las mismas,
+       porque la antiguedad no se mueve hasta que agregas o sacas algo */
+    const orden = rankearFinal({ candidatas: pool, minutosDisponibles: minutos, hoy });
 
     const retos = generarRetos({ diario, watchlist, vistasFilas, cache, personas: PERSONAS, activos: estado.retosActivos ?? {}, ritmo, hoy })
         .filter((r) => !estado.retosPasados.includes(r.id))
@@ -170,7 +181,7 @@ export const construirPayload = ({ minutos = null, estado: estadoDado = null, us
         alternativas: resto.slice(0, 6).map(aFilm),
         retos,
         retoActivo: estado.retoActivo,
-        cumplidoReciente: (estado.historial ?? []).filter((h) => h.tipo === "cumplido").at(-1) ?? null,
+        cumplidoReciente: avisoDeCumplido(estado.historial, hoy),
         sync: {
             ultima: marca?.ultima ?? enDisco.ultimaSync ?? estado.ultimaSync ?? null,
             ultimoIntento: marca?.ultimoIntento ?? enDisco.ultimoIntento ?? null,
