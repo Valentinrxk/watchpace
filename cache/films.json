@@ -85918,5 +85918,47 @@
    "alquiler": []
   },
   "actualizado": "2026-09-23T07:49:50.948Z"
+ },
+ "B.A.P.S::1997": {
+  "tmdb": 18423,
+  "titulo": "Granujas de Beverly Hills",
+  "original": "B.A.P.S",
+  "sinopsis": "Nisi y Mickey son dos chicas de provincias ambiciosas que trabajan como camareras con el objetivo de poder conseguir el dinero necesario para abrir el restaurante de sus sueños. Las dos vuelan a California para asistir a un casting para un vídeo músical. Allí intentan estafar a un millonario y aprenden a ser \"Black American Princess\"",
+  "tagline": "Estas preciosas mujeres... ¡No tienen ni idea!",
+  "puntaje": 5.4,
+  "votos": 85,
+  "minutos": 91,
+  "generos": [
+   "Comedia"
+  ],
+  "paises": [
+   "US"
+  ],
+  "idioma": "en",
+  "director": "Robert Townsend",
+  "directorId": 68750,
+  "reparto": [
+   "Halle Berry",
+   "Natalie Desselle-Reid",
+   "Martin Landau",
+   "Ian Richardson",
+   "Pierre Edwards"
+  ],
+  "repartoIds": [
+   4587,
+   83099,
+   2641,
+   385,
+   52332
+  ],
+  "popularidad": 3.6265,
+  "poster": "/yi40NrDfdv8vX0aoWvis3CnCVWj.jpg",
+  "backdrop": "/HDPq5KVV9Yw2H0fhvMug3Oi9Xv.jpg",
+  "proveedores": {
+   "suscripcion": [],
+   "gratis": [],
+   "alquiler": []
+  },
+  "actualizado": "2026-09-27T08:19:52.378Z"
  }
 }
