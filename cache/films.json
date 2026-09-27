@@ -85960,5 +85960,47 @@
    "alquiler": []
   },
   "actualizado": "2026-09-27T08:19:52.378Z"
+ },
+ "Die, Mommie, Die!::2003": {
+  "tmdb": 43708,
+  "titulo": "Die, Mommie, Die!",
+  "original": "Die, Mommie, Die!",
+  "sinopsis": "Angela Arden is a washed up, has-been singing star who is trapped in a hateful marriage to film producer Sol Sussman. In an attempt to escape her marriage so that she can be with a hunky layabout, she poisons her husband. However, Angela's manipulative daughter, gay son and alcoholic maid are not going to make it easy for her.",
+  "tagline": null,
+  "puntaje": 6.6,
+  "votos": 40,
+  "minutos": 90,
+  "generos": [
+   "Comedia"
+  ],
+  "paises": [
+   "US"
+  ],
+  "idioma": "en",
+  "director": "Mark Rucker",
+  "directorId": 129796,
+  "reparto": [
+   "Charles Busch",
+   "Natasha Lyonne",
+   "Stark Sands",
+   "Frances Conroy",
+   "Philip Baker Hall"
+  ],
+  "repartoIds": [
+   103374,
+   10871,
+   33532,
+   4432,
+   4492
+  ],
+  "popularidad": 1.8996,
+  "poster": "/shWps7YrqBPujesJQrIoHnhGhZh.jpg",
+  "backdrop": "/btXfAsrIcNkoU9VmVHjpD1LefBb.jpg",
+  "proveedores": {
+   "suscripcion": [],
+   "gratis": [],
+   "alquiler": []
+  },
+  "actualizado": "2026-09-27T19:48:00.275Z"
  }
 }
