@@ -86002,5 +86002,89 @@
    "alquiler": []
   },
   "actualizado": "2026-09-27T19:48:00.275Z"
+ },
+ "Slay::2024": {
+  "tmdb": 1258745,
+  "titulo": "Slay",
+  "original": "Slay",
+  "sinopsis": "After a booking mistake, four drag queens find themselves performing for a mostly unwelcoming crowd, but when vampires attack, the crowd looks to the queens to save the day.",
+  "tagline": null,
+  "puntaje": 5.9,
+  "votos": 19,
+  "minutos": 98,
+  "generos": [
+   "Comedia",
+   "Terror"
+  ],
+  "paises": [
+   "CA",
+   "ZA"
+  ],
+  "idioma": "en",
+  "director": "Jem Garrard",
+  "directorId": 1602849,
+  "reparto": [
+   "Trinity the Tuck",
+   "Heidi N Closet",
+   "Crystal Methyd",
+   "Cara Melle",
+   "Donia Kash"
+  ],
+  "repartoIds": [
+   2563337,
+   2553408,
+   2553403,
+   4362692,
+   3013646
+  ],
+  "popularidad": 1.2177,
+  "poster": "/r8yevwmnISUYA9OiIjbjZsVtLbN.jpg",
+  "backdrop": "/yTz0uICWvbcBLAR3D0PUXDjSYv6.jpg",
+  "proveedores": {
+   "suscripcion": [],
+   "gratis": [],
+   "alquiler": []
+  },
+  "actualizado": "2026-09-28T05:33:18.269Z"
+ },
+ "First Period::2013": {
+  "tmdb": 256199,
+  "titulo": "First Period",
+  "original": "First Period",
+  "sinopsis": "New girl Cassie and outcast Maggie are easily the most awkward girls in high school. Together, they decide the way to win the hearts of the cute boys and popular girls is to come in first at the school talent show. But rivals Heather, Other Heather, and their popular boyfriends Brett and Dirk will stop at nothing to keep our heroes the laughing stock of the school. It's going to take makeovers, courage, and maybe even a little rapping to beat them in true 80s style.",
+  "tagline": null,
+  "puntaje": 5.2,
+  "votos": 16,
+  "minutos": 100,
+  "generos": [
+   "Comedia"
+  ],
+  "paises": [],
+  "idioma": "en",
+  "director": "Charlie Vaughn",
+  "directorId": 1045188,
+  "reparto": [
+   "Brandon Alexander III",
+   "Dudley Beene",
+   "Lauren Rose Lewis",
+   "Michael Turchin",
+   "Leigh Wakeford"
+  ],
+  "repartoIds": [
+   1301010,
+   1301011,
+   205048,
+   1301012,
+   1511998
+  ],
+  "popularidad": 1.8413,
+  "poster": "/6SLAnN1TKiCb3nqonCO68FWRRLW.jpg",
+  "backdrop": "/ttT049bzh2wM4h7b0iE3fhqtfSJ.jpg",
+  "proveedores": {
+   "suscripcion": [],
+   "gratis": [],
+   "alquiler": []
+  },
+  "actualizado": "2026-09-28T05:33:18.303Z"
  }
 }

@@ -2,12 +2,36 @@
  "usuario": "yuti",
  "diario": [
   {
+   "nombre": "Piranha 3D",
+   "anio": 2010,
+   "visto": "2026-09-28",
+   "rating": 1.5,
+   "rewatch": false,
+   "clave": "1514553836"
+  },
+  {
    "nombre": "The Fish Child",
    "anio": 2009,
    "visto": "2026-09-27",
    "rating": 3,
    "rewatch": false,
    "clave": "1513547955"
+  },
+  {
+   "nombre": "First Period",
+   "anio": 2013,
+   "visto": "2026-09-27",
+   "rating": 2.5,
+   "rewatch": false,
+   "clave": "1514390863"
+  },
+  {
+   "nombre": "Slay",
+   "anio": 2024,
+   "visto": "2026-09-27",
+   "rating": 3.5,
+   "rewatch": false,
+   "clave": "1514384290"
   },
   {
    "nombre": "Resident Evil",
@@ -3571,6 +3595,27 @@
   }
  ],
  "vistas": [
+  {
+   "nombre": "Slay",
+   "anio": 2024,
+   "slug": "slay-2024",
+   "clave": "slay-2024",
+   "uri": "https://letterboxd.com/film/slay-2024/"
+  },
+  {
+   "nombre": "First Period",
+   "anio": 2013,
+   "slug": "first-period",
+   "clave": "first-period",
+   "uri": "https://letterboxd.com/film/first-period/"
+  },
+  {
+   "nombre": "Piranha 3D",
+   "anio": 2010,
+   "slug": "piranha-3d",
+   "clave": "piranha-3d",
+   "uri": "https://letterboxd.com/film/piranha-3d/"
+  },
   {
    "nombre": "The Fish Child",
    "anio": 2009,
@@ -12463,5 +12508,5 @@
    "orden": 481
   }
  ],
- "actualizado": "2026-09-27T23:07:37.052Z"
+ "actualizado": "2026-09-28T05:33:17.889Z"
 }
