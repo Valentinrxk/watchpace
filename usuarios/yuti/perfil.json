@@ -2,6 +2,14 @@
  "usuario": "yuti",
  "diario": [
   {
+   "nombre": "The Fly",
+   "anio": 1986,
+   "visto": "2026-09-29",
+   "rating": 4,
+   "rewatch": false,
+   "clave": "1515814215"
+  },
+  {
    "nombre": "Piranha 3D",
    "anio": 2010,
    "visto": "2026-09-28",
@@ -3595,6 +3603,13 @@
   }
  ],
  "vistas": [
+  {
+   "nombre": "The Fly",
+   "anio": 1986,
+   "slug": "the-fly-1986",
+   "clave": "the-fly-1986",
+   "uri": "https://letterboxd.com/film/the-fly-1986/"
+  },
   {
    "nombre": "Slay",
    "anio": 2024,
@@ -12508,5 +12523,5 @@
    "orden": 481
   }
  ],
- "actualizado": "2026-09-29T02:03:15.526Z"
+ "actualizado": "2026-09-29T08:40:31.493Z"
 }

@@ -86267,5 +86267,49 @@
    "alquiler": []
   },
   "actualizado": "2026-09-29T02:03:16.035Z"
+ },
+ "Dead Ringers::1988": {
+  "tmdb": 9540,
+  "titulo": "Inseparables",
+  "original": "Dead Ringers",
+  "sinopsis": "Historia de dos gemelos idénticos, el encantador Elliot y el introvertido Beverly. Son las caras opuestas de una misma personalidad: comparten las mismas costumbres, el mismo apartamento y la misma mujer. Pero, cuando entra en sus vidas una mujer especial, el vínculo que une a los gemelos, se ve, por primera vez, amenazado. Y esta amenaza se traduce en el descenso a un abismo de perversión, drogas y locura.",
+  "tagline": "Dos cuerpos. Dos mentes. Una alma.",
+  "puntaje": 7.1,
+  "votos": 1051,
+  "minutos": 115,
+  "generos": [
+   "Suspense",
+   "Terror"
+  ],
+  "paises": [
+   "CA",
+   "US"
+  ],
+  "idioma": "en",
+  "director": "David Cronenberg",
+  "directorId": 224,
+  "reparto": [
+   "Jeremy Irons",
+   "Geneviève Bujold",
+   "Heidi von Palleske",
+   "Barbara Gordon",
+   "Shirley Douglas"
+  ],
+  "repartoIds": [
+   16940,
+   35341,
+   57881,
+   5942,
+   12452
+  ],
+  "popularidad": 5.4693,
+  "poster": "/1D0YPN2hgbATowuNIYGdKSZtHVq.jpg",
+  "backdrop": "/n3QtJ6tqE0fnf4Qaxb0iujBk0lH.jpg",
+  "proveedores": {
+   "suscripcion": [],
+   "gratis": [],
+   "alquiler": []
+  },
+  "actualizado": "2026-09-29T08:40:31.988Z"
  }
 }
