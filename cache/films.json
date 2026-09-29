@@ -86086,5 +86086,186 @@
    "alquiler": []
   },
   "actualizado": "2026-09-28T05:33:18.303Z"
+ },
+ "Tokyo Story::1953": {
+  "tmdb": 18148,
+  "titulo": "Cuentos de Tokio",
+  "original": "東京物語",
+  "sinopsis": "Una pareja de ancianos viaja a Tokio para visitar a sus hijos, pero ninguno de ellos tiene tiempo para atenderlos, por lo que deciden enviarlos a un balneario. Cuando regresan, la madre pasa una noche en la casa de una nuera, viuda de uno de sus hijos. A diferencia de sus cuñados, Noriko muestra afecto por sus suegros y conforta a la anciana.",
+  "tagline": "Mientras la vida continúe, las relaciones entre padres e hijos traerán consigo alegrías ilimitadas y penas interminables.",
+  "puntaje": 8.1,
+  "votos": 1267,
+  "minutos": 139,
+  "generos": [
+   "Drama"
+  ],
+  "paises": [
+   "JP"
+  ],
+  "idioma": "ja",
+  "director": "Yasujirō Ozu",
+  "directorId": 95501,
+  "reparto": [
+   "笠智衆",
+   "東山千栄子",
+   "原節子",
+   "杉村春子",
+   "So Yamamura"
+  ],
+  "repartoIds": [
+   33135,
+   134307,
+   95504,
+   131013,
+   68411
+  ],
+  "popularidad": 6.679,
+  "poster": "/36G6HwEN3K9BrPEC8icOIOdCUb4.jpg",
+  "backdrop": "/jLq0ol1f0ZKXni9R9GsPBcyPrNN.jpg",
+  "proveedores": {
+   "suscripcion": [],
+   "gratis": [
+    "Plex"
+   ],
+   "alquiler": []
+  },
+  "actualizado": "2026-09-29T02:03:16.009Z"
+ },
+ "La Bola Negra::2026": {
+  "tmdb": 1422041,
+  "titulo": "La bola negra",
+  "original": "La bola negra",
+  "sinopsis": "Las vidas interconectadas de tres hombres en tres épocas distintas, tres existencias íntimamente ligadas por la sexualidad y el deseo, el dolor y la herencia.",
+  "tagline": null,
+  "puntaje": 8.3,
+  "votos": 19,
+  "minutos": 155,
+  "generos": [
+   "Drama",
+   "Bélica"
+  ],
+  "paises": [
+   "ES",
+   "FR"
+  ],
+  "idioma": "es",
+  "director": "Javier Ambrossi",
+  "directorId": 95606,
+  "reparto": [
+   "Guitarricadelafuente",
+   "Miguel Bernardeau",
+   "Carlos González",
+   "Milo Quifes",
+   "Lola Dueñas"
+  ],
+  "repartoIds": [
+   3153596,
+   1846370,
+   3070857,
+   5883927,
+   2759
+  ],
+  "popularidad": 17.832,
+  "poster": "/4omaYktw4VYkk5Tkq7rmUsWnQa5.jpg",
+  "backdrop": "/bDsmYvrzto7xrEwqDpLC3SPhn9A.jpg",
+  "proveedores": {
+   "suscripcion": [],
+   "gratis": [],
+   "alquiler": []
+  },
+  "actualizado": "2026-09-29T02:03:16.027Z"
+ },
+ "The 400 Blows::1959": {
+  "tmdb": 147,
+  "titulo": "Los cuatrocientos golpes",
+  "original": "Les Quatre Cents Coups",
+  "sinopsis": "A sus doce años, Antoine Doinel se ve obligado no sólo a convivir con los problemas conyugales que sus padres no se atreven a afrontar, sino también a soportar las exigencias de un severo profesor. Un día, asustado porque no ha cumplido un castigo que el maestro le ha impuesto, decide hacer novillos con su amigo René. Inesperadamente, ve a su madre en compañía de otro hombre; la culpa y el miedo lo arrastran a una serie de mentiras y riñas que poco a poco van calando en su ánimo. Deseando dejar atrás todos sus problemas, sueña con conocer el mar y traza con René un plan para escaparse.",
+  "tagline": "Los rostros de los ángeles están marcados por la violencia.",
+  "puntaje": 8,
+  "votos": 2394,
+  "minutos": 92,
+  "generos": [
+   "Drama"
+  ],
+  "paises": [
+   "FR"
+  ],
+  "idioma": "fr",
+  "director": "François Truffaut",
+  "directorId": 1650,
+  "reparto": [
+   "Jean-Pierre Léaud",
+   "Claire Maurier",
+   "Albert Rémy",
+   "Georges Flamant",
+   "Patrick Auffay"
+  ],
+  "repartoIds": [
+   1653,
+   1654,
+   1655,
+   1658,
+   1659
+  ],
+  "popularidad": 10.3368,
+  "poster": "/1uqxcqhTNXZLyZoNKeqVkMVzuU4.jpg",
+  "backdrop": "/cy7ymUaMEWRoig7LWXpfzaaw2vv.jpg",
+  "proveedores": {
+   "suscripcion": [
+    "MUBI",
+    "MUBI Amazon Channel"
+   ],
+   "gratis": [],
+   "alquiler": []
+  },
+  "actualizado": "2026-09-29T02:03:16.027Z"
+ },
+ "Fjord::2026": {
+  "tmdb": 1401459,
+  "titulo": "Fiordo",
+  "original": "Fjord",
+  "sinopsis": "Los Gheorghius, una pareja rumano‑noruega muy devota, se instala en un pueblo remoto junto a un fiordo, donde entablan una estrecha amistad con sus vecinos, los Halbergs. Sus hijos se hacen amigos pese a haber sido educados de forma muy distinta. Todo cambia cuando la adolescente Elia Gheorghiu aparece en el colegio con moratones, y la comunidad se pregunta si la educación tradicional que reciben los hijos de los Gheorghiu puede estar relacionada.",
+  "tagline": null,
+  "puntaje": 7.2,
+  "votos": 78,
+  "minutos": 146,
+  "generos": [
+   "Drama"
+  ],
+  "paises": [
+   "RO",
+   "NO",
+   "FR",
+   "FI",
+   "DK",
+   "SE",
+   "US"
+  ],
+  "idioma": "ro",
+  "director": "Cristian Mungiu",
+  "directorId": 20657,
+  "reparto": [
+   "Sebastian Stan",
+   "Renate Reinsve",
+   "Lisa Carlehed",
+   "Ellen Dorrit Petersen",
+   "Lisa Loven Kongsli"
+  ],
+  "repartoIds": [
+   60898,
+   1576786,
+   1111176,
+   79331,
+   1310711
+  ],
+  "popularidad": 8.1584,
+  "poster": "/9L7ND90Rl6RANG5l0Z5ZfsI3RET.jpg",
+  "backdrop": "/rCYzSP07jCA1HuFvrwgaEAPHitT.jpg",
+  "proveedores": {
+   "suscripcion": [],
+   "gratis": [],
+   "alquiler": []
+  },
+  "actualizado": "2026-09-29T02:03:16.035Z"
  }
 }
