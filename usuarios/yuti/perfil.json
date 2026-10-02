@@ -2,6 +2,14 @@
  "usuario": "yuti",
  "diario": [
   {
+   "nombre": "The Secret Life of Walter Mitty",
+   "anio": 2013,
+   "visto": "2026-10-01",
+   "rating": 3,
+   "rewatch": false,
+   "clave": "1519532392"
+  },
+  {
    "nombre": "The Fly",
    "anio": 1986,
    "visto": "2026-09-29",
@@ -3603,6 +3611,13 @@
   }
  ],
  "vistas": [
+  {
+   "nombre": "The Secret Life of Walter Mitty",
+   "anio": 2013,
+   "slug": "the-secret-life-of-walter-mitty-2013",
+   "clave": "the-secret-life-of-walter-mitty-2013",
+   "uri": "https://letterboxd.com/film/the-secret-life-of-walter-mitty-2013/"
+  },
   {
    "nombre": "The Fly",
    "anio": 1986,
@@ -12523,5 +12538,5 @@
    "orden": 481
   }
  ],
- "actualizado": "2026-09-29T22:22:57.231Z"
+ "actualizado": "2026-10-02T05:49:44.026Z"
 }
