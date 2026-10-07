@@ -86353,5 +86353,105 @@
    "alquiler": []
   },
   "actualizado": "2026-09-29T22:22:57.592Z"
+ },
+ "Final Cut::2022": {
+  "tmdb": 852438,
+  "titulo": "Corten!",
+  "original": "Coupez !",
+  "sinopsis": "Un grupo de amigos se dispone a realizar una película de zombis en un edificio abandonado. Entre técnicos y actores desganados, parece que sólo el director está dispuesto a invertir la energía necesaria para terminar su película de terror de bajo presupuesto. Pero la inesperada irrupción de auténticos muertos vivientes perturbará el rodaje original.",
+  "tagline": null,
+  "puntaje": 6.7,
+  "votos": 489,
+  "minutos": 110,
+  "generos": [
+   "Terror",
+   "Comedia"
+  ],
+  "paises": [
+   "FR",
+   "JP",
+   "US",
+   "GB"
+  ],
+  "idioma": "fr",
+  "director": "Michel Hazanavicius",
+  "directorId": 67717,
+  "reparto": [
+   "Romain Duris",
+   "Bérénice Bejo",
+   "Grégory Gadebois",
+   "Finnegan Oldfield",
+   "Matilda Lutz"
+  ],
+  "repartoIds": [
+   17497,
+   82923,
+   223532,
+   583853,
+   1464589
+  ],
+  "popularidad": 3.1677,
+  "poster": "/ozZ5J72Cj547V6Sonb8whTSIye7.jpg",
+  "backdrop": "/oDT3OLAKXSBicI32FuOTZeEdWlF.jpg",
+  "proveedores": {
+   "suscripcion": [],
+   "gratis": [],
+   "alquiler": []
+  },
+  "actualizado": "2026-10-07T17:28:05.499Z"
+ },
+ "Bee Movie::2007": {
+  "tmdb": 5559,
+  "titulo": "Bee Movie",
+  "original": "Bee Movie",
+  "sinopsis": "Una abeja llamada Barry B. Benson (Jerry Seinfeld) acaba de graduarse en la Universidad, pero le invade la desilusión cuando comprende que solo tiene una opción profesional, la miel. Sale por primera vez de la colmena y transgrede una de las reglas cardinales del mundo de las abejas al hablar con un ser humano, una florista de Nueva York llamada Vanessa (Renée Zellweger). Se queda atónito al descubrir que los humanos llevan siglos robando la miel de las abejas y entiende que su auténtica vocación es restablecer el orden de las cosas y demandar a las raza humana por robar la miel.",
+  "tagline": "Nacido para molar",
+  "puntaje": 6.1,
+  "votos": 5449,
+  "minutos": 90,
+  "generos": [
+   "Familia",
+   "Animación",
+   "Aventura",
+   "Comedia"
+  ],
+  "paises": [
+   "US"
+  ],
+  "idioma": "en",
+  "director": "Simon J. Smith",
+  "directorId": 44114,
+  "reparto": [
+   "Jerry Seinfeld",
+   "Renée Zellweger",
+   "Matthew Broderick",
+   "Patrick Warburton",
+   "John Goodman"
+  ],
+  "repartoIds": [
+   16377,
+   9137,
+   4756,
+   9657,
+   1230
+  ],
+  "popularidad": 22.3158,
+  "poster": "/hR4BXzbqKqfMjprEdUxTOPBLryu.jpg",
+  "backdrop": "/uRZhr7zzaxeidLq2eYL59ulh4vn.jpg",
+  "proveedores": {
+   "suscripcion": [
+    "Netflix",
+    "Amazon Prime Video",
+    "MovistarTV"
+   ],
+   "gratis": [],
+   "alquiler": [
+    "Apple TV Store",
+    "Google Play Movies",
+    "Claro video",
+    "Amazon Video"
+   ]
+  },
+  "actualizado": "2026-10-07T17:28:05.510Z"
  }
 }

@@ -8682,12 +8682,20 @@
  ],
  "watchlist": [
   {
+   "nombre": "Final Cut",
+   "anio": 2022,
+   "slug": "final-cut-2022",
+   "clave": "final-cut-2022",
+   "uri": "https://letterboxd.com/film/final-cut-2022/",
+   "orden": 0
+  },
+  {
    "nombre": "Die, Mommie, Die!",
    "anio": 2003,
    "slug": "die-mommie-die",
    "clave": "die-mommie-die",
    "uri": "https://letterboxd.com/film/die-mommie-die/",
-   "orden": 0
+   "orden": 1
   },
   {
    "nombre": "B.A.P.S",
@@ -8695,14 +8703,6 @@
    "slug": "baps",
    "clave": "baps",
    "uri": "https://letterboxd.com/film/baps/",
-   "orden": 1
-  },
-  {
-   "nombre": "Piranha 3D",
-   "anio": 2010,
-   "slug": "piranha-3d",
-   "clave": "piranha-3d",
-   "uri": "https://letterboxd.com/film/piranha-3d/",
    "orden": 2
   },
   {
@@ -12538,5 +12538,5 @@
    "orden": 481
   }
  ],
- "actualizado": "2026-10-02T05:49:44.026Z"
+ "actualizado": "2026-10-07T17:28:05.012Z"
 }
