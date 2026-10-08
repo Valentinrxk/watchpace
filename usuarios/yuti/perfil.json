@@ -2,6 +2,22 @@
  "usuario": "yuti",
  "diario": [
   {
+   "nombre": "Punch-Drunk Love",
+   "anio": 2002,
+   "visto": "2026-10-07",
+   "rating": 3,
+   "rewatch": false,
+   "clave": "1528076081"
+  },
+  {
+   "nombre": "Bee Movie",
+   "anio": 2007,
+   "visto": "2026-10-07",
+   "rating": 4,
+   "rewatch": false,
+   "clave": "1528074701"
+  },
+  {
    "nombre": "The Secret Life of Walter Mitty",
    "anio": 2013,
    "visto": "2026-10-01",
@@ -3611,6 +3627,20 @@
   }
  ],
  "vistas": [
+  {
+   "nombre": "Bee Movie",
+   "anio": 2007,
+   "slug": "bee-movie",
+   "clave": "bee-movie",
+   "uri": "https://letterboxd.com/film/bee-movie/"
+  },
+  {
+   "nombre": "Punch-Drunk Love",
+   "anio": 2002,
+   "slug": "punch-drunk-love",
+   "clave": "punch-drunk-love",
+   "uri": "https://letterboxd.com/film/punch-drunk-love/"
+  },
   {
    "nombre": "The Secret Life of Walter Mitty",
    "anio": 2013,
@@ -12538,5 +12568,5 @@
    "orden": 481
   }
  ],
- "actualizado": "2026-10-07T17:28:05.012Z"
+ "actualizado": "2026-10-08T06:16:40.038Z"
 }

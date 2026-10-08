@@ -86453,5 +86453,49 @@
    ]
   },
   "actualizado": "2026-10-07T17:28:05.510Z"
+ },
+ "Kwaidan::1964": {
+  "tmdb": 30959,
+  "titulo": "El más allá",
+  "original": "怪談",
+  "sinopsis": "Filme basado en cuatro historias del escritor Lafcadio Hearn. \"Pelo negro\": un samurái no soporta a su mujer y la abandona por una princesa. Años después vuelve a casa para realizar un terrible descubrimiento. \"La mujer en la nieve\": dos leñadores se refugian de una tormenta de nieve en lo que parece ser un cobertizo abandonado. \"Hoichi\": el fantasma de un samurái le pide a un músico ciego que toque una balada en la tumba de su señor. \"En la taza de té\": un samurái se asusta ante la visión de un hombre reflejado en su taza de té.",
+  "tagline": null,
+  "puntaje": 7.7,
+  "votos": 478,
+  "minutos": 183,
+  "generos": [
+   "Terror",
+   "Fantasía",
+   "Drama"
+  ],
+  "paises": [
+   "JP"
+  ],
+  "idioma": "ja",
+  "director": "小林正樹",
+  "directorId": 76978,
+  "reparto": [
+   "新珠三千代",
+   "三国連太郎",
+   "渡辺美佐子",
+   "石山健二郎",
+   "赤木蘭子"
+  ],
+  "repartoIds": [
+   85307,
+   76975,
+   111235,
+   72539,
+   142492
+  ],
+  "popularidad": 4.4301,
+  "poster": "/l22SG9evZiz3wp7E29dpl16XSO5.jpg",
+  "backdrop": "/9GAU0z2wVA8M2D2w36CaloWYYgv.jpg",
+  "proveedores": {
+   "suscripcion": [],
+   "gratis": [],
+   "alquiler": []
+  },
+  "actualizado": "2026-10-08T06:16:40.383Z"
  }
 }
