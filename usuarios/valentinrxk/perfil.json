@@ -2,6 +2,14 @@
  "usuario": "valentinrxk",
  "diario": [
   {
+   "nombre": "Digger",
+   "anio": 2026,
+   "visto": "2026-10-08",
+   "rating": 4,
+   "rewatch": false,
+   "clave": "1529559281"
+  },
+  {
    "nombre": "Bee Movie",
    "anio": 2007,
    "visto": "2026-10-07",
@@ -2963,6 +2971,13 @@
   }
  ],
  "vistas": [
+  {
+   "nombre": "Digger",
+   "anio": 2026,
+   "slug": "digger-2026",
+   "clave": "digger-2026",
+   "uri": "https://letterboxd.com/film/digger-2026/"
+  },
   {
    "nombre": "Punch-Drunk Love",
    "anio": 2002,
@@ -10971,5 +10986,5 @@
    "orden": 297
   }
  ],
- "actualizado": "2026-10-08T06:16:39.573Z"
+ "actualizado": "2026-10-09T09:13:53.975Z"
 }
