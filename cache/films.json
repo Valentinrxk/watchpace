@@ -86497,5 +86497,97 @@
    "alquiler": []
   },
   "actualizado": "2026-10-08T06:16:40.383Z"
+ },
+ "Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb::1964": {
+  "tmdb": 935,
+  "titulo": "¿Teléfono rojo? Volamos hacia Moscú",
+  "original": "Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb",
+  "sinopsis": "Convencido de que los comunistas están contaminando los Estados Unidos, un general ordena, en un acceso de locura, un ataque aéreo nuclear sorpresa contra la Unión Soviética. Su ayudante, el capitán Mandrake, trata de encontrar la fórmula para impedir el bombardeo. Por su parte, el presidente de los EE.UU. se pone en contacto con Moscú para convencer al gobierno soviético de que el ataque no es más que un estúpido error. Mientras tanto, el asesor estadounidense, un antiguo científico nazi, el doctor Strangelove, confirma la existencia de la «Máquina del Juicio Final», un dispositivo de represalia soviético capaz de acabar con la humanidad para siempre.",
+  "tagline": "Línea directa a la comedia de suspense.",
+  "puntaje": 8.1,
+  "votos": 6376,
+  "minutos": 95,
+  "generos": [
+   "Comedia",
+   "Bélica"
+  ],
+  "paises": [
+   "GB",
+   "US"
+  ],
+  "idioma": "en",
+  "director": "Stanley Kubrick",
+  "directorId": 240,
+  "reparto": [
+   "Peter Sellers",
+   "George C. Scott",
+   "Sterling Hayden",
+   "Keenan Wynn",
+   "Slim Pickens"
+  ],
+  "repartoIds": [
+   12446,
+   862,
+   3088,
+   4966,
+   14253
+  ],
+  "popularidad": 14.7714,
+  "poster": "/snsOoRb1d4WD6q62PRfBuGLJ8xr.jpg",
+  "backdrop": "/7i0L2ee4Iy0aXV6vR5u1ZmblOrx.jpg",
+  "proveedores": {
+   "suscripcion": [],
+   "gratis": [],
+   "alquiler": [
+    "Apple TV Store"
+   ]
+  },
+  "actualizado": "2026-10-10T06:01:40.185Z"
+ },
+ "You Can Live Forever::2022": {
+  "tmdb": 887580,
+  "titulo": "You Can Live Forever",
+  "original": "You Can Live Forever",
+  "sinopsis": "When Jaime, a gay teenager, is sent to live in a community of Jehovah's Witnesses in small-town Quebec, she falls madly in love with a devout Witness girl. The two embark on an intense affair with consequences that will reshape the rest of their lives.",
+  "tagline": null,
+  "puntaje": 7,
+  "votos": 139,
+  "minutos": 97,
+  "generos": [
+   "Drama",
+   "Romance"
+  ],
+  "paises": [
+   "CA",
+   "US"
+  ],
+  "idioma": "en",
+  "director": "Sarah Watts",
+  "directorId": 3509617,
+  "reparto": [
+   "Anwen O'Driscoll",
+   "June Laporte",
+   "Liane Balaban",
+   "Antoine Yared",
+   "Hasani Freeman"
+  ],
+  "repartoIds": [
+   1918870,
+   1392826,
+   54817,
+   2109774,
+   1689275
+  ],
+  "popularidad": 2.356,
+  "poster": "/6JllNMDqHasBeqM5vFVxp1rB9Fk.jpg",
+  "backdrop": "/sClvKM8C6a1DSPzMwkKjk8pNFDx.jpg",
+  "proveedores": {
+   "suscripcion": [
+    "Amazon Prime Video"
+   ],
+   "gratis": [],
+   "alquiler": []
+  },
+  "actualizado": "2026-10-10T06:01:40.269Z"
  }
 }

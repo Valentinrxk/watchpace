@@ -2,6 +2,14 @@
  "usuario": "yuti",
  "diario": [
   {
+   "nombre": "You Can Live Forever",
+   "anio": 2022,
+   "visto": "2026-10-10",
+   "rating": 3,
+   "rewatch": false,
+   "clave": "1530934095"
+  },
+  {
    "nombre": "Digger",
    "anio": 2026,
    "visto": "2026-10-09",
@@ -3635,6 +3643,13 @@
   }
  ],
  "vistas": [
+  {
+   "nombre": "You Can Live Forever",
+   "anio": 2022,
+   "slug": "you-can-live-forever",
+   "clave": "you-can-live-forever",
+   "uri": "https://letterboxd.com/film/you-can-live-forever/"
+  },
   {
    "nombre": "Digger",
    "anio": 2026,
@@ -12583,5 +12598,5 @@
    "orden": 481
   }
  ],
- "actualizado": "2026-10-09T09:13:54.576Z"
+ "actualizado": "2026-10-10T06:01:39.638Z"
 }

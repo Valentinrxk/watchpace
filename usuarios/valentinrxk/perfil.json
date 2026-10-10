@@ -8602,19 +8602,19 @@
  ],
  "watchlist": [
   {
+   "nombre": "Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb",
+   "anio": 1964,
+   "slug": "dr-strangelove-or-how-i-learned-to-stop-worrying-and-love-the-bomb",
+   "clave": "dr-strangelove-or-how-i-learned-to-stop-worrying-and-love-the-bomb",
+   "uri": "https://letterboxd.com/film/dr-strangelove-or-how-i-learned-to-stop-worrying-and-love-the-bomb/",
+   "orden": 0
+  },
+  {
    "nombre": "Kwaidan",
    "anio": 1964,
    "slug": "kwaidan",
    "clave": "kwaidan",
    "uri": "https://letterboxd.com/film/kwaidan/",
-   "orden": 0
-  },
-  {
-   "nombre": "Digger",
-   "anio": 2026,
-   "slug": "digger-2026",
-   "clave": "digger-2026",
-   "uri": "https://letterboxd.com/film/digger-2026/",
    "orden": 1
   },
   {
@@ -10986,5 +10986,5 @@
    "orden": 297
   }
  ],
- "actualizado": "2026-10-09T09:13:53.975Z"
+ "actualizado": "2026-10-10T06:01:39.127Z"
 }
