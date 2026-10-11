@@ -86589,5 +86589,53 @@
    "alquiler": []
   },
   "actualizado": "2026-10-10T06:01:40.269Z"
+ },
+ "Singin' in the Rain::1952": {
+  "tmdb": 872,
+  "titulo": "Cantando bajo la lluvia",
+  "original": "Singin' in the Rain",
+  "sinopsis": "Antes de conocer a la aspirante a actriz Cathy Seldon, el ídolo del cine mudo Don Lockwood pensaba que lo tenía todo; fama, fortuna y éxito. Pero, tras conocerla, se da cuenta de que ella es lo que realmente faltaba en su vida. Con el nacimiento del cine sonoro, Don quiere filmar los musicales con Kathy, pero entre ambos se interpone la reina del cine mudo Lina Lamont.",
+  "tagline": "¡Qué maravillosa sensación!",
+  "puntaje": 8.1,
+  "votos": 3642,
+  "minutos": 103,
+  "generos": [
+   "Comedia",
+   "Romance"
+  ],
+  "paises": [
+   "US"
+  ],
+  "idioma": "en",
+  "director": "Stanley Donen",
+  "directorId": 13284,
+  "reparto": [
+   "Gene Kelly",
+   "Donald O'Connor",
+   "Debbie Reynolds",
+   "Jean Hagen",
+   "Millard Mitchell"
+  ],
+  "repartoIds": [
+   13294,
+   13295,
+   8857,
+   13296,
+   13297
+  ],
+  "popularidad": 12.5026,
+  "poster": "/5r8jD5R6EzpQ5VLodbzTNhvKcGw.jpg",
+  "backdrop": "/6qOyw4yfzbzTp5YsCX26C28Do0S.jpg",
+  "proveedores": {
+   "suscripcion": [
+    "HBO Max"
+   ],
+   "gratis": [],
+   "alquiler": [
+    "Apple TV Store",
+    "Google Play Movies"
+   ]
+  },
+  "actualizado": "2026-10-11T18:59:23.983Z"
  }
 }
