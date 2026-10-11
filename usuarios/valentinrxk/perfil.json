@@ -2,6 +2,14 @@
  "usuario": "valentinrxk",
  "diario": [
   {
+   "nombre": "The Assassination of Jesse James by the Coward Robert Ford",
+   "anio": 2007,
+   "visto": "2026-10-11",
+   "rating": 4,
+   "rewatch": false,
+   "clave": "1533838516"
+  },
+  {
    "nombre": "Digger",
    "anio": 2026,
    "visto": "2026-10-08",
@@ -2971,6 +2979,13 @@
   }
  ],
  "vistas": [
+  {
+   "nombre": "The Assassination of Jesse James by the Coward Robert Ford",
+   "anio": 2007,
+   "slug": "the-assassination-of-jesse-james-by-the-coward-robert-ford",
+   "clave": "the-assassination-of-jesse-james-by-the-coward-robert-ford",
+   "uri": "https://letterboxd.com/film/the-assassination-of-jesse-james-by-the-coward-robert-ford/"
+  },
   {
    "nombre": "Digger",
    "anio": 2026,
@@ -10994,5 +11009,5 @@
    "orden": 298
   }
  ],
- "actualizado": "2026-10-11T18:59:23.099Z"
+ "actualizado": "2026-10-11T23:44:00.832Z"
 }
