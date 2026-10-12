@@ -2,6 +2,14 @@
  "usuario": "valentinrxk",
  "diario": [
   {
+   "nombre": "One Battle After Another",
+   "anio": 2025,
+   "visto": "2026-10-12",
+   "rating": 4.5,
+   "rewatch": true,
+   "clave": "1535598467"
+  },
+  {
    "nombre": "The Assassination of Jesse James by the Coward Robert Ford",
    "anio": 2007,
    "visto": "2026-10-11",
@@ -11041,5 +11049,5 @@
    "orden": 302
   }
  ],
- "actualizado": "2026-10-12T06:09:05.627Z"
+ "actualizado": "2026-10-12T23:03:06.911Z"
 }
