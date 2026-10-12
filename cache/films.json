@@ -86637,5 +86637,185 @@
    ]
   },
   "actualizado": "2026-10-11T18:59:23.983Z"
+ },
+ "The Beach Bum::2019": {
+  "tmdb": 441384,
+  "titulo": "The Beach Bum",
+  "original": "The Beach Bum",
+  "sinopsis": "Vivir la vida por todo lo alto es a lo único que se dedica Moondog. Rebelde, pícaro y con un punto adorable impone sus propias reglas mientras las desventuras le acompañan.",
+  "tagline": null,
+  "puntaje": 5.7,
+  "votos": 590,
+  "minutos": 95,
+  "generos": [
+   "Comedia",
+   "Drama"
+  ],
+  "paises": [
+   "FR",
+   "CH",
+   "GB",
+   "US"
+  ],
+  "idioma": "en",
+  "director": "Harmony Korine",
+  "directorId": 51918,
+  "reparto": [
+   "Matthew McConaughey",
+   "Snoop Dogg",
+   "Isla Fisher",
+   "Jimmy Buffett",
+   "Zac Efron"
+  ],
+  "repartoIds": [
+   10297,
+   19767,
+   52848,
+   994073,
+   29222
+  ],
+  "popularidad": 7.2271,
+  "poster": "/y1ohotkXuYut4kass4xylGcAhg3.jpg",
+  "backdrop": "/nVaNhGAnPW9dmTkRDfsSpdPeWdZ.jpg",
+  "proveedores": {
+   "suscripcion": [
+    "Amazon Prime Video"
+   ],
+   "gratis": [],
+   "alquiler": [
+    "Google Play Movies"
+   ]
+  },
+  "actualizado": "2026-10-12T06:09:06.836Z"
+ },
+ "A Woman Under the Influence::1974": {
+  "tmdb": 29845,
+  "titulo": "Una mujer bajo la influencia",
+  "original": "A Woman Under the Influence",
+  "sinopsis": "Nick (Peter Falk), un hombre de la construcción, tiene que cargar con la responsabilidad de cuidar a su mujer (Gena Rowlands) que padece inestabilidad emocional. Continuamente lucha por mantener la normalidad ante su extraño comportamiento, hasta que éste afecta sus hijos y será necesario que tome medidas.",
+  "tagline": "Una Película de John Cassavetes",
+  "puntaje": 7.7,
+  "votos": 586,
+  "minutos": 155,
+  "generos": [
+   "Drama",
+   "Romance"
+  ],
+  "paises": [
+   "US"
+  ],
+  "idioma": "en",
+  "director": "John Cassavetes",
+  "directorId": 11147,
+  "reparto": [
+   "Gena Rowlands",
+   "Peter Falk",
+   "Fred Draper",
+   "Lady Rowlands",
+   "Katherine Cassavetes"
+  ],
+  "repartoIds": [
+   4800,
+   2314,
+   11141,
+   146711,
+   146710
+  ],
+  "popularidad": 4.5256,
+  "poster": "/xX9xyqocEh4OvkhGip9m9JjXNTe.jpg",
+  "backdrop": "/uOLcJJYZ3hbFSrKQPDaLhrYnjUv.jpg",
+  "proveedores": {
+   "suscripcion": [],
+   "gratis": [],
+   "alquiler": []
+  },
+  "actualizado": "2026-10-12T06:09:06.837Z"
+ },
+ "Love & Pop::1998": {
+  "tmdb": 70846,
+  "titulo": "Love and Pop",
+  "original": "ラブ&ポップ",
+  "sinopsis": "Primera película en imagen real de Hideaki Anno, creador del estudio Gainax y los animes Evangelion, Ebichu o Kare Kano, entre otros. Trata sobre las colegialas adolescentes y el negocio de las citas/prostitución.",
+  "tagline": null,
+  "puntaje": 7.7,
+  "votos": 98,
+  "minutos": 112,
+  "generos": [
+   "Drama"
+  ],
+  "paises": [
+   "JP"
+  ],
+  "idioma": "ja",
+  "director": "Hideaki Anno",
+  "directorId": 77921,
+  "reparto": [
+   "三輪明日美",
+   "希良梨",
+   "Hirono Kudo",
+   "Yukie Nakama",
+   "Mitsuru Hirata"
+  ],
+  "repartoIds": [
+   20313,
+   559815,
+   559816,
+   58674,
+   135377
+  ],
+  "popularidad": 2.6227,
+  "poster": "/8rkCctd3Rv8fv9V2tNaymYehvD1.jpg",
+  "backdrop": "/raco63dENglejZ70P8shG3hNYkW.jpg",
+  "proveedores": {
+   "suscripcion": [],
+   "gratis": [],
+   "alquiler": []
+  },
+  "actualizado": "2026-10-12T06:09:06.871Z"
+ },
+ "FLCL::2000": {
+  "tmdb": 632458,
+  "titulo": "FLCL Progressive",
+  "original": "フリクリ プログレ",
+  "sinopsis": "Hidomi Hibajiri is a young girl who never takes off her headphones. Her whole life consists of going to school, helping out at her mother's cafe, and listening to music. With nothing else to break the crippling monotony, she keeps her headphones on at all times. That is, until she is run over by a mysterious guitar-wielding woman.",
+  "tagline": null,
+  "puntaje": 5.4,
+  "votos": 30,
+  "minutos": 132,
+  "generos": [
+   "Acción",
+   "Comedia",
+   "Animación"
+  ],
+  "paises": [
+   "JP",
+   "US"
+  ],
+  "idioma": "ja",
+  "director": "Yusuke Sunouchi",
+  "directorId": 2656113,
+  "reparto": [
+   "Inori Minase",
+   "Tomoyo Kurosawa",
+   "Megumi Hayashibara",
+   "Miyuki Sawashiro",
+   "Reiko Suzuki"
+  ],
+  "repartoIds": [
+   1325949,
+   1309253,
+   40325,
+   186341,
+   552681
+  ],
+  "popularidad": 2.1587,
+  "poster": "/kRLWa1i4gMfJR57oyq13uN5XdUA.jpg",
+  "backdrop": "/7XkeX8nmTj16iZ9zsJUMWhAE8La.jpg",
+  "proveedores": {
+   "suscripcion": [],
+   "gratis": [],
+   "alquiler": []
+  },
+  "actualizado": "2026-10-12T06:09:06.940Z"
  }
 }
