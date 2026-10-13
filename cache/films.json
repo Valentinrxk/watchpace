@@ -86817,5 +86817,368 @@
    "alquiler": []
   },
   "actualizado": "2026-10-12T06:09:06.940Z"
+ },
+ "The Last of the Mohicans::1992": {
+  "tmdb": 9361,
+  "titulo": "El último mohicano",
+  "original": "The Last of the Mohicans",
+  "sinopsis": "En 1757, a orillas del río Hudson, tropas francesas e inglesas luchan por el dominio de la región. Los ingleses reclutan a los granjeros asentados en esas tierras para formar un ejército capaz de enfrentarse a las tropas franco-indias. Hawkeye -Ojo de halcón- (Daniel Day-Lewis) es un hombre blanco adoptado por los indios mohicanos que vive con su padre (Russell Means) y su hermano Uncas (Eric Schweig). Tras rescatar de una emboscada de los hurones a Cora Munro (Madeleine Stowe) y a su hermana pequeña Alice (Jodhi May), hijas de un oficial británico, los tres deciden acompañarlas al fuerte inglés William Henry, que está siendo asediado por franceses y hurones. Allí les obligan a quedarse con un grupo de británicos que acaban de llegar de las colonias...",
+  "tagline": "El primer héroe americano.",
+  "puntaje": 7.4,
+  "votos": 3572,
+  "minutos": 108,
+  "generos": [
+   "Historia",
+   "Bélica",
+   "Drama"
+  ],
+  "paises": [
+   "US"
+  ],
+  "idioma": "en",
+  "director": "Michael Mann",
+  "directorId": 638,
+  "reparto": [
+   "Daniel Day-Lewis",
+   "Madeleine Stowe",
+   "Jodhi May",
+   "Russell Means",
+   "Wes Studi"
+  ],
+  "repartoIds": [
+   11856,
+   289,
+   57449,
+   3203,
+   15853
+  ],
+  "popularidad": 12.1181,
+  "poster": "/mM9ewvwSZM5DdHFeSaFtRJYDCij.jpg",
+  "backdrop": "/mhpDSuNyHPMsccI7zISEaskTgOQ.jpg",
+  "proveedores": {
+   "suscripcion": [
+    "Netflix",
+    "MovistarTV"
+   ],
+   "gratis": [],
+   "alquiler": []
+  },
+  "actualizado": "2026-10-13T06:53:23.933Z"
+ },
+ "Twitches::2005": {
+  "tmdb": 21481,
+  "titulo": "Las gemelas hechizan dos veces",
+  "original": "Twitches",
+  "sinopsis": "Dos brujas adolescentes que fueron separadas al nacer, y adoptadas por dos familias distintas, van a cumplir los 21 años, y deberan juntarse para utilizar sus poderes y así salvar al mundo.",
+  "tagline": null,
+  "puntaje": 6.7,
+  "votos": 561,
+  "minutos": 86,
+  "generos": [
+   "Comedia",
+   "Drama",
+   "Familia",
+   "Fantasía",
+   "Película de TV"
+  ],
+  "paises": [
+   "US"
+  ],
+  "idioma": "en",
+  "director": "Stuart Gillard",
+  "directorId": 76418,
+  "reparto": [
+   "Tia Mowry",
+   "Tamera Mowry-Housley",
+   "Kristen Wilson",
+   "Patrick Fabian",
+   "Pat Kelly"
+  ],
+  "repartoIds": [
+   87569,
+   87570,
+   31029,
+   58791,
+   87572
+  ],
+  "popularidad": 5.831,
+  "poster": "/2siSQT5AgR6wQk210PWNmWEQWYa.jpg",
+  "backdrop": "/biWonOe1GrPEMqvXhr7FbLox6xt.jpg",
+  "proveedores": {
+   "suscripcion": [
+    "Disney Plus"
+   ],
+   "gratis": [],
+   "alquiler": []
+  },
+  "actualizado": "2026-10-13T06:53:23.935Z"
+ },
+ "Gattaca::1997": {
+  "tmdb": 782,
+  "titulo": "Gattaca",
+  "original": "Gattaca",
+  "sinopsis": "En un futuro cercano, en La Tierra la perfección genética impera. Los seres inferiores, como Vincent Freeman, cuyo ADN es fruto de una relación natural y no de laboratorio, están condenados al fracaso. Pero Vincent quiere triunfar, y conseguirá esconder su verdadera condición para conseguir su objetivo más ansiado: ser piloto espacial.",
+  "tagline": "No hay un gen para el espíritu humano.",
+  "puntaje": 7.6,
+  "votos": 7204,
+  "minutos": 106,
+  "generos": [
+   "Ciencia ficción",
+   "Drama"
+  ],
+  "paises": [
+   "US"
+  ],
+  "idioma": "en",
+  "director": "Andrew Niccol",
+  "directorId": 8685,
+  "reparto": [
+   "Ethan Hawke",
+   "Uma Thurman",
+   "Jude Law",
+   "Alan Arkin",
+   "Loren Dean"
+  ],
+  "repartoIds": [
+   569,
+   139,
+   9642,
+   1903,
+   11628
+  ],
+  "popularidad": 12.3972,
+  "poster": "/1gXcEISnpV8IXCylhGI4eyBKjM.jpg",
+  "backdrop": "/hPsCR1ny6GnctJkWqeJwihTDD7T.jpg",
+  "proveedores": {
+   "suscripcion": [
+    "HBO Max"
+   ],
+   "gratis": [],
+   "alquiler": [
+    "Apple TV Store"
+   ]
+  },
+  "actualizado": "2026-10-13T06:53:23.938Z"
+ },
+ "Pin::1988": {
+  "tmdb": 41966,
+  "titulo": "Pin",
+  "original": "Pin",
+  "sinopsis": "Desde que eran niños, León y Úrsula aprendieron de su padre a escuchar consejos importantes de Pin (por Pinocho), un muñeco anatómico que tenía en su consulta. Tras la muerte de los padres, en accidente de tráfico, León continúa manteniendo un estrecho contacto con Pin, desencadenando así una serie de asesinatos.",
+  "tagline": null,
+  "puntaje": 6.7,
+  "votos": 170,
+  "minutos": 103,
+  "generos": [
+   "Terror",
+   "Suspense"
+  ],
+  "paises": [
+   "CA"
+  ],
+  "idioma": "en",
+  "director": "Sandor Stern",
+  "directorId": 46000,
+  "reparto": [
+   "Jonathan Banks",
+   "David Hewlett",
+   "Cynthia Preston",
+   "Terry O'Quinn",
+   "Bronwen Mantel"
+  ],
+  "repartoIds": [
+   783,
+   5892,
+   1213299,
+   12646,
+   141789
+  ],
+  "popularidad": 2.3139,
+  "poster": "/ouUfJtdHPkRXFJ0zDLPvgbPHPjd.jpg",
+  "backdrop": "/yDuhznnNmR4Pehf9QubGnLkEBNC.jpg",
+  "proveedores": {
+   "suscripcion": [],
+   "gratis": [],
+   "alquiler": []
+  },
+  "actualizado": "2026-10-13T06:53:23.938Z"
+ },
+ "House of 1000 Corpses::2003": {
+  "tmdb": 2662,
+  "titulo": "La casa de los 1000 cadáveres",
+  "original": "House of 1000 Corpses",
+  "sinopsis": "Dos parejas de jóvenes se pierden durante la noche y van a dar a una oscura casa habitada por una familia de psicópatas. Asesinatos, canibalismo y ritos satánicos son algunos de los mil horrores que allí les esperan.",
+  "tagline": "Si entras no saldrás jamás.",
+  "puntaje": 6.2,
+  "votos": 1849,
+  "minutos": 89,
+  "generos": [
+   "Terror"
+  ],
+  "paises": [
+   "US"
+  ],
+  "idioma": "en",
+  "director": "Rob Zombie",
+  "directorId": 16848,
+  "reparto": [
+   "Sid Haig",
+   "Bill Moseley",
+   "Sheri Moon Zombie",
+   "Karen Black",
+   "Erin Daniels"
+  ],
+  "repartoIds": [
+   5695,
+   27737,
+   21319,
+   8963,
+   18662
+  ],
+  "popularidad": 8.1703,
+  "poster": "/rO7biLmJtJoTbDv5wzEwZGOD375.jpg",
+  "backdrop": "/jweRMLxgXqzfh12ILnTcmVz3Iix.jpg",
+  "proveedores": {
+   "suscripcion": [
+    "Lionsgate+ Amazon Channel"
+   ],
+   "gratis": [],
+   "alquiler": [
+    "Apple TV Store"
+   ]
+  },
+  "actualizado": "2026-10-13T06:53:24.385Z"
+ },
+ "I-Be Area::2007": {
+  "tmdb": 235201,
+  "titulo": "I-Be Area",
+  "original": "I-Be Area",
+  "sinopsis": "Dazzling and raucous, Ryan Trecartin's first feature-length video takes cues from chat rooms, social networking web sites, YouTube, John Waters, and Pee-wee’s Playhouse, and then turns them upside down and inside out to create an entirely singular video genre. In I-BE AREA, Trecartin intertwines the stories of an incredible ensemble cast to follow a day in the life of I-BE II, the rebellious clone of I-BE.",
+  "tagline": null,
+  "puntaje": 5.5,
+  "votos": 6,
+  "minutos": 108,
+  "generos": [
+   "Comedia",
+   "Ciencia ficción",
+   "Fantasía"
+  ],
+  "paises": [
+   "US"
+  ],
+  "idioma": "en",
+  "director": "Ryan Trecartin",
+  "directorId": 1145456,
+  "reparto": [
+   "Ryan Trecartin",
+   "Lizzie Fitch",
+   "Allison K Powell",
+   "Raul de Nieves",
+   "Rhett LaRue"
+  ],
+  "repartoIds": [
+   1145456,
+   1270478,
+   4217885,
+   3131329,
+   2998404
+  ],
+  "popularidad": 0.8038,
+  "poster": "/5UcbZvnpjqFDT85855GrIandi4P.jpg",
+  "backdrop": "/7FUdGHt3aU6CtYYUUgyEPoYXMqz.jpg",
+  "proveedores": {
+   "suscripcion": [],
+   "gratis": [],
+   "alquiler": []
+  },
+  "actualizado": "2026-10-13T06:53:24.460Z"
+ },
+ "Brainscan::1994": {
+  "tmdb": 14237,
+  "titulo": "Juego mortal",
+  "original": "Brainscan",
+  "sinopsis": "Un joven de 16 años, de carácter fantasioso y muy aficionado a los videojuegos consigue un CD-ROM interactivo de realidad virtual que le promete dar la experiencia más terrorífica de su vida.",
+  "tagline": "¿Quieres jugar? Te desafio",
+  "puntaje": 6.1,
+  "votos": 300,
+  "minutos": 96,
+  "generos": [
+   "Terror",
+   "Ciencia ficción"
+  ],
+  "paises": [
+   "GB",
+   "US"
+  ],
+  "idioma": "en",
+  "director": "John Flynn",
+  "directorId": 38689,
+  "reparto": [
+   "Edward Furlong",
+   "Frank Langella",
+   "T. Ryder Smith",
+   "Amy Hargreaves",
+   "Jamie Marsh"
+  ],
+  "repartoIds": [
+   820,
+   8924,
+   140378,
+   92728,
+   94553
+  ],
+  "popularidad": 2.7579,
+  "poster": "/qI1gk1pSWYKnQnlR8v6sC03hiQR.jpg",
+  "backdrop": "/uu2AafsWp6sovE8OHYqXpudGRwU.jpg",
+  "proveedores": {
+   "suscripcion": [],
+   "gratis": [],
+   "alquiler": []
+  },
+  "actualizado": "2026-10-13T06:53:24.868Z"
+ },
+ "Mercano the Martian::2002": {
+  "tmdb": 100512,
+  "titulo": "Mercano, el Marciano",
+  "original": "Mercano, el Marciano",
+  "sinopsis": "Largometraje cinematográfico basado en el popular personaje animado de la televisión. Un marciano que usa las alcantarillas porteñas como base de operaciones para armar un mundo virtual.",
+  "tagline": null,
+  "puntaje": 6.6,
+  "votos": 14,
+  "minutos": 87,
+  "generos": [
+   "Animación",
+   "Comedia",
+   "Ciencia ficción"
+  ],
+  "paises": [
+   "AR"
+  ],
+  "idioma": "es",
+  "director": "Juan Antín",
+  "directorId": 1024667,
+  "reparto": [
+   "Graciela Borges",
+   "Roberto Carnaghi",
+   "Fabio Alberti",
+   "Damián Dreizik",
+   "Alejandro Nagy"
+  ],
+  "repartoIds": [
+   590943,
+   113365,
+   1125516,
+   995616,
+   1125517
+  ],
+  "popularidad": 1.3508,
+  "poster": "/kDmdYQ79LgutNff2ZynFOAF93C7.jpg",
+  "backdrop": "/3nF5Agpp1xy5zKdxboD0fTXuenH.jpg",
+  "proveedores": {
+   "suscripcion": [],
+   "gratis": [],
+   "alquiler": []
+  },
+  "actualizado": "2026-10-13T06:53:25.023Z"
  }
 }

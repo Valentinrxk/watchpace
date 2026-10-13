@@ -10,6 +10,22 @@
    "clave": "1535598467"
   },
   {
+   "nombre": "House of 1000 Corpses",
+   "anio": 2003,
+   "visto": "2026-10-12",
+   "rating": 4,
+   "rewatch": false,
+   "clave": "1535968103"
+  },
+  {
+   "nombre": "The Last of the Mohicans",
+   "anio": 1992,
+   "visto": "2026-10-12",
+   "rating": 3.5,
+   "rewatch": false,
+   "clave": "1535755486"
+  },
+  {
    "nombre": "The Assassination of Jesse James by the Coward Robert Ford",
    "anio": 2007,
    "visto": "2026-10-11",
@@ -2987,6 +3003,20 @@
   }
  ],
  "vistas": [
+  {
+   "nombre": "The Last of the Mohicans",
+   "anio": 1992,
+   "slug": "the-last-of-the-mohicans-1992",
+   "clave": "the-last-of-the-mohicans-1992",
+   "uri": "https://letterboxd.com/film/the-last-of-the-mohicans-1992/"
+  },
+  {
+   "nombre": "House of 1000 Corpses",
+   "anio": 2003,
+   "slug": "house-of-1000-corpses",
+   "clave": "house-of-1000-corpses",
+   "uri": "https://letterboxd.com/film/house-of-1000-corpses/"
+  },
   {
    "nombre": "The Assassination of Jesse James by the Coward Robert Ford",
    "anio": 2007,
@@ -11049,5 +11079,5 @@
    "orden": 302
   }
  ],
- "actualizado": "2026-10-12T23:03:06.911Z"
+ "actualizado": "2026-10-13T06:52:58.709Z"
 }
