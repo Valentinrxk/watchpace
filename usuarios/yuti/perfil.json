@@ -2,6 +2,22 @@
  "usuario": "yuti",
  "diario": [
   {
+   "nombre": "Yo! A Romantic Comedy",
+   "anio": 2002,
+   "visto": "2026-10-13",
+   "rating": null,
+   "rewatch": false,
+   "clave": "1537221515"
+  },
+  {
+   "nombre": "House of 1000 Corpses",
+   "anio": 2003,
+   "visto": "2026-10-13",
+   "rating": 4,
+   "rewatch": false,
+   "clave": "1537054156"
+  },
+  {
    "nombre": "Twitches",
    "anio": 2005,
    "visto": "2026-10-12",
@@ -3659,6 +3675,20 @@
   }
  ],
  "vistas": [
+  {
+   "nombre": "House of 1000 Corpses",
+   "anio": 2003,
+   "slug": "house-of-1000-corpses",
+   "clave": "house-of-1000-corpses",
+   "uri": "https://letterboxd.com/film/house-of-1000-corpses/"
+  },
+  {
+   "nombre": "Yo! A Romantic Comedy",
+   "anio": 2002,
+   "slug": "yo-a-romantic-comedy",
+   "clave": "yo-a-romantic-comedy",
+   "uri": "https://letterboxd.com/film/yo-a-romantic-comedy/"
+  },
   {
    "nombre": "License to Live",
    "anio": 1998,
@@ -12660,5 +12690,5 @@
    "orden": 485
   }
  ],
- "actualizado": "2026-10-13T06:53:23.474Z"
+ "actualizado": "2026-10-14T01:16:27.740Z"
 }

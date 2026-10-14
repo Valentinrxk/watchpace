@@ -87180,5 +87180,39 @@
    "alquiler": []
   },
   "actualizado": "2026-10-13T06:53:25.023Z"
+ },
+ "Yo! A Romantic Comedy::2002": {
+  "tmdb": 295035,
+  "titulo": "Yo! A Romantic Comedy",
+  "original": "Yo! A Romantic Comedy",
+  "sinopsis": "In Yo! A Romantic Comedy, Trecartin borrows clichés from hip-hop culture and genre films to craft a dark, dream-like narrative that veers from comic melodrama to goth fantasy. Applying his signature digital editing and delirious sound processing to remarkable effect, Trecartin creates an alternative narrative universe that suggests a kind of psychodramatic hyper-reality.",
+  "tagline": null,
+  "puntaje": null,
+  "votos": 0,
+  "minutos": 12,
+  "generos": [],
+  "paises": [
+   "US"
+  ],
+  "idioma": "en",
+  "director": "Ryan Trecartin",
+  "directorId": 1145456,
+  "reparto": [
+   "Lizzie Fitch",
+   "Ryan Trecartin"
+  ],
+  "repartoIds": [
+   1270478,
+   1145456
+  ],
+  "popularidad": 0.6738,
+  "poster": "/pjWYQqn6JsQWS6SckqWKH5L7jPa.jpg",
+  "backdrop": null,
+  "proveedores": {
+   "suscripcion": [],
+   "gratis": [],
+   "alquiler": []
+  },
+  "actualizado": "2026-10-14T01:16:28.109Z"
  }
 }
