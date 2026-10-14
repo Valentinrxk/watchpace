@@ -87214,5 +87214,52 @@
    "alquiler": []
   },
   "actualizado": "2026-10-14T01:16:28.109Z"
+ },
+ "Caché::2005": {
+  "tmdb": 445,
+  "titulo": "Caché (Escondido)",
+  "original": "Caché",
+  "sinopsis": "Georges es el típico burgués: presenta un programa literario en televisión y lleva una vida acomodada con su mujer y su hijo adolescente. Pero, empieza a recibir unos paquetes anónimos que contienen cintas de vídeo, grabadas desde la calle, y unos dibujos inquietantes cuyo significado es un misterio. No sabe quién los envía; sin embargo, las secuencias que aparecen en las cintas se hacen cada vez más personales, lo que sugiere que el remitente le conoce desde hace algún tiempo. Georges siente que una amenaza se cierne sobre él y su familia, pero, puesto que no hay evidencias de delito alguno, la policía se niega a ayudarlo.",
+  "tagline": null,
+  "puntaje": 7,
+  "votos": 1319,
+  "minutos": 117,
+  "generos": [
+   "Misterio",
+   "Drama",
+   "Suspense"
+  ],
+  "paises": [
+   "FR",
+   "AT",
+   "DE",
+   "IT"
+  ],
+  "idioma": "fr",
+  "director": "Michael Haneke",
+  "directorId": 6011,
+  "reparto": [
+   "Daniel Auteuil",
+   "Juliette Binoche",
+   "Annie Girardot",
+   "Bernard Le Coq",
+   "Daniel Duval"
+  ],
+  "repartoIds": [
+   6012,
+   1137,
+   6014,
+   6015,
+   6018
+  ],
+  "popularidad": 4.1924,
+  "poster": "/ght5BJOCDFRyp9tbQLGWfVjWdtM.jpg",
+  "backdrop": "/mOYIUiSdoLWynoZIGDZSAAUZ3ss.jpg",
+  "proveedores": {
+   "suscripcion": [],
+   "gratis": [],
+   "alquiler": []
+  },
+  "actualizado": "2026-10-14T07:46:17.497Z"
  }
 }
