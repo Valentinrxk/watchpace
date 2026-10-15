@@ -87308,5 +87308,54 @@
    "alquiler": []
   },
   "actualizado": "2026-10-14T23:18:03.626Z"
+ },
+ "Carrie::1976": {
+  "tmdb": 7340,
+  "titulo": "Carrie",
+  "original": "Carrie",
+  "sinopsis": "Carrie es una torturada estudiante de secundaria que no encaja en su entorno, sin confianza en sí misma y sin amigos… y sin ser consciente de la amplitud de sus poderes telequinéticos. Pero cuando su psicótica madre y sus sádicos compañeros de clase llegan demasiado lejos, la una vez tímida adolescente se convierte en una máquina desenfrenada y, con ayuda de su «don especial», hace caer el infierno sobre sus cabezas en un frenesí de sangre, fuego y azufre que te llevará a las profundidades del horror… y aún más lejos.",
+  "tagline": "Si te gusta el terror... lleva a Carrie al baile.",
+  "puntaje": 7.3,
+  "votos": 4510,
+  "minutos": 98,
+  "generos": [
+   "Terror",
+   "Suspense"
+  ],
+  "paises": [
+   "US"
+  ],
+  "idioma": "en",
+  "director": "Brian De Palma",
+  "directorId": 1150,
+  "reparto": [
+   "Sissy Spacek",
+   "Piper Laurie",
+   "Amy Irving",
+   "William Katt",
+   "John Travolta"
+  ],
+  "repartoIds": [
+   5606,
+   6721,
+   27563,
+   45415,
+   8891
+  ],
+  "popularidad": 48.3437,
+  "poster": "/6JTL8AQ4jGFmFMTA6H7oVGGKaPp.jpg",
+  "backdrop": "/zwJFfKQdfiptK2GY6N8GkZFrAxJ.jpg",
+  "proveedores": {
+   "suscripcion": [
+    "Amazon Prime Video",
+    "MovistarTV"
+   ],
+   "gratis": [],
+   "alquiler": [
+    "Apple TV Store",
+    "Amazon Video"
+   ]
+  },
+  "actualizado": "2026-10-15T21:30:39.524Z"
  }
 }

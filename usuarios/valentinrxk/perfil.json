@@ -2,6 +2,14 @@
  "usuario": "valentinrxk",
  "diario": [
   {
+   "nombre": "Carrie",
+   "anio": 1976,
+   "visto": "2026-10-15",
+   "rating": 4,
+   "rewatch": false,
+   "clave": "1539348851"
+  },
+  {
    "nombre": "One Battle After Another",
    "anio": 2025,
    "visto": "2026-10-12",
@@ -3003,6 +3011,13 @@
   }
  ],
  "vistas": [
+  {
+   "nombre": "Carrie",
+   "anio": 1976,
+   "slug": "carrie-1976",
+   "clave": "carrie-1976",
+   "uri": "https://letterboxd.com/film/carrie-1976/"
+  },
   {
    "nombre": "The Last of the Mohicans",
    "anio": 1992,
@@ -11087,5 +11102,5 @@
    "orden": 303
   }
  ],
- "actualizado": "2026-10-14T23:17:31.384Z"
+ "actualizado": "2026-10-15T21:30:38.483Z"
 }
