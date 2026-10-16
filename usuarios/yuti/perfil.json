@@ -2,6 +2,14 @@
  "usuario": "yuti",
  "diario": [
   {
+   "nombre": "A Tale of Two Sisters",
+   "anio": 2003,
+   "visto": "2026-10-15",
+   "rating": 3,
+   "rewatch": false,
+   "clave": "1539806936"
+  },
+  {
    "nombre": "Yo! A Romantic Comedy",
    "anio": 2002,
    "visto": "2026-10-13",
@@ -3675,6 +3683,13 @@
   }
  ],
  "vistas": [
+  {
+   "nombre": "A Tale of Two Sisters",
+   "anio": 2003,
+   "slug": "a-tale-of-two-sisters",
+   "clave": "a-tale-of-two-sisters",
+   "uri": "https://letterboxd.com/film/a-tale-of-two-sisters/"
+  },
   {
    "nombre": "House of 1000 Corpses",
    "anio": 2003,
@@ -12698,5 +12713,5 @@
    "orden": 486
   }
  ],
- "actualizado": "2026-10-15T21:30:39.016Z"
+ "actualizado": "2026-10-16T07:18:29.528Z"
 }

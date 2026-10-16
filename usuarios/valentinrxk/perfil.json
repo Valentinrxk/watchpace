@@ -10,6 +10,14 @@
    "clave": "1539348851"
   },
   {
+   "nombre": "A Tale of Two Sisters",
+   "anio": 2003,
+   "visto": "2026-10-15",
+   "rating": 3.5,
+   "rewatch": false,
+   "clave": "1539902450"
+  },
+  {
    "nombre": "One Battle After Another",
    "anio": 2025,
    "visto": "2026-10-12",
@@ -3011,6 +3019,13 @@
   }
  ],
  "vistas": [
+  {
+   "nombre": "A Tale of Two Sisters",
+   "anio": 2003,
+   "slug": "a-tale-of-two-sisters",
+   "clave": "a-tale-of-two-sisters",
+   "uri": "https://letterboxd.com/film/a-tale-of-two-sisters/"
+  },
   {
    "nombre": "Carrie",
    "anio": 1976,
@@ -11102,5 +11117,5 @@
    "orden": 303
   }
  ],
- "actualizado": "2026-10-15T21:30:38.483Z"
+ "actualizado": "2026-10-16T07:18:28.985Z"
 }
