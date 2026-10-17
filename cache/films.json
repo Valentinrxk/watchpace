@@ -87357,5 +87357,51 @@
    ]
   },
   "actualizado": "2026-10-15T21:30:39.524Z"
+ },
+ "The Flock::2017": {
+  "tmdb": 467522,
+  "titulo": "El corral",
+  "original": "El corral",
+  "sinopsis": "Dos antisociales adolescentes, resentidos contra sus compañeros y profesores, se proponen provocar conmoción en el colegio a través de una serie de anónimos actos de vandalismo. Poco a poco, el juego va perdiendo su costado ingenuo y los dos jóvenes se ven sumergidos en una peligrosa espiral de violencia que parece no tener límites.",
+  "tagline": "DOS AMIGOS Y UN PLAN: SEMBRAR EL CAOS",
+  "puntaje": 4.2,
+  "votos": 6,
+  "minutos": 90,
+  "generos": [
+   "Drama",
+   "Misterio",
+   "Crimen"
+  ],
+  "paises": [
+   "AR"
+  ],
+  "idioma": "es",
+  "director": "Sebastián Caulier",
+  "directorId": 1566869,
+  "reparto": [
+   "Patricio Penna",
+   "Felipe Ramusio",
+   "Camila Rabinovich",
+   "Valeria Lois",
+   "Diego De Paula"
+  ],
+  "repartoIds": [
+   1856215,
+   1856216,
+   1803967,
+   1291440,
+   1716429
+  ],
+  "popularidad": 1.6775,
+  "poster": "/nv0TcC6AEUTlRvTykqkLwpFcsB.jpg",
+  "backdrop": "/8EsV2GqCt9mnLa4BsdrkZZahXRI.jpg",
+  "proveedores": {
+   "suscripcion": [
+    "MovistarTV"
+   ],
+   "gratis": [],
+   "alquiler": []
+  },
+  "actualizado": "2026-10-17T00:34:35.845Z"
  }
 }
