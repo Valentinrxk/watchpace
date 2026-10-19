@@ -87403,5 +87403,97 @@
    "alquiler": []
   },
   "actualizado": "2026-10-17T00:34:35.845Z"
+ },
+ "Postal::2007": {
+  "tmdb": 2728,
+  "titulo": "Postal",
+  "original": "Postal",
+  "sinopsis": "Basado en el videojuego \"Postal\", donde un empleado del servicio postal se ve embarcado en una misión de asesinatos y destrucción. Su leyenda reza: \"Algunas comedias se pasan de la raya. Otras empiezan a partir de ahí\".",
+  "tagline": null,
+  "puntaje": 4.7,
+  "votos": 411,
+  "minutos": 109,
+  "generos": [
+   "Comedia",
+   "Acción",
+   "Suspense"
+  ],
+  "paises": [
+   "CA",
+   "DE",
+   "US"
+  ],
+  "idioma": "en",
+  "director": "Uwe Boll",
+  "directorId": 23799,
+  "reparto": [
+   "Zack Ward",
+   "Dave Foley",
+   "Chris Coppola",
+   "Jackie Tohn",
+   "J.K. Simmons"
+  ],
+  "repartoIds": [
+   12714,
+   21290,
+   23791,
+   27589,
+   18999
+  ],
+  "popularidad": 4.6215,
+  "poster": "/gPJlWBpolwJoMIFkcccQV27VQ9j.jpg",
+  "backdrop": "/hv4vkURVXnYDZ0VJiGN3titWrIw.jpg",
+  "proveedores": {
+   "suscripcion": [],
+   "gratis": [],
+   "alquiler": []
+  },
+  "actualizado": "2026-10-19T20:00:08.233Z"
+ },
+ "Egg::2002": {
+  "tmdb": 188828,
+  "titulo": "Egg",
+  "original": "Egg",
+  "sinopsis": "A bored office worker sees a giant egg when she closes her eyes, and when it hatches, each blink unleashes escalating real-world horrors.",
+  "tagline": null,
+  "puntaje": 6.9,
+  "votos": 16,
+  "minutos": 72,
+  "generos": [
+   "Fantasía",
+   "Terror",
+   "Drama",
+   "Ciencia ficción",
+   "Comedia"
+  ],
+  "paises": [
+   "JP"
+  ],
+  "idioma": "ja",
+  "director": "堤幸彦",
+  "directorId": 81355,
+  "reparto": [
+   "조혜영",
+   "犬山イヌコ",
+   "Jiro Sato",
+   "氏家恵",
+   "サミ・ポップ"
+  ],
+  "repartoIds": [
+   123021,
+   936287,
+   133699,
+   1417502,
+   927791
+  ],
+  "popularidad": 1.1347,
+  "poster": "/2ltYAvuh3lv0Ekw6Cw297plIhzb.jpg",
+  "backdrop": "/5NMvh2prNfTQHmV6v6YKrqt9lM4.jpg",
+  "proveedores": {
+   "suscripcion": [],
+   "gratis": [],
+   "alquiler": []
+  },
+  "actualizado": "2026-10-19T20:00:08.289Z"
  }
 }
