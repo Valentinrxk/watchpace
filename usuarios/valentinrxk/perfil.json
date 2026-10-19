@@ -2,6 +2,14 @@
  "usuario": "valentinrxk",
  "diario": [
   {
+   "nombre": "The Beach Bum",
+   "anio": 2019,
+   "visto": "2026-10-18",
+   "rating": 3.5,
+   "rewatch": false,
+   "clave": "1544812965"
+  },
+  {
    "nombre": "Carrie",
    "anio": 1976,
    "visto": "2026-10-15",
@@ -3019,6 +3027,13 @@
   }
  ],
  "vistas": [
+  {
+   "nombre": "The Beach Bum",
+   "anio": 2019,
+   "slug": "the-beach-bum",
+   "clave": "the-beach-bum",
+   "uri": "https://letterboxd.com/film/the-beach-bum/"
+  },
   {
    "nombre": "A Tale of Two Sisters",
    "anio": 2003,
@@ -11117,5 +11132,5 @@
    "orden": 303
   }
  ],
- "actualizado": "2026-10-17T00:34:09.437Z"
+ "actualizado": "2026-10-19T04:52:08.641Z"
 }
