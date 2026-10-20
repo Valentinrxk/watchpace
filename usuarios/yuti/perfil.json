@@ -2,6 +2,22 @@
  "usuario": "yuti",
  "diario": [
   {
+   "nombre": "Pulse",
+   "anio": 2001,
+   "visto": "2026-10-20",
+   "rating": 3.5,
+   "rewatch": false,
+   "clave": "1546756529"
+  },
+  {
+   "nombre": "The Beach Bum",
+   "anio": 2019,
+   "visto": "2026-10-20",
+   "rating": 3,
+   "rewatch": false,
+   "clave": "1546756062"
+  },
+  {
    "nombre": "A Tale of Two Sisters",
    "anio": 2003,
    "visto": "2026-10-15",
@@ -3683,6 +3699,20 @@
   }
  ],
  "vistas": [
+  {
+   "nombre": "The Beach Bum",
+   "anio": 2019,
+   "slug": "the-beach-bum",
+   "clave": "the-beach-bum",
+   "uri": "https://letterboxd.com/film/the-beach-bum/"
+  },
+  {
+   "nombre": "Pulse",
+   "anio": 2001,
+   "slug": "pulse-2001",
+   "clave": "pulse-2001",
+   "uri": "https://letterboxd.com/film/pulse-2001/"
+  },
   {
    "nombre": "A Tale of Two Sisters",
    "anio": 2003,
@@ -12721,5 +12751,5 @@
    "orden": 487
   }
  ],
- "actualizado": "2026-10-19T20:00:07.601Z"
+ "actualizado": "2026-10-20T17:18:03.090Z"
 }
