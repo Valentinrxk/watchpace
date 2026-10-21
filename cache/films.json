@@ -88180,5 +88180,50 @@
    "alquiler": []
   },
   "actualizado": "2026-10-21T18:45:05.097Z"
+ },
+ "Your Mother Your Mother Your Mother::2026": {
+  "tmdb": 1437396,
+  "titulo": "Tu madre, tu madre, tu madre",
+  "original": "Your Mother Your Mother Your Mother",
+  "sinopsis": "Latif, un sicario profundamente religioso, lucha por equilibrar el trabajo, la fe y su papel como padre. Tras la muerte de su esposa, emprende un viaje desesperado por Houston para proteger a sus hijos, enfrentándose tanto a las fuerzas que lo acorralan como a las creencias que amenazan con desmoronarse en su interior.",
+  "tagline": null,
+  "puntaje": 7.6,
+  "votos": 10,
+  "minutos": 112,
+  "generos": [
+   "Acción",
+   "Crimen",
+   "Drama"
+  ],
+  "paises": [
+   "US",
+   "GB"
+  ],
+  "idioma": "en",
+  "director": "Bassam Tariq",
+  "directorId": 1161025,
+  "reparto": [
+   "Mahershala Ali",
+   "John Cho",
+   "Giancarlo Esposito",
+   "Abubakr Ali",
+   "Laith Nakli"
+  ],
+  "repartoIds": [
+   932967,
+   68842,
+   4808,
+   3164078,
+   164465
+  ],
+  "popularidad": 40.8115,
+  "poster": "/4KaPZSKnInnArErTTgy9Oy14leR.jpg",
+  "backdrop": "/jiFLiatBtBALlAzV5R72gzspBad.jpg",
+  "proveedores": {
+   "suscripcion": [],
+   "gratis": [],
+   "alquiler": []
+  },
+  "actualizado": "2026-10-21T23:26:14.962Z"
  }
 }
