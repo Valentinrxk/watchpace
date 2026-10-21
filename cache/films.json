@@ -87495,5 +87495,690 @@
    "alquiler": []
   },
   "actualizado": "2026-10-19T20:00:08.289Z"
+ },
+ "Truly Naked::2026": {
+  "tmdb": 1281195,
+  "titulo": "Truly naked",
+  "original": "Truly Naked",
+  "sinopsis": "Alec, un adolescente introvertido y de voz suave, siempre ha visto la vida a través del prisma del pequeño negocio de pornografía de su padre. Cuando se mudan de Londres a un tranquilo pueblo costero, Alec espera empezar de cero, intentando hacer amigos sin revelar la naturaleza de su vida poco convencional. Todo cambia cuando conoce a la ferozmente independiente Nina, cuyas convicciones redefinen el mundo en el que él ha crecido. A medida que su relación se profundiza, la comprensión de Alec sobre la sexualidad y el deseo empieza a cambiar. Lo que comienza como una conexión improbable evoluciona hacia una historia tierna e inesperadamente conmovedora sobre el descubrimiento de la verdadera intimidad... y lo que realmente significa ser visto.",
+  "tagline": null,
+  "puntaje": 6.6,
+  "votos": 33,
+  "minutos": 102,
+  "generos": [
+   "Drama",
+   "Romance"
+  ],
+  "paises": [
+   "NL",
+   "BE",
+   "FR"
+  ],
+  "idioma": "en",
+  "director": "Muriel d'Ansembourg",
+  "directorId": 1422353,
+  "reparto": [
+   "Caolán O'Gorman",
+   "Andrew Howard",
+   "Alessa Savage",
+   "Safiya Benaddi",
+   "Lyndsey Marshal"
+  ],
+  "repartoIds": [
+   4679034,
+   67206,
+   1679175,
+   4679035,
+   8442
+  ],
+  "popularidad": 4.4235,
+  "poster": "/2f8c6sE1jRGL1piMsW3zVqqZtk5.jpg",
+  "backdrop": "/mN5HuZwSIueiA62F0LS3wBCFj55.jpg",
+  "proveedores": {
+   "suscripcion": [],
+   "gratis": [],
+   "alquiler": []
+  },
+  "actualizado": "2026-10-21T18:45:02.342Z"
+ },
+ "Wild Horse Nine::2026": {
+  "tmdb": 891621,
+  "titulo": "Caballo Salvaje Nueve",
+  "original": "Wild Horse Nine",
+  "sinopsis": "Poco antes del golpe de Estado chileno de 1973, los agentes de la CIA Chris y Lee son enviados desde Santiago a la Isla de Pascua por su jefa de la oficina, MJ. Entre las emblemáticas estatuas de la isla, y mientras los veteranos compañeros lidian con sus oscuros pasados ​​y conspiraciones actuales, el nuevo vínculo que Chris establece con un par de estudiantes rebeldes amenaza con desbaratar el viaje de todos a este remoto paraíso.",
+  "tagline": "A veces tienes que hacer algo terrible por el bien mayor.",
+  "puntaje": null,
+  "votos": 0,
+  "minutos": 118,
+  "generos": [
+   "Comedia",
+   "Crimen",
+   "Suspense"
+  ],
+  "paises": [
+   "GB",
+   "US"
+  ],
+  "idioma": "en",
+  "director": "Martin McDonagh",
+  "directorId": 54472,
+  "reparto": [
+   "John Malkovich",
+   "Sam Rockwell",
+   "Steve Buscemi",
+   "Mariana di Girolamo",
+   "Ailín Salas"
+  ],
+  "repartoIds": [
+   6949,
+   6807,
+   884,
+   2064168,
+   96481
+  ],
+  "popularidad": 45.3488,
+  "poster": "/ulvGcZer26aBaNG0s4IEJGyyLIq.jpg",
+  "backdrop": "/b17UWf3LqHgKolQkXckne32qv0.jpg",
+  "proveedores": {
+   "suscripcion": [],
+   "gratis": [],
+   "alquiler": []
+  },
+  "actualizado": "2026-10-21T18:45:02.346Z"
+ },
+ "Ghost in the Cell::2026": {
+  "tmdb": 1393326,
+  "titulo": "Ghost in the Cell",
+  "original": "Ghost in the Cell",
+  "sinopsis": "En una conocida prisión, una fuerza invisible comienza a matar brutalmente a los reclusos, obligando a las bandas enemigas y a los guardias corruptos a trabajar juntos mientras intentan sobrevivir al creciente derramamiento de sangre.",
+  "tagline": null,
+  "puntaje": 6.9,
+  "votos": 100,
+  "minutos": 106,
+  "generos": [
+   "Terror",
+   "Comedia",
+   "Suspense"
+  ],
+  "paises": [
+   "ID",
+   "KR"
+  ],
+  "idioma": "id",
+  "director": "Joko Anwar",
+  "directorId": 121798,
+  "reparto": [
+   "Abimana Aryasatya",
+   "Bront Palarae",
+   "Dimas Danang",
+   "Endy Arfian",
+   "Lukman Sardi"
+  ],
+  "repartoIds": [
+   1203378,
+   562217,
+   2207948,
+   581687,
+   1206436
+  ],
+  "popularidad": 21.2779,
+  "poster": "/gF6Ijrq5bixh4qemCuroRwXtbBc.jpg",
+  "backdrop": "/tK3QdOOrX4qEkmSlvrmc8cK7iOU.jpg",
+  "proveedores": {
+   "suscripcion": [],
+   "gratis": [],
+   "alquiler": []
+  },
+  "actualizado": "2026-10-21T18:45:02.359Z"
+ },
+ "Sandra, The Primate Citizen::2026": {
+  "tmdb": 1654549,
+  "titulo": "시민오랑",
+  "original": "시민오랑",
+  "sinopsis": "Sandra, an orangutan who spent two decades in Buenos Aires Zoo, becomes the world's first non-human person recognized by an Argentine court. What seems a historic victory soon sparks a deeper question: where and how should she live as an intelligent being, as law and science seek to understand her mind?",
+  "tagline": null,
+  "puntaje": null,
+  "votos": 0,
+  "minutos": 84,
+  "generos": [
+   "Documental"
+  ],
+  "paises": [
+   "KR",
+   "AR"
+  ],
+  "idioma": "ko",
+  "director": "하시내",
+  "directorId": 2801500,
+  "reparto": [
+   "Sandra",
+   "Elena Liberatori",
+   "Aldo Mario Giudice"
+  ],
+  "repartoIds": [
+   6114967,
+   3509940,
+   6114968
+  ],
+  "popularidad": 0.9141,
+  "poster": "/yWWsQpPoAyCOBldAR8GsYzA1aEK.jpg",
+  "backdrop": "/d4ZjBchlEuvLchJuKG2wpGIK6F3.jpg",
+  "proveedores": {
+   "suscripcion": [],
+   "gratis": [],
+   "alquiler": []
+  },
+  "actualizado": "2026-10-21T18:45:02.783Z"
+ },
+ "Rehearsals for a Revolution::2026": {
+  "tmdb": 1666864,
+  "titulo": "Ensayos para una revolución",
+  "original": "تمرین‌هایی برای یک انقلاب",
+  "sinopsis": "Through five portraits of relatives and mentors, five expressions of resistance, Pegah Ahangarani sketches her life story. Drawing from personal archives, home videos, street protests footage, newspapers, and recorded voices, she retraces more than 40 years of Iran’s history. From the early days of 1979, until the war that began in 2026, she pieces together intimate and collective memories, forming the portrait of a country shaped by political repression and in constant hope for a revolution.",
+  "tagline": null,
+  "puntaje": null,
+  "votos": 0,
+  "minutos": 101,
+  "generos": [
+   "Documental"
+  ],
+  "paises": [
+   "CZ",
+   "ES"
+  ],
+  "idioma": "fa",
+  "director": "Pegah Ahangarani",
+  "directorId": 213368,
+  "reparto": [
+   "Pegah Ahangarani",
+   "Jamshid Ahangarani",
+   "Manijeh Hekmat"
+  ],
+  "repartoIds": [
+   213368,
+   3478670,
+   1363680
+  ],
+  "popularidad": 1.8593,
+  "poster": "/gwXHaUMsAa3qUakJxETGEDY3TRY.jpg",
+  "backdrop": "/vMZSG9ppXdHHSW7zXoThi4EvU6o.jpg",
+  "proveedores": {
+   "suscripcion": [],
+   "gratis": [],
+   "alquiler": []
+  },
+  "actualizado": "2026-10-21T18:45:02.982Z"
+ },
+ "Frosted Window::2025": {
+  "tmdb": 1511286,
+  "titulo": "흐린 창문 너머의 누군가",
+  "original": "흐린 창문 너머의 누군가",
+  "sinopsis": "In Seoul's Seochon neighborhood, stories unfold across seasons. On an autumn day, Han-kyung, an artist, meets women while seeking love. In summer, Bo-ra finishes work at a nail salon and uses a man to attract another at her favorite bar. In winter, Ma-ri, an actor with memory loss, joins a film director's ambiguous story. Their lives intersect, weaving a tapestry of hope, desire, and reality within the same space over time.",
+  "tagline": null,
+  "puntaje": 6,
+  "votos": 1,
+  "minutos": 81,
+  "generos": [
+   "Drama"
+  ],
+  "paises": [
+   "KR"
+  ],
+  "idioma": "ko",
+  "director": "김종관",
+  "directorId": 1066215,
+  "reparto": [
+   "연우진",
+   "장률",
+   "Joo Jong-hyuk",
+   "옥자연",
+   "전소영"
+  ],
+  "repartoIds": [
+   1346848,
+   3003834,
+   2839957,
+   2133924,
+   4903385
+  ],
+  "popularidad": 0.93,
+  "poster": "/tXohOZSqv0Y6IorcshNXoVhvWQQ.jpg",
+  "backdrop": "/xjuKQgpxff2Iwn26BamQ4lhAKkb.jpg",
+  "proveedores": {
+   "suscripcion": [],
+   "gratis": [],
+   "alquiler": []
+  },
+  "actualizado": "2026-10-21T18:45:03.024Z"
+ },
+ "Piedra libre::1976": {
+  "tmdb": 568253,
+  "titulo": "Piedra libre",
+  "original": "Piedra libre",
+  "sinopsis": "Eugenia's parents die. She goes to live with Amalita, her close friend. Her grandmother Amalia Pradere a wealth landlady, takes the orphan under her protection. After a chain of events, disappearing her grandchild, Eugenia will take Amalita's place. She will inherit not only Amalia's possessions but also Ezequiel's love, Amalita's widower.",
+  "tagline": null,
+  "puntaje": 7,
+  "votos": 4,
+  "minutos": 97,
+  "generos": [
+   "Drama"
+  ],
+  "paises": [
+   "AR"
+  ],
+  "idioma": "es",
+  "director": "Leopoldo Torre Nilsson",
+  "directorId": 116197,
+  "reparto": [
+   "Marilina Ross",
+   "Juan José Camero",
+   "Mecha Ortiz",
+   "Luisina Brando",
+   "Flora Steinberg"
+  ],
+  "repartoIds": [
+   1084712,
+   1084474,
+   1417149,
+   1077529,
+   1811809
+  ],
+  "popularidad": 1.5156,
+  "poster": "/b4KDDBw3ehWlI9jGaazQcpgPLcv.jpg",
+  "backdrop": "/1EGrKTCuXNOcsncQ4zfe5vlStoW.jpg",
+  "proveedores": {
+   "suscripcion": [],
+   "gratis": [],
+   "alquiler": []
+  },
+  "actualizado": "2026-10-21T18:45:03.370Z"
+ },
+ "Ciudad de muertos::2026": {
+  "tmdb": 1487046,
+  "titulo": "Ciudad de muertos",
+  "original": "Ciudad de muertos",
+  "sinopsis": "Enrique Metinides, renowned crime photographer, discovers his passion as a child when his camera captures a haunting image of death. This obsession with documenting tragedy shapes his career and transforms his work into art. But as a mysterious figure begins appearing in his photographs, Enrique unravels a chilling secret linking his lens to the shadows of politics and the supernatural.",
+  "tagline": null,
+  "puntaje": null,
+  "votos": 0,
+  "minutos": 102,
+  "generos": [
+   "Drama",
+   "Suspense"
+  ],
+  "paises": [
+   "MX"
+  ],
+  "idioma": "es",
+  "director": "José Manuel Cravioto",
+  "directorId": 1310888,
+  "reparto": [
+   "Jero Medina",
+   "Gerardo Trejoluna",
+   "Gustavo Sánchez Parra",
+   "Mara Cuevas",
+   "Adrián Ladrón"
+  ],
+  "repartoIds": [
+   2558356,
+   1301522,
+   18468,
+   1017156,
+   1309488
+  ],
+  "popularidad": 1.6307,
+  "poster": "/zeOqUikQE9Qdstn3V2rhjIrBOxG.jpg",
+  "backdrop": "/cAKowKwA3p4LwFa937yh8J52KmQ.jpg",
+  "proveedores": {
+   "suscripcion": [],
+   "gratis": [],
+   "alquiler": []
+  },
+  "actualizado": "2026-10-21T18:45:03.608Z"
+ },
+ "Ink::2026": {
+  "tmdb": 1532610,
+  "titulo": "Ink",
+  "original": "Ink",
+  "sinopsis": "A finales de la década de 1960, en Gran Bretaña, el magnate de los medios de comunicación Rupert Murdoch adquiere el periódico The Sun, que atravesaba dificultades, y se propone cambiar su rumbo editorial y noticioso por completo. Junto al director Larry Lamb, Murdoch reinventa el periódico como un tabloide atrevido y provocador, cambiando el panorama del periodismo británico y sentando las bases de un imperio mediático.",
+  "tagline": null,
+  "puntaje": null,
+  "votos": 0,
+  "minutos": 116,
+  "generos": [
+   "Drama",
+   "Historia"
+  ],
+  "paises": [
+   "GB",
+   "US",
+   "FR"
+  ],
+  "idioma": "en",
+  "director": "Danny Boyle",
+  "directorId": 2034,
+  "reparto": [
+   "Jack O'Connell",
+   "Guy Pearce",
+   "Claire Foy",
+   "Blake Harrison",
+   "Patrick Kennedy"
+  ],
+  "repartoIds": [
+   85065,
+   529,
+   120932,
+   222068,
+   14432
+  ],
+  "popularidad": 5.4779,
+  "poster": "/aZECpoGsveEXtxogaz0GMiyVB6n.jpg",
+  "backdrop": "/sWtM1GfbjMkcvpj2riGW8QxlTr.jpg",
+  "proveedores": {
+   "suscripcion": [],
+   "gratis": [],
+   "alquiler": []
+  },
+  "actualizado": "2026-10-21T18:45:03.757Z"
+ },
+ "Club Kid::2026": {
+  "tmdb": 1585239,
+  "titulo": "Club Kid",
+  "original": "Club Kid",
+  "sinopsis": "Peter (Jordan Firstman), un promotor de fiestas underground de Nueva York acostumbrado a vivir entre excesos, música electrónica y noches interminables, ve cómo su mundo da un vuelco cuando una desconocida aparece en su puerta con Arlo (Reggie Absolom), un niño de 10 años que asegura que es su hijo. Lo que comienza como una situación imposible pronto da paso a una loca, divertida y tierna conexión, tan inesperada como transformadora.",
+  "tagline": null,
+  "puntaje": null,
+  "votos": 0,
+  "minutos": 126,
+  "generos": [
+   "Comedia",
+   "Drama"
+  ],
+  "paises": [
+   "US"
+  ],
+  "idioma": "en",
+  "director": "Jordan Firstman",
+  "directorId": 1760947,
+  "reparto": [
+   "Jordan Firstman",
+   "Reggie Absolom",
+   "Cara Delevingne",
+   "Diego Calva",
+   "Kirby Howell-Baptiste"
+  ],
+  "repartoIds": [
+   1760947,
+   5171095,
+   1289968,
+   1413390,
+   1532312
+  ],
+  "popularidad": 8.2708,
+  "poster": "/l4q1gziNMhpVQAzCIwmtbLSB1T9.jpg",
+  "backdrop": "/AjrgF2JZb8WAeIFTvUjJK6VA2CG.jpg",
+  "proveedores": {
+   "suscripcion": [],
+   "gratis": [],
+   "alquiler": []
+  },
+  "actualizado": "2026-10-21T18:45:03.823Z"
+ },
+ "Juan que reía::1976": {
+  "tmdb": 143537,
+  "titulo": "Juan que reía",
+  "original": "Juan que reía",
+  "sinopsis": "Juan Libonatti, un vendedor de vinos finos, desea ascender en la empresa en donde trabaja. Su coche, un flamante Citröen, será una herramienta fundamental para vender más vinos en menos tiempo y poder escalar posiciones. Pero un día se lo roban y él no había pagado la cuota del seguro. Ese será el comienzo de una tragedia que lo llevará a la autodestrucción.",
+  "tagline": null,
+  "puntaje": 7.2,
+  "votos": 4,
+  "minutos": 100,
+  "generos": [
+   "Drama"
+  ],
+  "paises": [
+   "AR"
+  ],
+  "idioma": "es",
+  "director": "Carlos Galettini",
+  "directorId": 1074969,
+  "reparto": [
+   "Luis Brandoni",
+   "Oscar Viale",
+   "Luisina Brando",
+   "Dringue Farías",
+   "Ana María Campoy"
+  ],
+  "repartoIds": [
+   74896,
+   1816071,
+   1077529,
+   1119380,
+   1119379
+  ],
+  "popularidad": 1.0385,
+  "poster": "/wZUPGo5rktv9QvZjNJ34HOTBu2B.jpg",
+  "backdrop": "/qu6j7XbSub74Y36L6MAv1eF8PmI.jpg",
+  "proveedores": {
+   "suscripcion": [],
+   "gratis": [],
+   "alquiler": []
+  },
+  "actualizado": "2026-10-21T18:45:03.848Z"
+ },
+ "The House of the Angel::1957": {
+  "tmdb": 199194,
+  "titulo": "La casa del ángel",
+  "original": "La casa del ángel",
+  "sinopsis": "Ana es una adolescente que ha crecido en un ambiente represivo e hipócrita. El descubrimiento del sexo y de la crudeza de la vida significan el fin de su inocencia.",
+  "tagline": null,
+  "puntaje": 7.2,
+  "votos": 15,
+  "minutos": 76,
+  "generos": [
+   "Drama"
+  ],
+  "paises": [
+   "AR"
+  ],
+  "idioma": "es",
+  "director": "Leopoldo Torre Nilsson",
+  "directorId": 116197,
+  "reparto": [
+   "Elsa Daniel",
+   "Lautaro Murúa",
+   "Berta Ortegosa",
+   "Guillermo Battaglia",
+   "Bárbara Mújica"
+  ],
+  "repartoIds": [
+   1199152,
+   105226,
+   1084252,
+   1119355,
+   1075384
+  ],
+  "popularidad": 1.257,
+  "poster": "/hiXViC8aU1WUobup3Cq8cv6KRt3.jpg",
+  "backdrop": "/uRmYElghJ9SnsmTJkQvQmfHZ3s4.jpg",
+  "proveedores": {
+   "suscripcion": [],
+   "gratis": [],
+   "alquiler": []
+  },
+  "actualizado": "2026-10-21T18:45:03.856Z"
+ },
+ "Pixote::1980": {
+  "tmdb": 42148,
+  "titulo": "Pixote, la ley del más débil",
+  "original": "Pixote: A Lei do Mais Fraco",
+  "sinopsis": "Pixote, un niño fugitivo de 10 años, es arrestado en las calles de Sao Paulo durante una redada policial a personas sin hogar. Pixote soporta la tortura, la degradación y la corrupción en un centro local de detención juvenil donde dos de los fugitivos son asesinados por policías que enmarcan a Lilica, una estafadora transvesti de 17 años. Pixote ayuda a Lilica y a otros tres niños a escapar donde se ganan la vida con la vida del crimen, que solo aumenta a más violencia y muerte.",
+  "tagline": null,
+  "puntaje": 7.9,
+  "votos": 263,
+  "minutos": 128,
+  "generos": [
+   "Crimen",
+   "Drama"
+  ],
+  "paises": [
+   "BR"
+  ],
+  "idioma": "pt",
+  "director": "Héctor Babenco",
+  "directorId": 40542,
+  "reparto": [
+   "Fernando Ramos da Silva",
+   "Jorge Julião",
+   "Gilberto Moura",
+   "Edilson Lino",
+   "Zenildo Oliveira Santos"
+  ],
+  "repartoIds": [
+   933623,
+   933624,
+   933625,
+   2754444,
+   933627
+  ],
+  "popularidad": 3.2002,
+  "poster": "/2a3UpUY9ajnhbxdNBn0y353b46y.jpg",
+  "backdrop": "/88SnnUEY4CmUJTjzhqYfY3zffEC.jpg",
+  "proveedores": {
+   "suscripcion": [],
+   "gratis": [],
+   "alquiler": []
+  },
+  "actualizado": "2026-10-21T18:45:04.352Z"
+ },
+ "The Life of Oharu::1952": {
+  "tmdb": 43364,
+  "titulo": "La vida de Oharu, mujer galante",
+  "original": "西鶴一代女",
+  "sinopsis": "Narra la dura vida de Oharu, una mujer sometida a los convencionalismos de la sociedad feudal en el Japón del siglo XVII.",
+  "tagline": null,
+  "puntaje": 7.8,
+  "votos": 206,
+  "minutos": 136,
+  "generos": [
+   "Drama"
+  ],
+  "paises": [
+   "JP"
+  ],
+  "idioma": "ja",
+  "director": "Kenji Mizoguchi",
+  "directorId": 97202,
+  "reparto": [
+   "Kinuyo Tanaka",
+   "松浦築枝",
+   "菅井一郎",
+   "山根寿子",
+   "Toshirō Mifune"
+  ],
+  "repartoIds": [
+   24551,
+   134399,
+   134263,
+   134402,
+   7450
+  ],
+  "popularidad": 3.6302,
+  "poster": "/l64sOW9Ix64Y6YmCquFuzXPL3sH.jpg",
+  "backdrop": "/2abzWmOGC1KNISvLlLZ6IIp1PoE.jpg",
+  "proveedores": {
+   "suscripcion": [],
+   "gratis": [
+    "Plex"
+   ],
+   "alquiler": []
+  },
+  "actualizado": "2026-10-21T18:45:04.442Z"
+ },
+ "The Act in Question::1993": {
+  "tmdb": 288151,
+  "titulo": "El acto en cuestión",
+  "original": "El acto en cuestión",
+  "sinopsis": "Miguel steals a trick from a magic book and becomes a world-renowned magician. However, the idea of ​​the public discovering that this great trick is plagiarized from a book eats at his mind more and more.",
+  "tagline": null,
+  "puntaje": 7.3,
+  "votos": 15,
+  "minutos": 111,
+  "generos": [
+   "Drama"
+  ],
+  "paises": [
+   "AR",
+   "NL"
+  ],
+  "idioma": "es",
+  "director": "Alejandro Agresti",
+  "directorId": 21031,
+  "reparto": [
+   "Carlos Roffé",
+   "Lorenzo Quinteros",
+   "Sergio Poves Campos",
+   "Mirta Busnelli",
+   "Nathalie Alonso Casale"
+  ],
+  "repartoIds": [
+   105741,
+   105740,
+   1502594,
+   1036284,
+   235082
+  ],
+  "popularidad": 1.1439,
+  "poster": "/uweda7xneGnOeXH5nzY3M95SFXz.jpg",
+  "backdrop": "/3M4kaEnUIKODMvCKPWuE5L9WENO.jpg",
+  "proveedores": {
+   "suscripcion": [],
+   "gratis": [],
+   "alquiler": []
+  },
+  "actualizado": "2026-10-21T18:45:04.699Z"
+ },
+ "Everytime::2026": {
+  "tmdb": 1655419,
+  "titulo": "Everytime",
+  "original": "Everytime",
+  "sinopsis": "A tragedy brings a mother, daughter, and teenage boy together. Struggling with blame and forgiveness, the unlikely trio take a trip to Tenerife for a family holiday that never happened. Under the glow of the sun, past and present quietly start to overlap.",
+  "tagline": null,
+  "puntaje": 7.5,
+  "votos": 10,
+  "minutos": 123,
+  "generos": [
+   "Drama"
+  ],
+  "paises": [
+   "AT",
+   "DE"
+  ],
+  "idioma": "de",
+  "director": "Sandra Wollner",
+  "directorId": 1589053,
+  "reparto": [
+   "Birgit Minichmayr",
+   "Tristán López",
+   "Lotte Keiling",
+   "Carla Hüttermann",
+   "Hermann Beyer"
+  ],
+  "repartoIds": [
+   8800,
+   3693310,
+   4849771,
+   2590383,
+   688
+  ],
+  "popularidad": 3.7566,
+  "poster": "/bOEoQxzC74eGMGbSq6xW7eLZjWn.jpg",
+  "backdrop": "/bRkk5HjNLQMWB3LlZdxySSzxVLi.jpg",
+  "proveedores": {
+   "suscripcion": [],
+   "gratis": [],
+   "alquiler": []
+  },
+  "actualizado": "2026-10-21T18:45:05.097Z"
  }
 }
