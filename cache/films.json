@@ -88225,5 +88225,37 @@
    "alquiler": []
   },
   "actualizado": "2026-10-21T23:26:14.962Z"
+ },
+ "The Enigma of Franca Farmín::2026": {
+  "tmdb": 1776770,
+  "titulo": "El enigma de Franca Farmín",
+  "original": "El enigma de Franca Farmín",
+  "sinopsis": "Franca Farmín, a young aspiring YouTuber obsessed with documenting paranormal phenomena, travels to the remote Laguna del Olvido, convinced she can capture the unknown on camera and uncover a mystery that could make her go viral. Franca sets out in search of a legend?and becomes one.",
+  "tagline": null,
+  "puntaje": null,
+  "votos": 0,
+  "minutos": 73,
+  "generos": [
+   "Misterio"
+  ],
+  "paises": [
+   "AR",
+   "CO",
+   "ES"
+  ],
+  "idioma": "es",
+  "director": "Octavio Revol Molina",
+  "directorId": 1975229,
+  "reparto": [],
+  "repartoIds": [],
+  "popularidad": 1.0157,
+  "poster": "/5I2BN0mWpQUam9GcqrLidxLYNvP.jpg",
+  "backdrop": "/ikU57SOPjGkVW2k30uYCzG8mRfq.jpg",
+  "proveedores": {
+   "suscripcion": [],
+   "gratis": [],
+   "alquiler": []
+  },
+  "actualizado": "2026-10-23T07:40:43.115Z"
  }
 }
