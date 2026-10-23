@@ -2,6 +2,14 @@
  "usuario": "valentinrxk",
  "diario": [
   {
+   "nombre": "Dallas Buyers Club",
+   "anio": 2013,
+   "visto": "2026-10-23",
+   "rating": 4,
+   "rewatch": false,
+   "clave": "1550679720"
+  },
+  {
    "nombre": "The Fall",
    "anio": 2006,
    "visto": "2026-10-21",
@@ -3043,6 +3051,13 @@
   }
  ],
  "vistas": [
+  {
+   "nombre": "Dallas Buyers Club",
+   "anio": 2013,
+   "slug": "dallas-buyers-club",
+   "clave": "dallas-buyers-club",
+   "uri": "https://letterboxd.com/film/dallas-buyers-club/"
+  },
   {
    "nombre": "The Fall",
    "anio": 2006,
@@ -11291,5 +11306,5 @@
    "orden": 320
   }
  ],
- "actualizado": "2026-10-23T07:40:42.252Z"
+ "actualizado": "2026-10-23T18:27:38.883Z"
 }
