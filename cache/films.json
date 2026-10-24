@@ -88257,5 +88257,49 @@
    "alquiler": []
   },
   "actualizado": "2026-10-23T07:40:43.115Z"
+ },
+ "Puella Magi Madoka Magica the Movie Part I: Beginnings::2012": {
+  "tmdb": 152042,
+  "titulo": "Mahou Shoujo Madoka Magica Movie 1: Hajimari no Monogatari",
+  "original": "劇場版 魔法少女まどか☆マギカ [前編] 始まりの物語",
+  "sinopsis": "Después de tener una extraña pesadilla, Madoka Kaname, una chica de 14 años encuentra a una criatura mágica llamada kyubee. A Madoka y Sayaka Miki, su amiga, les ofrece la oportunidad de ganar poderes mágicos si están de acuerdo en hacer un contrato con el. Kyubee les ofrece cumplir un deseo, pero a cambio deben arriesgar sus vidas para luchar contra brujas. Criaturas que, nacidas de maldiciones,son responsables de muchos asesinatos y suicidios. Una aliada de kyubee, una chica mágica llamada Mami Tomoe, se hace amiga de ellas y las alienta a aceptar el contrato. Por razones desconocidas, otra chica mágica llamada Homura Akemi esta decidida a impedir que Madoka acepte la oferta.",
+  "tagline": null,
+  "puntaje": 7.6,
+  "votos": 161,
+  "minutos": 131,
+  "generos": [
+   "Suspense",
+   "Animación",
+   "Fantasía"
+  ],
+  "paises": [
+   "JP"
+  ],
+  "idioma": "ja",
+  "director": "宮本幸裕",
+  "directorId": 1252958,
+  "reparto": [
+   "Aoi Yuki",
+   "Chiwa Saito",
+   "Eri Kitamura",
+   "Kaori Mizuhashi",
+   "Ai Nonaka"
+  ],
+  "repartoIds": [
+   936275,
+   81245,
+   225999,
+   1239110,
+   220714
+  ],
+  "popularidad": 5.1955,
+  "poster": "/pYxQ77Mqg6XhJmS4zxBG4pCZqRq.jpg",
+  "backdrop": "/4YbVJmtXjRL3tmbVHbhZoHqCOka.jpg",
+  "proveedores": {
+   "suscripcion": [],
+   "gratis": [],
+   "alquiler": []
+  },
+  "actualizado": "2026-10-24T16:03:45.459Z"
  }
 }
