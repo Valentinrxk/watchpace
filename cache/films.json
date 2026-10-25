@@ -88301,5 +88301,49 @@
    "alquiler": []
   },
   "actualizado": "2026-10-24T16:03:45.459Z"
+ },
+ "Puella Magi Madoka Magica the Movie Part II: Eternal::2012": {
+  "tmdb": 152044,
+  "titulo": "Mahou Shoujo Madoka Magica Movie 2: Eien no Monogatari",
+  "original": "劇場版 魔法少女まどか☆マギカ[後編] 永遠の物語",
+  "sinopsis": "Segunda parte, continuación de \"La Historia del Cominezo\". Madoka intenta aún decidir si convertirse o no en una chica mágica tras darse cuenta de que no se trata del trabajo divertido y desenfadado que parecía al principio...",
+  "tagline": null,
+  "puntaje": 7.5,
+  "votos": 125,
+  "minutos": 111,
+  "generos": [
+   "Suspense",
+   "Animación",
+   "Fantasía"
+  ],
+  "paises": [
+   "JP"
+  ],
+  "idioma": "ja",
+  "director": "宮本幸裕",
+  "directorId": 1252958,
+  "reparto": [
+   "Aoi Yuki",
+   "Chiwa Saito",
+   "Eri Kitamura",
+   "Kaori Mizuhashi",
+   "Ai Nonaka"
+  ],
+  "repartoIds": [
+   936275,
+   81245,
+   225999,
+   1239110,
+   220714
+  ],
+  "popularidad": 4.8643,
+  "poster": "/2hNDlsO0rFy10kY8vnbuIrMmcaJ.jpg",
+  "backdrop": "/5Wwi4rF7wmRXbU5mJD81nV6Pg4R.jpg",
+  "proveedores": {
+   "suscripcion": [],
+   "gratis": [],
+   "alquiler": []
+  },
+  "actualizado": "2026-10-25T04:53:43.122Z"
  }
 }

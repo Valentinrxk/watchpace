@@ -10,6 +10,14 @@
    "clave": "1552070199"
   },
   {
+   "nombre": "Puella Magi Madoka Magica the Movie Part II: Eternal",
+   "anio": 2012,
+   "visto": "2026-10-24",
+   "rating": 4,
+   "rewatch": false,
+   "clave": "1553331260"
+  },
+  {
    "nombre": "Dallas Buyers Club",
    "anio": 2013,
    "visto": "2026-10-23",
@@ -3059,6 +3067,13 @@
   }
  ],
  "vistas": [
+  {
+   "nombre": "Puella Magi Madoka Magica the Movie Part II: Eternal",
+   "anio": 2012,
+   "slug": "puella-magi-madoka-magica-the-movie-part-ii-eternal",
+   "clave": "puella-magi-madoka-magica-the-movie-part-ii-eternal",
+   "uri": "https://letterboxd.com/film/puella-magi-madoka-magica-the-movie-part-ii-eternal/"
+  },
   {
    "nombre": "Puella Magi Madoka Magica the Movie Part I: Beginnings",
    "anio": 2012,
@@ -11321,5 +11336,5 @@
    "orden": 320
   }
  ],
- "actualizado": "2026-10-24T16:03:44.657Z"
+ "actualizado": "2026-10-25T04:53:42.297Z"
 }

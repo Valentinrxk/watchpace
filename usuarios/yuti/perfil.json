@@ -2,6 +2,22 @@
  "usuario": "yuti",
  "diario": [
   {
+   "nombre": "Puella Magi Madoka Magica the Movie Part II: Eternal",
+   "anio": 2012,
+   "visto": "2026-10-25",
+   "rating": 4,
+   "rewatch": false,
+   "clave": "1553332282"
+  },
+  {
+   "nombre": "Puella Magi Madoka Magica the Movie Part I: Beginnings",
+   "anio": 2012,
+   "visto": "2026-10-25",
+   "rating": 4,
+   "rewatch": false,
+   "clave": "1553331941"
+  },
+  {
    "nombre": "Pulse",
    "anio": 2001,
    "visto": "2026-10-20",
@@ -3699,6 +3715,20 @@
   }
  ],
  "vistas": [
+  {
+   "nombre": "Puella Magi Madoka Magica the Movie Part I: Beginnings",
+   "anio": 2012,
+   "slug": "puella-magi-madoka-magica-the-movie",
+   "clave": "puella-magi-madoka-magica-the-movie",
+   "uri": "https://letterboxd.com/film/puella-magi-madoka-magica-the-movie/"
+  },
+  {
+   "nombre": "Puella Magi Madoka Magica the Movie Part II: Eternal",
+   "anio": 2012,
+   "slug": "puella-magi-madoka-magica-the-movie-part-ii-eternal",
+   "clave": "puella-magi-madoka-magica-the-movie-part-ii-eternal",
+   "uri": "https://letterboxd.com/film/puella-magi-madoka-magica-the-movie-part-ii-eternal/"
+  },
   {
    "nombre": "The Beach Bum",
    "anio": 2019,
@@ -12759,5 +12789,5 @@
    "orden": 488
   }
  ],
- "actualizado": "2026-10-24T16:03:45.002Z"
+ "actualizado": "2026-10-25T04:53:42.786Z"
 }
