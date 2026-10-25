@@ -18,6 +18,14 @@
    "clave": "1553331941"
   },
   {
+   "nombre": "Linda Linda Linda",
+   "anio": 2005,
+   "visto": "2026-10-25",
+   "rating": 4,
+   "rewatch": false,
+   "clave": "1554215782"
+  },
+  {
    "nombre": "Pulse",
    "anio": 2001,
    "visto": "2026-10-20",
@@ -3715,6 +3723,13 @@
   }
  ],
  "vistas": [
+  {
+   "nombre": "Linda Linda Linda",
+   "anio": 2005,
+   "slug": "linda-linda-linda",
+   "clave": "linda-linda-linda",
+   "uri": "https://letterboxd.com/film/linda-linda-linda/"
+  },
   {
    "nombre": "Puella Magi Madoka Magica the Movie Part I: Beginnings",
    "anio": 2012,
@@ -12789,5 +12804,5 @@
    "orden": 488
   }
  ],
- "actualizado": "2026-10-25T16:32:44.765Z"
+ "actualizado": "2026-10-25T20:57:23.466Z"
 }

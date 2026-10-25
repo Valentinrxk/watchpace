@@ -2,6 +2,14 @@
  "usuario": "valentinrxk",
  "diario": [
   {
+   "nombre": "Linda Linda Linda",
+   "anio": 2005,
+   "visto": "2026-10-25",
+   "rating": 4,
+   "rewatch": false,
+   "clave": "1554225957"
+  },
+  {
    "nombre": "Puella Magi Madoka Magica the Movie Part I: Beginnings",
    "anio": 2012,
    "visto": "2026-10-24",
@@ -3067,6 +3075,13 @@
   }
  ],
  "vistas": [
+  {
+   "nombre": "Linda Linda Linda",
+   "anio": 2005,
+   "slug": "linda-linda-linda",
+   "clave": "linda-linda-linda",
+   "uri": "https://letterboxd.com/film/linda-linda-linda/"
+  },
   {
    "nombre": "Puella Magi Madoka Magica the Movie Part II: Eternal",
    "anio": 2012,
@@ -11344,5 +11359,5 @@
    "orden": 321
   }
  ],
- "actualizado": "2026-10-25T16:32:44.313Z"
+ "actualizado": "2026-10-25T20:57:23.010Z"
 }
