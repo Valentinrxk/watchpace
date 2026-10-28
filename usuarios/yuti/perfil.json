@@ -2,6 +2,14 @@
  "usuario": "yuti",
  "diario": [
   {
+   "nombre": "Nathan for You: Finding Frances",
+   "anio": 2017,
+   "visto": "2026-10-27",
+   "rating": 3.5,
+   "rewatch": true,
+   "clave": "1559035905"
+  },
+  {
    "nombre": "Puella Magi Madoka Magica the Movie Part II: Eternal",
    "anio": 2012,
    "visto": "2026-10-25",
@@ -12804,5 +12812,5 @@
    "orden": 488
   }
  ],
- "actualizado": "2026-10-25T20:57:23.466Z"
+ "actualizado": "2026-10-28T08:42:09.587Z"
 }

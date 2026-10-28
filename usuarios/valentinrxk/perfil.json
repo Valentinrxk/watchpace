@@ -2,6 +2,14 @@
  "usuario": "valentinrxk",
  "diario": [
   {
+   "nombre": "Nathan for You: Finding Frances",
+   "anio": 2017,
+   "visto": "2026-10-27",
+   "rating": 3.5,
+   "rewatch": false,
+   "clave": "1559024868"
+  },
+  {
    "nombre": "Linda Linda Linda",
    "anio": 2005,
    "visto": "2026-10-25",
@@ -3075,6 +3083,13 @@
   }
  ],
  "vistas": [
+  {
+   "nombre": "Nathan for You: Finding Frances",
+   "anio": 2017,
+   "slug": "nathan-for-you-finding-frances",
+   "clave": "nathan-for-you-finding-frances",
+   "uri": "https://letterboxd.com/film/nathan-for-you-finding-frances/"
+  },
   {
    "nombre": "Linda Linda Linda",
    "anio": 2005,
@@ -11359,5 +11374,5 @@
    "orden": 321
   }
  ],
- "actualizado": "2026-10-25T20:57:23.010Z"
+ "actualizado": "2026-10-28T08:42:09.041Z"
 }
