@@ -88348,5 +88348,51 @@
  },
  "The Night Logan Woke Up::2022": {
   "sinMatch": true
+ },
+ "The Flamenco Guitar of Yerai Cortés::2024": {
+  "tmdb": 1317099,
+  "titulo": "La guitarra flamenca de Yerai Cortés",
+  "original": "La guitarra flamenca de Yerai Cortés",
+  "sinopsis": "Cuando C. Tangana conoce a Yerai Cortés, se queda completamente fascinado con su talento e intrigado por su historia familiar. Yerai es una figura inusual dentro del flamenco; tan respetado por los gitanos más tradicionalistas como por los artistas vanguardistas de la nueva ola de la que él forma parte. Deciden emprender un viaje juntos para grabar un disco en el que las canciones vienen marcadas por una gran pena, donde el propio proceso artístico lo enfrenta con su pasado y lo empuja a explorar un secreto familiar a través del cual trata de redimir la relación con sus padres.",
+  "tagline": null,
+  "puntaje": 7.1,
+  "votos": 18,
+  "minutos": 95,
+  "generos": [
+   "Documental",
+   "Música"
+  ],
+  "paises": [
+   "ES"
+  ],
+  "idioma": "es",
+  "director": "C. Tangana",
+  "directorId": 2788837,
+  "reparto": [
+   "Yerai Cortés",
+   "C. Tangana",
+   "La Tania",
+   "Remedios Amaya",
+   "farruquito"
+  ],
+  "repartoIds": [
+   4830454,
+   2788837,
+   5574014,
+   5314644,
+   2963359
+  ],
+  "popularidad": 1.4481,
+  "poster": "/s1t3dpcwcVSNzas4AyCjLTV9ufL.jpg",
+  "backdrop": "/ky3LkNniw0hAUZmQPPPv23PNeej.jpg",
+  "proveedores": {
+   "suscripcion": [
+    "MUBI",
+    "MUBI Amazon Channel"
+   ],
+   "gratis": [],
+   "alquiler": []
+  },
+  "actualizado": "2026-11-03T03:29:50.452Z"
  }
 }
