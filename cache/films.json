@@ -88394,5 +88394,137 @@
    "alquiler": []
   },
   "actualizado": "2026-11-03T03:29:50.452Z"
+ },
+ "Beyond the Infinite Two Minutes::2020": {
+  "tmdb": 805627,
+  "titulo": "Más allá de los dos minutos infinitos",
+  "original": "ドロステのはてで僕ら",
+  "sinopsis": "Regresando a su apartamento tras terminar la jornada, Kato, propietario del Café Phalam, se ve a sí mismo hablándose desde la pantalla de su ordenador: \"Soy el yo del futuro. Dos minutos en el futuro\". La pantalla de su casa y la del ordenador del café están conectadas de alguna manera. Kato vuelve a su establecimiento y, junto a clientes habituales, empieza a explorar este fenómeno.",
+  "tagline": "Una comedia de ciencia ficción de una sola toma.",
+  "puntaje": 7.2,
+  "votos": 334,
+  "minutos": 70,
+  "generos": [
+   "Comedia",
+   "Ciencia ficción"
+  ],
+  "paises": [
+   "JP"
+  ],
+  "idioma": "ja",
+  "director": "Junta Yamaguchi",
+  "directorId": 3008307,
+  "reparto": [
+   "土佐和成",
+   "朝倉あき",
+   "藤谷理子",
+   "石田剛太",
+   "諏訪雅"
+  ],
+  "repartoIds": [
+   1998971,
+   1115687,
+   2804365,
+   2523975,
+   1301880
+  ],
+  "popularidad": 2.2019,
+  "poster": "/v71GuaId3XIQOCf20rK5uj1QOKj.jpg",
+  "backdrop": "/hiZLoo6joFeqkPZRlvG1zEw5q0.jpg",
+  "proveedores": {
+   "suscripcion": [],
+   "gratis": [],
+   "alquiler": []
+  },
+  "actualizado": "2026-11-05T06:59:39.560Z"
+ },
+ "Gemini::2005": {
+  "tmdb": 30688,
+  "titulo": "Géminis",
+  "original": "Géminis",
+  "sinopsis": "Meme y Jeremías viven rodeados de un entorno familiar disfuncional. A un padre casi ausente se le opone una estructura matriarcal manejada por una madre tan posesiva como dominadora. La confusión general se incrementa cuando llega al hogar Ezequiel, el hijo mayor residente en Barcelona, para celebrar su matrimonio con Montse. En medio del estrés y del vértigo de los festejos, va creciendo la pasión incontrolable entre los dos hermanos menores...",
+  "tagline": null,
+  "puntaje": 5.4,
+  "votos": 65,
+  "minutos": 85,
+  "generos": [
+   "Drama"
+  ],
+  "paises": [
+   "AR",
+   "FR"
+  ],
+  "idioma": "es",
+  "director": "Albertina Carri",
+  "directorId": 106779,
+  "reparto": [
+   "Cristina Banegas",
+   "Daniel Fanego",
+   "María Abadi",
+   "Lucas Escariz",
+   "Julieta Zylberberg"
+  ],
+  "repartoIds": [
+   1028517,
+   140541,
+   557713,
+   1865845,
+   145025
+  ],
+  "popularidad": 1.899,
+  "poster": "/HPE0E5ig1KvQ3jJZY4XdDAVB5h.jpg",
+  "backdrop": "/eIxnorIDSgrTHYjkWilqBGTCvFs.jpg",
+  "proveedores": {
+   "suscripcion": [],
+   "gratis": [],
+   "alquiler": []
+  },
+  "actualizado": "2026-11-05T06:59:39.568Z"
+ },
+ "About Thirty::2023": {
+  "tmdb": 1074751,
+  "titulo": "Arturo a los 30",
+  "original": "Arturo a los 30",
+  "sinopsis": "Una comedia de errores que gira en torno a un desventurado treintañero llamado Arturo. Su inclinación por las indiscreciones es tan imposible de pasar por alto como la delicadeza con la que la película se desliza desde marzo de 2020 hasta la década anterior y viceversa.",
+  "tagline": null,
+  "puntaje": 7,
+  "votos": 9,
+  "minutos": 92,
+  "generos": [
+   "Comedia"
+  ],
+  "paises": [
+   "AR"
+  ],
+  "idioma": "es",
+  "director": "Martín Shanly",
+  "directorId": 1382638,
+  "reparto": [
+   "Martín Shanly",
+   "Camila Dougall",
+   "Paul Dougall",
+   "Esmeralda Escalante",
+   "Miel Bargman"
+  ],
+  "repartoIds": [
+   1382638,
+   1382635,
+   3876005,
+   3876006,
+   1756544
+  ],
+  "popularidad": 0.5992,
+  "poster": "/XAenrpjNlJYkfk4KJHJ2goFh7s.jpg",
+  "backdrop": "/3eCLg44pmyq2r8U1xEY3Ja4WtAE.jpg",
+  "proveedores": {
+   "suscripcion": [
+    "HBO Max"
+   ],
+   "gratis": [
+    "CINE"
+   ],
+   "alquiler": []
+  },
+  "actualizado": "2026-11-05T06:59:39.615Z"
  }
 }
