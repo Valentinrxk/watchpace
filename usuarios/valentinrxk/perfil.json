@@ -2,6 +2,14 @@
  "usuario": "valentinrxk",
  "diario": [
   {
+   "nombre": "Children of Men",
+   "anio": 2006,
+   "visto": "2026-11-05",
+   "rating": 4.5,
+   "rewatch": false,
+   "clave": "1573119138"
+  },
+  {
    "nombre": "Coherence",
    "anio": 2013,
    "visto": "2026-11-02",
@@ -3107,6 +3115,13 @@
   }
  ],
  "vistas": [
+  {
+   "nombre": "Children of Men",
+   "anio": 2006,
+   "slug": "children-of-men",
+   "clave": "children-of-men",
+   "uri": "https://letterboxd.com/film/children-of-men/"
+  },
   {
    "nombre": "Locke",
    "anio": 2013,
@@ -11379,5 +11394,5 @@
    "orden": 316
   }
  ],
- "actualizado": "2026-11-05T06:59:14.650Z"
+ "actualizado": "2026-11-05T16:31:35.826Z"
 }
