@@ -88570,5 +88570,51 @@
    "alquiler": []
   },
   "actualizado": "2026-11-06T06:58:53.564Z"
+ },
+ "We're All Going to the World's Fair::2021": {
+  "tmdb": 776501,
+  "titulo": "We're All Going to the World's Fair",
+  "original": "We're All Going to the World's Fair",
+  "sinopsis": "La realidad y la fantasía comienzan a desdibujarse cuando la adolescente Casey, sola en su habitación del ático, se sumerge en un juego de rol de terror en línea.",
+  "tagline": null,
+  "puntaje": 5.6,
+  "votos": 181,
+  "minutos": 86,
+  "generos": [
+   "Drama",
+   "Terror"
+  ],
+  "paises": [
+   "US"
+  ],
+  "idioma": "en",
+  "director": "Jane Schoenbrun",
+  "directorId": 1827119,
+  "reparto": [
+   "Anna Cobb",
+   "Michael J. Rogers",
+   "May Leitz",
+   "Theo Anthony",
+   "Valeria Santiago"
+  ],
+  "repartoIds": [
+   2895589,
+   134708,
+   1808759,
+   1357449,
+   2988547
+  ],
+  "popularidad": 2.1305,
+  "poster": "/fXn4Nz1WCTEmzAFvwgEZoPHvptR.jpg",
+  "backdrop": "/8ruxjzQ8Zl0QDbWXvSzViXTZIX.jpg",
+  "proveedores": {
+   "suscripcion": [
+    "MUBI",
+    "MUBI Amazon Channel"
+   ],
+   "gratis": [],
+   "alquiler": []
+  },
+  "actualizado": "2026-11-06T15:59:45.554Z"
  }
 }

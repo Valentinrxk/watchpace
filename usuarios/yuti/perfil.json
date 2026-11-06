@@ -2,6 +2,14 @@
  "usuario": "yuti",
  "diario": [
   {
+   "nombre": "To Wong Foo, Thanks for Everything! Julie Newmar",
+   "anio": 1995,
+   "visto": "2026-11-06",
+   "rating": 4,
+   "rewatch": false,
+   "clave": "1574389430"
+  },
+  {
    "nombre": "Bring It On",
    "anio": 2000,
    "visto": "2026-11-04",
@@ -3747,6 +3755,13 @@
   }
  ],
  "vistas": [
+  {
+   "nombre": "To Wong Foo, Thanks for Everything! Julie Newmar",
+   "anio": 1995,
+   "slug": "to-wong-foo-thanks-for-everything-julie-newmar",
+   "clave": "to-wong-foo-thanks-for-everything-julie-newmar",
+   "uri": "https://letterboxd.com/film/to-wong-foo-thanks-for-everything-julie-newmar/"
+  },
   {
    "nombre": "Bring It On",
    "anio": 2000,
@@ -8930,12 +8945,20 @@
  ],
  "watchlist": [
   {
+   "nombre": "We're All Going to the World's Fair",
+   "anio": 2021,
+   "slug": "were-all-going-to-the-worlds-fair",
+   "clave": "were-all-going-to-the-worlds-fair",
+   "uri": "https://letterboxd.com/film/were-all-going-to-the-worlds-fair/",
+   "orden": 0
+  },
+  {
    "nombre": "Plaga Zombie: Mutant Zone",
    "anio": 2001,
    "slug": "plaga-zombie-mutant-zone",
    "clave": "plaga-zombie-mutant-zone",
    "uri": "https://letterboxd.com/film/plaga-zombie-mutant-zone/",
-   "orden": 0
+   "orden": 1
   },
   {
    "nombre": "Gemini",
@@ -8943,7 +8966,7 @@
    "slug": "gemini-2005",
    "clave": "gemini-2005",
    "uri": "https://letterboxd.com/film/gemini-2005/",
-   "orden": 1
+   "orden": 2
   },
   {
    "nombre": "About Thirty",
@@ -8951,7 +8974,7 @@
    "slug": "about-thirty",
    "clave": "about-thirty",
    "uri": "https://letterboxd.com/film/about-thirty/",
-   "orden": 2
+   "orden": 3
   },
   {
    "nombre": "Thesis",
@@ -8959,7 +8982,7 @@
    "slug": "thesis",
    "clave": "thesis",
    "uri": "https://letterboxd.com/film/thesis/",
-   "orden": 3
+   "orden": 4
   },
   {
    "nombre": "Everytime",
@@ -8967,7 +8990,7 @@
    "slug": "everytime",
    "clave": "everytime",
    "uri": "https://letterboxd.com/film/everytime/",
-   "orden": 4
+   "orden": 5
   },
   {
    "nombre": "The Flock",
@@ -8975,7 +8998,7 @@
    "slug": "the-flock-2017",
    "clave": "the-flock-2017",
    "uri": "https://letterboxd.com/film/the-flock-2017/",
-   "orden": 5
+   "orden": 6
   },
   {
    "nombre": "Embrace of the Serpent",
@@ -8983,7 +9006,7 @@
    "slug": "embrace-of-the-serpent",
    "clave": "embrace-of-the-serpent",
    "uri": "https://letterboxd.com/film/embrace-of-the-serpent/",
-   "orden": 6
+   "orden": 7
   },
   {
    "nombre": "Mercano the Martian",
@@ -8991,7 +9014,7 @@
    "slug": "mercano-the-martian",
    "clave": "mercano-the-martian",
    "uri": "https://letterboxd.com/film/mercano-the-martian/",
-   "orden": 7
+   "orden": 8
   },
   {
    "nombre": "Pin",
@@ -8999,7 +9022,7 @@
    "slug": "pin",
    "clave": "pin",
    "uri": "https://letterboxd.com/film/pin/",
-   "orden": 8
+   "orden": 9
   },
   {
    "nombre": "Brainscan",
@@ -9007,7 +9030,7 @@
    "slug": "brainscan",
    "clave": "brainscan",
    "uri": "https://letterboxd.com/film/brainscan/",
-   "orden": 9
+   "orden": 10
   },
   {
    "nombre": "Gattaca",
@@ -9015,7 +9038,7 @@
    "slug": "gattaca",
    "clave": "gattaca",
    "uri": "https://letterboxd.com/film/gattaca/",
-   "orden": 10
+   "orden": 11
   },
   {
    "nombre": "I-Be Area",
@@ -9023,7 +9046,7 @@
    "slug": "i-be-area",
    "clave": "i-be-area",
    "uri": "https://letterboxd.com/film/i-be-area/",
-   "orden": 11
+   "orden": 12
   },
   {
    "nombre": "Final Cut",
@@ -9031,7 +9054,7 @@
    "slug": "final-cut-2022",
    "clave": "final-cut-2022",
    "uri": "https://letterboxd.com/film/final-cut-2022/",
-   "orden": 12
+   "orden": 13
   },
   {
    "nombre": "Die, Mommie, Die!",
@@ -9039,7 +9062,7 @@
    "slug": "die-mommie-die",
    "clave": "die-mommie-die",
    "uri": "https://letterboxd.com/film/die-mommie-die/",
-   "orden": 13
+   "orden": 14
   },
   {
    "nombre": "B.A.P.S",
@@ -9047,7 +9070,7 @@
    "slug": "baps",
    "clave": "baps",
    "uri": "https://letterboxd.com/film/baps/",
-   "orden": 14
+   "orden": 15
   },
   {
    "nombre": "East of Eden",
@@ -9055,7 +9078,7 @@
    "slug": "east-of-eden",
    "clave": "east-of-eden",
    "uri": "https://letterboxd.com/film/east-of-eden/",
-   "orden": 15
+   "orden": 16
   },
   {
    "nombre": "Certain Women",
@@ -9063,7 +9086,7 @@
    "slug": "certain-women",
    "clave": "certain-women",
    "uri": "https://letterboxd.com/film/certain-women/",
-   "orden": 16
+   "orden": 17
   },
   {
    "nombre": "WWJD?",
@@ -9071,7 +9094,7 @@
    "slug": "wwjd-2024-1",
    "clave": "wwjd-2024-1",
    "uri": "https://letterboxd.com/film/wwjd-2024-1/",
-   "orden": 17
+   "orden": 18
   },
   {
    "nombre": "Souvenir",
@@ -9079,7 +9102,7 @@
    "slug": "souvenir-2026",
    "clave": "souvenir-2026",
    "uri": "https://letterboxd.com/film/souvenir-2026/",
-   "orden": 18
+   "orden": 19
   },
   {
    "nombre": "As Meninas",
@@ -9087,7 +9110,7 @@
    "slug": "as-meninas",
    "clave": "as-meninas",
    "uri": "https://letterboxd.com/film/as-meninas/",
-   "orden": 19
+   "orden": 20
   },
   {
    "nombre": "Vanya on 42nd Street",
@@ -9095,7 +9118,7 @@
    "slug": "vanya-on-42nd-street",
    "clave": "vanya-on-42nd-street",
    "uri": "https://letterboxd.com/film/vanya-on-42nd-street/",
-   "orden": 20
+   "orden": 21
   },
   {
    "nombre": "Thief",
@@ -9103,7 +9126,7 @@
    "slug": "thief",
    "clave": "thief",
    "uri": "https://letterboxd.com/film/thief/",
-   "orden": 21
+   "orden": 22
   },
   {
    "nombre": "Sunset Boulevard",
@@ -9111,7 +9134,7 @@
    "slug": "sunset-boulevard",
    "clave": "sunset-boulevard",
    "uri": "https://letterboxd.com/film/sunset-boulevard/",
-   "orden": 22
+   "orden": 23
   },
   {
    "nombre": "Personal Shopper",
@@ -9119,7 +9142,7 @@
    "slug": "personal-shopper",
    "clave": "personal-shopper",
    "uri": "https://letterboxd.com/film/personal-shopper/",
-   "orden": 23
+   "orden": 24
   },
   {
    "nombre": "Blow-Up",
@@ -9127,7 +9150,7 @@
    "slug": "blow-up",
    "clave": "blow-up",
    "uri": "https://letterboxd.com/film/blow-up/",
-   "orden": 24
+   "orden": 25
   },
   {
    "nombre": "The Lost Brother",
@@ -9135,7 +9158,7 @@
    "slug": "the-lost-brother",
    "clave": "the-lost-brother",
    "uri": "https://letterboxd.com/film/the-lost-brother/",
-   "orden": 25
+   "orden": 26
   },
   {
    "nombre": "Matador",
@@ -9143,7 +9166,7 @@
    "slug": "matador",
    "clave": "matador",
    "uri": "https://letterboxd.com/film/matador/",
-   "orden": 26
+   "orden": 27
   },
   {
    "nombre": "Law of Desire",
@@ -9151,7 +9174,7 @@
    "slug": "law-of-desire",
    "clave": "law-of-desire",
    "uri": "https://letterboxd.com/film/law-of-desire/",
-   "orden": 27
+   "orden": 28
   },
   {
    "nombre": "Female Prisoner #701: Scorpion",
@@ -9159,7 +9182,7 @@
    "slug": "female-prisoner-701-scorpion",
    "clave": "female-prisoner-701-scorpion",
    "uri": "https://letterboxd.com/film/female-prisoner-701-scorpion/",
-   "orden": 28
+   "orden": 29
   },
   {
    "nombre": "Matangi / Maya / M.I.A.",
@@ -9167,14 +9190,6 @@
    "slug": "matangi-maya-mia",
    "clave": "matangi-maya-mia",
    "uri": "https://letterboxd.com/film/matangi-maya-mia/",
-   "orden": 29
-  },
-  {
-   "nombre": "To Wong Foo, Thanks for Everything! Julie Newmar",
-   "anio": 1995,
-   "slug": "to-wong-foo-thanks-for-everything-julie-newmar",
-   "clave": "to-wong-foo-thanks-for-everything-julie-newmar",
-   "uri": "https://letterboxd.com/film/to-wong-foo-thanks-for-everything-julie-newmar/",
    "orden": 30
   },
   {
@@ -12842,5 +12857,5 @@
    "orden": 488
   }
  ],
- "actualizado": "2026-11-06T06:58:53.268Z"
+ "actualizado": "2026-11-06T15:59:44.785Z"
 }
