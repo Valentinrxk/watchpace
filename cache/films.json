@@ -88526,5 +88526,49 @@
    "alquiler": []
   },
   "actualizado": "2026-11-05T06:59:39.615Z"
+ },
+ "Plaga Zombie: Mutant Zone::2001": {
+  "tmdb": 40151,
+  "titulo": "Plaga zombie: zona mutante",
+  "original": "Plaga zombie: zona mutante",
+  "sinopsis": "Tras un inmoral pacto entre extraterrestres y el FBI, estos últimos autorizaron a los primeros a experimentar un virus en una pequeña y perdida ciudad. El experimento se les va de las manos y  los habitantes son contagiados. Como consecuencia, se convierten en peligrosos zombies homicidas. Sólo quedan tres supervivientes, John, Max y Bill, quienes fueron capturados por el FBI. Desde arriba llega una orden: los tres héroes deben ser devueltos al pueblo y abandonados a su suerte. Claro que ahora no sólo deben luchar por sus vidas, también deben salvar al mundo de la amenaza zombie.",
+  "tagline": "Perdieron una batalla, pero la guerra continúa",
+  "puntaje": 6,
+  "votos": 22,
+  "minutos": 101,
+  "generos": [
+   "Terror",
+   "Ciencia ficción",
+   "Acción"
+  ],
+  "paises": [
+   "AR"
+  ],
+  "idioma": "es",
+  "director": "Hernán Sáez",
+  "directorId": 1093730,
+  "reparto": [
+   "Berta Muñiz",
+   "Pablo Parés",
+   "Hernán Sáez",
+   "Paulo Soria",
+   "Alejandro D'Aloisio"
+  ],
+  "repartoIds": [
+   929043,
+   427133,
+   1093730,
+   967002,
+   1584518
+  ],
+  "popularidad": 2.2089,
+  "poster": "/sKAB2OyTHPdxqwe9Fvzno8QFU84.jpg",
+  "backdrop": "/bAXPC6cEi9gWMWl9SZLRvhGp9uX.jpg",
+  "proveedores": {
+   "suscripcion": [],
+   "gratis": [],
+   "alquiler": []
+  },
+  "actualizado": "2026-11-06T06:58:53.564Z"
  }
 }
