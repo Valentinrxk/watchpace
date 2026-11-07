@@ -18,6 +18,14 @@
    "clave": "1574975328"
   },
   {
+   "nombre": "The House of the Angel",
+   "anio": 1957,
+   "visto": "2026-11-06",
+   "rating": 3,
+   "rewatch": false,
+   "clave": "1575250154"
+  },
+  {
    "nombre": "Children of Men",
    "anio": 2006,
    "visto": "2026-11-05",
@@ -3139,6 +3147,13 @@
   }
  ],
  "vistas": [
+  {
+   "nombre": "The House of the Angel",
+   "anio": 1957,
+   "slug": "the-house-of-the-angel",
+   "clave": "the-house-of-the-angel",
+   "uri": "https://letterboxd.com/film/the-house-of-the-angel/"
+  },
   {
    "nombre": "To Wong Foo, Thanks for Everything! Julie Newmar",
    "anio": 1995,
@@ -11439,5 +11454,5 @@
    "orden": 316
   }
  ],
- "actualizado": "2026-11-07T01:59:40.833Z"
+ "actualizado": "2026-11-07T08:54:50.596Z"
 }
