@@ -2,6 +2,22 @@
  "usuario": "yuti",
  "diario": [
   {
+   "nombre": "The House of the Angel",
+   "anio": 1957,
+   "visto": "2026-11-07",
+   "rating": 3.5,
+   "rewatch": false,
+   "clave": "1576008276"
+  },
+  {
+   "nombre": "Everytime",
+   "anio": 2026,
+   "visto": "2026-11-07",
+   "rating": 4.5,
+   "rewatch": false,
+   "clave": "1576007781"
+  },
+  {
    "nombre": "To Wong Foo, Thanks for Everything! Julie Newmar",
    "anio": 1995,
    "visto": "2026-11-06",
@@ -3755,6 +3771,20 @@
   }
  ],
  "vistas": [
+  {
+   "nombre": "Everytime",
+   "anio": 2026,
+   "slug": "everytime",
+   "clave": "everytime",
+   "uri": "https://letterboxd.com/film/everytime/"
+  },
+  {
+   "nombre": "The House of the Angel",
+   "anio": 1957,
+   "slug": "the-house-of-the-angel",
+   "clave": "the-house-of-the-angel",
+   "uri": "https://letterboxd.com/film/the-house-of-the-angel/"
+  },
   {
    "nombre": "To Wong Foo, Thanks for Everything! Julie Newmar",
    "anio": 1995,
@@ -12857,5 +12887,5 @@
    "orden": 488
   }
  ],
- "actualizado": "2026-11-07T08:54:51.183Z"
+ "actualizado": "2026-11-07T21:58:43.628Z"
 }
