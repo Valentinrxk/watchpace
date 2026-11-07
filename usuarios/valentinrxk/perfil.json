@@ -2,12 +2,36 @@
  "usuario": "valentinrxk",
  "diario": [
   {
+   "nombre": "Everytime",
+   "anio": 2026,
+   "visto": "2026-11-06",
+   "rating": 4,
+   "rewatch": false,
+   "clave": "1574976262"
+  },
+  {
+   "nombre": "To Wong Foo, Thanks for Everything! Julie Newmar",
+   "anio": 1995,
+   "visto": "2026-11-06",
+   "rating": 3.5,
+   "rewatch": false,
+   "clave": "1574975328"
+  },
+  {
    "nombre": "Children of Men",
    "anio": 2006,
    "visto": "2026-11-05",
    "rating": 4.5,
    "rewatch": false,
    "clave": "1573119138"
+  },
+  {
+   "nombre": "Godzilla Minus Zero",
+   "anio": 2026,
+   "visto": "2026-11-05",
+   "rating": 4.5,
+   "rewatch": false,
+   "clave": "1574976870"
   },
   {
    "nombre": "Coherence",
@@ -3115,6 +3139,27 @@
   }
  ],
  "vistas": [
+  {
+   "nombre": "To Wong Foo, Thanks for Everything! Julie Newmar",
+   "anio": 1995,
+   "slug": "to-wong-foo-thanks-for-everything-julie-newmar",
+   "clave": "to-wong-foo-thanks-for-everything-julie-newmar",
+   "uri": "https://letterboxd.com/film/to-wong-foo-thanks-for-everything-julie-newmar/"
+  },
+  {
+   "nombre": "Everytime",
+   "anio": 2026,
+   "slug": "everytime",
+   "clave": "everytime",
+   "uri": "https://letterboxd.com/film/everytime/"
+  },
+  {
+   "nombre": "Godzilla Minus Zero",
+   "anio": 2026,
+   "slug": "godzilla-minus-zero",
+   "clave": "godzilla-minus-zero",
+   "uri": "https://letterboxd.com/film/godzilla-minus-zero/"
+  },
   {
    "nombre": "Children of Men",
    "anio": 2006,
@@ -11394,5 +11439,5 @@
    "orden": 316
   }
  ],
- "actualizado": "2026-11-06T15:59:20.942Z"
+ "actualizado": "2026-11-07T01:59:40.833Z"
 }

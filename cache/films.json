@@ -88616,5 +88616,49 @@
    "alquiler": []
   },
   "actualizado": "2026-11-06T15:59:45.554Z"
+ },
+ "Godzilla Minus Zero::2026": {
+  "tmdb": 1381071,
+  "titulo": "Godzilla Minus Zero",
+  "original": "ゴジラ-0.0",
+  "sinopsis": "La guerra dejó a Japón en la ruina, y Godzilla lo sumió en una situación aún peor. Han pasado dos años desde entonces, y el país ha librado una lucha ardua por recuperarse y finalmente retomar su vida cotidiana. Justo cuando la humanidad lograba aferrarse a una paz duramente conquistada, una nueva amenaza irrumpe, aplastando la esperanza en un instante.",
+  "tagline": null,
+  "puntaje": 8.1,
+  "votos": 48,
+  "minutos": 135,
+  "generos": [
+   "Ciencia ficción",
+   "Terror",
+   "Acción"
+  ],
+  "paises": [
+   "JP"
+  ],
+  "idioma": "ja",
+  "director": "Takashi Yamazaki",
+  "directorId": 43652,
+  "reparto": [
+   "Ryunosuke Kamiki",
+   "浜辺美波",
+   "山田裕貴",
+   "Kuranosuke Sasaki",
+   "Jun Kunimura"
+  ],
+  "repartoIds": [
+   225730,
+   1516266,
+   1161474,
+   121716,
+   2541
+  ],
+  "popularidad": 106.147,
+  "poster": "/taoPyKQTXh0FSwO5rin8Djrt20C.jpg",
+  "backdrop": "/oqrYIDH4tvfEzPe1yqT4jzmAWHQ.jpg",
+  "proveedores": {
+   "suscripcion": [],
+   "gratis": [],
+   "alquiler": []
+  },
+  "actualizado": "2026-11-07T01:59:41.718Z"
  }
 }
