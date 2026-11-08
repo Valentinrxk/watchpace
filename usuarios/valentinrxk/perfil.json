@@ -2,12 +2,28 @@
  "usuario": "valentinrxk",
  "diario": [
   {
+   "nombre": "Ghost in the Cell",
+   "anio": 2026,
+   "visto": "2026-11-08",
+   "rating": 3,
+   "rewatch": false,
+   "clave": "1577194800"
+  },
+  {
    "nombre": "Rose",
    "anio": 2026,
    "visto": "2026-11-07",
    "rating": 3.5,
    "rewatch": false,
    "clave": "1576740946"
+  },
+  {
+   "nombre": "Wild Horse Nine",
+   "anio": 2026,
+   "visto": "2026-11-07",
+   "rating": 4.5,
+   "rewatch": false,
+   "clave": "1577165381"
   },
   {
    "nombre": "Everytime",
@@ -3155,6 +3171,20 @@
   }
  ],
  "vistas": [
+  {
+   "nombre": "Wild Horse Nine",
+   "anio": 2026,
+   "slug": "wild-horse-nine",
+   "clave": "wild-horse-nine",
+   "uri": "https://letterboxd.com/film/wild-horse-nine/"
+  },
+  {
+   "nombre": "Ghost in the Cell",
+   "anio": 2026,
+   "slug": "ghost-in-the-cell",
+   "clave": "ghost-in-the-cell",
+   "uri": "https://letterboxd.com/film/ghost-in-the-cell/"
+  },
   {
    "nombre": "Rose",
    "anio": 2026,
@@ -11469,5 +11499,5 @@
    "orden": 316
   }
  ],
- "actualizado": "2026-11-08T01:29:31.577Z"
+ "actualizado": "2026-11-08T09:09:34.025Z"
 }
