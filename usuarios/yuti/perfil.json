@@ -18,6 +18,14 @@
    "clave": "1577179756"
   },
   {
+   "nombre": "Sandra, The Primate Citizen",
+   "anio": 2026,
+   "visto": "2026-11-08",
+   "rating": 4,
+   "rewatch": false,
+   "clave": "1577809970"
+  },
+  {
    "nombre": "The House of the Angel",
    "anio": 1957,
    "visto": "2026-11-07",
@@ -3795,6 +3803,13 @@
   }
  ],
  "vistas": [
+  {
+   "nombre": "Sandra, The Primate Citizen",
+   "anio": 2026,
+   "slug": "sandra-the-primate-citizen",
+   "clave": "sandra-the-primate-citizen",
+   "uri": "https://letterboxd.com/film/sandra-the-primate-citizen/"
+  },
   {
    "nombre": "Ghost in the Cell",
    "anio": 2026,
@@ -12932,5 +12947,5 @@
    "orden": 488
   }
  ],
- "actualizado": "2026-11-08T09:09:34.519Z"
+ "actualizado": "2026-11-08T16:43:11.131Z"
 }

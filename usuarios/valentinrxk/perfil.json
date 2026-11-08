@@ -10,6 +10,14 @@
    "clave": "1577194800"
   },
   {
+   "nombre": "Sandra, The Primate Citizen",
+   "anio": 2026,
+   "visto": "2026-11-08",
+   "rating": 3.5,
+   "rewatch": false,
+   "clave": "1577736584"
+  },
+  {
    "nombre": "Rose",
    "anio": 2026,
    "visto": "2026-11-07",
@@ -3171,6 +3179,13 @@
   }
  ],
  "vistas": [
+  {
+   "nombre": "Sandra, The Primate Citizen",
+   "anio": 2026,
+   "slug": "sandra-the-primate-citizen",
+   "clave": "sandra-the-primate-citizen",
+   "uri": "https://letterboxd.com/film/sandra-the-primate-citizen/"
+  },
   {
    "nombre": "Wild Horse Nine",
    "anio": 2026,
@@ -11499,5 +11514,5 @@
    "orden": 316
   }
  ],
- "actualizado": "2026-11-08T09:09:34.025Z"
+ "actualizado": "2026-11-08T16:43:10.645Z"
 }
