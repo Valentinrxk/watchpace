@@ -2,6 +2,14 @@
  "usuario": "valentinrxk",
  "diario": [
   {
+   "nombre": "Rose",
+   "anio": 2026,
+   "visto": "2026-11-07",
+   "rating": 3.5,
+   "rewatch": false,
+   "clave": "1576740946"
+  },
+  {
    "nombre": "Everytime",
    "anio": 2026,
    "visto": "2026-11-06",
@@ -3147,6 +3155,13 @@
   }
  ],
  "vistas": [
+  {
+   "nombre": "Rose",
+   "anio": 2026,
+   "slug": "rose-2026",
+   "clave": "rose-2026",
+   "uri": "https://letterboxd.com/film/rose-2026/"
+  },
   {
    "nombre": "The House of the Angel",
    "anio": 1957,
@@ -11454,5 +11469,5 @@
    "orden": 316
   }
  ],
- "actualizado": "2026-11-07T21:58:43.105Z"
+ "actualizado": "2026-11-08T01:29:31.577Z"
 }
