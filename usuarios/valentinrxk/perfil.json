@@ -18,6 +18,14 @@
    "clave": "1577736584"
   },
   {
+   "nombre": "Club Kid",
+   "anio": 2026,
+   "visto": "2026-11-08",
+   "rating": 4,
+   "rewatch": false,
+   "clave": "1578608657"
+  },
+  {
    "nombre": "Rose",
    "anio": 2026,
    "visto": "2026-11-07",
@@ -3179,6 +3187,13 @@
   }
  ],
  "vistas": [
+  {
+   "nombre": "Club Kid",
+   "anio": 2026,
+   "slug": "club-kid",
+   "clave": "club-kid",
+   "uri": "https://letterboxd.com/film/club-kid/"
+  },
   {
    "nombre": "Sandra, The Primate Citizen",
    "anio": 2026,
@@ -11514,5 +11529,5 @@
    "orden": 316
   }
  ],
- "actualizado": "2026-11-08T16:43:10.645Z"
+ "actualizado": "2026-11-09T01:46:15.472Z"
 }
