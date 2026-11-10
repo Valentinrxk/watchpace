@@ -2,6 +2,14 @@
  "usuario": "valentinrxk",
  "diario": [
   {
+   "nombre": "Fjord",
+   "anio": 2026,
+   "visto": "2026-11-09",
+   "rating": 2.5,
+   "rewatch": false,
+   "clave": "1579932109"
+  },
+  {
    "nombre": "Ghost in the Cell",
    "anio": 2026,
    "visto": "2026-11-08",
@@ -3187,6 +3195,13 @@
   }
  ],
  "vistas": [
+  {
+   "nombre": "Fjord",
+   "anio": 2026,
+   "slug": "fjord-2026",
+   "clave": "fjord-2026",
+   "uri": "https://letterboxd.com/film/fjord-2026/"
+  },
   {
    "nombre": "Club Kid",
    "anio": 2026,
@@ -11529,5 +11544,5 @@
    "orden": 316
   }
  ],
- "actualizado": "2026-11-09T01:46:15.472Z"
+ "actualizado": "2026-11-10T04:10:13.525Z"
 }
