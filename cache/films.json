@@ -88703,5 +88703,49 @@
    "alquiler": []
   },
   "actualizado": "2026-11-11T01:58:58.178Z"
+ },
+ "Primetime::2026": {
+  "tmdb": 1375441,
+  "titulo": "Primetime",
+  "original": "Primetime",
+  "sinopsis": "En 2006, Chris Hansen, presentador de *To Catch a Predator*, se propone hacer historia en la televisión.",
+  "tagline": "¿Estás listo para hacer historia en la televisión?.",
+  "puntaje": 6.8,
+  "votos": 411,
+  "minutos": 110,
+  "generos": [
+   "Suspense",
+   "Drama",
+   "Crimen"
+  ],
+  "paises": [
+   "US"
+  ],
+  "idioma": "en",
+  "director": "Lance Oppenheim",
+  "directorId": 1405665,
+  "reparto": [
+   "Robert Pattinson",
+   "Merritt Wever",
+   "Skyler Gisondo",
+   "Matthew Maher",
+   "Phoebe Bridgers"
+  ],
+  "repartoIds": [
+   11288,
+   28044,
+   61263,
+   1232599,
+   2344346
+  ],
+  "popularidad": 86.8668,
+  "poster": "/lmrulvLbmaejTix1YaMxo1oGhH1.jpg",
+  "backdrop": "/sEsMwSDUWGIx9EfNxzM6KzVSsSQ.jpg",
+  "proveedores": {
+   "suscripcion": [],
+   "gratis": [],
+   "alquiler": []
+  },
+  "actualizado": "2026-11-11T17:56:08.258Z"
  }
 }
