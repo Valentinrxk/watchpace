@@ -88660,5 +88660,48 @@
    "alquiler": []
   },
   "actualizado": "2026-11-07T01:59:41.718Z"
+ },
+ "The History of Concrete::2026": {
+  "tmdb": 1596296,
+  "titulo": "The History of Concrete",
+  "original": "The History of Concrete",
+  "sinopsis": "Un cineasta aplica las lecciones de un taller de escritura de películas de Hallmark para presentar un documental sobre el concreto.",
+  "tagline": null,
+  "puntaje": 7.1,
+  "votos": 19,
+  "minutos": 101,
+  "generos": [
+   "Documental",
+   "Comedia"
+  ],
+  "paises": [
+   "US"
+  ],
+  "idioma": "en",
+  "director": "John Wilson",
+  "directorId": 1564819,
+  "reparto": [
+   "John Wilson",
+   "Michael Imperioli",
+   "Jack Macco",
+   "Nathan Fielder",
+   "Timothée Chalamet"
+  ],
+  "repartoIds": [
+   1564819,
+   11486,
+   6417073,
+   1212667,
+   1190668
+  ],
+  "popularidad": 7.6085,
+  "poster": "/2GWR1g1VdUNnNpLh6XfAQ6LVfyd.jpg",
+  "backdrop": "/dsyJUsyrl2rBiF0k9RpSKT2YQzL.jpg",
+  "proveedores": {
+   "suscripcion": [],
+   "gratis": [],
+   "alquiler": []
+  },
+  "actualizado": "2026-11-11T01:58:58.178Z"
  }
 }
