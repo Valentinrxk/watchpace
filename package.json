@@ -12,7 +12,6 @@
     "test": "node --test test/*.test.js",
     "sync": "node scripts/sync.mjs",
     "bajar": "node scripts/bajar.mjs",
-    "gif": "python scripts/monito-gif.py",
     "telegram": "node scripts/telegram-setup.mjs"
   },
   "devDependencies": {

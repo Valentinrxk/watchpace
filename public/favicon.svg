@@ -1,12 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 92 92">
-  <style>@media (prefers-color-scheme: dark) { g { fill: #e2e3e7; } }</style>
-  <g font-family="Consolas, 'Courier New', monospace" font-size="10" font-weight="700" fill="#232327" xml:space="preserve">
-    <text x="1" y="18" xml:space="preserve">   .==#%#==.</text>
-    <text x="1" y="28" xml:space="preserve"> =%+.:#%#:.+%=</text>
-    <text x="1" y="38" xml:space="preserve">(@:   ...   :<tspan fill="#e10600">R</tspan>)</text>
-    <text x="1" y="48" xml:space="preserve">(@.  o   -  .<tspan fill="#e10600">R</tspan>)</text>
-    <text x="1" y="58" xml:space="preserve">(@:    <tspan fill="#e10600">V</tspan>    :<tspan fill="#e10600">R</tspan>)</text>
-    <text x="1" y="68" xml:space="preserve"> =%= \===/ =%=</text>
-    <text x="1" y="78" xml:space="preserve">  .=#%%%#=.</text>
-  </g>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-2 -5 27 27" shape-rendering="crispEdges">
+  <style>@media (prefers-color-scheme: dark) { .tinta { fill: #e2e3e7; } }</style>
+  <!-- el simbolo de la marca: la silueta del monito, con la R de oreja -->
+  <path class="tinta" fill="#232327" d="M8 0h7v1h-7zM6 1h11v1h-11zM5 2h13v1h-13zM4 3h15v1h-15zM4 4h15v1h-15zM1 5h5v1h-5zM10 5h3v1h-3zM0 6h6v1h-6zM11 6h1v1h-1zM0 7h1v1h-1zM3 7h3v1h-3zM7 7h2v1h-2zM14 7h2v1h-2zM0 8h1v1h-1zM3 8h3v1h-3zM7 8h2v1h-2zM14 8h2v1h-2zM0 9h1v1h-1zM3 9h3v1h-3zM0 10h6v1h-6zM9 10h1v1h-1zM13 10h1v1h-1zM1 11h5v1h-5zM10 11h1v1h-1zM12 11h1v1h-1zM4 12h3v1h-3zM11 12h1v1h-1zM16 12h3v1h-3zM5 13h3v1h-3zM15 13h3v1h-3zM6 14h3v1h-3zM14 14h3v1h-3zM7 15h9v1h-9zM9 16h5v1h-5z"/>
+  <path fill="#e10600" d="M17 5h5v1h-5zM17 6h2v1h-2zM21 6h2v1h-2zM17 7h2v1h-2zM21 7h2v1h-2zM17 8h5v1h-5zM17 9h2v1h-2zM20 9h2v1h-2zM17 10h2v1h-2zM21 10h2v1h-2zM17 11h2v1h-2zM21 11h2v1h-2z"/>
 </svg>

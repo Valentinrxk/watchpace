@@ -30,14 +30,31 @@ FORMAS = {
 }
 RELLENO = {DENSO: "#", CLARO: ":", ROJO: "#", SUAVE: ":"}
 
+# la cabeza de la marca, en chico: sale del simbolo (23x17 pixeles) pero
+# esta dibujada a mano, porque convertido solo quedaba puro medio renglon.
+# cabeza redonda, orejas a los costados, la cara hueca con ojos sonrientes,
+# la V de nariz y la R como oreja derecha. CABEZA_ROJO marca que va en rojo
 CABEZA = [
-    "   .==#%#==.   ",
-    " =%+.:#%#:.+%= ",
-    "(@:   ...   :R)",
-    "(@.  ^   ^  .R)",
-    "(@:    V    :R)",
-    " =%= \\===/ =%= ",
-    "  .=#%%%#=.    ",
+    "       .d#####b.       ",
+    "     d###########b     ",
+    "    ###############    ",
+    ".d####    \"#\"    #####.",
+    "#  ### ^^     ^^ ##  ##",
+    "#  ###     V     #####'",
+    " \"####b   \\_/   d##  ##",
+    "     '##b.   .d##'     ",
+    "        '#####'        ",
+]
+CABEZA_ROJO = [
+    "",
+    "",
+    "",
+    "                 xxxxxx",
+    "                 xxxxxx",
+    "           x     xxxxxx",
+    "                 xxxxxx",
+    "",
+    "",
 ]
 
 
@@ -159,15 +176,16 @@ def a_grilla(clase, caja, filas, hueco=False):
     return txt, rojo
 
 
-def estampar(txt, rojo, sello, fila, col, rojos=""):
-    """pega un dibujo hecho a mano. los espacios del sello no tapan nada"""
+def estampar(txt, rojo, sello, fila, col, rojos="", capa=None):
+    """pega un dibujo hecho a mano. los espacios del sello no tapan nada.
+    lo rojo se dice por letra (rojos) o con una capa paralela de x"""
     for i, linea in enumerate(sello):
         for j, ch in enumerate(linea):
             r, c = fila + i, col + j
             if ch == " " or not (0 <= r < len(txt) and 0 <= c < len(txt[0])):
                 continue
             txt[r][c] = ch
-            rojo[r][c] = ch in rojos
+            rojo[r][c] = ch in rojos or (capa is not None and capa[i][j:j + 1] == "x")
 
 
 def suavizar(xs, n=1):
@@ -239,7 +257,7 @@ def armar(nombre, clases, filas, ms, cara=None, cabeza=False, hueco=False):
         for (txt, rojo), cx, hy in zip(grillas, cuellos, hombros):
             t = [[" "] * (der - izq) for _ in range(sube)] + [[" "] * (-izq) + f + [" "] * (der - cols) for f in txt]
             r = [[False] * (der - izq) for _ in range(sube)] + [[False] * (-izq) + f + [False] * (der - cols) for f in rojo]
-            estampar(t, r, CABEZA, int(round(hy)) + sube - alto + 1, int(round(cx - ancho / 2)) - izq, "RV")
+            estampar(t, r, CABEZA, int(round(hy)) + sube - alto + 1, int(round(cx - ancho / 2)) - izq, capa=CABEZA_ROJO)
             nuevas.append((t, r))
         grillas, cols = nuevas, der - izq
 

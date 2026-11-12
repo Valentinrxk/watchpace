@@ -81,6 +81,22 @@ The user downloaded five monkey GIFs and asked for something funny and celebrato
   the same RMS (0.13 each). Not checked: how it sounds; it was composed and measured, not
   listened to. iOS silent-switch behaviour untested.
 
+## New monkey mark (added 2026-11-12, fourth request)
+The portfolio redesigned its monkey logo the same day (`src/components/ui/MonkeyMark.jsx`: a
+72x27 ASCII art for large sizes and a 23x17 solid symbol for small ones). watchpace still showed
+the old 15x7 ASCII head everywhere, so every placement moved to the new mark:
+- Header and favicon: the solid symbol (the old ASCII was unreadable at that size). The crown for
+  a reached goal is now three rows of pixels on top of the symbol.
+- Gala opening: the large ASCII art with happy eyes, smile and a red ASCII crown. It is generated
+  from the portfolio source, not retyped: `MONO_GRANDE` and `MONO_GRANDE_ROJO` in `index.html`.
+- Celebration cards: the symbol hopping in steps replaces the two GIFs of the old monkey.
+  `public/monito-festeja*.gif`, `scripts/monito-gif.py` and the `gif` npm script were deleted.
+- The shirt-and-shorts dancer wears a new hand-drawn 23x9 head (`CABEZA` in
+  `scripts/monos-baile.py`); `public/monos.json` was regenerated.
+- Checked in the browser: header in both themes with and without crown, gala on desktop and on a
+  390x844 phone (no overflow, 9 dancers), celebration card. `npm test` -> 23 pass.
+- Not done: the portfolio's own favicon and app icons still show the old monkey.
+
 ## Verification evidence (2026-11-12)
 - RED: with `src/` and `api/` stashed, `node --test test/premios.test.js` fails with
   "does not provide an export named 'calcularPremios'". GREEN: `npm test` → 12 pass, 0 fail.
