@@ -88747,5 +88747,52 @@
    "alquiler": []
   },
   "actualizado": "2026-11-11T17:56:08.258Z"
+ },
+ "Godzilla::1954": {
+  "tmdb": 1678,
+  "titulo": "Godzilla. Japón bajo el terror del monstruo",
+  "original": "ゴジラ",
+  "sinopsis": "Las misteriosas destrucciones de barcos en el Pacífico provocan el pánico. Los nativos de una isla afirman que el culpable es una criatura legendaria, Godzilla, un lagarto mutante convertido en un gigantesco monstruo a causa de unas radiaciones atómicas. Godzilla se dispone a atacar las principales ciudades del Japón.",
+  "tagline": "¡Godzilla, arma de la ciencia, una gran batalla de maravilla y terror!",
+  "puntaje": 7.6,
+  "votos": 1206,
+  "minutos": 96,
+  "generos": [
+   "Suspense",
+   "Terror",
+   "Ciencia ficción"
+  ],
+  "paises": [
+   "JP"
+  ],
+  "idioma": "ja",
+  "director": "Ishiro Honda",
+  "directorId": 18598,
+  "reparto": [
+   "宝田明",
+   "河内桃子",
+   "平田昭彦",
+   "志村喬",
+   "村上冬樹"
+  ],
+  "repartoIds": [
+   18615,
+   33768,
+   30568,
+   7453,
+   235382
+  ],
+  "popularidad": 8.4843,
+  "poster": "/mu4KeHb8GOjKbZGIeE4C5dXBx9B.jpg",
+  "backdrop": "/ub1sIbdSrokPZawY2ljExXZov2j.jpg",
+  "proveedores": {
+   "suscripcion": [
+    "MUBI",
+    "MUBI Amazon Channel"
+   ],
+   "gratis": [],
+   "alquiler": []
+  },
+  "actualizado": "2026-11-12T09:56:01.271Z"
  }
 }

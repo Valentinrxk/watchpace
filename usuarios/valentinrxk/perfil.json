@@ -10,6 +10,14 @@
    "clave": "1582214848"
   },
   {
+   "nombre": "Godzilla",
+   "anio": 1954,
+   "visto": "2026-11-11",
+   "rating": 4,
+   "rewatch": false,
+   "clave": "1583012359"
+  },
+  {
    "nombre": "La Bola Negra",
    "anio": 2026,
    "visto": "2026-11-10",
@@ -3211,6 +3219,13 @@
   }
  ],
  "vistas": [
+  {
+   "nombre": "Godzilla",
+   "anio": 1954,
+   "slug": "godzilla",
+   "clave": "godzilla",
+   "uri": "https://letterboxd.com/film/godzilla/"
+  },
   {
    "nombre": "Primetime",
    "anio": 2026,
@@ -11502,5 +11517,5 @@
    "orden": 307
   }
  ],
- "actualizado": "2026-11-11T17:56:07.570Z"
+ "actualizado": "2026-11-12T09:56:00.252Z"
 }
