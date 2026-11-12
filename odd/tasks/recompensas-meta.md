@@ -64,6 +64,17 @@ The user downloaded five monkey GIFs and asked for something funny and celebrato
 - Adding a monkey: one segmentation function plus one `armar(...)` line in the script; the page
   takes the list as it comes (first two open, next two close, all of them dance in the line-up).
 
+## Music (added 2026-11-12, third request: "agregale musica silly")
+- An original eight-bar tune synthesised with Web Audio at play time (square lead, square bass,
+  triangle chord stabs, noise ticks, a "boing" closing each cycle). No audio file.
+- One eighth note lasts 190 ms, the dancers' frame step, so they dance in time (157.9 bpm).
+- Browsers block sound without a gesture: when the gala opens by itself it starts muted, the
+  button reads "poner música" and any tap inside starts it. Opened from "ver los créditos" it
+  plays at once. The choice is remembered in `wp.musica`.
+- Checked: toggle, remembered choice, stop on close, start on first tap after a suspended
+  context, 10 steps per 1.9 s, offline render peak 0.449 (no clipping). Not checked: how it
+  sounds; it was composed and measured, not listened to. iOS silent-switch behaviour untested.
+
 ## Verification evidence (2026-11-12)
 - RED: with `src/` and `api/` stashed, `node --test test/premios.test.js` fails with
   "does not provide an export named 'calcularPremios'". GREEN: `npm test` → 12 pass, 0 fail.

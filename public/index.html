@@ -305,7 +305,9 @@ section + section { margin-top:4.5rem; }
 .gala__rollo::-webkit-scrollbar { display:none; }
 .gala__rollo:focus { outline:none; }
 .cr__grupo { margin-top:1.5rem; }
-.gala__x { position:absolute; top:.9rem; right:var(--frame-x); z-index:1; background:#0b0b0d; }
+.gala__barra { position:absolute; top:.9rem; right:var(--frame-x); z-index:1; display:flex; gap:.5rem; }
+.gala__barra .btn { background:#0b0b0d; }
+.gala__barra .btn--p { background:var(--red); }
 .gala__apertura, .gala__fin {
   min-height:100vh; min-height:100dvh; padding:4.5rem var(--frame-x) 3rem;
   display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; gap:1.4rem;
@@ -894,7 +896,10 @@ section + section { margin-top:4.5rem; }
 
 <div class="gala" id="gala" data-theme="dark" role="dialog" aria-modal="true" aria-label="meta cumplida" hidden>
   <div class="gala__rollo" id="galaRollo" tabindex="-1"></div>
-  <button class="btn gala__x" data-gala-cerrar>cerrar</button>
+  <div class="gala__barra">
+    <button class="btn" data-gala-musica aria-pressed="false">♪ poner música</button>
+    <button class="btn" data-gala-cerrar>cerrar</button>
+  </div>
 </div>
 
 <main>
@@ -2310,6 +2315,169 @@ const armarBaile = async () => {
   [...fila.children].forEach((pre, i) => bailar(pre, lista[i]));
 };
 
+/* ---------- la musica de la gala ----------
+   una melodia tonta de ocho compases, hecha con osciladores en el momento:
+   no hay archivo de audio. la corchea dura 190 ms, lo mismo que un paso de
+   los monos, asi que bailan a tiempo.
+   ningun navegador deja sonar nada sin un toque: si la gala se abrio sola
+   arranca muda, y el boton (o el primer toque adentro) la prende */
+const CORCHEA = 0.19;
+const VOL_MUSICA = 0.85;
+const hz = (midi) => 440 * 2 ** ((midi - 69) / 12);
+
+/* por compas: el bajo de los tiempos 1 y 3, el acorde de los tiempos 2 y
+   4, y la melodia en ocho corcheas (null es silencio) */
+const DO = [60, 64, 67], LAm = [57, 60, 64], FA = [60, 65, 69], SOL = [59, 62, 67], REm = [62, 65, 69];
+const COMPASES = [
+  { bajo: [36, 43], acordes: [DO, DO],   mel: [76, 79, 76, 72, 74, 76, 79, null] },
+  { bajo: [33, 40], acordes: [LAm, LAm], mel: [81, 79, 76, 72, 69, 72, 76, null] },
+  { bajo: [41, 36], acordes: [FA, FA],   mel: [77, 81, 77, 72, 74, 77, 81, null] },
+  { bajo: [43, 38], acordes: [SOL, SOL], mel: [79, 77, 74, 71, 67, 71, 74, 77] },
+  { bajo: [36, 43], acordes: [DO, DO],   mel: [76, 79, 84, 79, 76, 79, 84, null] },
+  { bajo: [33, 40], acordes: [LAm, LAm], mel: [81, 84, 81, 76, 72, 76, 81, null] },
+  { bajo: [38, 43], acordes: [REm, SOL], mel: [74, 77, 81, 77, 79, 83, 86, 83] },
+  { bajo: [36, 36], acordes: [DO, DO],   mel: [84, null, 79, null, 72, null, null, null], boing: 6 },
+];
+
+const pitido = (ctx, salida, { tipo, f, t, dur, vol }) => {
+  const osc = ctx.createOscillator(), env = ctx.createGain();
+  osc.type = tipo;
+  osc.frequency.setValueAtTime(f, t);
+  env.gain.setValueAtTime(0, t);
+  env.gain.linearRampToValueAtTime(vol, t + 0.006);
+  env.gain.exponentialRampToValueAtTime(0.0008, t + dur);
+  osc.connect(env).connect(salida);
+  osc.start(t);
+  osc.stop(t + dur + 0.02);
+};
+
+/* el resorte del final: un tono que cae temblando */
+const boing = (ctx, salida, t) => {
+  const osc = ctx.createOscillator(), env = ctx.createGain(), dur = 0.5;
+  const curva = Float32Array.from({ length: 48 }, (_, i) => {
+    const x = i / 47;
+    return 170 + 520 * Math.exp(-4.5 * x) * (1 + 0.22 * Math.sin(2 * Math.PI * 7 * x));
+  });
+  osc.frequency.setValueCurveAtTime(curva, t, dur);
+  env.gain.setValueAtTime(0.4, t);
+  env.gain.exponentialRampToValueAtTime(0.0008, t + dur);
+  osc.connect(env).connect(salida);
+  osc.start(t);
+  osc.stop(t + dur + 0.02);
+};
+
+const chasquido = (ctx, salida, ruido, t) => {
+  const src = ctx.createBufferSource(), filtro = ctx.createBiquadFilter(), env = ctx.createGain();
+  src.buffer = ruido;
+  filtro.type = "highpass";
+  filtro.frequency.value = 6500;
+  env.gain.setValueAtTime(0.09, t);
+  env.gain.exponentialRampToValueAtTime(0.0008, t + 0.04);
+  src.connect(filtro).connect(env).connect(salida);
+  src.start(t);
+  src.stop(t + 0.05);
+};
+
+/* arma la cadena de salida sobre cualquier contexto: el de verdad, o uno
+   offline para poder renderizar la melodia y medirla */
+const armarMezcla = (ctx) => {
+  const mezcla = ctx.createGain(), filtro = ctx.createBiquadFilter();
+  filtro.type = "lowpass";
+  filtro.frequency.value = 4200;      /* le saca el filo a las ondas cuadradas */
+  mezcla.gain.value = 0;
+  mezcla.connect(filtro).connect(ctx.destination);
+  const ruido = ctx.createBuffer(1, Math.ceil(ctx.sampleRate * 0.1), ctx.sampleRate);
+  const d = ruido.getChannelData(0);
+  for (let i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1;
+  return { ctx, mezcla, ruido };
+};
+
+/* un paso es una corchea. cada dos vueltas la melodia se dobla una octava
+   arriba, bajito, para que no sea siempre igual */
+const tocarPaso = ({ ctx, mezcla, ruido }, paso, t) => {
+  const c = COMPASES[Math.floor(paso / 8) % COMPASES.length], i = paso % 8;
+  const m = c.mel[i];
+  if (m != null) {
+    pitido(ctx, mezcla, { tipo: "square", f: hz(m), t, dur: CORCHEA * 0.78, vol: 0.2 });
+    if (Math.floor(paso / 64) % 2) pitido(ctx, mezcla, { tipo: "square", f: hz(m + 12), t, dur: CORCHEA * 0.5, vol: 0.06 });
+  }
+  /* el bajo va en onda cuadrada y no muy abajo: el parlante de un telefono
+     no reproduce un do grave, pero si sus armonicos */
+  if (i === 0 || i === 4) pitido(ctx, mezcla, { tipo: "square", f: hz(c.bajo[i / 4] + 12), t, dur: CORCHEA * 1.4, vol: 0.2 });
+  if (i === 2 || i === 6) for (const n of c.acordes[(i - 2) / 4]) pitido(ctx, mezcla, { tipo: "triangle", f: hz(n), t, dur: CORCHEA * 0.55, vol: 0.14 });
+  if (i % 2) chasquido(ctx, mezcla, ruido, t);
+  if (c.boing === i) boing(ctx, mezcla, t);
+};
+
+let audio = null;
+const quiereMusica = () => { try { return localStorage.getItem("wp.musica") !== "0"; } catch (e) { return true; } };
+const recordarMusica = (si) => { try { localStorage.setItem("wp.musica", si ? "1" : "0"); } catch (e) {} };
+const suenaMusica = () => Boolean(audio?.quiere && audio.ctx.state === "running");
+
+const pintarMusica = () => {
+  const b = document.querySelector("[data-gala-musica]");
+  if (!b) return;
+  b.hidden = !(window.AudioContext ?? window.webkitAudioContext);
+  b.textContent = suenaMusica() ? "♪ silenciar" : "♪ poner música";
+  b.classList.toggle("btn--p", !suenaMusica());
+  b.setAttribute("aria-pressed", String(suenaMusica()));
+};
+
+/* agenda las notas un poco por adelantado, contra el reloj del audio: un
+   setInterval solo no alcanza para llevar el tiempo */
+const programarMusica = () => {
+  const a = audio, { ctx } = a;
+  if (ctx.state !== "running") return;
+  if (!a.proxima) {
+    /* recien ahora suena de verdad: la melodia arranca desde el principio */
+    a.proxima = ctx.currentTime + 0.06;
+    a.mezcla.gain.cancelScheduledValues(ctx.currentTime);
+    a.mezcla.gain.setValueAtTime(0, ctx.currentTime);
+    a.mezcla.gain.linearRampToValueAtTime(VOL_MUSICA, ctx.currentTime + 0.25);
+  }
+  /* pestaña dormida: seguir desde ahora, no recuperar todo junto */
+  if (a.proxima < ctx.currentTime) a.proxima = ctx.currentTime + 0.03;
+  while (a.proxima < ctx.currentTime + 0.3) {
+    tocarPaso(a, a.paso, a.proxima);
+    a.proxima += CORCHEA;
+    a.paso = (a.paso + 1) % 128;
+  }
+};
+
+const sonarMusica = (porToque = false) => {
+  const Ctx = window.AudioContext ?? window.webkitAudioContext;
+  if (!Ctx) return;
+  if (!audio) {
+    audio = { ...armarMezcla(new Ctx()), paso: 0, proxima: 0, reloj: 0, quiere: false };
+    audio.ctx.onstatechange = pintarMusica;
+  }
+  /* si alguien toco el boton quiere escucharla, aunque el iphone este en silencio */
+  if (porToque) { try { navigator.audioSession.type = "playback"; } catch (e) {} }
+  audio.ctx.resume?.().catch(() => {});
+  if (!audio.quiere) { audio.paso = 0; audio.proxima = 0; }
+  audio.quiere = true;
+  clearInterval(audio.reloj);
+  audio.reloj = setInterval(programarMusica, 60);
+  pintarMusica();
+};
+
+const callarMusica = () => {
+  const a = audio;
+  if (!a) return pintarMusica();
+  a.quiere = false;
+  clearInterval(a.reloj);
+  a.mezcla.gain.cancelScheduledValues(a.ctx.currentTime);
+  a.mezcla.gain.setTargetAtTime(0, a.ctx.currentTime, 0.05);
+  setTimeout(() => { if (!a.quiere) a.ctx.suspend?.().catch(() => {}); }, 350);
+  pintarMusica();
+};
+
+const alternarMusica = () => {
+  const prender = !suenaMusica();
+  recordarMusica(prender);
+  prender ? sonarMusica(true) : callarMusica();
+};
+
 const frenarGala = () => cancelAnimationFrame(galaRaf);
 
 const abrirGala = () => {
@@ -2319,6 +2487,7 @@ const abrirGala = () => {
   rollo.innerHTML = htmlGala();
   g.hidden = false;
   armarBaile();
+  quiereMusica() ? sonarMusica() : pintarMusica();
   rollo.scrollTop = 0;
   document.documentElement.style.overflow = "hidden";
   /* "otra vez" la abre estando abierta: que la entrada vuelva a correr */
@@ -2346,6 +2515,7 @@ const cerrarGala = () => {
   if (g.hidden) return;
   frenarGala();
   pararBaile();
+  callarMusica();
   g.hidden = true;
   $("galaRollo").innerHTML = "";
   document.documentElement.style.overflow = "";
@@ -2601,6 +2771,15 @@ addEventListener("keydown", (e) => {
   if (!dirPanel.hidden) cerrarPanel();
   else cerrarGala();
 });
+/* si la gala se abrio sola la musica esta esperando un toque: cualquiera
+   adentro sirve. y con la pestaña escondida no suena */
+$("gala").addEventListener("pointerup", () => {
+  if (audio?.quiere && audio.ctx.state !== "running") audio.ctx.resume?.().catch(() => {});
+});
+document.addEventListener("visibilitychange", () => {
+  if (!audio?.quiere) return;
+  (document.hidden ? audio.ctx.suspend?.() : audio.ctx.resume?.())?.catch(() => {});
+});
 /* los creditos corren solos hasta que alguien quiere manejarlos */
 ["wheel", "touchstart", "keydown"].forEach((ev) => $("galaRollo").addEventListener(ev, frenarGala, { passive: true }));
 
@@ -2614,6 +2793,7 @@ $("retosRefresh").addEventListener("click", async () => {
 document.addEventListener("click", (e) => {
   if (e.target.closest("#retosRefresh") || e.target.closest("#dirCerrar") || e.target.closest("#dirVolver")) return;
 
+  if (e.target.closest("[data-gala-musica]")) return alternarMusica();
   if (e.target.closest("[data-gala-cerrar]")) return cerrarGala();
   if (e.target.closest("[data-gala]")) return abrirGala();
 
