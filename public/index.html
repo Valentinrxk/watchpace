@@ -2316,27 +2316,37 @@ const armarBaile = async () => {
 };
 
 /* ---------- la musica de la gala ----------
-   una melodia tonta de ocho compases, hecha con osciladores en el momento:
-   no hay archivo de audio. la corchea dura 190 ms, lo mismo que un paso de
-   los monos, asi que bailan a tiempo.
+   medio vocaloid, medio nightcore de 2010: bombo en las cuatro negras,
+   bajo y platillo a contratiempo, un colchon de sierras que bombea con el
+   bombo y una voz sintetica aguda que canta la melodia. la progresion es
+   la del pop japones (IV-V-iii-vi). todo sale de osciladores en el
+   momento: no hay archivo de audio.
+   la corchea dura 190 ms (158 bpm), lo mismo que un paso de los monos, asi
+   que bailan a tiempo.
    ningun navegador deja sonar nada sin un toque: si la gala se abrio sola
    arranca muda, y el boton (o el primer toque adentro) la prende */
 const CORCHEA = 0.19;
-const VOL_MUSICA = 0.85;
+const VOL_MUSICA = 0.6;
+const VOL_VOZ = 0.5;
 const hz = (midi) => 440 * 2 ** ((midi - 69) / 12);
 
-/* por compas: el bajo de los tiempos 1 y 3, el acorde de los tiempos 2 y
-   4, y la melodia en ocho corcheas (null es silencio) */
-const DO = [60, 64, 67], LAm = [57, 60, 64], FA = [60, 65, 69], SOL = [59, 62, 67], REm = [62, 65, 69];
+/* una vocal son tres formantes. van corridos para arriba, como quedan en
+   un tema acelerado: de ahi sale la voz de ardilla */
+const VOCALES = {
+  a: [1000, 1440, 3300], e: [720, 2750, 3530], i: [370, 3290, 3900], o: [590, 1180, 3340],
+};
+
+/* por compas: la raiz del bajo, el acorde del colchon y lo que canta la
+   voz, como [corchea en la que entra, cuantas dura, nota, vocal] */
 const COMPASES = [
-  { bajo: [36, 43], acordes: [DO, DO],   mel: [76, 79, 76, 72, 74, 76, 79, null] },
-  { bajo: [33, 40], acordes: [LAm, LAm], mel: [81, 79, 76, 72, 69, 72, 76, null] },
-  { bajo: [41, 36], acordes: [FA, FA],   mel: [77, 81, 77, 72, 74, 77, 81, null] },
-  { bajo: [43, 38], acordes: [SOL, SOL], mel: [79, 77, 74, 71, 67, 71, 74, 77] },
-  { bajo: [36, 43], acordes: [DO, DO],   mel: [76, 79, 84, 79, 76, 79, 84, null] },
-  { bajo: [33, 40], acordes: [LAm, LAm], mel: [81, 84, 81, 76, 72, 76, 81, null] },
-  { bajo: [38, 43], acordes: [REm, SOL], mel: [74, 77, 81, 77, 79, 83, 86, 83] },
-  { bajo: [36, 36], acordes: [DO, DO],   mel: [84, null, 79, null, 72, null, null, null], boing: 6 },
+  { raiz: 53, acorde: [65, 69, 72], voz: [[0, 1, 72, "a"], [1, 1, 72, "a"], [2, 1, 74, "i"], [3, 2, 76, "a"], [5, 1, 74, "e"], [6, 2, 72, "a"]] },
+  { raiz: 55, acorde: [67, 71, 74], voz: [[0, 1, 74, "a"], [1, 1, 74, "a"], [2, 1, 76, "i"], [3, 2, 79, "a"], [5, 1, 76, "e"], [6, 2, 74, "o"]] },
+  { raiz: 52, acorde: [64, 67, 71], voz: [[0, 1, 76, "a"], [1, 1, 79, "i"], [2, 2, 83, "a"], [4, 1, 81, "e"], [5, 1, 79, "a"], [6, 2, 76, "o"]] },
+  { raiz: 57, acorde: [69, 72, 76], voz: [[0, 3, 81, "a"], [3, 1, 79, "e"], [4, 2, 76, "a"], [6, 2, 72, "o"]] },
+  { raiz: 53, acorde: [65, 69, 72], voz: [[0, 1, 72, "a"], [1, 1, 72, "a"], [2, 1, 74, "i"], [3, 2, 76, "a"], [5, 1, 77, "e"], [6, 2, 81, "a"]] },
+  { raiz: 55, acorde: [67, 71, 74], voz: [[0, 1, 79, "a"], [1, 1, 79, "a"], [2, 1, 81, "i"], [3, 2, 83, "a"], [5, 1, 81, "e"], [6, 2, 79, "o"]] },
+  { raiz: 48, acorde: [64, 67, 72], voz: [[0, 2, 84, "a"], [2, 1, 83, "i"], [3, 1, 79, "a"], [4, 2, 76, "e"], [6, 1, 79, "a"], [7, 1, 83, "i"]] },
+  { raiz: 48, acorde: [64, 67, 72], voz: [[0, 6, 84, "a"]], redoble: true },
 ];
 
 const pitido = (ctx, salida, { tipo, f, t, dur, vol }) => {
@@ -2351,62 +2361,156 @@ const pitido = (ctx, salida, { tipo, f, t, dur, vol }) => {
   osc.stop(t + dur + 0.02);
 };
 
-/* el resorte del final: un tono que cae temblando */
-const boing = (ctx, salida, t) => {
-  const osc = ctx.createOscillator(), env = ctx.createGain(), dur = 0.5;
-  const curva = Float32Array.from({ length: 48 }, (_, i) => {
-    const x = i / 47;
-    return 170 + 520 * Math.exp(-4.5 * x) * (1 + 0.22 * Math.sin(2 * Math.PI * 7 * x));
-  });
-  osc.frequency.setValueCurveAtTime(curva, t, dur);
-  env.gain.setValueAtTime(0.4, t);
-  env.gain.exponentialRampToValueAtTime(0.0008, t + dur);
-  osc.connect(env).connect(salida);
-  osc.start(t);
-  osc.stop(t + dur + 0.02);
-};
-
-const chasquido = (ctx, salida, ruido, t) => {
+/* ruido filtrado: agudo y corto es un platillo, medio y mas largo son palmas */
+const golpe = (ctx, salida, ruido, t, { tipo, f, vol, dur }) => {
   const src = ctx.createBufferSource(), filtro = ctx.createBiquadFilter(), env = ctx.createGain();
   src.buffer = ruido;
-  filtro.type = "highpass";
-  filtro.frequency.value = 6500;
-  env.gain.setValueAtTime(0.09, t);
-  env.gain.exponentialRampToValueAtTime(0.0008, t + 0.04);
+  filtro.type = tipo;
+  filtro.frequency.value = f;
+  env.gain.setValueAtTime(vol, t);
+  env.gain.exponentialRampToValueAtTime(0.0008, t + dur);
   src.connect(filtro).connect(env).connect(salida);
   src.start(t);
-  src.stop(t + 0.05);
+  src.stop(t + dur + 0.01);
+};
+const platillo = (ctx, salida, ruido, t, vol, dur) => golpe(ctx, salida, ruido, t, { tipo: "highpass", f: 7000, vol, dur });
+const palmas = (ctx, salida, ruido, t, vol = 0.3) => golpe(ctx, salida, ruido, t, { tipo: "bandpass", f: 1800, vol, dur: 0.12 });
+
+const bombo = (ctx, salida, t) => {
+  const osc = ctx.createOscillator(), env = ctx.createGain();
+  osc.frequency.setValueAtTime(170, t);
+  osc.frequency.exponentialRampToValueAtTime(46, t + 0.11);
+  env.gain.setValueAtTime(0.95, t);
+  env.gain.exponentialRampToValueAtTime(0.0008, t + 0.17);
+  osc.connect(env).connect(salida);
+  osc.start(t);
+  osc.stop(t + 0.19);
+};
+
+/* en sierra y no muy abajo: el parlante de un telefono no reproduce un fa
+   grave, pero si sus armonicos */
+const bajo = (ctx, salida, f, t) => {
+  const osc = ctx.createOscillator(), filtro = ctx.createBiquadFilter(), env = ctx.createGain();
+  osc.type = "sawtooth";
+  osc.frequency.setValueAtTime(f, t);
+  filtro.type = "lowpass";
+  filtro.frequency.value = 1100;
+  env.gain.setValueAtTime(0, t);
+  env.gain.linearRampToValueAtTime(0.5, t + 0.008);
+  env.gain.exponentialRampToValueAtTime(0.0008, t + CORCHEA * 0.85);
+  osc.connect(filtro).connect(env).connect(salida);
+  osc.start(t);
+  osc.stop(t + CORCHEA);
+};
+
+/* el colchon: seis sierras desafinadas por compas. el volumen se hunde en
+   cada bombo y vuelve a subir: el bombeo de toda esa musica */
+const colchon = (ctx, salida, acorde, t) => {
+  const filtro = ctx.createBiquadFilter(), env = ctx.createGain(), fin = t + CORCHEA * 8;
+  filtro.type = "lowpass";
+  filtro.frequency.value = 3600;
+  env.gain.setValueAtTime(0.0001, t);
+  for (let negra = 0; negra < 4; negra++) {
+    const tn = t + negra * CORCHEA * 2;
+    env.gain.setValueAtTime(0.014, tn);
+    env.gain.linearRampToValueAtTime(0.09, tn + CORCHEA * 1.7);
+  }
+  env.gain.linearRampToValueAtTime(0.0001, fin);
+  for (const midi of acorde) for (const desafine of [-9, 9]) {
+    const osc = ctx.createOscillator();
+    osc.type = "sawtooth";
+    osc.frequency.setValueAtTime(hz(midi), t);
+    osc.detune.setValueAtTime(desafine, t);
+    osc.connect(filtro);
+    osc.start(t);
+    osc.stop(fin + 0.02);
+  }
+  filtro.connect(env).connect(salida);
+};
+
+/* una silaba: la voz se desliza a la nota, cambia de vocal y abre el
+   volumen. el vibrato casi no esta en las notas cortas y se abre en las
+   largas. un soplido de ruido al entrar hace de consonante */
+const cantar = ({ ctx, ruido, voz }, midi, vocal, t, dur) => {
+  voz.osc.frequency.setTargetAtTime(hz(midi), t, 0.012);
+  VOCALES[vocal].forEach((f, k) => voz.formantes[k].frequency.setTargetAtTime(f, t, 0.016));
+  voz.env.gain.setTargetAtTime(1, t, 0.01);
+  voz.env.gain.setTargetAtTime(0.0001, t + dur - 0.045, 0.018);
+  voz.vibrato.gain.setValueAtTime(5, t);
+  if (dur > CORCHEA * 2.5) voz.vibrato.gain.linearRampToValueAtTime(38, t + 0.3);
+  platillo(ctx, voz.salida, ruido, t, 0.05, 0.02);
 };
 
 /* arma la cadena de salida sobre cualquier contexto: el de verdad, o uno
-   offline para poder renderizar la melodia y medirla */
+   offline para poder renderizar el tema y medirlo */
 const armarMezcla = (ctx) => {
-  const mezcla = ctx.createGain(), filtro = ctx.createBiquadFilter();
-  filtro.type = "lowpass";
-  filtro.frequency.value = 4200;      /* le saca el filo a las ondas cuadradas */
+  const mezcla = ctx.createGain(), prensa = ctx.createDynamicsCompressor();
   mezcla.gain.value = 0;
-  mezcla.connect(filtro).connect(ctx.destination);
-  const ruido = ctx.createBuffer(1, Math.ceil(ctx.sampleRate * 0.1), ctx.sampleRate);
+  /* todo apretado y al frente, como se mezclaba eso */
+  prensa.threshold.value = -16;
+  prensa.knee.value = 8;
+  prensa.ratio.value = 5;
+  prensa.attack.value = 0.004;
+  prensa.release.value = 0.14;
+  mezcla.connect(prensa).connect(ctx.destination);
+
+  const ruido = ctx.createBuffer(1, Math.ceil(ctx.sampleRate * 0.3), ctx.sampleRate);
   const d = ruido.getChannelData(0);
   for (let i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1;
-  return { ctx, mezcla, ruido };
+
+  /* la voz es una sola y esta siempre encendida: una sierra que pasa por
+     tres formantes, mas un poco de la sierra sin filtrar para que tenga
+     cuerpo. cantar() le mueve la nota, la vocal y el volumen */
+  const osc = ctx.createOscillator(), lfo = ctx.createOscillator();
+  const vibrato = ctx.createGain(), env = ctx.createGain(), salida = ctx.createGain();
+  osc.type = "sawtooth";
+  lfo.frequency.value = 5.9;
+  vibrato.gain.value = 0;
+  lfo.connect(vibrato).connect(osc.detune);
+  const formantes = [[8, 1], [10, 0.6], [11, 0.25]].map(([q, peso]) => {
+    const filtro = ctx.createBiquadFilter(), nivel = ctx.createGain();
+    filtro.type = "bandpass";
+    filtro.Q.value = q;
+    nivel.gain.value = peso;
+    osc.connect(filtro).connect(nivel).connect(env);
+    return filtro;
+  });
+  const cuerpo = ctx.createBiquadFilter(), nivelCuerpo = ctx.createGain();
+  cuerpo.type = "lowpass";
+  cuerpo.frequency.value = 1300;
+  nivelCuerpo.gain.value = 0.18;
+  osc.connect(cuerpo).connect(nivelCuerpo).connect(env);
+  env.gain.value = 0;
+  salida.gain.value = VOL_VOZ;
+  env.connect(salida).connect(mezcla);
+  osc.start();
+  lfo.start();
+
+  return { ctx, mezcla, ruido, voz: { osc, formantes, env, vibrato, salida } };
 };
 
-/* un paso es una corchea. cada dos vueltas la melodia se dobla una octava
-   arriba, bajito, para que no sea siempre igual */
-const tocarPaso = ({ ctx, mezcla, ruido }, paso, t) => {
+/* un paso es una corchea; un compas, ocho. en la segunda vuelta se suma un
+   arpegio agudo en semicorcheas, para que no sea siempre igual */
+const tocarPaso = (a, paso, t) => {
+  const { ctx, mezcla, ruido } = a;
   const c = COMPASES[Math.floor(paso / 8) % COMPASES.length], i = paso % 8;
-  const m = c.mel[i];
-  if (m != null) {
-    pitido(ctx, mezcla, { tipo: "square", f: hz(m), t, dur: CORCHEA * 0.78, vol: 0.2 });
-    if (Math.floor(paso / 64) % 2) pitido(ctx, mezcla, { tipo: "square", f: hz(m + 12), t, dur: CORCHEA * 0.5, vol: 0.06 });
+  const contra = i % 2 === 1;
+
+  if (i === 0) colchon(ctx, mezcla, c.acorde, t);
+  if (!contra) bombo(ctx, mezcla, t);
+  if (contra) bajo(ctx, mezcla, hz(c.raiz), t);
+  if (i === 2 || i === 6) palmas(ctx, mezcla, ruido, t);
+  platillo(ctx, mezcla, ruido, t, contra ? 0.1 : 0.03, contra ? 0.07 : 0.025);
+  platillo(ctx, mezcla, ruido, t + CORCHEA / 2, 0.03, 0.02);
+
+  if (Math.floor(paso / 64) % 2) {
+    [0, 1].forEach((k) => pitido(ctx, mezcla, {
+      tipo: "triangle", f: hz(c.acorde[(i * 2 + k) % 3] + 24), t: t + (k * CORCHEA) / 2, dur: 0.07, vol: 0.04,
+    }));
   }
-  /* el bajo va en onda cuadrada y no muy abajo: el parlante de un telefono
-     no reproduce un do grave, pero si sus armonicos */
-  if (i === 0 || i === 4) pitido(ctx, mezcla, { tipo: "square", f: hz(c.bajo[i / 4] + 12), t, dur: CORCHEA * 1.4, vol: 0.2 });
-  if (i === 2 || i === 6) for (const n of c.acordes[(i - 2) / 4]) pitido(ctx, mezcla, { tipo: "triangle", f: hz(n), t, dur: CORCHEA * 0.55, vol: 0.14 });
-  if (i % 2) chasquido(ctx, mezcla, ruido, t);
-  if (c.boing === i) boing(ctx, mezcla, t);
+  for (const [entra, dura, midi, vocal] of c.voz) if (entra === i) cantar(a, midi, vocal, t, dura * CORCHEA);
+  /* el redoble que devuelve al principio */
+  if (c.redoble && i >= 6) [0, 1].forEach((k) => palmas(ctx, mezcla, ruido, t + (k * CORCHEA) / 2, 0.16 + 0.05 * (i - 6 + k / 2)));
 };
 
 let audio = null;
@@ -2434,6 +2538,9 @@ const programarMusica = () => {
     a.mezcla.gain.cancelScheduledValues(ctx.currentTime);
     a.mezcla.gain.setValueAtTime(0, ctx.currentTime);
     a.mezcla.gain.linearRampToValueAtTime(VOL_MUSICA, ctx.currentTime + 0.25);
+    /* la voz es una sola: que no arrastre nada de la vez anterior */
+    a.voz.env.gain.cancelScheduledValues(ctx.currentTime);
+    a.voz.env.gain.setValueAtTime(0, ctx.currentTime);
   }
   /* pestaña dormida: seguir desde ahora, no recuperar todo junto */
   if (a.proxima < ctx.currentTime) a.proxima = ctx.currentTime + 0.03;

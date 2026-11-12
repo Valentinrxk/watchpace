@@ -65,15 +65,21 @@ The user downloaded five monkey GIFs and asked for something funny and celebrato
   takes the list as it comes (first two open, next two close, all of them dance in the line-up).
 
 ## Music (added 2026-11-12, third request: "agregale musica silly")
-- An original eight-bar tune synthesised with Web Audio at play time (square lead, square bass,
-  triangle chord stabs, noise ticks, a "boing" closing each cycle). No audio file.
+- First version: a chiptune loop (square lead, "boing"). Replaced the same day after the user
+  asked for "medio vocaloid medio nightcore 2010".
+- Current version, synthesised with Web Audio at play time, no audio file: four-on-the-floor
+  kick, off-beat saw bass and hats, claps on 2 and 4, a detuned-saw pad that pumps with the
+  kick, a compressor on the bus, and a formant voice (one sawtooth through three band-pass
+  formants shifted up, with glide, vibrato on long notes and a noise consonant) singing an
+  original melody over IV-V-iii-vi in C. The second pass adds a sixteenth-note arpeggio.
 - One eighth note lasts 190 ms, the dancers' frame step, so they dance in time (157.9 bpm).
 - Browsers block sound without a gesture: when the gala opens by itself it starts muted, the
   button reads "poner música" and any tap inside starts it. Opened from "ver los créditos" it
   plays at once. The choice is remembered in `wp.musica`.
 - Checked: toggle, remembered choice, stop on close, start on first tap after a suspended
-  context, 10 steps per 1.9 s, offline render peak 0.449 (no clipping). Not checked: how it
-  sounds; it was composed and measured, not listened to. iOS silent-switch behaviour untested.
+  context, 10 steps per 1.9 s, offline render of 16 bars: mix peak 0.70, voice and backing at
+  the same RMS (0.13 each). Not checked: how it sounds; it was composed and measured, not
+  listened to. iOS silent-switch behaviour untested.
 
 ## Verification evidence (2026-11-12)
 - RED: with `src/` and `api/` stashed, `node --test test/premios.test.js` fails with
