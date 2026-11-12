@@ -1,6 +1,6 @@
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { clave } from "./letterboxd.js";
-import { calcularRitmo, ritmoPorDia } from "./pace.js";
+import { calcularRitmo, calcularPremios, ritmoPorDia } from "./pace.js";
 import { prerankear, rankearFinal } from "./rank.js";
 import { generarRetos } from "./retos.js";
 import { leerCache, leerPersonas } from "./enrich.js";
@@ -155,6 +155,10 @@ export const construirPayload = ({ minutos = null, estado: estadoDado = null, us
     const ritmo = calcularRitmo({ diario, meta: quien.meta, contarRewatches: CONFIG.contarRewatches, hoy });
     const conDatos = watchlist.map((f) => ({ ...f, tmdb: cache[clave(f.nombre, f.anio)] ?? null }));
 
+    const premiado = calcularPremios({ diario, meta: quien.meta, contarRewatches: CONFIG.contarRewatches, hoy });
+    const conPoster = (f) => (f ? { ...f, poster: cache[clave(f.nombre, f.anio)]?.poster ?? null } : null);
+    const premios = premiado.premios.map((p) => ({ ...p, peli: conPoster(p.peli) }));
+
     const pre = prerankear({ watchlist: conDatos, hoy, rechazadas: estado.rechazadas });
     const cabe = (f) => {
         const d = f.tmdb?.minutos;
@@ -183,9 +187,15 @@ export const construirPayload = ({ minutos = null, estado: estadoDado = null, us
         ritmo: {
             ...ritmo,
             fechaMeta: ritmo.fechaMeta ? hoyISO(ritmo.fechaMeta) : null,
+            metaEl: premiado.metaEl,
+            diasDeSobra: premiado.diasDeSobra,
             porDia: ritmoPorDia(diario, ritmo.anio),
             pendientes: watchlist.length,
         },
+        premios,
+        primera: conPoster(premiado.primera),
+        /* el bot festeja el mismo dia; la web lo hace por su cuenta */
+        premioDeHoy: [...premios].reverse().find((p) => p.logrado && p.peli.visto === hoyISO(hoy)) ?? null,
         dormido,
         plan: planDeHoy,
         sugerencia: aFilm(elegida),

@@ -35,6 +35,8 @@ export default async function handler(req, res) {
 const porQueEscribir = (p, forzar) => {
     if (forzar) return "forzado";
     if (p.dormido) return null;
+    /* un premio se avisa aunque hoy ya hayas visto algo: lo viste por eso */
+    if (p.premioDeHoy) return "llegaste a un premio";
     if (p.plan) return null;
     if (p.ritmo.vioHoy) return null;
     if (p.retos?.some((t) => t.completado)) return "cumpliste un reto";

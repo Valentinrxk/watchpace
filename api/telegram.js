@@ -1,6 +1,6 @@
 import { manejarEstado } from "../src/handler.js";
 import {
-    armarMensaje, botones, editar, enviar, responderBoton,
+    armarMensaje, marchaDe, botones, editar, enviar, responderBoton,
     secretoOk, usuarioDe, vincular, listaUsuarios,
     mensajeDuelo, botonesDuelo, mensajeRuleta, botonesRuleta, mensajeNuestro,
 } from "../src/telegram.js";
@@ -61,8 +61,8 @@ const mensaje = async (m) => {
         const p = await manejarEstado({ usuario: quien.usuario });
         const r = p.ritmo;
         return enviar(chat, [
-            `*${r.vistas}/${r.meta}* · ${r.alDia ? `${-r.deficit} adelantado` : `${r.deficit} atrasado`}`,
-            `faltan ${r.faltan} en ${r.restantes} días`,
+            `*${r.vistas}/${r.meta}* · ${marchaDe(r)}`,
+            r.cumplida ? `quedan ${r.restantes} días para sumar yapa` : `faltan ${r.faltan} en ${r.restantes} días`,
             `proyección: ${r.proyeccion} · watchlist: ${r.pendientes}`,
         ].join("\n"));
     }

@@ -318,14 +318,25 @@ const sinPuntuar = ({ diario }) => {
 /* ─── hitos: siempre del año en curso ──────────────────────── */
 
 const hitoRedondo = ({ ritmo }) => {
-    const proximo = Math.ceil((ritmo.vistas + 1) / 50) * 50;
-    if (proximo > ritmo.meta) return [];
+    const redondo = Math.ceil((ritmo.vistas + 1) / 50) * 50;
+    /* antes de la meta el proximo numero nunca la pasa de largo: de la 201
+       a la 205 lo que viene es la meta, no la 250. despues, todo es yapa */
+    const enCarrera = ritmo.vistas < ritmo.meta;
+    const proximo = enCarrera ? Math.min(redondo, ritmo.meta) : redondo;
+    const esMeta = proximo === ritmo.meta;
     const faltan = proximo - ritmo.vistas;
     const dias = ritmo.ritmoActual > 0 ? Math.ceil(faltan / ritmo.ritmoActual) : null;
+    const cuantas = faltan === 1 ? "te falta 1" : `te faltan ${faltan}`;
+    /* prometer la 250 "en 64 dias" cuando al año le quedan 49 es mentir */
+    const cuando = dias > ritmo.restantes ? "no llegás antes de fin de año: hay que apurar"
+        : dias === 1 ? "cae mañana" : `caen en ${dias} días`;
     return [{
         id: `hito-${proximo}`, acumulativo: true, tipo: "hito",
-        titulo: `te faltan ${faltan} para la número ${proximo}`,
-        detalle: dias ? `a tu ritmo caen en ${dias} días. elegí bien la ${proximo}.` : "",
+        titulo: esMeta ? `${cuantas} para la meta` : `${cuantas} para la número ${proximo}`,
+        detalle: !dias ? ""
+            : esMeta ? `a tu ritmo ${cuando}. cuando llegues corren los créditos de tu año.`
+            : enCarrera ? `a tu ritmo ${cuando}. elegí bien la ${proximo}.`
+            : `la meta ya está, esto es yapa. a tu ritmo ${cuando}.`,
         objetivo: proximo, progreso: ritmo.vistas, interes: 56 + (faltan <= 5 ? 40 : 0), candidatas: [],
     }];
 };

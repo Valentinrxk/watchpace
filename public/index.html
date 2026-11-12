@@ -262,6 +262,116 @@ section + section { margin-top:4.5rem; }
 }
 .hito__lista { font-size:.78rem; color:var(--color-text-dim); margin-top:.5rem; line-height:1.7; }
 
+/* ——— premios: lo ganado queda a la vista, y lo que falta tambien ——— */
+.pill--on { background:var(--red); color:#e6e7eb; font-weight:700; }
+.barra.llena .barra__hoy { display:none; }
+#premioLogro .hito { margin:2rem 0 0; }
+.corona { display:none; }
+.hud__brand.coronado .corona { display:inline; }
+
+.vit { display:flex; gap:.9rem; overflow-x:auto; scrollbar-width:none; padding-bottom:.3rem; scroll-snap-type:x proximity; }
+.vit::-webkit-scrollbar { display:none; }
+.vit__p { flex:none; width:6.5rem; display:flex; flex-direction:column; gap:.3rem; scroll-snap-align:start; }
+.vit__p[data-peli] { cursor:pointer; }
+.vit__marco { position:relative; display:block; aspect-ratio:2/3; border:1px solid var(--color-border); background:var(--skel); overflow:hidden; }
+.vit__marco img { display:block; width:100%; height:100%; object-fit:cover; }
+.vit__num {
+  position:absolute; left:0; bottom:0; background:var(--red); color:#e6e7eb;
+  font-weight:700; font-size:.8rem; line-height:1; padding:.3rem .45rem; font-variant-numeric:tabular-nums;
+}
+.vit__p--meta .vit__marco { border:2px solid var(--red); }
+.vit__p--falta .vit__marco {
+  border:1px dashed var(--color-border-strong); background:none;
+  display:flex; align-items:center; justify-content:center;
+}
+.vit__p--falta.vit__p--meta .vit__marco { border:2px dashed var(--red); }
+.vit__grande { font-size:2rem; font-weight:700; letter-spacing:-.05em; line-height:1; color:var(--color-text-dim); font-variant-numeric:tabular-nums; }
+.vit__p--falta.vit__p--meta .vit__grande { color:var(--red); }
+.vit__nombre { font-size:.72rem; font-weight:600; line-height:1.2; overflow-wrap:anywhere; }
+.vit__cuando { font-size:.7rem; line-height:1.35; color:var(--color-text-dim); }
+.vit__p--meta .vit__cuando b { color:var(--red); font-weight:600; }
+
+/* ——— la gala: llegaste a la meta y corren los creditos de tu año.
+   siempre a oscuras, sea de dia o de noche: es una sala de cine ——— */
+.gala {
+  /* los colores derivados se resuelven en :root, con el tema de la pagina:
+     hay que volver a declararlos aca para que tomen los de noche */
+  --color-text:var(--graphite); --color-text-dim:var(--steel-600);
+  position:fixed; inset:0; z-index:85; background:#0b0b0d; color:var(--color-text);
+  animation:glitch-in .42s steps(5,end) both;
+}
+.gala[hidden] { display:none; }
+.gala__rollo { position:absolute; inset:0; overflow-y:auto; overscroll-behavior:contain; scrollbar-width:none; }
+.gala__rollo::-webkit-scrollbar { display:none; }
+.gala__rollo:focus { outline:none; }
+.cr__grupo { margin-top:1.5rem; }
+.gala__x { position:absolute; top:.9rem; right:var(--frame-x); z-index:1; background:#0b0b0d; }
+.gala__apertura, .gala__fin {
+  min-height:100vh; min-height:100dvh; padding:4.5rem var(--frame-x) 3rem;
+  display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; gap:1.4rem;
+}
+.gala__mono {
+  font-family:var(--font-mono); font-weight:700; font-size:clamp(.85rem,2.4vw,1.3rem); line-height:1.12;
+  text-align:left; text-transform:none; animation:espasmo .5s steps(4,end) .55s 1 both;
+}
+.gala__mono b { color:var(--red); font-weight:700; }
+.gala__cifra { position:relative; }
+.gala__n { font-size:clamp(6.5rem,26vw,15rem); font-weight:700; letter-spacing:-.06em; line-height:.8; font-variant-numeric:tabular-nums; }
+.gala__sello {
+  position:absolute; top:50%; left:50%; width:max-content; translate:-50% -50%;
+  border:3px solid var(--red); color:var(--red); background:rgba(11,11,13,.86);
+  font-weight:700; font-size:clamp(1rem,3.4vw,1.7rem); letter-spacing:.18em; padding:.4rem 1rem;
+  animation:sello-golpe .6s steps(6,end) 1s both;
+}
+.gala__de { font-size:clamp(1rem,2.6vw,1.4rem); color:var(--color-text-dim); letter-spacing:-.02em; }
+.gala__creditos { max-width:46rem; margin:0 auto; padding:0 var(--frame-x) 6rem; }
+.cr__tit { text-align:center; font-size:.6875rem; letter-spacing:var(--track-caps); color:var(--red-luz); margin:5.5rem 0 1.5rem; }
+.cr { display:grid; grid-template-columns:1fr 1fr; gap:0 1.5rem; align-items:baseline; padding:.5rem 0; }
+.cr__rol { text-align:right; font-size:.75rem; letter-spacing:var(--track-caps); color:var(--color-text-dim); }
+.cr__q { font-size:1.2rem; font-weight:700; letter-spacing:-.02em; line-height:1.15; }
+.cr__q small { display:block; margin-top:.15rem; font-size:.75rem; font-weight:400; letter-spacing:0; color:var(--color-text-dim); }
+.cr__cierre { display:flex; flex-direction:column; align-items:center; gap:.7rem; text-align:center; }
+.cr__cierre .vit__marco { width:min(11rem,52vw); }
+.cr__cierre .vit__num { font-size:1.1rem; padding:.4rem .6rem; }
+.cr__cierre .cr__q { font-size:1.6rem; }
+.cr__posters { display:flex; flex-wrap:wrap; justify-content:center; gap:.7rem; }
+.cr__posters .vit__marco { width:5.2rem; }
+.gala__finT { font-size:clamp(5rem,20vw,12rem); font-weight:700; letter-spacing:-.06em; line-height:.8; }
+.gala__fin .acciones { justify-content:center; }
+
+/* los monos bailarines: son texto, un cuadro atras de otro en un <pre>.
+   a los costados de la apertura y del fin, y todos juntos antes del fin */
+.gala__escena {
+  display:grid; grid-template-columns:1fr auto 1fr; align-items:center;
+  gap:2rem clamp(1.5rem,4vw,4rem); width:100%; max-width:74rem;
+}
+.gala__centro { display:flex; flex-direction:column; align-items:center; gap:1.4rem; }
+.mono {
+  margin:0; font-family:var(--font-mono); font-weight:700; line-height:1;
+  font-size:clamp(5px,.74vw,10px); text-align:left; text-transform:none;
+}
+.mono b { color:var(--red); font-weight:700; }
+.mono:empty { display:none; }
+.gala__escena > .mono { font-size:clamp(6px,.95vw,13px); }
+.gala__escena > .mono:first-child { justify-self:end; }
+.gala__escena > .mono:last-child { justify-self:start; }
+.baile .mono { font-size:clamp(5px,.66vw,9px); }   /* los cinco en una sola fila */
+.gala__baile { padding:0 var(--frame-x) 5rem; }
+.baile { display:flex; flex-wrap:wrap; justify-content:center; align-items:flex-end; gap:2.4rem 2rem; }
+@media (max-width:820px) {
+  /* en el telefono van de a dos, abajo, y la letra se achica hasta que entren */
+  .gala__escena { grid-template-columns:1fr 1fr; gap:2.2rem 1rem; }
+  .gala__centro { grid-column:1 / -1; grid-row:1; }
+  .gala__escena > .mono { grid-row:2; }
+  .gala__escena > .mono:first-child, .gala__escena > .mono:last-child { justify-self:center; }
+  .gala__escena > .mono, .baile .mono { font-size:min(8px, calc((50vw - 2.4rem) / (var(--cols, 40) * .61))); }
+}
+@media (max-width:640px) {
+  .cr { grid-template-columns:1fr; text-align:center; padding:.75rem 0; }
+  .cr__rol { text-align:center; margin-bottom:.15rem; }
+  .cr__tit { margin-top:4.5rem; }
+}
+
 .chips { display:flex; gap:.5rem; flex-wrap:wrap; margin-bottom:1.3rem; }
 .chip { font:inherit; font-size:.6875rem; letter-spacing:var(--track-caps); padding:.35rem .8rem; border:1px solid var(--color-border-strong); background:none; color:var(--color-text-dim); cursor:pointer; text-transform:lowercase; transition:border-color .16s, color .16s; }
 .chip:hover { color:var(--color-text); }
@@ -760,6 +870,7 @@ section + section { margin-top:4.5rem; }
   <div class="hud__brand">
     <svg viewBox="0 0 96 84" aria-hidden="true" xml:space="preserve">
       <g font-family="Consolas,'Courier New',monospace" font-size="10" font-weight="700" fill="currentColor" xml:space="preserve">
+        <text class="corona" x="1" y="0" fill="#e10600" xml:space="preserve">   \^/\^/\^/</text>
         <text x="1" y="11" xml:space="preserve">   .==#%#==.</text>
         <text x="1" y="22" xml:space="preserve"> =%+.:#%#:.+%=</text>
         <text x="1" y="33" xml:space="preserve">(@:   ...   :<tspan fill="#e10600">R</tspan>)</text>
@@ -781,6 +892,11 @@ section + section { margin-top:4.5rem; }
 
 <div class="toast" id="toast" hidden></div>
 
+<div class="gala" id="gala" data-theme="dark" role="dialog" aria-modal="true" aria-label="meta cumplida" hidden>
+  <div class="gala__rollo" id="galaRollo" tabindex="-1"></div>
+  <button class="btn gala__x" data-gala-cerrar>cerrar</button>
+</div>
+
 <main>
   <div id="boot">
     <div class="skel skel-l" style="width:38%;height:4.5rem;margin-bottom:2rem"></div>
@@ -796,10 +912,12 @@ section + section { margin-top:4.5rem; }
         <span class="mask"><span class="marcador__n" id="vistas">0</span></span>
         <span class="mask" style="--i:1"><span class="marcador__meta">/ <span id="meta"></span> este año</span></span>
         <span class="mask" style="--i:2"><span class="pill" id="estado"></span></span>
+        <span class="mask" style="--i:3"><button class="chip" id="verGala" data-gala hidden>ver los créditos</button></span>
       </div>
-      <div class="barra"><div class="barra__yo" id="barraYo"></div><div class="barra__hoy" id="barraHoy"></div></div>
+      <div class="barra" id="barra"><div class="barra__yo" id="barraYo"></div><div class="barra__hoy" id="barraHoy"></div></div>
       <div class="caps" id="barraPie"></div>
       <div class="datos" id="datos"></div>
+      <div id="premioLogro"></div>
     </section>
 
     <section>
@@ -836,6 +954,11 @@ section + section { margin-top:4.5rem; }
       </div>
       <div id="retoLogro"></div>
       <div class="retos" id="retos"></div>
+    </section>
+
+    <section id="secPremios" hidden>
+      <div class="tit"><span class="slash">/</span><h2 class="caps">premios</h2></div>
+      <div class="vit" id="vitrina"></div>
     </section>
 
     <section id="secAnio" hidden>
@@ -1049,6 +1172,7 @@ const pintarJuntos = () => {
   $("secJuntos").hidden = false;
 
   usuario = data.usuario;
+  document.querySelector(".hud__brand").classList.remove("coronado");
   if (!location.search.includes("u=juntos")) history.replaceState(null, "", "?u=juntos");
   $("user").textContent = "juntos";
   $("user").dataset.otro = data.usuarios[0].usuario;
@@ -1066,7 +1190,7 @@ const pintarJuntos = () => {
       ${j.cada ? `1 cada ${j.cada.toFixed(1)} días` : "—"} · van para ${j.proyeccion ?? 0} a fin de año
     </div>
     <div class="caps" style="opacity:.7">
-      ${data.ritmos.map((r) => `${esc(r.nombre)} ${r.vistas}/${r.meta}`).join(" &nbsp;·&nbsp; ")}
+      ${data.ritmos.map((r) => `${esc(r.nombre)} ${r.vistas}/${r.meta}${r.vistas >= r.meta ? ` <span style="color:var(--red)">meta cumplida</span>` : ""}`).join(" &nbsp;·&nbsp; ")}
     </div>
     ${j.ultima ? `<div class="caps juntas__ultima" style="opacity:.55">última: ${esc(j.ultima.nombre)} · ${j.ultima.visto.slice(5)}</div>` : ""}`;
 
@@ -1979,6 +2103,259 @@ const girarRuleta = async () => {
   boton.classList.remove("btn--p");
 };
 
+/* ---------- premios ----------
+   los numeros redondos y la meta. lo ganado queda en la vitrina con la
+   pelicula que fue esa numero; lo que falta se ve desde antes, con lo que
+   te espera del otro lado: un premio que no sabes que existe no tira */
+const DIAS_FESTEJO = 14;
+const esReciente = (iso) => (Date.now() - new Date(iso + "T12:00:00").getTime()) / 864e5 <= DIAS_FESTEJO;
+const fechaBreve = (iso) => new Date(iso + "T12:00:00").toLocaleDateString("es-AR", { day: "numeric", month: "short" }).replace(".", "");
+const MES_ENTERO = ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"];
+const sobraDe = (r) => r.diasDeSobra > 1 ? `${r.diasDeSobra} días antes de fin de año`
+  : r.diasDeSobra === 1 ? "un día antes de fin de año" : "el último día del año";
+
+/* se festeja de a uno. la meta va primero y no vence; de los redondos,
+   solo el ultimo y solo si es de estos dias: entrar con cuatro ganados no
+   es pasar por cuatro carteles */
+const premioPorFestejar = () => {
+  const sin = (data.premios ?? []).filter((p) => p.logrado && !yaFestejado(p.id));
+  const meta = sin.find((p) => p.esMeta);
+  if (meta) return meta;
+  const ultimo = sin.at(-1);
+  sin.slice(0, -1).forEach((p) => marcarFestejado(p.id));
+  if (ultimo && !esReciente(ultimo.peli.visto)) { marcarFestejado(ultimo.id); return null; }
+  return ultimo ?? null;
+};
+
+const marcoDe = (f, n = null) => `<span class="vit__marco">${f.poster
+  ? `<img src="${IMG}${f.poster}" alt="" loading="lazy" onerror="this.remove()">` : ""}${n ? `<span class="vit__num">${n}</span>` : ""}</span>`;
+
+const pintarVitrina = () => {
+  const ps = data.premios ?? [];
+  $("secPremios").hidden = !ps.length;
+  $("vitrina").innerHTML = ps.map((p) => p.logrado
+    ? `<div class="vit__p${p.esMeta ? " vit__p--meta" : ""}" data-peli="${esc(p.peli.nombre)}" data-anio="${p.peli.anio}">
+         ${marcoDe(p.peli, p.n)}
+         <span class="vit__nombre">${esc(p.peli.nombre)}</span>
+         <span class="vit__cuando">${p.esMeta ? "<b>la meta</b> · " : ""}${fechaBreve(p.peli.visto)}</span>
+       </div>`
+    : `<div class="vit__p vit__p--falta${p.esMeta ? " vit__p--meta" : ""}">
+         <span class="vit__marco"><span class="vit__grande">${p.n}</span></span>
+         <span class="vit__nombre">${p.esMeta ? "la meta · " : ""}${p.faltan === 1 ? "falta 1" : `faltan ${p.faltan}`}</span>
+         ${p.esMeta ? `<span class="vit__cuando">acá corren los créditos de tu año</span>` : ""}
+       </div>`).join("");
+  /* en el telefono no entran todos: que se vea lo ultimo y lo que viene */
+  $("vitrina").scrollLeft = $("vitrina").scrollWidth;
+};
+
+let galaPedida = null, galaRaf = 0;
+
+const pintarPremioNuevo = () => {
+  const p = premioPorFestejar();
+  $("premioLogro").innerHTML = p && !p.esMeta
+    ? `<div class="hito hito--reto enter">
+         <img class="festejo-gif festejo-gif--dia" src="/monito-festeja.gif" alt="" aria-hidden="true">
+         <img class="festejo-gif festejo-gif--noche" src="/monito-festeja-noche.gif" alt="" aria-hidden="true">
+         <div style="flex:1;min-width:200px">
+           <div class="hito__sello">número redondo</div>
+           <div class="hito__t">la número ${p.n} fue ${esc(p.peli.nombre)}</div>
+           <div class="hito__lista">${fecha(p.peli.visto)} · ya está en tus premios</div>
+         </div>
+         <button class="btn btn--p" data-festejo="${esc(p.id)}">buenísimo</button>
+       </div>`
+    : "";
+  /* la meta no es un cartel: se apaga la luz. una sola vez por meta, y
+     despues del conteo, para que primero veas el numero llegar */
+  if (p?.esMeta && galaPedida !== p.id) {
+    galaPedida = p.id;
+    setTimeout(abrirGala, suave ? 0 : 1400);
+  }
+};
+
+/* ---------- la gala ----------
+   los creditos del año: lo que viste contado como la ficha de una
+   pelicula. corren solos; si tocas, la rueda o el dedo mandan */
+const VEL_GALA = 72;
+const MONO_CORONADO = [
+  "   <b>\\^/\\^/\\^/</b>",
+  "   .==#%#==.",
+  " =%+.:#%#:.+%=",
+  "(@:   ...   :<b>R</b>)",
+  "(@.  ^   ^  .<b>R</b>)",
+  "(@:    <b>V</b>    :<b>R</b>)",
+  " =%= \\===/ =%=",
+  "  .=#%%%#=.",
+].join("\n");
+
+const htmlGala = () => {
+  const r = data.ritmo, a = data.solo?.anio;
+  const ganados = (data.premios ?? []).filter((p) => p.logrado && p.n <= r.meta);
+  const meta = ganados.find((p) => p.esMeta);
+  const coma = (n) => String(n).replace(".", ",");
+  const pelis = (n) => `${n} ${n === 1 ? "película" : "películas"}`;
+  const fila = (rol, quien, sub = "") =>
+    `<div class="cr"><span class="cr__rol">${rol}</span><span class="cr__q">${quien}${sub ? `<small>${sub}</small>` : ""}</span></div>`;
+  /* como en una ficha de verdad: el rol una vez, los nombres abajo */
+  const grupo = (rol, xs) => xs?.length
+    ? `<div class="cr__grupo">${xs.map((x, i) => fila(i ? "" : rol, esc(x.nombre), pelis(x.cuantas))).join("")}</div>` : "";
+  const mesTop = a?.porMes?.length ? a.porMes.reduce((m, x) => (x.n > m.n ? x : m), a.porMes[0]) : null;
+
+  return `
+    <div class="gala__apertura">
+      <div class="gala__escena">
+        <pre class="mono" data-mono="0" aria-hidden="true"></pre>
+        <div class="gala__centro">
+          <pre class="gala__mono" aria-hidden="true">${MONO_CORONADO}</pre>
+          <div class="gala__cifra"><div class="gala__n">${r.meta}</div><div class="gala__sello">meta cumplida</div></div>
+          <div class="gala__de">películas en ${r.anio} · ${esc(data.nombre)}</div>
+        </div>
+        <pre class="mono" data-mono="1" aria-hidden="true"></pre>
+      </div>
+    </div>
+
+    <div class="gala__creditos">
+      <div class="cr__tit">elenco, por orden de aparición</div>
+      ${data.primera ? fila("la primera", esc(data.primera.nombre), fecha(data.primera.visto)) : ""}
+      ${ganados.filter((p) => !p.esMeta).map((p) => fila(`la número ${p.n}`, esc(p.peli.nombre), fecha(p.peli.visto))).join("")}
+
+      <div class="cr__tit">la que cerró la meta</div>
+      <div class="cr__cierre">
+        ${marcoDe(meta.peli, meta.n)}
+        <span class="cr__q">${esc(meta.peli.nombre)}<small>${fecha(meta.peli.visto)} · ${sobraDe(r)}</small></span>
+      </div>
+
+      ${a ? `
+      <div class="cr__tit">ficha técnica</div>
+      ${fila("duración total", `${a.horas} horas`, `${coma((a.horas / 24).toFixed(1))} días enteros de pantalla`)}
+      ${a.racha > 1 ? fila("plano secuencia", `${a.racha} días seguidos`, "tu racha más larga") : ""}
+      ${a.dia ? fila("día de rodaje", esc(a.dia.nombre), pelis(a.dia.cuantas)) : ""}
+      ${mesTop ? fila("mes más cinéfilo", MES_ENTERO[a.porMes.indexOf(mesTop)] ?? esc(mesTop.mes), pelis(mesTop.n)) : ""}
+      ${a.promedio ? fila("la crítica", `${coma(a.promedio)} de 5`, "tu nota promedio") : ""}
+      ${a.larga ? fila("la más larga", esc(a.larga.nombre), `${a.larga.minutos} min`) : ""}
+      ${a.vieja ? fila("la más vieja", esc(a.vieja.nombre), a.vieja.anio) : ""}
+      ${grupo("dirección", a.directores)}
+      ${grupo("género", a.generos)}
+      ${grupo("locaciones", a.paises)}
+      ${grupo("época", a.decadas)}
+
+      ${a.mejores?.length ? `<div class="cr__tit">las que mejor puntuaste</div>
+      <div class="cr__posters">${a.mejores.filter((f) => f.poster).map((f) => marcoDe(f)).join("")}</div>` : ""}` : ""}
+    </div>
+
+    <div class="gala__baile">
+      <div class="cr__tit">coreografía: los monos</div>
+      <div class="baile" data-baile></div>
+    </div>
+
+    <div class="gala__fin">
+      <div class="gala__escena">
+        <pre class="mono" data-mono="2" aria-hidden="true"></pre>
+        <div class="gala__centro">
+          <div class="gala__finT">fin</div>
+          <div class="gala__de">${r.yapa ? `y ${r.yapa} de yapa. ` : ""}${r.restantes ? `quedan ${r.restantes} días de ${r.anio}.` : ""}</div>
+          <div class="acciones">
+            <button class="btn" data-gala>otra vez</button>
+            <button class="btn btn--p" data-gala-cerrar>buenísimo</button>
+          </div>
+        </div>
+        <pre class="mono" data-mono="3" aria-hidden="true"></pre>
+      </div>
+    </div>`;
+};
+
+/* ---------- los monos bailarines ----------
+   salen de gifs pasados a ascii (scripts/monos-baile.py): la silueta y el
+   paso son del gif, las caras estan dibujadas a mano. se bajan una sola
+   vez, cuando hay meta cumplida; si no llegan, la gala corre igual */
+let monos = null, bailes = [];
+const traerMonos = () =>
+  (monos ??= fetch("/monos.json").then((r) => r.json()).then((d) => d.monos ?? []).catch(() => []));
+
+/* un cuadro es texto plano mas una capa que dice que letras van en rojo */
+const htmlMono = (txt, rojo) => {
+  if (!rojo) return esc(txt);
+  const marca = rojo.split("\n");
+  return txt.split("\n").map((linea, f) => {
+    let out = "", abierto = false;
+    for (let c = 0; c < linea.length; c++) {
+      const es = marca[f]?.[c] === "x";
+      if (es !== abierto) { out += es ? "<b>" : "</b>"; abierto = es; }
+      out += esc(linea[c]);
+    }
+    return out + (abierto ? "</b>" : "");
+  }).join("\n");
+};
+
+const pararBaile = () => { bailes.forEach(clearInterval); bailes = []; };
+
+const bailar = (pre, m) => {
+  m.html ??= m.cuadros.map((c, i) => htmlMono(c, m.rojo?.[i]));
+  pre.style.setProperty("--cols", m.cols);
+  let n = suave ? Math.floor(m.html.length / 3) : 0;
+  pre.innerHTML = m.html[n];
+  if (!suave) bailes.push(setInterval(() => { n = (n + 1) % m.html.length; pre.innerHTML = m.html[n]; }, m.ms));
+};
+
+const armarBaile = async () => {
+  const lista = await traerMonos();
+  pararBaile();
+  if ($("gala").hidden) return;
+  document.querySelectorAll("#gala [data-mono]").forEach((pre) => {
+    const m = lista[Number(pre.dataset.mono)];
+    if (m) bailar(pre, m);
+  });
+  const fila = document.querySelector("#gala [data-baile]");
+  if (!lista.length) return fila?.parentElement.remove();
+  fila.innerHTML = lista.map(() => `<pre class="mono" aria-hidden="true"></pre>`).join("");
+  [...fila.children].forEach((pre, i) => bailar(pre, lista[i]));
+};
+
+const frenarGala = () => cancelAnimationFrame(galaRaf);
+
+const abrirGala = () => {
+  if (data?.tipo === "juntos" || !data?.ritmo?.cumplida) return;
+  const g = $("gala"), rollo = $("galaRollo");
+  frenarGala();
+  rollo.innerHTML = htmlGala();
+  g.hidden = false;
+  armarBaile();
+  rollo.scrollTop = 0;
+  document.documentElement.style.overflow = "hidden";
+  /* "otra vez" la abre estando abierta: que la entrada vuelva a correr */
+  g.style.animation = "none"; void g.offsetWidth; g.style.animation = "";
+  rollo.focus({ preventScroll: true });
+  if (suave) return;
+
+  /* la apertura se queda quieta un momento y despues sube sola */
+  let pos = 0, antes = null;
+  const arranque = performance.now() + 3400;
+  const tic = (t) => {
+    if (t >= arranque) {
+      if (antes != null) pos += (Math.min(50, t - antes) * VEL_GALA) / 1000;
+      antes = t;
+      rollo.scrollTop = pos;
+      if (pos >= rollo.scrollHeight - rollo.clientHeight) return;
+    }
+    galaRaf = requestAnimationFrame(tic);
+  };
+  galaRaf = requestAnimationFrame(tic);
+};
+
+const cerrarGala = () => {
+  const g = $("gala");
+  if (g.hidden) return;
+  frenarGala();
+  pararBaile();
+  g.hidden = true;
+  $("galaRollo").innerHTML = "";
+  document.documentElement.style.overflow = "";
+  /* festejada la meta, los redondos de antes ya no piden su cartel */
+  const meta = (data.premios ?? []).find((p) => p.esMeta && p.logrado);
+  if (meta) (data.premios ?? []).filter((p) => p.logrado && p.n <= meta.n).forEach((p) => marcarFestejado(p.id));
+  if (data.tipo !== "juntos") pintarPremioNuevo();
+  $("verGala").focus({ preventScroll: true });
+};
+
 const pintar = () => {
   if (data.tipo === "juntos") return pintarJuntos();
   document.querySelectorAll("#app > section").forEach((sec) => (sec.hidden = false));
@@ -2005,16 +2382,29 @@ const pintar = () => {
     ? `último intento ${hace(s.ultimoIntento)}: ${s.error}`
     : `letterboxd sincronizado ${hace(s.ultima)}. click para traer ahora.`;
 
+  /* con la meta cumplida el marcador deja de contar lo que falta: dice
+     que llegaste, cuando, y que lo que sigue es yapa */
+  const hecha = Boolean(r.cumplida);
   contarHasta($("vistas"), r.vistas);
   $("meta").textContent = r.meta;
-  $("estado").textContent = r.alDia ? `${-r.deficit} adelantado` : `${r.deficit} atrasado`;
+  $("estado").textContent = hecha ? "meta cumplida" : r.alDia ? `${-r.deficit} adelantado` : `${r.deficit} atrasado`;
+  $("estado").classList.toggle("pill--on", hecha);
+  $("verGala").hidden = !hecha;
+  if (hecha) traerMonos();   /* que ya esten cuando se apague la luz */
+  $("barra").classList.toggle("llena", hecha);
+  document.querySelector(".hud__brand").classList.toggle("coronado", hecha);
   $("barraYo").style.width = Math.min(100, (r.vistas / r.meta) * 100) + "%";
   $("barraHoy").style.left = ((r.transcurridos / (r.transcurridos + r.restantes)) * 100) + "%";
-  $("barraPie").textContent = `faltan ${r.faltan} en ${r.restantes} días · la línea marca dónde deberías ir hoy`;
+  $("barraPie").textContent = hecha
+    ? `llegaste el ${fecha(r.metaEl)}, ${sobraDe(r)} · todo lo que sigue es yapa`
+    : `faltan ${r.faltan} en ${r.restantes} días · la línea marca dónde deberías ir hoy`;
 
   if (primera) {
-    $("datos").innerHTML = [["tu ritmo", cada(r.ritmoActual)], ["necesario", cada(r.ritmoNecesario)],
-      ["proyección", r.proyeccion], ["tocás la meta", fecha(r.fechaMeta)], ["watchlist", r.pendientes]]
+    $("datos").innerHTML = [["tu ritmo", cada(r.ritmoActual)],
+      hecha ? ["de yapa", `+${r.yapa}`] : ["necesario", cada(r.ritmoNecesario)],
+      ["proyección", r.proyeccion],
+      hecha ? ["tocaste la meta", fecha(r.metaEl)] : ["tocás la meta", fecha(r.fechaMeta)],
+      ["watchlist", r.pendientes]]
       .map(([k, v], i) => `<div><div class="caps">${k}</div><span class="mask" style="--i:${i + 3}"><span class="dato__v">${v}</span></span></div>`).join("");
     $("chips").innerHTML = [[null, "cualquiera"], [90, "tengo 90 min"], [120, "tengo 2 horas"], [180, "tengo la tarde"]]
       .map(([v, t]) => `<button class="chip" data-min="${v ?? ""}">${t}</button>`).join("");
@@ -2080,6 +2470,8 @@ const pintar = () => {
     .map((f, i) => filaPeli({ ...f, puntaje: null }, `${estrellas(f.rating)}${fechaCorta(f.visto)}`, i))
     .join("");
 
+  pintarVitrina();
+  pintarPremioNuevo();
   pintarSolo(primera);
   pintarAnio();
   primera = false;
@@ -2204,7 +2596,13 @@ const volver = () => {
 $("dirCerrar").addEventListener("click", cerrarPanel);
 $("dirVolver").addEventListener("click", volver);
 dirFondo.addEventListener("click", cerrarPanel);
-addEventListener("keydown", (e) => { if (e.key === "Escape" && !dirPanel.hidden) cerrarPanel(); });
+addEventListener("keydown", (e) => {
+  if (e.key !== "Escape") return;
+  if (!dirPanel.hidden) cerrarPanel();
+  else cerrarGala();
+});
+/* los creditos corren solos hasta que alguien quiere manejarlos */
+["wheel", "touchstart", "keydown"].forEach((ev) => $("galaRollo").addEventListener(ev, frenarGala, { passive: true }));
 
 $("retosRefresh").addEventListener("click", async () => {
   const caja = $("retos");
@@ -2215,6 +2613,9 @@ $("retosRefresh").addEventListener("click", async () => {
 
 document.addEventListener("click", (e) => {
   if (e.target.closest("#retosRefresh") || e.target.closest("#dirCerrar") || e.target.closest("#dirVolver")) return;
+
+  if (e.target.closest("[data-gala-cerrar]")) return cerrarGala();
+  if (e.target.closest("[data-gala]")) return abrirGala();
 
   const fest = e.target.closest("[data-festejo]");
   if (fest) {

@@ -47,22 +47,33 @@ export const vincular = async (chatId, usuario) => {
 const esc = (t) =>
     String(t ?? "").replace(/[_*[\]()~`>#+\-=|{}.!\\]/g, (c) => `\\${c}`);
 
+/* como venis con la meta, ya escapado: lo usan el mensaje del dia y /estado */
+export const marchaDe = (r) =>
+    r.cumplida
+        ? `meta cumplida${r.yapa ? ` · ${esc(`+${r.yapa}`)} de yapa` : ""}`
+        : r.alDia ? `${-r.deficit} adelantado` : `${r.deficit} atrasado`;
+
 export const armarMensaje = (p) => {
     const r = p.ritmo;
     const f = p.sugerencia;
 
-    const cabecera = r.alDia
-        ? `${esc(p.nombre)} — *${r.vistas}/${r.meta}* · ${-r.deficit} adelantado`
-        : `${esc(p.nombre)} — *${r.vistas}/${r.meta}* · ${r.deficit} atrasado`;
+    const cabecera = `${esc(p.nombre)} — *${r.vistas}/${r.meta}* · ${marchaDe(r)}`;
+
+    /* el dia que caes en un premio va arriba de todo, elijas lo que elijas */
+    const premio = p.premioDeHoy;
+    const festejo = !premio ? []
+        : ["", premio.esMeta
+            ? `🏆 *llegaste a la meta* con ${esc(premio.peli.nombre)}`
+            : `🎬 *la número ${premio.n}* fue ${esc(premio.peli.nombre)}`];
 
     /* la web tiene tres estados y el bot tiene que respetarlos: si ya
        elegiste, no te ofrezco otra cosa */
     const NL = "\n";
     if (p.plan) {
-        return [cabecera, "", `📌 *${esc(p.plan.nombre)}*`, "", "_es tu plan de hoy_"].join(NL);
+        return [cabecera, ...festejo, "", `📌 *${esc(p.plan.nombre)}*`, "", "_es tu plan de hoy_"].join(NL);
     }
     if (p.dormido) {
-        return [cabecera, "", `dijiste que hoy no${esc(".")} mañana vemos${esc(".")}`].join(NL);
+        return [cabecera, ...festejo, "", `dijiste que hoy no${esc(".")} mañana vemos${esc(".")}`].join(NL);
     }
 
     const donde = f.dondeTipo === "sub" || f.dondeTipo === "gratis"
@@ -72,6 +83,7 @@ export const armarMensaje = (p) => {
 
     const partes = [
         cabecera,
+        ...festejo,
         "",
         `*${esc(f.nombre)}* \\(${f.anio}\\)`,
         `${f.minutos ? `${f.minutos} min · ` : ""}${esc((f.generos ?? []).join("/"))}${f.director ? ` · ${esc(f.director)}` : ""}`,
