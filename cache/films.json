@@ -88794,5 +88794,52 @@
    "alquiler": []
   },
   "actualizado": "2026-11-12T09:56:01.271Z"
+ },
+ "Grand Theft Hamlet::2024": {
+  "tmdb": 1234397,
+  "titulo": "Grand Theft Hamlet",
+  "original": "Grand Theft Hamlet",
+  "sinopsis": "Dos amigos desempleados tienen una nueva idea: quieren representar 'Hamlet' de Shakespeare en Grand Theft Auto. Pero incluso en un mundo virtual, la realidad se entromete en una película salvaje y alucinante filmada íntegramente dentro del videojuego ultraviolento.",
+  "tagline": null,
+  "puntaje": 6.5,
+  "votos": 70,
+  "minutos": 91,
+  "generos": [
+   "Animación",
+   "Documental"
+  ],
+  "paises": [
+   "GB",
+   "US"
+  ],
+  "idioma": "en",
+  "director": "Pinny Grylls",
+  "directorId": 1173994,
+  "reparto": [
+   "Sam Crane",
+   "Pinny Grylls",
+   "Jen Cohn",
+   "Tilly Steele",
+   "Dipo Ola"
+  ],
+  "repartoIds": [
+   1287082,
+   1173994,
+   1389956,
+   2175443,
+   2560110
+  ],
+  "popularidad": 1.2314,
+  "poster": "/61pws82KZEssg883HG3kwN16cRw.jpg",
+  "backdrop": "/6QZqB7AjfOaL9WGhu4ZXjGKeRxI.jpg",
+  "proveedores": {
+   "suscripcion": [
+    "MUBI",
+    "MUBI Amazon Channel"
+   ],
+   "gratis": [],
+   "alquiler": []
+  },
+  "actualizado": "2026-11-13T01:11:49.662Z"
  }
 }
