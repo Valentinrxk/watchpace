@@ -2,6 +2,14 @@
  "usuario": "valentinrxk",
  "diario": [
   {
+   "nombre": "Teenage Sex and Death at Camp Miasma",
+   "anio": 2026,
+   "visto": "2026-11-13",
+   "rating": 2,
+   "rewatch": false,
+   "clave": "1584752692"
+  },
+  {
    "nombre": "Primetime",
    "anio": 2026,
    "visto": "2026-11-11",
@@ -3219,6 +3227,13 @@
   }
  ],
  "vistas": [
+  {
+   "nombre": "Teenage Sex and Death at Camp Miasma",
+   "anio": 2026,
+   "slug": "teenage-sex-and-death-at-camp-miasma",
+   "clave": "teenage-sex-and-death-at-camp-miasma",
+   "uri": "https://letterboxd.com/film/teenage-sex-and-death-at-camp-miasma/"
+  },
   {
    "nombre": "Godzilla",
    "anio": 1954,
@@ -11517,5 +11532,5 @@
    "orden": 307
   }
  ],
- "actualizado": "2026-11-13T01:11:24.934Z"
+ "actualizado": "2026-11-13T17:51:32.424Z"
 }
