@@ -10,6 +10,14 @@
    "clave": "1584758850"
   },
   {
+   "nombre": "Primetime",
+   "anio": 2026,
+   "visto": "2026-11-13",
+   "rating": 3.5,
+   "rewatch": false,
+   "clave": "1585255703"
+  },
+  {
    "nombre": "Cruel Intentions",
    "anio": 1999,
    "visto": "2026-11-10",
@@ -3843,6 +3851,13 @@
   }
  ],
  "vistas": [
+  {
+   "nombre": "Primetime",
+   "anio": 2026,
+   "slug": "primetime-2026",
+   "clave": "primetime-2026",
+   "uri": "https://letterboxd.com/film/primetime-2026/"
+  },
   {
    "nombre": "Teenage Sex and Death at Camp Miasma",
    "anio": 2026,
@@ -13014,5 +13029,5 @@
    "orden": 487
   }
  ],
- "actualizado": "2026-11-13T17:51:32.835Z"
+ "actualizado": "2026-11-13T23:40:05.533Z"
 }
