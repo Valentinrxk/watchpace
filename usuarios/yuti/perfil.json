@@ -2,6 +2,14 @@
  "usuario": "yuti",
  "diario": [
   {
+   "nombre": "Thesis",
+   "anio": 1996,
+   "visto": "2026-11-15",
+   "rating": 4.5,
+   "rewatch": false,
+   "clave": "1588324084"
+  },
+  {
    "nombre": "Teenage Sex and Death at Camp Miasma",
    "anio": 2026,
    "visto": "2026-11-13",
@@ -3851,6 +3859,13 @@
   }
  ],
  "vistas": [
+  {
+   "nombre": "Thesis",
+   "anio": 1996,
+   "slug": "thesis",
+   "clave": "thesis",
+   "uri": "https://letterboxd.com/film/thesis/"
+  },
   {
    "nombre": "Primetime",
    "anio": 2026,
@@ -13029,5 +13044,5 @@
    "orden": 487
   }
  ],
- "actualizado": "2026-11-13T23:40:05.533Z"
+ "actualizado": "2026-11-15T22:56:53.751Z"
 }
