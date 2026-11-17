@@ -88841,5 +88841,100 @@
    "alquiler": []
   },
   "actualizado": "2026-11-13T01:11:49.662Z"
+ },
+ "The Big Short::2015": {
+  "tmdb": 318846,
+  "titulo": "La gran apuesta",
+  "original": "The Big Short",
+  "sinopsis": "Cuando cuatro tipos fuera del sistema descubren que los grandes bancos, los medios de comunicación y el gobierno se niegan a reconocer el colapso de la economía, tienen una idea: 'La Gran Apuesta'…  pero sus inversiones de riesgo les conducen al lado oscuro de la banca moderna, donde deben poner en duda todo y a todos...",
+  "tagline": "Esta es una historia real.",
+  "puntaje": 7.4,
+  "votos": 10261,
+  "minutos": 130,
+  "generos": [
+   "Comedia",
+   "Drama"
+  ],
+  "paises": [
+   "US"
+  ],
+  "idioma": "en",
+  "director": "Adam McKay",
+  "directorId": 55710,
+  "reparto": [
+   "Steve Carell",
+   "Christian Bale",
+   "Ryan Gosling",
+   "Brad Pitt",
+   "Marisa Tomei"
+  ],
+  "repartoIds": [
+   4495,
+   3894,
+   30614,
+   287,
+   3141
+  ],
+  "popularidad": 10.4456,
+  "poster": "/kNjz9Ezuf8tZHP2MfMbtDzDJ8wR.jpg",
+  "backdrop": "/iof28QKa6bKFYCXSexuITxdKBvi.jpg",
+  "proveedores": {
+   "suscripcion": [
+    "Paramount Plus",
+    "MovistarTV",
+    "Paramount+ Amazon Channel",
+    "Universal+ Amazon Channel"
+   ],
+   "gratis": [],
+   "alquiler": [
+    "Apple TV Store",
+    "MovistarTV",
+    "Claro video",
+    "Amazon Video"
+   ]
+  },
+  "actualizado": "2026-11-17T02:58:37.855Z"
+ },
+ "Free for All::1976": {
+  "tmdb": 568253,
+  "titulo": "Piedra libre",
+  "original": "Piedra libre",
+  "sinopsis": "Eugenia's parents die. She goes to live with Amalita, her close friend. Her grandmother Amalia Pradere a wealth landlady, takes the orphan under her protection. After a chain of events, disappearing her grandchild, Eugenia will take Amalita's place. She will inherit not only Amalia's possessions but also Ezequiel's love, Amalita's widower.",
+  "tagline": null,
+  "puntaje": 6.8,
+  "votos": 5,
+  "minutos": 97,
+  "generos": [
+   "Drama"
+  ],
+  "paises": [
+   "AR"
+  ],
+  "idioma": "es",
+  "director": "Leopoldo Torre Nilsson",
+  "directorId": 116197,
+  "reparto": [
+   "Marilina Ross",
+   "Juan José Camero",
+   "Mecha Ortiz",
+   "Luisina Brando",
+   "Flora Steinberg"
+  ],
+  "repartoIds": [
+   1084712,
+   1084474,
+   1417149,
+   1077529,
+   1811809
+  ],
+  "popularidad": 0.5246,
+  "poster": "/b4KDDBw3ehWlI9jGaazQcpgPLcv.jpg",
+  "backdrop": "/1EGrKTCuXNOcsncQ4zfe5vlStoW.jpg",
+  "proveedores": {
+   "suscripcion": [],
+   "gratis": [],
+   "alquiler": []
+  },
+  "actualizado": "2026-11-17T02:58:37.900Z"
  }
 }

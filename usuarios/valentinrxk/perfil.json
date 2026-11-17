@@ -2,6 +2,14 @@
  "usuario": "valentinrxk",
  "diario": [
   {
+   "nombre": "Battle of the Sexes",
+   "anio": 2017,
+   "visto": "2026-11-16",
+   "rating": 3.5,
+   "rewatch": false,
+   "clave": "1590007402"
+  },
+  {
    "nombre": "Thesis",
    "anio": 1996,
    "visto": "2026-11-15",
@@ -3235,6 +3243,13 @@
   }
  ],
  "vistas": [
+  {
+   "nombre": "Battle of the Sexes",
+   "anio": 2017,
+   "slug": "battle-of-the-sexes-2017",
+   "clave": "battle-of-the-sexes-2017",
+   "uri": "https://letterboxd.com/film/battle-of-the-sexes-2017/"
+  },
   {
    "nombre": "Thesis",
    "anio": 1996,
@@ -9083,12 +9098,20 @@
  ],
  "watchlist": [
   {
+   "nombre": "The Big Short",
+   "anio": 2015,
+   "slug": "the-big-short",
+   "clave": "the-big-short",
+   "uri": "https://letterboxd.com/film/the-big-short/",
+   "orden": 0
+  },
+  {
    "nombre": "Thief",
    "anio": 1981,
    "slug": "thief",
    "clave": "thief",
    "uri": "https://letterboxd.com/film/thief/",
-   "orden": 0
+   "orden": 1
   },
   {
    "nombre": "Beyond the Infinite Two Minutes",
@@ -9096,7 +9119,7 @@
    "slug": "beyond-the-infinite-two-minutes",
    "clave": "beyond-the-infinite-two-minutes",
    "uri": "https://letterboxd.com/film/beyond-the-infinite-two-minutes/",
-   "orden": 1
+   "orden": 2
   },
   {
    "nombre": "The Flamenco Guitar of Yerai Cortés",
@@ -9104,7 +9127,7 @@
    "slug": "the-flamenco-guitar-of-yerai-cortes",
    "clave": "the-flamenco-guitar-of-yerai-cortes",
    "uri": "https://letterboxd.com/film/the-flamenco-guitar-of-yerai-cortes/",
-   "orden": 2
+   "orden": 3
   },
   {
    "nombre": "The Night Logan Woke Up",
@@ -9112,7 +9135,7 @@
    "slug": "the-night-logan-woke-up",
    "clave": "the-night-logan-woke-up",
    "uri": "https://letterboxd.com/film/the-night-logan-woke-up/",
-   "orden": 3
+   "orden": 4
   },
   {
    "nombre": "The Beasts",
@@ -9120,7 +9143,7 @@
    "slug": "the-beasts-2022",
    "clave": "the-beasts-2022",
    "uri": "https://letterboxd.com/film/the-beasts-2022/",
-   "orden": 4
+   "orden": 5
   },
   {
    "nombre": "The Enigma of Franca Farmín",
@@ -9128,7 +9151,7 @@
    "slug": "the-enigma-of-franca-farmin",
    "clave": "the-enigma-of-franca-farmin",
    "uri": "https://letterboxd.com/film/the-enigma-of-franca-farmin/",
-   "orden": 5
+   "orden": 6
   },
   {
    "nombre": "Your Mother Your Mother Your Mother",
@@ -9136,7 +9159,7 @@
    "slug": "your-mother-your-mother-your-mother",
    "clave": "your-mother-your-mother-your-mother",
    "uri": "https://letterboxd.com/film/your-mother-your-mother-your-mother/",
-   "orden": 6
+   "orden": 7
   },
   {
    "nombre": "Rehearsals for a Revolution",
@@ -9144,7 +9167,7 @@
    "slug": "rehearsals-for-a-revolution",
    "clave": "rehearsals-for-a-revolution",
    "uri": "https://letterboxd.com/film/rehearsals-for-a-revolution/",
-   "orden": 7
+   "orden": 8
   },
   {
    "nombre": "Frosted Window",
@@ -9152,7 +9175,7 @@
    "slug": "frosted-window",
    "clave": "frosted-window",
    "uri": "https://letterboxd.com/film/frosted-window/",
-   "orden": 8
+   "orden": 9
   },
   {
    "nombre": "Ciudad de muertos",
@@ -9160,7 +9183,7 @@
    "slug": "city-of-the-dead-2026",
    "clave": "city-of-the-dead-2026",
    "uri": "https://letterboxd.com/film/city-of-the-dead-2026/",
-   "orden": 9
+   "orden": 10
   },
   {
    "nombre": "Truly Naked",
@@ -9168,15 +9191,15 @@
    "slug": "truly-naked",
    "clave": "truly-naked",
    "uri": "https://letterboxd.com/film/truly-naked/",
-   "orden": 10
+   "orden": 11
   },
   {
-   "nombre": "Piedra libre",
+   "nombre": "Free for All",
    "anio": 1976,
-   "slug": "piedra-libre",
-   "clave": "piedra-libre",
-   "uri": "https://letterboxd.com/film/piedra-libre/",
-   "orden": 11
+   "slug": "free-for-all-1976",
+   "clave": "free-for-all-1976",
+   "uri": "https://letterboxd.com/film/free-for-all-1976/",
+   "orden": 12
   },
   {
    "nombre": "The Act in Question",
@@ -9184,7 +9207,7 @@
    "slug": "the-act-in-question",
    "clave": "the-act-in-question",
    "uri": "https://letterboxd.com/film/the-act-in-question/",
-   "orden": 12
+   "orden": 13
   },
   {
    "nombre": "Juan que reía",
@@ -9192,7 +9215,7 @@
    "slug": "juan-que-reia",
    "clave": "juan-que-reia",
    "uri": "https://letterboxd.com/film/juan-que-reia/",
-   "orden": 13
+   "orden": 14
   },
   {
    "nombre": "Pixote",
@@ -9200,7 +9223,7 @@
    "slug": "pixote",
    "clave": "pixote",
    "uri": "https://letterboxd.com/film/pixote/",
-   "orden": 14
+   "orden": 15
   },
   {
    "nombre": "The Life of Oharu",
@@ -9208,7 +9231,7 @@
    "slug": "the-life-of-oharu",
    "clave": "the-life-of-oharu",
    "uri": "https://letterboxd.com/film/the-life-of-oharu/",
-   "orden": 15
+   "orden": 16
   },
   {
    "nombre": "Ink",
@@ -9216,7 +9239,7 @@
    "slug": "ink-2026",
    "clave": "ink-2026",
    "uri": "https://letterboxd.com/film/ink-2026/",
-   "orden": 16
+   "orden": 17
   },
   {
    "nombre": "Postal",
@@ -9224,7 +9247,7 @@
    "slug": "postal",
    "clave": "postal",
    "uri": "https://letterboxd.com/film/postal/",
-   "orden": 17
+   "orden": 18
   },
   {
    "nombre": "Caché",
@@ -9232,7 +9255,7 @@
    "slug": "cache",
    "clave": "cache",
    "uri": "https://letterboxd.com/film/cache/",
-   "orden": 18
+   "orden": 19
   },
   {
    "nombre": "FLCL",
@@ -9240,7 +9263,7 @@
    "slug": "flcl",
    "clave": "flcl",
    "uri": "https://letterboxd.com/film/flcl/",
-   "orden": 19
+   "orden": 20
   },
   {
    "nombre": "A Woman Under the Influence",
@@ -9248,7 +9271,7 @@
    "slug": "a-woman-under-the-influence",
    "clave": "a-woman-under-the-influence",
    "uri": "https://letterboxd.com/film/a-woman-under-the-influence/",
-   "orden": 20
+   "orden": 21
   },
   {
    "nombre": "Funeral Parade of Roses",
@@ -9256,7 +9279,7 @@
    "slug": "funeral-parade-of-roses",
    "clave": "funeral-parade-of-roses",
    "uri": "https://letterboxd.com/film/funeral-parade-of-roses/",
-   "orden": 21
+   "orden": 22
   },
   {
    "nombre": "Love & Pop",
@@ -9264,7 +9287,7 @@
    "slug": "love-pop",
    "clave": "love-pop",
    "uri": "https://letterboxd.com/film/love-pop/",
-   "orden": 22
+   "orden": 23
   },
   {
    "nombre": "Singin' in the Rain",
@@ -9272,7 +9295,7 @@
    "slug": "singin-in-the-rain",
    "clave": "singin-in-the-rain",
    "uri": "https://letterboxd.com/film/singin-in-the-rain/",
-   "orden": 23
+   "orden": 24
   },
   {
    "nombre": "Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb",
@@ -9280,7 +9303,7 @@
    "slug": "dr-strangelove-or-how-i-learned-to-stop-worrying-and-love-the-bomb",
    "clave": "dr-strangelove-or-how-i-learned-to-stop-worrying-and-love-the-bomb",
    "uri": "https://letterboxd.com/film/dr-strangelove-or-how-i-learned-to-stop-worrying-and-love-the-bomb/",
-   "orden": 24
+   "orden": 25
   },
   {
    "nombre": "Kwaidan",
@@ -9288,7 +9311,7 @@
    "slug": "kwaidan",
    "clave": "kwaidan",
    "uri": "https://letterboxd.com/film/kwaidan/",
-   "orden": 25
+   "orden": 26
   },
   {
    "nombre": "Dead Ringers",
@@ -9296,7 +9319,7 @@
    "slug": "dead-ringers",
    "clave": "dead-ringers",
    "uri": "https://letterboxd.com/film/dead-ringers/",
-   "orden": 26
+   "orden": 27
   },
   {
    "nombre": "The 400 Blows",
@@ -9304,7 +9327,7 @@
    "slug": "the-400-blows",
    "clave": "the-400-blows",
    "uri": "https://letterboxd.com/film/the-400-blows/",
-   "orden": 27
+   "orden": 28
   },
   {
    "nombre": "Nosferatu the Vampyre",
@@ -9312,7 +9335,7 @@
    "slug": "nosferatu-the-vampyre",
    "clave": "nosferatu-the-vampyre",
    "uri": "https://letterboxd.com/film/nosferatu-the-vampyre/",
-   "orden": 28
+   "orden": 29
   },
   {
    "nombre": "Tokyo Story",
@@ -9320,7 +9343,7 @@
    "slug": "tokyo-story",
    "clave": "tokyo-story",
    "uri": "https://letterboxd.com/film/tokyo-story/",
-   "orden": 29
+   "orden": 30
   },
   {
    "nombre": "Horrible Bosses",
@@ -9328,7 +9351,7 @@
    "slug": "horrible-bosses",
    "clave": "horrible-bosses",
    "uri": "https://letterboxd.com/film/horrible-bosses/",
-   "orden": 30
+   "orden": 31
   },
   {
    "nombre": "Fool's Paradise",
@@ -9336,7 +9359,7 @@
    "slug": "fools-paradise-2023",
    "clave": "fools-paradise-2023",
    "uri": "https://letterboxd.com/film/fools-paradise-2023/",
-   "orden": 31
+   "orden": 32
   },
   {
    "nombre": "The Brother from Another Planet",
@@ -9344,7 +9367,7 @@
    "slug": "the-brother-from-another-planet",
    "clave": "the-brother-from-another-planet",
    "uri": "https://letterboxd.com/film/the-brother-from-another-planet/",
-   "orden": 32
+   "orden": 33
   },
   {
    "nombre": "Female Prisoner Scorpion: Beast Stable",
@@ -9352,7 +9375,7 @@
    "slug": "female-prisoner-scorpion-beast-stable",
    "clave": "female-prisoner-scorpion-beast-stable",
    "uri": "https://letterboxd.com/film/female-prisoner-scorpion-beast-stable/",
-   "orden": 33
+   "orden": 34
   },
   {
    "nombre": "Female Prisoner Scorpion: Jailhouse 41",
@@ -9360,7 +9383,7 @@
    "slug": "female-prisoner-scorpion-jailhouse-41",
    "clave": "female-prisoner-scorpion-jailhouse-41",
    "uri": "https://letterboxd.com/film/female-prisoner-scorpion-jailhouse-41/",
-   "orden": 34
+   "orden": 35
   },
   {
    "nombre": "Wings of Desire",
@@ -9368,7 +9391,7 @@
    "slug": "wings-of-desire",
    "clave": "wings-of-desire",
    "uri": "https://letterboxd.com/film/wings-of-desire/",
-   "orden": 35
+   "orden": 36
   },
   {
    "nombre": "Skintown",
@@ -9376,7 +9399,7 @@
    "slug": "skintown",
    "clave": "skintown",
    "uri": "https://letterboxd.com/film/skintown/",
-   "orden": 36
+   "orden": 37
   },
   {
    "nombre": "Egg",
@@ -9384,7 +9407,7 @@
    "slug": "egg-2002",
    "clave": "egg-2002",
    "uri": "https://letterboxd.com/film/egg-2002/",
-   "orden": 37
+   "orden": 38
   },
   {
    "nombre": "On the Beach at Night Alone",
@@ -9392,7 +9415,7 @@
    "slug": "on-the-beach-at-night-alone",
    "clave": "on-the-beach-at-night-alone",
    "uri": "https://letterboxd.com/film/on-the-beach-at-night-alone/",
-   "orden": 38
+   "orden": 39
   },
   {
    "nombre": "The Official Story",
@@ -9400,7 +9423,7 @@
    "slug": "the-official-story",
    "clave": "the-official-story",
    "uri": "https://letterboxd.com/film/the-official-story/",
-   "orden": 39
+   "orden": 40
   },
   {
    "nombre": "District 9",
@@ -9408,7 +9431,7 @@
    "slug": "district-9",
    "clave": "district-9",
    "uri": "https://letterboxd.com/film/district-9/",
-   "orden": 40
+   "orden": 41
   },
   {
    "nombre": "Pleasantville",
@@ -9416,7 +9439,7 @@
    "slug": "pleasantville",
    "clave": "pleasantville",
    "uri": "https://letterboxd.com/film/pleasantville/",
-   "orden": 41
+   "orden": 42
   },
   {
    "nombre": "Bring Me the Head of Alfredo Garcia",
@@ -9424,7 +9447,7 @@
    "slug": "bring-me-the-head-of-alfredo-garcia",
    "clave": "bring-me-the-head-of-alfredo-garcia",
    "uri": "https://letterboxd.com/film/bring-me-the-head-of-alfredo-garcia/",
-   "orden": 42
+   "orden": 43
   },
   {
    "nombre": "Son of the Bride",
@@ -9432,7 +9455,7 @@
    "slug": "son-of-the-bride",
    "clave": "son-of-the-bride",
    "uri": "https://letterboxd.com/film/son-of-the-bride/",
-   "orden": 43
+   "orden": 44
   },
   {
    "nombre": "Gummo",
@@ -9440,7 +9463,7 @@
    "slug": "gummo",
    "clave": "gummo",
    "uri": "https://letterboxd.com/film/gummo/",
-   "orden": 44
+   "orden": 45
   },
   {
    "nombre": "Captain Fantastic",
@@ -9448,7 +9471,7 @@
    "slug": "captain-fantastic",
    "clave": "captain-fantastic",
    "uri": "https://letterboxd.com/film/captain-fantastic/",
-   "orden": 45
+   "orden": 46
   },
   {
    "nombre": "The Boxer's Omen",
@@ -9456,7 +9479,7 @@
    "slug": "the-boxers-omen",
    "clave": "the-boxers-omen",
    "uri": "https://letterboxd.com/film/the-boxers-omen/",
-   "orden": 46
+   "orden": 47
   },
   {
    "nombre": "One Million Yen Girl",
@@ -9464,7 +9487,7 @@
    "slug": "one-million-yen-girl",
    "clave": "one-million-yen-girl",
    "uri": "https://letterboxd.com/film/one-million-yen-girl/",
-   "orden": 47
+   "orden": 48
   },
   {
    "nombre": "Punishment Park",
@@ -9472,7 +9495,7 @@
    "slug": "punishment-park",
    "clave": "punishment-park",
    "uri": "https://letterboxd.com/film/punishment-park/",
-   "orden": 48
+   "orden": 49
   },
   {
    "nombre": "The Point",
@@ -9480,7 +9503,7 @@
    "slug": "the-point",
    "clave": "the-point",
    "uri": "https://letterboxd.com/film/the-point/",
-   "orden": 49
+   "orden": 50
   },
   {
    "nombre": "Fireworks",
@@ -9488,7 +9511,7 @@
    "slug": "fireworks-1997",
    "clave": "fireworks-1997",
    "uri": "https://letterboxd.com/film/fireworks-1997/",
-   "orden": 50
+   "orden": 51
   },
   {
    "nombre": "Blue Spring",
@@ -9496,7 +9519,7 @@
    "slug": "blue-spring",
    "clave": "blue-spring",
    "uri": "https://letterboxd.com/film/blue-spring/",
-   "orden": 51
+   "orden": 52
   },
   {
    "nombre": "undertone",
@@ -9504,7 +9527,7 @@
    "slug": "undertone-2025",
    "clave": "undertone-2025",
    "uri": "https://letterboxd.com/film/undertone-2025/",
-   "orden": 52
+   "orden": 53
   },
   {
    "nombre": "I Want Your Sex",
@@ -9512,7 +9535,7 @@
    "slug": "i-want-your-sex",
    "clave": "i-want-your-sex",
    "uri": "https://letterboxd.com/film/i-want-your-sex/",
-   "orden": 53
+   "orden": 54
   },
   {
    "nombre": "Pink Flamingos",
@@ -9520,7 +9543,7 @@
    "slug": "pink-flamingos",
    "clave": "pink-flamingos",
    "uri": "https://letterboxd.com/film/pink-flamingos/",
-   "orden": 54
+   "orden": 55
   },
   {
    "nombre": "Braindead",
@@ -9528,7 +9551,7 @@
    "slug": "braindead-1992",
    "clave": "braindead-1992",
    "uri": "https://letterboxd.com/film/braindead-1992/",
-   "orden": 55
+   "orden": 56
   },
   {
    "nombre": "Kamikaze Girls",
@@ -9536,7 +9559,7 @@
    "slug": "kamikaze-girls",
    "clave": "kamikaze-girls",
    "uri": "https://letterboxd.com/film/kamikaze-girls/",
-   "orden": 56
+   "orden": 57
   },
   {
    "nombre": "Milk",
@@ -9544,7 +9567,7 @@
    "slug": "milk-2008",
    "clave": "milk-2008",
    "uri": "https://letterboxd.com/film/milk-2008/",
-   "orden": 57
+   "orden": 58
   },
   {
    "nombre": "I Am Cuba",
@@ -9552,7 +9575,7 @@
    "slug": "i-am-cuba",
    "clave": "i-am-cuba",
    "uri": "https://letterboxd.com/film/i-am-cuba/",
-   "orden": 58
+   "orden": 59
   },
   {
    "nombre": "Cromartie High School",
@@ -9560,7 +9583,7 @@
    "slug": "cromartie-high-school",
    "clave": "cromartie-high-school",
    "uri": "https://letterboxd.com/film/cromartie-high-school/",
-   "orden": 59
+   "orden": 60
   },
   {
    "nombre": "Godzilla vs. Hedorah",
@@ -9568,7 +9591,7 @@
    "slug": "godzilla-vs-hedorah",
    "clave": "godzilla-vs-hedorah",
    "uri": "https://letterboxd.com/film/godzilla-vs-hedorah/",
-   "orden": 60
+   "orden": 61
   },
   {
    "nombre": "Shin Kamen Rider",
@@ -9576,7 +9599,7 @@
    "slug": "shin-kamen-rider",
    "clave": "shin-kamen-rider",
    "uri": "https://letterboxd.com/film/shin-kamen-rider/",
-   "orden": 61
+   "orden": 62
   },
   {
    "nombre": "Tampopo",
@@ -9584,7 +9607,7 @@
    "slug": "tampopo",
    "clave": "tampopo",
    "uri": "https://letterboxd.com/film/tampopo/",
-   "orden": 62
+   "orden": 63
   },
   {
    "nombre": "Repo Man",
@@ -9592,7 +9615,7 @@
    "slug": "repo-man",
    "clave": "repo-man",
    "uri": "https://letterboxd.com/film/repo-man/",
-   "orden": 63
+   "orden": 64
   },
   {
    "nombre": "Devilman - Volume 1: The Birth",
@@ -9600,7 +9623,7 @@
    "slug": "devilman-volume-1-the-birth",
    "clave": "devilman-volume-1-the-birth",
    "uri": "https://letterboxd.com/film/devilman-volume-1-the-birth/",
-   "orden": 64
+   "orden": 65
   },
   {
    "nombre": "Black Dynamite",
@@ -9608,7 +9631,7 @@
    "slug": "black-dynamite",
    "clave": "black-dynamite",
    "uri": "https://letterboxd.com/film/black-dynamite/",
-   "orden": 65
+   "orden": 66
   },
   {
    "nombre": "Güeros",
@@ -9616,7 +9639,7 @@
    "slug": "gueros",
    "clave": "gueros",
    "uri": "https://letterboxd.com/film/gueros/",
-   "orden": 66
+   "orden": 67
   },
   {
    "nombre": "La Paz in Buenos Aires",
@@ -9624,7 +9647,7 @@
    "slug": "la-paz-in-buenos-aires",
    "clave": "la-paz-in-buenos-aires",
    "uri": "https://letterboxd.com/film/la-paz-in-buenos-aires/",
-   "orden": 67
+   "orden": 68
   },
   {
    "nombre": "But I'm a Cheerleader",
@@ -9632,7 +9655,7 @@
    "slug": "but-im-a-cheerleader",
    "clave": "but-im-a-cheerleader",
    "uri": "https://letterboxd.com/film/but-im-a-cheerleader/",
-   "orden": 68
+   "orden": 69
   },
   {
    "nombre": "Gozu",
@@ -9640,7 +9663,7 @@
    "slug": "gozu",
    "clave": "gozu",
    "uri": "https://letterboxd.com/film/gozu/",
-   "orden": 69
+   "orden": 70
   },
   {
    "nombre": "The Traitors",
@@ -9648,7 +9671,7 @@
    "slug": "the-traitors",
    "clave": "the-traitors",
    "uri": "https://letterboxd.com/film/the-traitors/",
-   "orden": 70
+   "orden": 71
   },
   {
    "nombre": "Mad God",
@@ -9656,7 +9679,7 @@
    "slug": "mad-god",
    "clave": "mad-god",
    "uri": "https://letterboxd.com/film/mad-god/",
-   "orden": 71
+   "orden": 72
   },
   {
    "nombre": "Tuner",
@@ -9664,7 +9687,7 @@
    "slug": "tuner",
    "clave": "tuner",
    "uri": "https://letterboxd.com/film/tuner/",
-   "orden": 72
+   "orden": 73
   },
   {
    "nombre": "The Return of the Living Dead",
@@ -9672,7 +9695,7 @@
    "slug": "the-return-of-the-living-dead",
    "clave": "the-return-of-the-living-dead",
    "uri": "https://letterboxd.com/film/the-return-of-the-living-dead/",
-   "orden": 73
+   "orden": 74
   },
   {
    "nombre": "Godzilla vs. Megalon",
@@ -9680,7 +9703,7 @@
    "slug": "godzilla-vs-megalon",
    "clave": "godzilla-vs-megalon",
    "uri": "https://letterboxd.com/film/godzilla-vs-megalon/",
-   "orden": 74
+   "orden": 75
   },
   {
    "nombre": "Baby Assassins 3",
@@ -9688,7 +9711,7 @@
    "slug": "baby-assassins-3",
    "clave": "baby-assassins-3",
    "uri": "https://letterboxd.com/film/baby-assassins-3/",
-   "orden": 75
+   "orden": 76
   },
   {
    "nombre": "Judgment Night",
@@ -9696,7 +9719,7 @@
    "slug": "judgment-night",
    "clave": "judgment-night",
    "uri": "https://letterboxd.com/film/judgment-night/",
-   "orden": 76
+   "orden": 77
   },
   {
    "nombre": "High Heels",
@@ -9704,7 +9727,7 @@
    "slug": "high-heels",
    "clave": "high-heels",
    "uri": "https://letterboxd.com/film/high-heels/",
-   "orden": 77
+   "orden": 78
   },
   {
    "nombre": "Malice@Doll",
@@ -9712,7 +9735,7 @@
    "slug": "malicedoll-2001",
    "clave": "malicedoll-2001",
    "uri": "https://letterboxd.com/film/malicedoll-2001/",
-   "orden": 78
+   "orden": 79
   },
   {
    "nombre": "The Wrong Ferarri",
@@ -9720,7 +9743,7 @@
    "slug": "the-wrong-ferarri",
    "clave": "the-wrong-ferarri",
    "uri": "https://letterboxd.com/film/the-wrong-ferarri/",
-   "orden": 79
+   "orden": 80
   },
   {
    "nombre": "Bitter Christmas",
@@ -9728,7 +9751,7 @@
    "slug": "bitter-christmas",
    "clave": "bitter-christmas",
    "uri": "https://letterboxd.com/film/bitter-christmas/",
-   "orden": 80
+   "orden": 81
   },
   {
    "nombre": "The Creep Tapes",
@@ -9736,14 +9759,6 @@
    "slug": "the-creep-tapes",
    "clave": "the-creep-tapes",
    "uri": "https://letterboxd.com/film/the-creep-tapes/",
-   "orden": 81
-  },
-  {
-   "nombre": "Thesis",
-   "anio": 1996,
-   "slug": "thesis",
-   "clave": "thesis",
-   "uri": "https://letterboxd.com/film/thesis/",
    "orden": 82
   },
   {
@@ -11547,5 +11562,5 @@
    "orden": 307
   }
  ],
- "actualizado": "2026-11-15T22:56:53.266Z"
+ "actualizado": "2026-11-17T02:58:36.970Z"
 }
