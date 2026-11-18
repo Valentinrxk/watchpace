@@ -2,6 +2,14 @@
  "usuario": "yuti",
  "diario": [
   {
+   "nombre": "Cutie Honey",
+   "anio": 2004,
+   "visto": "2026-11-17",
+   "rating": 4.5,
+   "rewatch": false,
+   "clave": "1591684486"
+  },
+  {
    "nombre": "Thesis",
    "anio": 1996,
    "visto": "2026-11-15",
@@ -3859,6 +3867,13 @@
   }
  ],
  "vistas": [
+  {
+   "nombre": "Cutie Honey",
+   "anio": 2004,
+   "slug": "cutie-honey",
+   "clave": "cutie-honey",
+   "uri": "https://letterboxd.com/film/cutie-honey/"
+  },
   {
    "nombre": "Thesis",
    "anio": 1996,
@@ -13044,5 +13059,5 @@
    "orden": 487
   }
  ],
- "actualizado": "2026-11-17T02:58:37.516Z"
+ "actualizado": "2026-11-18T07:41:08.878Z"
 }
