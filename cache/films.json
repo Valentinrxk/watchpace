@@ -88936,5 +88936,50 @@
    "alquiler": []
   },
   "actualizado": "2026-11-17T02:58:37.900Z"
+ },
+ "Sorry, Baby::2025": {
+  "tmdb": 1205515,
+  "titulo": "Sorry, Baby",
+  "original": "Sorry, Baby",
+  "sinopsis": "Algo malo le pasó a Agnes. Pero la vida continúa... al menos para todos los que la rodean.",
+  "tagline": null,
+  "puntaje": 6.9,
+  "votos": 387,
+  "minutos": 103,
+  "generos": [
+   "Drama",
+   "Comedia"
+  ],
+  "paises": [
+   "US",
+   "FR",
+   "ES"
+  ],
+  "idioma": "en",
+  "director": "Eva Victor",
+  "directorId": 2425998,
+  "reparto": [
+   "Eva Victor",
+   "Naomi Ackie",
+   "Louis Cancelmi",
+   "Kelly McCormack",
+   "Lucas Hedges"
+  ],
+  "repartoIds": [
+   2425998,
+   1537686,
+   163731,
+   1309781,
+   1105079
+  ],
+  "popularidad": 3.5098,
+  "poster": "/14T7NFonfJ6wJ6fvrnz5HJMA7iQ.jpg",
+  "backdrop": "/nVHEjkA8vuEGJLfNUOmVW5md6yn.jpg",
+  "proveedores": {
+   "suscripcion": [],
+   "gratis": [],
+   "alquiler": []
+  },
+  "actualizado": "2026-11-19T20:46:49.542Z"
  }
 }
