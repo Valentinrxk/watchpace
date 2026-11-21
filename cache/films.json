@@ -88981,5 +88981,49 @@
    "alquiler": []
   },
   "actualizado": "2026-11-19T20:46:49.542Z"
+ },
+ "Sad Girlz::2026": {
+  "tmdb": 1536433,
+  "titulo": "Chicas Tristes",
+  "original": "Chicas Tristes",
+  "sinopsis": "La Maestra y Paula son las mejores nadadoras de su equipo y, además, mejores amigas, hasta que un incidente en una fiesta lo cambia todo. La Maestra, intensa e imparable, se da cuenta de que algo ha cambiado en Paula, sumiéndola en la tristeza. Cuando la verdad sale a la luz, ambas se enfrentan a una decisión imposible: Paula quiere guardar silencio, mientras que La Maestra busca venganza. Su amistad, hasta entonces inquebrantable, se verá puesta a prueba como nunca antes.",
+  "tagline": null,
+  "puntaje": 7.1,
+  "votos": 9,
+  "minutos": 90,
+  "generos": [
+   "Drama"
+  ],
+  "paises": [
+   "MX",
+   "ES",
+   "FR"
+  ],
+  "idioma": "es",
+  "director": "Fernanda Tovar",
+  "directorId": 2089275,
+  "reparto": [
+   "Rocío Guzmán",
+   "Darana Álvarez",
+   "Tatsumi Milori",
+   "Tomás García Agraz",
+   "Mónica del Carmen"
+  ],
+  "repartoIds": [
+   4840693,
+   5923337,
+   5680107,
+   1911016,
+   1376187
+  ],
+  "popularidad": 2.1836,
+  "poster": "/uBuKmFb6lpqvL1a1TeqP6NmOTHP.jpg",
+  "backdrop": "/57cJShfnln2CkL4tBNpYGtxFDn4.jpg",
+  "proveedores": {
+   "suscripcion": [],
+   "gratis": [],
+   "alquiler": []
+  },
+  "actualizado": "2026-11-21T20:35:19.909Z"
  }
 }
