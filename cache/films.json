@@ -89025,5 +89025,50 @@
    "alquiler": []
   },
   "actualizado": "2026-11-21T20:35:19.909Z"
+ },
+ "Today's Nekomura::2020": {
+  "sinMatch": true
+ },
+ "Making of Cutie Honey::2004": {
+  "tmdb": 849527,
+  "titulo": "メイキング･オブ･キューティーハニー",
+  "original": "メイキング･オブ･キューティーハニー",
+  "sinopsis": "Behind the scenes of the 2004 film \"Cutie Honey\". Extra on Blu-ray Box.",
+  "tagline": null,
+  "puntaje": null,
+  "votos": 0,
+  "minutos": 71,
+  "generos": [
+   "Documental"
+  ],
+  "paises": [
+   "JP"
+  ],
+  "idioma": "ja",
+  "director": "奥田浩史",
+  "directorId": 67286,
+  "reparto": [
+   "佐藤江梨子",
+   "市川実日子",
+   "Hideaki Anno",
+   "Jun Murakami",
+   "片桐はいり"
+  ],
+  "repartoIds": [
+   146869,
+   130654,
+   77921,
+   9671,
+   123862
+  ],
+  "popularidad": 0.7482,
+  "poster": "/21p2UzUTQUKauOES3s5Bzfb0gkX.jpg",
+  "backdrop": null,
+  "proveedores": {
+   "suscripcion": [],
+   "gratis": [],
+   "alquiler": []
+  },
+  "actualizado": "2026-11-23T14:53:38.485Z"
  }
 }
