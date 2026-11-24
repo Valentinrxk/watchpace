@@ -89070,5 +89070,91 @@
    "alquiler": []
   },
   "actualizado": "2026-11-23T14:53:38.485Z"
+ },
+ "Murmur of Youth::1997": {
+  "tmdb": 125085,
+  "titulo": "美麗在唱歌",
+  "original": "美麗在唱歌",
+  "sinopsis": "A rather dejected Mei-li Chen lives with her extended family in the suburbs. She drops out of college when the boy she has a crush on finds a girlfriend. Mei-li eventually ends up selling tickets in a movie theatre. A great camaraderie then builds up between the two cashiers in the small ticket booth.",
+  "tagline": null,
+  "puntaje": 6.1,
+  "votos": 15,
+  "minutos": 106,
+  "generos": [
+   "Drama"
+  ],
+  "paises": [
+   "TW"
+  ],
+  "idioma": "zh",
+  "director": "林正盛",
+  "directorId": 131288,
+  "reparto": [
+   "劉若英",
+   "Jing Tseng",
+   "陳昭榮",
+   "Lien Pi-tung",
+   "魏筱惠"
+  ],
+  "repartoIds": [
+   126735,
+   1636236,
+   71172,
+   1746017,
+   551669
+  ],
+  "popularidad": 0.7051,
+  "poster": "/hVoc6fdfreQXNU4cWGhoi6oQyJb.jpg",
+  "backdrop": "/zNFKoELYuosZCCnaqyyQMWOa7Tw.jpg",
+  "proveedores": {
+   "suscripcion": [],
+   "gratis": [],
+   "alquiler": []
+  },
+  "actualizado": "2026-11-24T02:57:00.372Z"
+ },
+ "Girltrash: All Night Long::2014": {
+  "tmdb": 254936,
+  "titulo": "Girltrash: All Night Long",
+  "original": "Girltrash: All Night Long",
+  "sinopsis": "La historia de cinco mujeres y una noche épica. Las chicas van a encontrar el amor, la lujuria, rock and roll, y un montón de chicas de la hermandad.",
+  "tagline": null,
+  "puntaje": 5.8,
+  "votos": 42,
+  "minutos": 85,
+  "generos": [
+   "Crimen",
+   "Drama",
+   "Comedia"
+  ],
+  "paises": [
+   "US"
+  ],
+  "idioma": "en",
+  "director": "Alexandra Kondracke",
+  "directorId": 206651,
+  "reparto": [
+   "Lisa Rieffel",
+   "Michelle Lombardo",
+   "Gabrielle Christian",
+   "Mandy Musgrave",
+   "Rose Rollins"
+  ],
+  "repartoIds": [
+   155897,
+   112327,
+   1218821,
+   1223057,
+   1219489
+  ],
+  "popularidad": 0.8202,
+  "poster": "/xJTrdoiowuVfij1QyzdeMicf5QP.jpg",
+  "backdrop": "/9YcZzSNIuPkzfr5GMLLHkUEVsIt.jpg",
+  "proveedores": {
+   "suscripcion": [],
+   "gratis": [],
+   "alquiler": []
+  },
+  "actualizado": "2026-11-24T02:57:00.373Z"
  }
 }
