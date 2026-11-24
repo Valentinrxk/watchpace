@@ -2,6 +2,14 @@
  "usuario": "yuti",
  "diario": [
   {
+   "nombre": "Irma Vep",
+   "anio": 1996,
+   "visto": "2026-11-24",
+   "rating": null,
+   "rewatch": false,
+   "clave": "1600616788"
+  },
+  {
    "nombre": "Girltrash: All Night Long",
    "anio": 2014,
    "visto": "2026-11-23",
@@ -3891,6 +3899,13 @@
   }
  ],
  "vistas": [
+  {
+   "nombre": "Irma Vep",
+   "anio": 1996,
+   "slug": "irma-vep",
+   "clave": "irma-vep",
+   "uri": "https://letterboxd.com/film/irma-vep/"
+  },
   {
    "nombre": "200 Cigarettes",
    "anio": 1999,
@@ -13112,5 +13127,5 @@
    "orden": 488
   }
  ],
- "actualizado": "2026-11-24T02:56:59.916Z"
+ "actualizado": "2026-11-24T14:58:03.796Z"
 }

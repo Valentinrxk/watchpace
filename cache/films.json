@@ -89156,5 +89156,48 @@
    "alquiler": []
   },
   "actualizado": "2026-11-24T02:57:00.373Z"
+ },
+ "Irma Vep::1996": {
+  "tmdb": 25355,
+  "titulo": "Irma Vep",
+  "original": "Irma Vep",
+  "sinopsis": "Un director francés desea recuperar el serial \"Les Vampires\" de Feuillade, pero al no encontrar una actriz francesa adecuada para interpretar a Irma Vep, la protagonista, decide contratar a Maggie Cheung, una actriz asiática que no sabe un palabra de francés. Sin embargo, son muchos los que creen que la obra de Feuillade carece de interés, razón por la cual los problemas se suceden desde el principio tanto dentro como fuera del plató.",
+  "tagline": null,
+  "puntaje": 6.7,
+  "votos": 263,
+  "minutos": 97,
+  "generos": [
+   "Comedia",
+   "Drama"
+  ],
+  "paises": [
+   "FR"
+  ],
+  "idioma": "fr",
+  "director": "Olivier Assayas",
+  "directorId": 21678,
+  "reparto": [
+   "張曼玉",
+   "Jean-Pierre Léaud",
+   "Nathalie Richard",
+   "Antoine Basler",
+   "Nathalie Boutefeu"
+  ],
+  "repartoIds": [
+   1338,
+   1653,
+   6019,
+   35965,
+   130890
+  ],
+  "popularidad": 1.4026,
+  "poster": "/lAS2egLUnQnDKZ5fSnE7jr7Jinw.jpg",
+  "backdrop": "/iK3JJvaWg67dQQyob3SqDsnQpHo.jpg",
+  "proveedores": {
+   "suscripcion": [],
+   "gratis": [],
+   "alquiler": []
+  },
+  "actualizado": "2026-11-24T14:58:03.977Z"
  }
 }
