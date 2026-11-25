@@ -89199,5 +89199,49 @@
    "alquiler": []
   },
   "actualizado": "2026-11-24T14:58:03.977Z"
+ },
+ "Sick Girl::2006": {
+  "tmdb": 334033,
+  "titulo": "Metamorfosis (Masters of Horror Series)",
+  "original": "Sick Girl",
+  "sinopsis": "La soporífera vida de una tímida entomóloga da un cambio radical con la aparición de un misterioso gusano de gran tamaño, capaz de modificar el comportamiento de las personas, y tras un tórrido affair con una mujer muy sexy. El extraño insecto encuentra un sorprendente lugar para buscar alimento, y el éxtasis lésbico se vuelve infección, mutación y asesinato...",
+  "tagline": null,
+  "puntaje": 6.2,
+  "votos": 47,
+  "minutos": 56,
+  "generos": [
+   "Terror",
+   "Película de TV"
+  ],
+  "paises": [
+   "US",
+   "CA"
+  ],
+  "idioma": "en",
+  "director": "Lucky McKee",
+  "directorId": 51534,
+  "reparto": [
+   "Angela Bettis",
+   "Erin Brown",
+   "Mike McKee",
+   "Jesse Hlubik",
+   "Marcia Bennett"
+  ],
+  "repartoIds": [
+   32799,
+   94927,
+   1448880,
+   213360,
+   40385
+  ],
+  "popularidad": 1.1002,
+  "poster": "/ayUkeTAikjxC4KTClDX6xyOvsPJ.jpg",
+  "backdrop": "/9AyX9UP7fBHLemrreibEFG7FetD.jpg",
+  "proveedores": {
+   "suscripcion": [],
+   "gratis": [],
+   "alquiler": []
+  },
+  "actualizado": "2026-11-25T21:49:19.553Z"
  }
 }
